@@ -3,13 +3,15 @@
   "another": "Another Page",
   "advanced": "Advanced (A Folder)",
   "about": {
-    "title": "About",
-    "type": "page"
+    "title": "Explore BuildShip ‣",
+    "type": "page",
+    "href": "https://www.buildship.com",
+    "newWindow": true
   },
   "contact": {
-    "title": "Contact ↗",
+    "title": "Contact Us ‣",
     "type": "page",
-    "href": "https://twitter.com/buildship_com",
+    "href": "https://www.twitter.com/buildship_com",
     "newWindow": true
   }
 }
