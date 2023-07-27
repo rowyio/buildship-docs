@@ -1,7 +1,8 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "introduction": "Introduction",
+  "getting-started": "Getting Started",
+  "actions": "Actions",
+  "advanced": "Advanced",
   "about": {
     "title": "Explore BuildShip ‣",
     "type": "page",
