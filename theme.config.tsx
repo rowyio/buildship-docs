@@ -17,21 +17,7 @@ const config: DocsThemeConfig = {
     link: 'https://rowy.io/discord', // Link to the Rowy Discord server
   },
   docsRepositoryBase: 'https://github.com/rowyio/buildship-docs',
-  footer: {
-    text: (
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span>
-          <Logo />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Copyright © {new Date().getFullYear()}
-        </span>
-
-        <a href="https://www.rowy.io" style={{ display: 'flex', justifyContent: "flex-end"}}>
-          Made with 💜 by the Rowy Team
-        </a>
-    </div>
-    )
-  },
+  footer: { component: null },
 }
 
 export default config

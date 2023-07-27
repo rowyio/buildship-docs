@@ -216,7 +216,7 @@
   html[class~="light"] .folderAsHeader .nextra-sidebar-container ul li.active > a,
   html[class~="light"] .nextra-toc ul li a[aria-selected="true"] {
     color: var(--docs-accent-color);
-    background-color: var(--docs-accent-color-opacity);
+    background-color: transparent;
   }
   
   /* html[class~="dark"] .nextra-sidebar-container ul li.active > a:hover,
@@ -437,7 +437,7 @@
     ------------------------ */
   
   .cbs article h1 {
-    font-size: 4.5rem;
+    font-size: 60px;
     margin-top: 0;
     line-height: 100%;
     letter-spacing: -0.05em;
