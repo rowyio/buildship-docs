@@ -478,6 +478,10 @@
   .cbs article h1:first-of-type {
     margin-top: -0.16em;
   }
+
+  .cbs article p:first-of-type{
+    font-size: large; 
+  }
   
   .cbs article h2 {
     margin-top: 2em;
