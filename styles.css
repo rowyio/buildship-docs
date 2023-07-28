@@ -1,8 +1,8 @@
 :root {
-    --docs-accent-color: #ef77c7;
-    --docs-accent-color-2: #464EFF;
-    --docs-accent-color-opacity: #ef77c760;
-    --docs-accent-color-link: #ef77c7;
+    --docs-accent-color: #878bff;
+    --docs-accent-color-2: #33c1e8;
+    --docs-accent-color-opacity: #878bff60;
+    --docs-accent-color-link: #878bff;
     --docs-light-bg: #e5e5e560;
     --docs-light-bg-hover: #d0d0d060; 
     --docs-dark-bg: #2a2a2a90;
@@ -40,7 +40,7 @@
   }
   
   .nextra-nav-container nav {
-    height: 6rem;
+    height: 7rem;
   }
   
   aside {
@@ -271,12 +271,12 @@
   }
   
   /* arrow dropdown */
-  .folderAsHeader .nextra-sidebar-container a svg {
+  .folderAsHeader .nextra-sidebar-container svg {
     transition: opacity 100ms;
     opacity: 0;
   }
   
-  .folderAsHeader .nextra-sidebar-container a:hover svg {
+  .folderAsHeader .nextra-sidebar-container button:hover svg {
     opacity: 1;
   }
   
@@ -285,6 +285,18 @@
   }
   
   /* Bold only on the header */
+  html[class~="dark"] .folderAsHeader .nextra-sidebar-container ul > li > button {
+    font-weight: 600;
+    color: #c5c5c5;
+    font-size: 1.05rem;
+  }
+
+  html[class~="light"] .folderAsHeader .nextra-sidebar-container ul > li > button {
+    font-weight: 600;
+    color: #0e0e0e;
+    font-size: 1.05rem;
+  }
+
   .folderAsHeader .nextra-sidebar-container ul > li > a,
   .folderAsHeader .nextra-sidebar-container ul > li > a:hover {
     font-weight: 600;
