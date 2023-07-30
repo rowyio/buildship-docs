@@ -481,6 +481,7 @@
 
   .cbs article p:first-of-type{
     font-size: large; 
+    margin-bottom: 15px;
   }
   
   .cbs article h2 {
