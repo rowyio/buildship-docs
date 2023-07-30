@@ -1,6 +1,7 @@
 import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import Logo from './components/Logo'
+import { ThemeSwitchButton } from './components/ThemeSwitchButton'
 
 const config: DocsThemeConfig = {
   logo: () => {
@@ -10,6 +11,7 @@ const config: DocsThemeConfig = {
       </span>
     )
   },
+  darkMode: false,
   gitTimestamp: null,
   head() {
     const { frontMatter } = useConfig();
@@ -37,6 +39,11 @@ const config: DocsThemeConfig = {
         />
         </>
     );
+  },
+  navbar: {
+    extraContent: (
+      <ThemeSwitchButton />
+    ),
   },
   useNextSeoProps: () => ({ titleTemplate: '%s – BuildShip' }),
   project: {

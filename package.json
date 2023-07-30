@@ -14,6 +14,7 @@
   "homepage": "https://github.com/rowyio/buildship-docs#readme",
   "dependencies": {
     "next": "^13.0.6",
+    "next-themes": "^0.2.1",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
