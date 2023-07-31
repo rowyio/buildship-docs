@@ -1,4 +1,4 @@
-import { ButtonIcon } from '../components/icons'
+import { ButtonIcon } from './icons'
 import { useTheme } from 'next-themes'
 import { useMounted } from 'nextra/hooks'
 
