@@ -1,8 +1,7 @@
 {
   "introduction": "Introduction",
   "getting-started": "Getting Started",
-  "actions": "Actions",
-  "advanced": "Advanced",
+  "flow-control": "Flow Control",
   "about": {
     "title": "Explore BuildShip ‣",
     "type": "page",
