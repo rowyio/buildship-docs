@@ -1,17 +1,12 @@
 {
-  "introduction": "Introduction",
-  "getting-started": "Getting Started",
-  "flow-control": "Flow Control",
-  "about": {
-    "title": "Explore BuildShip ‣",
+  "docs": {
+    "title": "Documentation",
     "type": "page",
-    "href": "https://www.buildship.com",
-    "newWindow": true
+    "href": "/docs/introduction/welcome"
   },
-  "contact": {
-    "title": "Contact Us ‣",
+  "tutorials": {
+    "title": "Tutorials",
     "type": "page",
-    "href": "https://www.twitter.com/buildship_com",
-    "newWindow": true
+    "href": "/tutorials/overview"
   }
 }
