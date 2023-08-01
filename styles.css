@@ -271,9 +271,19 @@
   }
   
   /* arrow dropdown */
+  
+  /* .folderAsHeader .nextra-sidebar-container ul > li > div svg {
+    transition: opacity 100ms;
+    opacity: 0.5;
+  }
+  
+  .folderAsHeader .nextra-sidebar-container ul > li > div button:hover svg {
+    opacity: 1;
+  } */
+  
   .folderAsHeader .nextra-sidebar-container svg {
     transition: opacity 100ms;
-    opacity: 0;
+    opacity: 0.5;
   }
   
   .folderAsHeader .nextra-sidebar-container button:hover svg {
@@ -296,6 +306,12 @@
     color: #0e0e0e;
     font-size: 1.05rem;
   }
+
+  /* .folderAsHeader .nextra-sidebar-container ul > li > div > div > ul > li > button  {
+    font-weight: 400 !important;
+    color: #555555 !important;
+    font-size: 0.875rem !important;
+  } */
 
   .folderAsHeader .nextra-sidebar-container ul > li > a,
   .folderAsHeader .nextra-sidebar-container ul > li > a:hover {
@@ -481,7 +497,7 @@
 
   .cbs article p:first-of-type{
     font-size: large; 
-    margin-bottom: 15px;
+    /* margin-bottom: 10px; */
   }
   
   .cbs article h2 {

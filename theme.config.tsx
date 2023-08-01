@@ -45,6 +45,9 @@ const config: DocsThemeConfig = {
       <ThemeSwitchButton />
     ),
   },
+  sidebar: {
+    defaultMenuCollapseLevel: 4,
+  },
   useNextSeoProps: () => ({ titleTemplate: '%s – BuildShip' }),
   project: {
     link: 'https://github.com/rowyio/rowy', // Link to the project repository
