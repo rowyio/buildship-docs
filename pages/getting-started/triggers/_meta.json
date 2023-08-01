@@ -1,0 +1,5 @@
+{
+    "rest-api": "REST API Call",
+    "cron": "Scheduled Cron",
+    "interval": "Scheduled Interval"
+}
