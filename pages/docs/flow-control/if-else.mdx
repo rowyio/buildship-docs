@@ -8,6 +8,7 @@ import { Callout } from 'nextra/components'
 import { Steps } from 'nextra/components'
 import branch1 from "/public/flow-control/branch1.png"
 import branch2 from "/public/flow-control/branch2.png"
+import branch3 from "/public/flow-control/branch3.png"
 
 # Branch (If Else)
 
@@ -82,3 +83,56 @@ In this example, we'll create a workflow that receives an HTTP request with a JS
 - If the incoming requests' `number` key has a value greater than 10 (e.g., `"number": 15`), the workflow returns `15 is greater than 10`.
 
 - If the incoming requests' `number` key has a value less than or equal to 10 (e.g., `"number": 5`), the workflow returns `5 is less than or equal to 10`.
+
+
+## Nested Branch (Nested If Else)
+
+A **Nested Branch** or a **Nested If Else** is a conditional structure within another conditional structure. Using nested branches allows you to create more complex conditional logic in your workflow by combining multiple levels of "if-else" statements. This approach is useful when you need to evaluate multiple conditions sequentially, with each condition leading to a different set of actions.
+
+### Nested Branch Example
+
+Let's consider a scenario where we want to categorize incoming numbers into three groups: "Greater than 20," "Between 10 and 20," and "Less than or equal to 10."
+
+<Image src={branch3} alt="Branch" width="1200" />
+
+<Steps>
+    ### HTTP Trigger Node
+    Create a workflow with an HTTP Request Trigger to receive incoming requests.
+
+    ### Add Branch Node
+    Add a Branch (If Else) node to the workflow.
+
+    ### Set Branch Condition
+    Click on the **Expression Menu**, select **Expression Editor**. Set the Branch node's condition as: 
+    ```js copy
+    ctx["request"]["body"]["number"] < 20
+    ```
+    ### Adding Nested conditions
+    - In the "**Then**" block of the first Branch node, add another Branch (If Else) node.
+    - Set the condition in the second Branch node as 
+    ```js copy
+    ctx["request"]["body"]["number"] > 10
+    ```
+    - In the "**Then**" block of the second Branch node, add a Return node with the expression:
+    ```js copy
+    ctx["request"]["body"]["number"] + " is between 10 and 20"
+    ```
+    - In the "**Else**" block of the second Branch node, add another Return node with the message:
+    ```js copy
+    ctx["request"]["body"]["number"] + " is less than or equal to 10"
+    ```
+    - In the "**Else**" block of the first Branch node (i.e., if the number is not greater than 20), add a Return node with the message:
+    ```js copy
+    ctx["request"]["body"]["number"] + " is greater than 20"
+    ```
+
+    ### Test the Workflow
+    Click deploy and send a request to the given endpoint with a JSON body containing the `number` key. Here's an example body JSON:
+
+    ```json
+    {
+        "number": 15
+    }
+    ```
+
+</Steps>
