@@ -15,7 +15,7 @@ module.exports = withNextra({
         */
         {
           source: "/",
-          destination: "/docs/introduction/welcome",
+          destination: "/docs/welcome",
           permanent: true,
         }
       ];

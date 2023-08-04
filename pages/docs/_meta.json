@@ -1,5 +1,5 @@
 {
-    "introduction": "Introduction",
-    "getting-started": "Getting Started",
-    "flow-control": "Flow Control"
+    "welcome": "Welcome to BuildShip",
+    "how-to": "How To Guide",
+    "nodes": "Node Types"
 }
