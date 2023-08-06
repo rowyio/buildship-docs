@@ -1,12 +1,35 @@
 {
+  "index": {
+    "title": "Introduction",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
   "docs": {
     "title": "Documentation",
     "type": "page",
-    "href": "/docs/introduction/welcome"
+    "href": "/index"
   },
-  "tutorials": {
-    "title": "Tutorials",
+  "templates": {
     "type": "page",
-    "href": "/tutorials/overview"
+    "title": "Templates"
+  },
+  "how-to-guide": "How to Guide",
+  "-- Theme": {
+    "type": "separator",
+    "title": "Workflow Triggers"
+  },
+  "rest-api": "REST API",
+  "scheduled-task": "Scheduled Task",
+  "-- Themes": {
+    "type": "separator",
+    "title": "Workflow Nodes"
+  },
+  "core-nodes": "Core Nodes",
+  "flow-control": "Flow Control",
+  "tutorials": {
+    "type": "page",
+    "title": "Tutorials"
   }
+  
 }
