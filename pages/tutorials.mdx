@@ -1,0 +1,39 @@
+---
+title: Tutorials
+---
+
+import { Card, Cards } from 'nextra/components'
+
+# Tutorials
+
+Step by step guided tutorial for powerful usecases and examples.
+
+<Cards>
+  <ShowcaseCard title="Node.js" href="https://nodejs.org/en">
+    <>![Node.js preview](../public/tutorial/nodejs.svg)</>
+  </ShowcaseCard>
+  <ShowcaseCard title="The Graph" href="https://thegraph.com/docs/en">
+    <>![The Graph preview](../public/tutorial/thegraph.jpeg)</>
+  </ShowcaseCard>
+  
+</Cards>
+
+export const ShowcaseCard = Object.assign(
+  // Copy card component and add default props
+  Card.bind(),
+  {
+    displayName: 'ShowcaseCard',
+    defaultProps: {
+      image: true,
+      arrow: true,
+      target: '_blank'
+    }
+  }
+)
+
+<style global jsx>{`
+  img {
+    aspect-ratio: 12/6.3;
+    object-fit: cover;
+  }
+`}</style>

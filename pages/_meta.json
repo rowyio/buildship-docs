@@ -5,31 +5,29 @@
       "breadcrumb": false
     }
   },
-  "docs": {
-    "title": "Documentation",
-    "type": "page",
-    "href": "/"
+  "tutorials": {
+    "title": "Tutorials",
+    "theme": {
+      "breadcrumb": false
+    }
   },
-  "templates": {
-    "type": "page",
-    "title": "Templates"
+  "basics": {
+    "title": "Basics"
   },
-  "how-to-guide": "How to Guide",
   "-- Theme": {
     "type": "separator",
-    "title": "Workflow Triggers"
+    "title": "Trigger Types"
   },
   "rest-api": "REST API",
   "scheduled-task": "Scheduled Task",
   "-- Themes": {
     "type": "separator",
-    "title": "Workflow Nodes"
+    "title": "Node Types"
   },
-  "core-nodes": "Core Nodes",
+  "core-nodes": "Core",
   "flow-control": "Flow Control",
-  "tutorials": {
-    "type": "page",
-    "title": "Tutorials"
-  }
+  "ai-nodes": "AI",
+  "database": "Database",
+  "integration": "Integration"
   
 }

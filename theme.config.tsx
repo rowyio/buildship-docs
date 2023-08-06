@@ -85,7 +85,7 @@ const config: DocsThemeConfig = {
         <meta name="twitter:url" content="https://nextra.site" />
         <meta
           name="og:title"
-          content={title ? title + ' – Nextra' : 'Nextra'}
+          content={title ? title + ' – BuildShip' : 'Visual Backend Builder'}
         />
         <meta name="og:image" content={socialCard} />
         <meta name="apple-mobile-web-app-title" content="Nextra" />
