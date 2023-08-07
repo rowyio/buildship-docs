@@ -128,6 +128,7 @@ const config: DocsThemeConfig = {
     toggleButton: true
   },
   footer: { component: null },
+  gitTimestamp: null
 }
 
 export default config
