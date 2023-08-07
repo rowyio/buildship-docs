@@ -14,8 +14,8 @@
     "fathom-client": "^3.5.0",
     "framer-motion": "^10.0.0",
     "next": "^13.4.8",
-    "nextra": "workspace:*",
-    "nextra-theme-docs": "workspace:*",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
