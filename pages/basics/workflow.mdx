@@ -1,81 +1,75 @@
 # What is a Workflow?
 
-import { CloudIcon, TableIcon } from '@components/icons'
-import { Card, Cards } from 'nextra/components'
 import { Callout, Steps } from 'nextra/components'
+import Image from 'next/image'
+import workflow1 from '/public/basics/workflow1.png'
+import workflowTrigger from '/public/basics/triggers1.png'
+import workflow2 from '/public/basics/workflow2.png'
+import workflow3 from '/public/basics/workflow3.png'
+import workflow4 from '/public/basics/workflow4.png'
 
+A workflow is a **visual representation of a logical sequence of tasks** designed to achieve a specific goal. Each task is represented by a node, and workflows are constructed to automate processes, streamline tasks, and efficiently respond to various events.
 
-You can Similar to the [Docs Theme](/docs/docs-theme/start), you can install the blog
-theme with the following commands:
+**Key characteristics of workflows include:**
+
+- **Trigger Nodes:** The first node is a trigger that initiates the workflow
+- **Nodes:** Each node represents a specific task or action within the workflow
+- **Return Nodes:** The last node can be a return statement, providing optional final outputs
+
+## How to build a Workflow?
+
+Here's a comprehensive guide to building a workflow using BuildShip:
 
 <Steps>
-### Add a trigger
+### Create a new workflow
 
-To create a Nextra Docs site manually, you have to install **Next.js**,
-**React**, **Nextra**, and **Nextra Blog Theme**. In your project directory, run
-the following command to install the dependencies:
+*Begin by initiating a new workflow on the BuildShip dashboard.*
 
-```sh npm2yarn
-npm i next react react-dom nextra nextra-theme-blog
-```
+Navigate to the BuildShip dashboard and click on the "**New Workflow**" button.
 
-<Callout>
-  If you already have Next.js installed in your project, you only need to
-  install `nextra` and `nextra-theme-blog` as the add-ons.
+<Callout emoji="💡" type="info">
+  Alternatively, you can select a suitable template from the available options.
 </Callout>
+
+<Image src={workflow1} alt="Workflow 1" width={1200} />
   
-### Add readymade nodes
+### Adding Triggers
 
-Create the following `next.config.js` file in your project’s root directory:
+*Triggers initiate workflows based on specific events.*
 
-```js filename="next.config.js"
-const withNextra = require('nextra')({
-  theme: 'nextra-theme-blog',
-  themeConfig: './theme.config.jsx'
-})
+Click on the "**Add a Trigger**" button within your newly created workflow.
+Select from the list of existing triggers, such as [HTTP Requests](/rest-api) or [Scheduled Intervals](/scheduled-task).
 
-module.exports = withNextra()
+<Image src={workflowTrigger} alt="Workflow Trigger" width={1200} />
 
-// If you have other Next.js configurations, you can pass them as the parameter:
-// module.exports = withNextra({ /* other next.js config */ })
-```
+### Adding Logic Nodes
 
-With the above configuration, Nextra can handle Markdown files in your Next.js
-project, with the specified theme. Other Nextra configurations can be found in
-[Guide](/docs/guide).
+*Logic nodes perform tasks and actions within your workflow.*
 
-### Generate nodes using AI 
+Explore the Nodeverse, which offers a variety of pre-built nodes for data processing, communication, and more.
+Select nodes that align with the tasks you want to accomplish.
 
-Lastly, create the corresponding `theme.config.jsx` file in your project’s root
-directory. This will be used to configure the Nextra Blog theme:
+You could also create your own custom nodes using the "**Generate with AI**" feature from **the Nodeverse**.
 
-```jsx filename="theme.config.jsx"
-export default {
-  footer: <p>MIT 2023 © Nextra.</p>,
-  head: ({ title, meta }) => (
-    <>
-      {meta.description && (
-        <meta name="description" content={meta.description} />
-      )}
-      {meta.tag && <meta name="keywords" content={meta.tag} />}
-      {meta.author && <meta name="author" content={meta.author} />}
-    </>
-  ),
-  readMore: 'Read More →',
-  postFooter: null,
-  darkMode: false,
-  navs: [
-    {
-      url: 'https://github.com/shuding/nextra',
-      name: 'Nextra'
-    }
-  ]
-}
-```
+<Image src={workflow2} alt="Workflow 2" width={1200} />
 
-### Ready to Go!
+### Configuring the Nodes
 
-Now, you can run the `pnpm next` command to start developing the project! 🎉
+With BuildShip's low-code capabilities, configuring each node is a user-friendly process that empowers you to tailor your workflow to your exact requirements. Here's how you can do it:
+
+<Image src={workflow3} alt="Workflow 3" width={1200} />
+
+- Click on the **Script Icon** on the node to open the **Node Editor**. 
+- Personalize the node's behavior according to your specific needs by manipulating the Node Logic, Input Params, Output, as well as the Node Description.
+
+### Returning data from the Workflow
+
+*Optionally, include a return statement at the end of your workflow.*
+
+The return statement provides output values that can be used for further processing or as a response.
+
+<Image src={workflow4} alt="Workflow 4" width={1200} />
 
 </Steps>
 
+Congratulations! You've successfully created a dynamic workflow tailored to your needs. 🚀
