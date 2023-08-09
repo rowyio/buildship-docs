@@ -1,5 +1,7 @@
 {
-  "workflow": "Workflow",
-  "trigger": "Trigger",
-  "node": "Node"
+  "explore": "Exploring BuildShip",
+  "workflow": "Creating Workflows",
+  "trigger": "Triggers",
+  "node": "Nodes",
+  "variables": "Using Variables"
 }

@@ -1,35 +1,137 @@
 # What is a Node?
 
+import Image from 'next/image'
+import anatomy1 from '/public/basics/anatomy1.png'
 
-## Node Anatomy - How a node works
+Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete workflow. 
 
-Nextra is 100% compatible with the
-[built-in CSS support of Next.js](https://nextjs.org/docs/basic-features/built-in-css-support),
-including `.css`, `.module.css`, and Sass (`.scss`, `.sass`, `.module.scss`,
-`.module.sass`) files.
+> It's important to note that the initial node in any workflow must be a trigger node (find more information on triggers [here](/basics/trigger)).
 
-For example, consider the following stylesheet named `styles.css`:
+The fundamental building blocks of a workflow are the logic nodes. Let's delve into the details of a logic node's structure and functionality.
 
-```css filename="styles.css"
-body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
-  padding: 20px 20px 60px;
-  max-width: 680px;
-  margin: 0 auto;
+## Node Anatomy
+
+<Image src={anatomy1} alt="Node Anatomy" width={1200} />
+
+### Open Node Editor 
+
+This feature grants you the power to **modify the logic**, **input parameters**, **output configuration**, and **metadata descriptions** associated with a given node, providing the flexibility to tailor the nodes to your exact requirements.
+
+### Node Options 
+
+Seamlessly manage nodes through **AI-powered editing**, **deletion**, **copying**, and the ability to **view logs** specific to each individual node.
+
+### Value Expression Editor 
+
+Tap into the capabilities of **AI data autofill for inputs**, leverage **variables**, and safeguard sensitive information using **secret keys**.
+
+### Expand/Collapse Toggle 
+
+Enhance your workspace by toggling between expanded and collapsed views for nodes, ensuring a **clutter-free experience**.
+
+## Editing Nodes
+
+Whether selecting a node from the **Nodeverse library** or **generating one via AI**, the Node Editor provides a user-friendly environment for configuring nodes. 
+
+Moreover, the node editor is accompanied by a **testing environment**, enabling users to **edit and test nodes simultaneously**, all without the need for deployment.
+
+
+
+### Node Editor
+
+- **Modify or Create Serverless Scripts** 
+Utilize AI Prompts to effortlessly modify existing Serverless Scripts or craft new ones, empowering you to tailor functionality with ease. Leverage the familiarity of JavaScript or TypeScript for script composition.
+
+- **API Connectivity and NPM Packages** 
+Seamlessly connect to a wide array of APIs and select from over a million npm packages, effectively expanding the scope of your nodes' capabilities.
+
+- **EventArc Backend Triggers** 
+Embrace the versatility of eventArc-based backend triggers, encompassing triggers like onCreate, onAuth, update, delete, and more, to cater to diverse use cases.
+
+
+```js filename="Node Logic - Download a file"
+import fetch from 'node-fetch';
+import fs from 'fs';
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+import path from 'path';
+import { URL } from 'url';
+
+const streamPipeline = promisify(pipeline);
+
+export default async function downloadFile({ url, folderPath, fileName }, { req }) {
+  if (!url) {
+    throw new Error('URL is required to download a file.');
+  }
+
+  const _folderPath = process.env.BUCKET_FOLDER_PATH + folderPath;
+  
+  // Create folder path if it doesn't exist
+  try {
+    await fs.promises.access(_folderPath);
+  } catch (error) {
+    await fs.promises.mkdir(_folderPath, { recursive: true });
+  }
+
+  const response = await fetch(url);
+  const parsedUrl = new URL(url);
+  const originalFileName = fileName || path.basename(parsedUrl.pathname); // Use original name without queries if fileName is not provided
+  const filePath = path.join(_folderPath, originalFileName);
+  const fileStream = fs.createWriteStream(filePath);
+  await streamPipeline(response.body, fileStream);
+  
+  return { success: true };
+}
+
+```
+
+### Input Params
+
+Easily adapt input parameters associated with your nodes, ensuring they align with your unique requirements.
+
+Input parameters are structured as an array of JSON objects. Here's an example of an input parameters:
+
+```json filename="Node Input Params"
+[
+	{
+		"label": "URL", // the label to be displayed on the Node UI
+		"key": "url", // key is used to access the node value in the logic script 
+		"description": "The URL of the file to download", // metadata description of the node value
+		"type": "string", // type of the input value
+		"required": true  // if the node value is required
+	},
+	{
+		"label": "Path",
+		"description": "The path where the file should be stored",
+		"type": "string",
+		"key": "path",
+		"required": true
+	}
+]
+```
+
+### Output
+
+The Node Editor empowers you to modify your node's output configurations. The structured JSON format ensures clarity in handling resulting data, promoting seamless integration with downstream processes.
+
+```json filename="Node Output"
+{
+  "success": {
+    "description": "Indicates whether the file was downloaded and saved successfully",
+    "label": "Success",
+    "type": "boolean"
+  }
 }
 ```
 
-You can create a `pages/_app.js` file and import your CSS files there:
+### Node Description
 
-```jsx filename="pages/_app.js"
-import '../styles.css'
+Just as input parameters are accompanied by comprehensive descriptions, the "Description" section encapsulates essential insights about the node's purpose and functionality. This contextual information aids in better understanding the node's role within your workflow.
 
-// This default export is required in a new `pages/_app.js` file.
-export default function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+```json filename="Node Description"
+{
+  "description": "Download a file from a given URL and store it at a specified path",
+  "id": "download-file",
+  "name": "Download File"
 }
 ```
-
-To learn more about CSS support in Next.js, check out the
-[Next.js documentation](https://nextjs.org/docs/basic-features/built-in-css-support).
