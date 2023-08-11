@@ -1,0 +1,68 @@
+# AI Nodes
+
+import { Steps } from 'nextra/components'
+import { Callout } from 'nextra/components'
+import Image from 'next/image'
+import aiNode1 from '/public/ai-node1.png'
+import aiNode2 from '/public/ai-node2.png'
+import aiNode3 from '/public/ai-node3.png'
+
+There are two ways to build custom nodes in BuildShip: 
+
+- Picking pre-built nodes via the Nodeverse
+- Building custom nodes via AI
+
+
+## Building Custom Node via AI
+
+In BuildShip, you have the flexibility to create custom nodes for your specific use cases using an integrated AI-powered node building feature. This process allows you to streamline the node creation process through intelligent prompts. Let's explore how to build custom nodes using this AI feature:
+
+<Steps>
+
+### Open the AI Node Generator
+
+Click on the wand icon 🪄 on the top left menu bar to open the AI Node Generator. This action will open the AI Node Generator, where you'll be able to initiate the node creation process.
+<Image src={aiNode1} alt="AI Node Generator" width={1200} />
+
+### Give the prompt to generate the node
+
+The AI Node Generator modal asks you to give a prompt for the node you want to generate. This prompt serves as a guideline for the AI to understand your requirements.
+
+Check out the following image for an example prompt. Once you have given the prompt, click on the "**Generate**" button to generate the node.
+<Image src={aiNode2} alt="AI Node Generator" width={1200} />
+
+<Callout emoji="💡" type="info">
+Users can also specify the exact format they want the output of the node to be generated in. For example, if you want the output to be in the form of a JSON object, you can specify that in the prompt.
+
+```json
+The resultant output should be in the form of a JSON object with the following format:
+{
+    "cover":{
+        "title":string,
+        "subtitle":string,
+        "illustration":string
+    },
+    "pages":[
+        {
+            "index":number,
+            "illustration":string,
+            "text":string
+        }
+    ]
+}
+```
+</Callout>
+
+### Explore and Modify the Node via the Node Explorer
+
+Once the AI generates the node based on your prompt, you can explore its functionalities and make further modifications using "**Node Explorer &lt;/&gt;**". This is a powerful tool that allows you to fine-tune the **node's logic**, **input parameters**, **output configurations**, and **metadata descriptions**. For more details on customizing nodes, refer to [the editing nodes section](/basics/node#editing-nodes).
+
+<Image src={aiNode3} alt="AI Node Generator" width={1200} />
+
+### Testing the Node
+
+The Node Editor provides a convenient testing feature, allowing you to test the newly created node using sample data without deploying the entire workflow. This ensures that the node operates as expected before full implementation. To learn more about testing nodes, refer to [the testing nodes section]().
+
+</Steps>
+
+By following these steps, you can efficiently create custom nodes tailored to your specific automation requirements! 🚀

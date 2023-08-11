@@ -26,7 +26,7 @@
   },
   "core-nodes": "Core",
   "flow-control": "Flow Control",
-  "ai-nodes": "AI",
-  "database": "Database",
-  "integration": "Integration"
+  "ai-nodes": "AI Nodes",
+  "integration": "Integrations",
+  "nodeverse": "The Nodeverse"
 }
