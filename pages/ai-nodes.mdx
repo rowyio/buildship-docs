@@ -6,6 +6,8 @@ import Image from 'next/image'
 import aiNode1 from '/public/assets/ai-node1.png'
 import aiNode2 from '/public/assets/ai-node2.png'
 import aiNode3 from '/public/assets/ai-node3.png'
+import autofill1 from '/public/assets/autofill1.png'
+import autofill2 from '/public/assets/autofill2.png'
 
 There are two ways to build custom nodes in BuildShip: 
 
@@ -66,3 +68,31 @@ The Node Editor provides a convenient testing feature, allowing you to test the 
 </Steps>
 
 By following these steps, you can efficiently create custom nodes tailored to your specific automation requirements! 🚀
+
+
+## AI Autofill Input
+
+BuildShip offers an AI Autofill feature that allows users to automatically populate node inputs with static or dynamic data. Here's how you can effectively leverage AI Autofill to automate the node data:
+
+
+<Steps>
+
+### Open the Expression Editor (x)
+
+While configuring a node, locate the expression icon `(x)` and click on it to open the Expression Editor.
+<Image src={autofill1} alt="AI Autofill" width={1200} />
+
+### Select and Define a Prompt
+Within the expression editor, you'll notice an **Autofill icon**. Click on this icon to enable the add your prompt.
+
+Provide a precise and descriptive prompt that articulates the specific data you need. The clarity of this prompt is crucial for the AI to generate accurate values.
+
+For instance, you might define a prompt like: 
+```copy
+I need to autofill the value to the current unix timestamp
+```
+<Image src={autofill2} alt="AI Autofill" width={1200} />
+
+</Steps>
+
+All you need to do now is to check if the generated value matches your requirements. You can modify the prompt as many times as you like and request a different value to fit your use case.
