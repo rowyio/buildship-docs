@@ -2,6 +2,10 @@ import Logo from '@components/Logo'
 import { useRouter } from 'next/router'
 import type { DocsThemeConfig } from 'nextra-theme-docs'
 import { useConfig } from 'nextra-theme-docs'
+import favicon16 from "./public/favicon-16x16.png";
+import favicon32 from "./public/favicon-32x32.png";
+import appleTouchIcon from "./public/apple-touch-icon.png";
+
 
 const logo = (
   <span>
@@ -99,16 +103,27 @@ const config: DocsThemeConfig = {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={socialCard} />
         <meta name="twitter:site:domain" content="BuildShip Docs" />
-        <meta name="twitter:url" content="https://www.buildship.com" />
+        <meta name="twitter:url" content="https://www.buildship.com" /> 
         <meta
           name="og:title"
           content={frontMatter.title ? frontMatter.title + ' – BuildShip' : 'Visual Backend Builder'}
         />
         <meta name="og:image" content={socialCard} />
+        
         <meta name="apple-mobile-web-app-title" content="BuildShip Docs" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"></link>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"></link>
+        <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src}></link>
+        <link 
+          rel="icon" 
+          type="image/png" 
+          sizes="32x32" 
+          href={favicon32.src}>
+        </link>
+        <link 
+          rel="icon" 
+          type="image/png" 
+          sizes="16x16"
+          href={favicon16.src}>
+        </link>
         <link rel="manifest" href="/site.webmanifest"></link>
       </>
     )
