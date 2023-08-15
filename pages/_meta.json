@@ -28,5 +28,10 @@
   "flow-control": "Flow Control",
   "ai-nodes": "AI Nodes",
   "integration": "Integrations",
-  "nodeverse": "The Nodeverse"
+  "nodeverse": "The Nodeverse",
+  "--Theme": {
+    "type": "separator",
+    "title": "Dev Tools"
+  },
+  "testing": "Testing"
 }

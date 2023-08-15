@@ -1,0 +1,76 @@
+# Testing
+
+import { Steps } from 'nextra/components'
+import Image from 'next/image'
+import nodeTesting1 from '/public/dev-tools/node-testing-1.png'
+import nodeTesting2 from '/public/dev-tools/node-testing-2.png'
+import nodeTesting3 from '/public/dev-tools/node-testing-3.png'
+
+The Testing feature in BuildShip's Node Editor empowers users to **rigorously test their node logic without the need to deploy the entire workflow**. This functionality offers a **dedicated space** to validate your node's behavior, ensuring that it handles various scenarios, including edge cases, effectively.
+
+
+## Testing Individual Nodes
+
+During the development of your workflows, you have the **ability to test individual nodes right from the Node Editor**. This streamlined approach allows you to validate the functionality of your nodes without the necessity of deploying the entire workflow.
+
+Here's how you can test individual nodes:
+
+<Steps>
+
+### Create or Select a Node
+
+Begin by creating a custom node using our **AI Node Generator** or **selecting a node from the Nodeverse** that aligns with your workflow requirements.
+
+### Open the Node Editor
+
+Access the **Node Editor** `</>` to view and modify the configuration of your chosen node. You can even customize nodes using JavaScript or TypeScript to meet your specific needs. (For more information on editing nodes, refer to our [guide on node customization](/basics/node#editing-and-customizing-nodes).)
+
+<Image src={nodeTesting2} alt="Node Testing" width={1200} />
+
+### Testing Nodes
+
+On the left side of the Node Editor, you'll find the **Testing Node**. This feature allows you to **manually input values** that correspond to the inputs of the node you're testing. This way, you can ensure that your node's logic effectively covers various edge-case scenarios.
+
+### Test Node Logic
+
+Once you've input the test values, click the "**Test Node**" button. This action evaluates your node's logic against the provided test case without requiring you to save or deploy the entire workflow.
+In case of any errors, you'll receive a detailed error message, once you click on the exclamation mark, that you can use to debug your node's logic.
+
+<Image src={nodeTesting1} alt="Node Testing" width={1200} />
+
+</Steps>
+
+
+## Testing Entire Workflows
+
+Beyond testing individual nodes, BuildShip enables you to **validate the functionality of your entire workflow**, including triggers and logic nodes, before deploying it.
+
+<Image src={nodeTesting3} alt="Node Testing" width={1200} />
+
+Follow the steps below to test your workflow:
+
+<Steps>
+
+### Build Your Workflow
+
+[Create your workflow](/basics/workflow) by adding triggers and logic nodes that define the sequence of actions to achieve your goals. (Or pick up a pre-built template or a set of pre-built nodes via the Nodeverse)
+
+### Access the Testing Mode
+
+At any point in your workflow-building process, click on the "Test" button located in the top-right menu.   
+
+### Configure Parameters
+
+Before running the test, provide any necessary parameters. For instance, in the case of an HTTP Trigger, you can specify the request body that your trigger will receive.
+
+### Run the Test
+
+Click "**Run**" to initiate the test. Your logic nodes will execute one after another, validating their functionality. **Successfully executed nodes will display a green checkmark ✅**, while any **failing nodes will be marked with a red exclamation mark ❗️**.
+
+### Debugging
+
+In case of node failures, the testing mode reveals the exact node responsible for the error occured. Clicking on the exclamation mark reveals the error code and message, helping you pinpoint and address issues efficiently.
+
+</Steps>
+
+With BuildShip's testing capabilities, you can iterate through your workflow design, ensuring its effectiveness and identifying any flaws or bugs before deploying it to your production environment.
