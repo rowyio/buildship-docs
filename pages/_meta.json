@@ -32,5 +32,7 @@
     "type": "separator",
     "title": "Dev Tools"
   },
-  "testing": "Testing"
+  "testing": "Testing",
+  "logging": "Logging",
+  "secrets": "Secrets & API Keys"
 }
