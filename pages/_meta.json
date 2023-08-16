@@ -18,14 +18,13 @@
     "type": "separator",
     "title": "Trigger Types"
   },
-  "rest-api": "REST API",
+  "rest-api": "Rest API",
   "scheduled-task": "Scheduled Task",
   "-- Themes": {
     "type": "separator",
     "title": "Node Types"
   },
-  "core-nodes": "Core",
-  "flow-control": "Flow Control",
+  "core-nodes": "Core Nodes",
   "ai-nodes": "AI Nodes",
   "integration": "Integrations",
   "nodeverse": "The Nodeverse",
