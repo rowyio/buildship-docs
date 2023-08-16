@@ -27,8 +27,6 @@
   },
   "core-nodes": "Core Nodes",
   "ai-nodes": "AI Nodes",
-  "integration": "Integrations",
-  "nodeverse": "The Nodeverse",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
