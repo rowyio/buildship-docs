@@ -19,7 +19,8 @@
     "title": "Trigger Types"
   },
   "rest-api": "Rest API",
-  "scheduled-task": "Scheduled Task",
+  "scheduled-cron": "Scheduled Cron",
+  "scheduled-interval": "Scheduled Interval",
   "-- Themes": {
     "type": "separator",
     "title": "Node Types"
