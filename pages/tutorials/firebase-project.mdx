@@ -1,0 +1,81 @@
+# Connecting to your Firebase Project
+
+import { Callout }  from 'nextra/components'
+import { Steps } from 'nextra/components'
+import Image from 'next/image'
+import firebaseProject1 from '../../public/tutorial/firebase-1.png'
+import firebaseProject2 from '../../public/tutorial/firebase-2.png'
+import firebaseProject3 from '../../public/tutorial/firebase-3.png'
+
+BuildShip provides pre-defined nodes for Firestore integration, making it easy to interact with Firebase services within your workflows.
+
+Users can connect their Firebase projects by **providing the Project ID** and **setting up the BuildShip Runtime Service Account**. 
+
+<Callout emoji="💡" type="info">
+<strong>Default Behaviour</strong>
+<p>
+    If you don't provide a Project ID, BuildShip will store the data in the **underlying Firebase project associated with your BuildShip account**. However, **users will only be able to access this data via BuildShip**. Access to the underlying Firebase account is not available at the moment, although this feature may be added in the future.
+</p>
+</Callout>
+
+
+## Steps to Set Up Your Firebase Connection
+
+<Steps>
+### Insert any Firebase Integration Node
+From the Node Explorer, insert any Firebase integration node into your workflow. Add the required fields to the node and add the Project ID of your Firebase project to which you want to add the data.
+
+<Image 
+    src={firebaseProject1} 
+    alt="Firebase Project ID" 
+    width={1200}
+/>
+
+
+### Access BuildShip Settings
+
+Navigate to the **Settings** section, found in the top-left corner of your dashboard, next to the Project Name.
+
+<Callout emoji="⚠️" type="warning">
+<strong>Admin Access Required</strong>
+<p>
+    You need to be the admin of the BuildShip account to access the BuildShip Settings.
+</p>
+</Callout>
+
+Under the **General** tab in BuildShip Settings, you will find information about the **underlying Firebase Project ID** and **Service Account details**. Copy the Service Account details as we need this to grant access to your Firebase project.
+
+<Image 
+    src={firebaseProject2} 
+    alt="Firebase Project ID" 
+    width={1200}
+/>
+
+### Grant Access in Firebase IAM & Admin
+
+- Open a new browser tab or window and go to your Firebase Project's [Google Cloud Platform (GCP) Console](https://console.cloud.google.com/).
+    <Callout emoji="⚠️" type="warning">
+    Make sure you are logged in to the correct Google account that has access to the Firebase project you want to connect to BuildShip. Also, make sure you've selected the correct Firebase project in the GCP Console.
+    </Callout>
+
+- Navigate to the **IAM & Admin** section from the Firebase project's GCP Console.
+
+- Click on the **Grant Access** button to add a new principal.
+
+- **Paste the Service Account details** you copied from BuildShip into the "New Principal" field.
+
+- Assign the role of `Cloud Datastore User` to the Service Account.
+
+- Hit the **Save** button to grant access to the Service Account.
+
+<Image 
+    src={firebaseProject3} 
+    alt="Firebase Project ID" 
+    width={1200}
+/>
+
+This will allow BuildShip to interact with your Firebase resources.
+
+Once you've added the Project ID in your BuildShip Firebase node, you're good to go! 🚀 You can now use the workflow to interact with your Firebase project's data.
+
+</Steps>
