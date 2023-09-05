@@ -79,12 +79,7 @@ const config: DocsThemeConfig = {
   logo,
   head: function useHead() {
     const { frontMatter } = useConfig();
-    const { route } = useRouter()
-    // socialCard to be edited once the logo is decided
-    const socialCard =
-      route === '/' || !frontMatter.title
-        ? 'https://nextra.site/og.jpeg'
-        : `https://nextra.site/api/og?title=${frontMatter.title}`
+    const { route } = useRouter();
 
     return (
       <>
@@ -92,23 +87,23 @@ const config: DocsThemeConfig = {
         <meta name="theme-color" content="#fff" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Language" content="en" />
-        <meta
-          name="description"
-          content="Visual Backend and Workflow Builder"
+        <meta name="title" content="BuildShip Documentation" />
+        <meta name="description" content="A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation."
         />
-        <meta
-          name="og:description"
-          content={frontMatter.description || 'Visual Backend Builder'}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={socialCard} />
-        <meta name="twitter:site:domain" content="BuildShip Docs" />
-        <meta name="twitter:url" content="https://www.buildship.com" /> 
-        <meta
-          name="og:title"
-          content={frontMatter.title ? frontMatter.title + ' – BuildShip' : 'Visual Backend Builder'}
-        />
-        <meta name="og:image" content={socialCard} />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://docs.buildship.com" />
+        <meta property="twitter:title" content="BuildShip Documentation" />
+        <meta property="twitter:description" content="A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation." />
+        <meta property="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/rowy-testing-bhavya.appspot.com/o/image%2Fzzzzzzzzzzzzzzzzzzzy%2Fimage%2FSQZ6mwWhm8HB1D3JWOxP-og.png?alt=media&token=58aec1b7-2b6a-4ffa-9bcc-b3e3e23139d5" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content={frontMatter.title ? frontMatter.title + ' – BuildShip Docs' : 'BuildShip Documentation'} />
+        <meta property="og:description" content={frontMatter.description || "A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation."} />
+        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/rowy-testing-bhavya.appspot.com/o/image%2Fzzzzzzzzzzzzzzzzzzzy%2Fimage%2FSQZ6mwWhm8HB1D3JWOxP-og.png?alt=media&token=58aec1b7-2b6a-4ffa-9bcc-b3e3e23139d5" />
         
         <meta name="apple-mobile-web-app-title" content="BuildShip Docs" />
         <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src}></link>
