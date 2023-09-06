@@ -26,7 +26,7 @@
     "title": "Node Types"
   },
   "core-nodes": "Core Nodes",
-  "ai-nodes": "AI Nodes",
+  "ai-nodes": "AI Generated Nodes",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
