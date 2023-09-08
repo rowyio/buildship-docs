@@ -27,6 +27,7 @@
   },
   "core-nodes": "Core Nodes",
   "ai-nodes": "AI Generated Nodes",
+  "utility-nodes": "Utility Nodes",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"

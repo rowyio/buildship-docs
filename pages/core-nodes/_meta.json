@@ -1,5 +1,7 @@
 {
   "if-else": "Branch (If Else)",
   "loop": "Loop",
+  "parallel": "Parallel",
+  "repeat": "Repeat",
   "return": "Return"
 }
