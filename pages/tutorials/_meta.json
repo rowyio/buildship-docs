@@ -1,5 +1,8 @@
 {
     "firebase-project": {
         "display": "hidden"
+    },
+    "supabase-crud": {
+        "display": "hidden"
     }
 }
