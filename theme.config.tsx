@@ -34,10 +34,10 @@ const logo = (
 
 const config: DocsThemeConfig = {
   project: {
-    link: 'https://github.com/rowyio/buildship-docs'
+    link: 'https://buildship.com/github', // Link to the GitHub repo
   },
   chat: {
-    link: 'https://rowy.io/discord', // Link to the Rowy Discord server
+    link: 'https://buildship.com/discord', // Link to the Rowy Discord server
   },
   navbar: {
     extraContent: (
@@ -45,7 +45,7 @@ const config: DocsThemeConfig = {
         <a
           style={{ padding: '0.5rem' }}
           target="_blank"
-          href="https://www.twitter.com/buildship_com"
+          href="https://twitter.com/BuildShipApp"
           aria-label="BuildShip Twitter"
           rel="nofollow noreferrer"
         >
@@ -125,8 +125,10 @@ const config: DocsThemeConfig = {
   },
   feedback: {
     content: 'Question? Give us feedback →',
-    labels: 'feedback'
+    labels: 'feedback',
+    useLink: () => 'https://buildship.com/discord'
   },
+  editLink: { component: null },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {
