@@ -4,5 +4,8 @@
     },
     "supabase-crud": {
         "display": "hidden"
+    },
+    "postgres": {
+        "display": "hidden"
     }
 }

@@ -1,0 +1,204 @@
+# Postgres Integration with BuildShip
+
+import Image from "next/image";
+import { Callout } from "nextra/components";
+import postgres1 from "/public/tutorial/postgres-1.png";
+import postgres2 from "/public/tutorial/postgres-2.png";
+import postgres3 from "/public/tutorial/postgres-3.png";
+import postgres4 from "/public/tutorial/postgres-4.png";
+import postgres5 from "/public/tutorial/postgres-5.png";
+import postgres6 from "/public/tutorial/postgres-6.png";
+import postgres7 from "/public/tutorial/postgres-7.png";
+import postgres8 from "/public/tutorial/postgres-8.png";
+import postgres9 from "/public/tutorial/postgres-9.png";
+import postgres10 from "/public/tutorial/postgres-10.png";
+import postgresSchema from "/public/tutorial/postgres-schema.png";
+import postgresData from "/public/tutorial/postgres-fetch.png";
+import postgresInsert from "/public/tutorial/postgres-insert.png";
+import postgresUpdate from "/public/tutorial/postgres-update.png";
+import postgresDelete from "/public/tutorial/postgres-delete.png";
+
+BuildShip offers a seamless integration with PostgreSQL using BuildShip's pre-built Postgres Integration nodes, enabling you to perform Create, Read, Update, and Delete (CRUD) operations on your database effortlessly.
+
+<Image src={postgres1} alt="Postgres Integration" width={1200} />
+
+You can find the Postgres Integration nodes under the **Integrations** section of the node explorer.
+
+## Prerequisites ✅
+
+Before you get started with integrating PostgreSQL into BuildShip, ensure you have the following:
+
+### PostgreSQL Database
+
+You should have access to a PostgreSQL database. If you don't have one, you can set it up easily. You can host your PostgreSQL database using various providers and methods, including:
+
+- **Self-Hosted**: You may have a self-hosted PostgreSQL database on your own server or infrastructure.
+- **Cloud-Based**: PostgreSQL can be hosted on cloud platforms like AWS RDS, Google Cloud SQL, or Azure Database for PostgreSQL.
+- **Serverless**: Consider using a serverless PostgreSQL service like [NEON](https://www.neon.tech/) (which is used in this tutorial as an example) for a hassle-free and scalable database setup.
+
+<Image src={postgres2} alt="Postgres Integration" width={1200} />
+
+### Connection String Parameters
+
+Retrieve the connection string parameters for your PostgreSQL database. You'll need the following:
+
+- **Host**: The host of your PostgreSQL database.
+- **Database Name**: The name of your PostgreSQL database.
+- **User**: The username to access your PostgreSQL database.
+- **Password**: The password associated with the user.
+
+<Image src={postgres3} alt="Postgres Integration" width={1200} />
+
+Let's walk through with an example of how you can use these nodes to perform CRUD operations on your PostgreSQL database. In this example, we'll be using a PostgreSQL database hosted on [NEON](https://www.neon.tech/). On BuildShip, we can begin with a new workflow with any Trigger of your preference. In this example, we'll be using a [REST API Trigger](../rest-api).
+
+## Fetching Table Schema
+
+<Image src={postgresSchema} alt="Postgres Integration" width={1200} />
+
+To fetch the schema of a table in your PostgreSQL database, you can use the **Fetch Postgres Table Schema** node. Open the Node Explorer, under the **Integrations** section, select the **Postgres** category, and select the **Fetch Postgres Table Schema** node to be added to the workflow.
+
+Add in your PostgreSQL **database's connection string parameters** and the **table name** as input. You can also open the Node Editor (by clicking on the `</>` icon) to test and modify the existing node.
+
+<Callout emoji="💡" title="Tip">
+**Using Secrets to store passwords**
+
+It's always a good practice to use the **Secrets** to store your database's connection string password or other sensitive data. You can then use the **Secrets** node to retrieve the values of the secrets and use them as inputs for the Postgres Integration nodes. [Learn more about using Secrets in BuildShip.](../secrets)
+
+</Callout>
+
+**Sample Output:**
+
+<Image src={postgres4} alt="Postgres Integration" width={1200} />
+
+```json
+[
+  {
+    "column_name": "breed_id",
+    "data_type": "integer",
+    "character_maximum_length": null
+  },
+  {
+    "column_name": "breed_name",
+    "data_type": "character varying",
+    "character_maximum_length": 100
+  },
+  {
+    "column_name": "origin",
+    "data_type": "character varying",
+    "character_maximum_length": 100
+  },
+  {
+    "column_name": "average_weight",
+    "data_type": "numeric",
+    "character_maximum_length": null
+  }
+]
+```
+
+## Fetching Table Data
+
+<Image src={postgresData} alt="Postgres Integration" width={1200} />
+
+To fetch the data of a table in your PostgreSQL database, you can use the **Fetch Postgres Table Data** node from the Node Explorer. You can also use a parameterized query to fetch data based on a condition. The **Condition Column** and **Condition Value** inputs are optional. If you don't provide these inputs, the node will fetch all the data from the table.
+
+Add in your PostgreSQL **database's connection string parameters** and the **table name** as input. Test and modify the node via the Node Editor (by clicking on the `</>` icon).
+
+Let's say we need to fetch the data for the `breed_name` `Doberman Pinscher` from the `dog_breeds` table. We'll add the `conditionColumn` as `breed_name` and `conditionValue` as `Doberman Pinscher`.
+
+**Example Output:**
+
+<Image src={postgres5} alt="Postgres Integration" width={1200} />
+
+```json
+[
+  {
+    "breed_id": 2,
+    "breed_name": "German Shepherd",
+    "origin": "Germany",
+    "average_weight": "75.00"
+  }
+]
+```
+
+## Inserting Data
+
+<Image src={postgresInsert} alt="Postgres Integration" width={1200} />
+
+To insert data into a table in your PostgreSQL database, you can use the **Insert Data into Postgres DB** node from the Node Explorer.
+
+Let's say we need to insert a new row into the `dog_breeds` table with the following data:
+
+```json
+[
+  {
+    "breed_id": 8,
+    "breed_name": "Doberman Pinscher",
+    "origin": "Germany",
+    "average_weight": 75
+  },
+  {
+    "breed_id": 9,
+    "breed_name": "Shih Tzu",
+    "origin": "Tibet",
+    "average_weight": 12
+  }
+]
+```
+
+Add in your PostgreSQL **database's connection string parameters** and the **table name** as input. Test and modify the node via the Node Editor (by clicking on the `</>` icon).
+
+Output:
+
+<Image src={postgres6} alt="Postgres Integration" width={1200} />
+
+
+## Updating Data
+
+<Image src={postgresUpdate} alt="Postgres Integration" width={1200} />
+
+To update data in a table in your PostgreSQL database, you can use the **Update Postgres Row Data** node from the Node Explorer.
+
+Let's say we need to update the `average_weight` of the `Doberman Pinscher` breed to `80` in the `dog_breeds` table.
+
+Add in your PostgreSQL **database's connection string parameters** and the **table name** as input. The **Column ID** and **Column Value** let's you filter the row to be updated.
+
+Let's add the `columnId` as `breed_name` and `columnValue` as `Doberman Pinscher`. For the data to be updated, we'll add the following JSON in the **Data** input:
+
+```json
+{
+  "average_weight": 80
+}
+```
+
+**Output:**
+
+<Image src={postgres7} alt="Postgres Integration" width={1200} />
+<Image src={postgres8} alt="Postgres Integration" width={1200} />
+
+## Deleting Data
+
+<Image src={postgresDelete} alt="Postgres Integration" width={1200} />
+
+To delete data from a table in your PostgreSQL database, you can use the **Delete Row from Postgres** node from the Node Explorer.
+
+Let's say we need to delete the dog breed which is originated from `Tibet` from the `dog_breeds` table.
+
+Add in your PostgreSQL **database's connection string parameters** and the **table name** as input. The **Column ID** and **Column Value** let's you filter the row to be deleted.
+
+Add the `columnId` as `origin` and `columnValue` as `Tibet`.
+
+<Callout emoji="⚠️" title="Tip">
+By default, a DELETE query will remove only one row when there are multiple rows that match the condition.
+
+If you want to delete all rows with a specific value in a column, including duplicates, you can use a more specific condition that identifies all the rows you want to delete. You can also modify the query to use a subquery that selects all rows with the specified value in a column.
+</Callout>
+
+**Output:**
+
+<Image src={postgres9} alt="Postgres Integration" width={1200} />
+<Image src={postgres10} alt="Postgres Integration" width={1200} />
+
+
+> You can also create your own Postgres Integration nodes using the versatile **Script Node** available in the **Core Nodes** section of the Node Exporer or, [generate it via AI](../ai-nodes).
+
+> If you have any special node requests for us, do let us know via the **Support Section** on the BuildShip app or, [drop us an email](mailto:support@buildship.com) with your use case. 🙌
