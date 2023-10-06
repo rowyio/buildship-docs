@@ -6,12 +6,6 @@ import Image from "next/image";
 import firebaseProject1 from "../../public/tutorial/firebase-1.png";
 import firebaseProject2 from "../../public/tutorial/firebase-2.png";
 import firebaseProject3 from "../../public/tutorial/firebase-3.png";
-import firebaseSearch1 from "../../public/tutorial/firebase-search-1.png";
-import firebaseSearch2 from "../../public/tutorial/firebase-search-2.png";
-import firebaseSearch3 from "../../public/tutorial/firebase-search-3.png";
-import firebaseSearch4 from "../../public/tutorial/firebase-search-4.png";
-import firebaseSearch5 from "../../public/tutorial/firebase-search-5.png";
-import firebaseSearch6 from "../../public/tutorial/firebase-search-6.png";
 
 BuildShip provides pre-defined nodes for Firestore integration, making it easy to interact with Firebase services within your workflows.
 
@@ -76,85 +70,3 @@ Once you've added the Project ID in your BuildShip Firebase node, you're good to
 
 </Steps>
 
-## Firebase Full Text Search 🔎
-
-Cloud Firestore does not natively support indexing or searching text fields in documents. To enable full-text search functionality in your Firebase project, we recommend integrating with Algolia, which provides powerful and efficient search capabilities.
-
-The integration involves two main nodes:
-
-1. **Node for Syncing Firebase Collection to an Algolia Index**: This node is responsible for synchronizing data from your Firebase collection to an Algolia index.
-
-2. **Node for Performing a Full-Text Search on the Algolia Index**: This node allows you to execute full-text search queries on the data stored in the Algolia index.
-
-Follow the steps below to set up the integration:
-
-<Steps>
-
-### Set up Algolia
-
-<Image src={firebaseSearch5} alt="Firebase Project ID" width={1200} />
-
-- Go to [Algolia's website](https://www.algolia.com/) and either log in to your existing Algolia account or create a new one if you don't have an account yet.
-
-- Click on "New Application" and provide a name for your application. Choose an appropriate subscription plan and select a region for your data center.
-
-- After creating the application, navigate to the "Indices" section. Create a new index and give it a name. You can keep the index name the same as your Firestore collection name for simplicity.
-
-### Get Algolia Keys
-
-To perform the Full Text Search on your Firebase data, we will be using Algolia's API. To use the API, we need to get the API Key, App ID, and Index Name from Algolia's Dashboard.
-
-- Go to the [API Keys section](https://dashboard.algolia.com/account/api-keys) in Algolia's Dashboard and copy the **API Key** and **App ID**.
-    <Image src={firebaseSearch3} alt="Firebase Project ID" width={1200} />
-
-- Go to the [Data Sources > Indices section](https://dashboard.algolia.com/apps/dashboard) in Algolia's Dashboard and copy the **Index Name**.
-    <Image src={firebaseSearch4} alt="Firebase Project ID" width={1200} />
-
-<Callout emoji="✅">
-  **Store your keys in the Secret Manager**
-  The API Key is a sensitive piece of information and should not be shared
-  publicly. Make sure you keep your API Key secure and do not share it with
-  anyone. Learn how to store your API Keys as secrets [here](/secrets#leveraging-buildship-secret-manager).
-</Callout>
-
-### Sync Firebase Collection to Algolia Index
-
-To sync your Firebase collection with Algolia's index, we need to use the "**Sync Firebase to Algolia Index**" Node from the Node Explorer. You can find this node under the "**Firebase**" category.
-
-<Image src={firebaseSearch1} alt="Firebase Project ID" width={1200} />
-
-- You would be required to add your Algolia API Key, App ID, and Index Name to the node, described in the [previous section](#get-algolia-keys). You also need to add the Firebase Collection Name and Firebase Project ID to the node.
-
-<Image src={firebaseSearch6} alt="Firebase Project ID" width={1200} />
-
-<Callout emoji="💡">
-  The Firebase Project ID is an optional input parameter. If you don't provide a
-  Project ID, BuildShip will store the data in the **underlying Firebase project
-  associated with your BuildShip account**. However, **users will only be able
-  to access this data via BuildShip**. Access to the underlying Firebase account
-  is not available at the moment, although this feature may be added in the
-  future.
-</Callout>
-
-- Implement this node in your workflow when a document is added, updated, or deleted. The node will then use the Algolia API to add or update the records in the Algolia index.
-
-<Callout emoji="⚠️" type="warning">
-  You do not need to use this node more than once if your collection data is
-  already synced. This node is only required to sync the data initially or when
-  your data get's updated. You could even run the node manually in the Node
-  Editor's Testing Environment to manually sync the data to your Algolia index.
-</Callout>
-
-### Perform Full-Text Search
-
-To perform a full-text search on the Algolia index, we need to use the "**Algolia Full Text Search**" Node from the Node Explorer. You can find this node under the "**Algolia**" category. This node performs a full text search on an Algolia index and returns a JSON object or an array of JSON objects.
-
-<Image src = {firebaseSearch2} alt="Firebase Project ID" width={1200} />
-
-- You would be required to add your **Algolia API Key**, **App ID**, and **Index Name** to the node, described in the [previous section](#get-algolia-keys).
-
-- The **Query** input parameter is the search query that you want to execute on the Algolia index.
-
-You can add this node to your workflow to perform a full-text search on the Algolia index with your Firebase data.
-
-</Steps>

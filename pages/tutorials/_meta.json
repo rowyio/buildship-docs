@@ -2,6 +2,9 @@
     "firebase-project": {
         "display": "hidden"
     },
+    "firebase-full-text-search": {
+        "display": "hidden"
+    },
     "supabase-crud": {
         "display": "hidden"
     },

@@ -1,0 +1,104 @@
+# Firebase Full Text Search 🔎
+
+import { Callout } from "nextra/components";
+import { Steps } from "nextra/components";
+import Image from "next/image";
+import fbSearch1 from "../../public/tutorial/fb-search-1.png";
+import fbSearch2 from "../../public/tutorial/fb-search-2.png";
+import fbSearch3 from "../../public/tutorial/fb-search-3.png";
+import fbSearch4 from "../../public/tutorial/fb-search-4.png";
+import fbSearch5 from "../../public/tutorial/fb-search-5.png";
+import fbSearch6 from "../../public/tutorial/fb-search-6.png";
+
+Cloud Firestore does not natively support indexing or searching text fields in documents. To enable full-text search functionality in your Firebase project, we recommend integrating with a third-party search integrations like [Algolia](https://www.algolia.com/), [Elastic](https://www.elastic.co/app-search/), or [Typesense](https://typesense.org/), which provide powerful and efficient search capabilities.
+
+The integration involves two main steps:
+
+1. **Installing the Firebase Extension**
+
+Choose a third-party search service that suits your requirements, such as **Algolia**, **Elastic**, or **Typesense**. Each service may have its own extension for Firebase. 
+
+These Firebase extensions help in indexing your data and syncing it with the third-party search service everytime a CRUD operation is performed on your Firebase data. This helps reduce the cost of indexing and syncing your data.
+
+<Callout emoji="📚">
+  **Get your Firebase Extensions here!**
+
+Firebase Extensions are pre-packaged solutions that you can install with a single click. Click on the links below to install the Firebase Extensions for your preferred search service:
+  - [Algolia](https://extensions.dev/extensions/algolia/firestore-algolia-search)
+  - [Elastic](https://extensions.dev/extensions/elastic/firestore-elastic-app-search)
+  - [Typesense](https://extensions.dev/extensions/typesense/firestore-typesense-search)
+</Callout>
+
+2. **Node for Performing a Full-Text Search on the Search Index**
+
+This node allows you to execute full-text search queries on the data stored in the respective search index.
+
+
+## Implementing Full Text Search
+
+Let's take a look at how to implement full-text search on your Firebase data. For this example we'll be using Algolia.
+
+<Steps>
+
+### Set up Algolia
+
+<Image src={fbSearch1} alt="Firebase Project ID" width={1200} />
+
+- Go to [Algolia's website](https://www.algolia.com/) and either log in to your existing Algolia account or create a new one if you don't have an account yet.
+
+- Click on "New Application" and provide a name for your application. Choose an appropriate subscription plan and select a region for your data center.
+
+- After creating the application, navigate to the "Indices" section. Create a new index and give it a name. You can keep the index name the same as your Firestore collection name for simplicity.
+
+### Get Algolia Keys
+
+To perform the Full Text Search on your Firebase data, we will be using Algolia's API. To use the API, we need to get the API Key, App ID, and Index Name from Algolia's Dashboard.
+
+- Go to the [API Keys section](https://dashboard.algolia.com/account/api-keys) in Algolia's Dashboard and copy the **API Key** and **App ID**.
+    <Image src={fbSearch2} alt="Firebase Project ID" width={1200} />
+
+- Go to the [Data Sources > Indices section](https://dashboard.algolia.com/apps/dashboard) in Algolia's Dashboard and copy the **Index Name**.
+    <Image src={fbSearch3} alt="Firebase Project ID" width={1200} />
+
+
+### Install the Algolia Firebase Extension
+
+To sync your Firebase collection with Algolia's index, we need to install the [Algolia Firebase Extension](https://extensions.dev/extensions/algolia/firestore-algolia-search).
+
+- Click on the "**Install in Firebase**" button. This will open the Firebase Console in a new tab.
+
+  <Image src={fbSearch4} alt="Firebase Project ID" width={1200} />
+
+- Select the Firebase project in which you want to install the extension. If you don't have a Firebase project, you can create a new one.
+
+- Proceed with the installation.You would be required to add your Algolia API Key, App ID, and Index Name to the node, described in the [previous section](#get-algolia-keys). Click on the "Install" button.
+
+  <Image src={fbSearch5} alt="Firebase Project ID" width={1200} />
+
+- This would take approximately 3-5 minutes to install on your Firebase project.
+
+
+### Perform Full-Text Search
+
+To perform a full-text search on the Algolia index, we need to use the "**Algolia Full Text Search**" Node from the Node Explorer. You can find this node under the "**Algolia**" category. This node performs a full text search on an Algolia index and returns a JSON object or an array of JSON objects.
+
+  <Image src = {fbSearch6} alt="Firebase Project ID" width={1200} />
+
+- You would be required to add your **Algolia API Key**, **App ID**, and **Index Name** to the node, described in the [previous section](#get-algolia-keys).
+
+<Callout emoji="✅">
+  **Store your keys in the Secret Manager**
+  The API Key is a sensitive piece of information and should not be shared
+  publicly. Make sure you keep your API Key secure and do not share it with
+  anyone. Learn how to store your API Keys as secrets [here](/secrets#leveraging-buildship-secret-manager).
+</Callout>
+
+- The **Query** input parameter is the search query that you want to execute on the Algolia index.
+
+You can add this node to your workflow to perform a full-text search on the Algolia index with your Firebase data.
+
+</Steps>
+
+This is how you can perform a full-text search on your Firebase data using Algolia. You can use the same steps to perform a full-text search on your Firebase data using **Elastic** or **Typesense**.
+
+You can find the Full Text Search Nodes for each of these integrations under their respective categories in the Node Explorer.
