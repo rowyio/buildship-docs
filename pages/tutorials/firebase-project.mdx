@@ -6,26 +6,43 @@ import Image from "next/image";
 import firebaseProject1 from "../../public/tutorial/firebase-1.png";
 import firebaseProject2 from "../../public/tutorial/firebase-2.png";
 import firebaseProject3 from "../../public/tutorial/firebase-3.png";
+import buildshipFirebase1 from "../../public/tutorial/buildship-firebase-1.png";
 
 BuildShip provides pre-defined nodes for Firestore integration, making it easy to interact with Firebase services within your workflows.
 
-Users can connect their Firebase projects by **providing the Project ID** and **setting up the BuildShip Runtime Service Account**.
+BuildShip offers two options for interacting with Firebase:
 
-<Callout emoji="💡" type="info">
-**Default Behaviour**
+## Option 1: Using BuildShip's Built-in Firestore Database
 
-If you don't provide a Project ID, BuildShip will store the data in the
-**underlying Firebase project associated with your BuildShip account**.
-However, **users will only be able to access this data via BuildShip**.
-Access to the underlying Firebase account is not available at the moment,
-although this feature may be added in the future.
+BuildShip comes equipped with a built-in Firestore database that is automatically associated with your BuildShip project.
+
+<Image src={buildshipFirebase1} alt="BuildShip Firebase" width={1200} />
+
+- **No Additional Setup:** Everything is pre-configured and ready for immediate use.
+- **Easy Access:** Users can directly access and interact with the Firestore database through BuildShip.
+- **Full Functionality:** You can perform all CRUD (Create, Read, Update, Delete) operations and more, making it a comprehensive solution for your Firebase integration needs.
+
+<Callout emoji="⚠️" type="info">
+Presently, users do not have manual access to the underlying Firestore project; however, we have exciting plans to introduce a UI feature that will enable such access in the near future! 🚀
 </Callout>
 
-## Steps to Set Up Your Firebase Connection
+### Using BuildShip Database nodes
+
+In the Node Explorer, navigate to the "**BuildShip Database**" category. You'll find a range of nodes for various Firestore operations.
+Insert the relevant Firestore integration nodes into your workflow. Customize the nodes by providing the necessary input parameters for your specific use case.
+
+> You do not need to provide any additional information, like the `Project ID` parameter to use the BuildShip Database nodes. You can directly use the nodes to interact with your Firestore database.
+
+## Option 2: Connecting to Your Own Firebase Project
+
+Users can connect their Firebase projects by **providing the Project ID** and **setting up permissions for the BuildShip Runtime Service Account**.
+
+
+Steps to set up your own Firebase Connection:
 
 <Steps>
 ### Insert any Firebase Integration Node
-From the Node Explorer, insert any Firebase integration node into your workflow. Add the required fields to the node and add the Project ID of your Firebase project to which you want to add the data.
+From the Node Explorer, insert any Firestore integration node into your workflow. Add the required fields to the node and add the Project ID of your Firebase project to which you want to add the data.
 
 <Image src={firebaseProject1} alt="Firebase Project ID" width={1200} />
 
@@ -70,3 +87,19 @@ Once you've added the Project ID in your BuildShip Firebase node, you're good to
 
 </Steps>
 
+
+## Purpose and Corresponding Nodes
+
+Here's a comparison table highlighting the purpose of Firestore operations and the corresponding nodes for both BuildShip's Firestore Database and your own Firestore Database:
+
+| Purpose                       | BuildShip Database Nodes                 | Firestore Database Nodes                |
+| ----------------------------- | ---------------------------------- | ---------------------------------- |
+| **Create Document**                | Create Document            | Create Firestore Document          |
+| **Sync Collection to Algolia**    | Sync Collection to Algolia | Sync Firebase to Algolia Index          |
+| **Add Object to Array**           | Add Object to Array     | Add Object to Firestore Array              |
+| **Collection Query**              | Collection Query | Firestore Collection Query         |
+| **Query Count**                   | Query Count     | Firestore Query Count              |
+| **Delete Document**                | Delete Document  | Delete Firestore Document           |
+| **Get Document**                  | Get Document     | Get Firestore Document              |
+| **Get Field Value**               | Get Field Value | Get Document Field Value          |
+| **Update Field Value**            | Update Field Value | Update Firestore Field Value     |
