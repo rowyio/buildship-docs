@@ -7,7 +7,7 @@
     "build": "next build",
     "dev": "next",
     "start": "next start",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap && rm -rf .next/cache"
   },
   "dependencies": {
     "@vercel/og": "^0.5.0",
