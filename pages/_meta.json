@@ -21,6 +21,7 @@
   "rest-api": "Rest API",
   "scheduled-cron": "Scheduled Cron",
   "scheduled-interval": "Scheduled Interval",
+  "telegram-bot": "Telegram Bot",
   "-- Themes": {
     "type": "separator",
     "title": "Node Types"
