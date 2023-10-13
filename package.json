@@ -4,10 +4,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "next build",
     "dev": "next",
-    "start": "next start",
-    "postbuild": "next-sitemap"
+    "build": "next build",
+    "postbuild": "next-sitemap && echo 'Removing .next/cache to resolve Nextra caching bug' && rm -rf .next/cache",
+    "start": "next start"
   },
   "dependencies": {
     "@vercel/og": "^0.5.0",
