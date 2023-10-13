@@ -12,6 +12,9 @@ BuildShip provides pre-defined nodes for Firestore integration, making it easy t
 
 BuildShip offers two options for interacting with Firebase:
 
+1. Using BuildShip's built-in Firestore database
+2. Connecting to your own Firebase project
+
 ## Option 1: Using BuildShip's Built-in Firestore Database
 
 BuildShip comes equipped with a built-in Firestore database that is automatically associated with your BuildShip project.
@@ -23,7 +26,9 @@ BuildShip comes equipped with a built-in Firestore database that is automaticall
 - **Full Functionality:** You can perform all CRUD (Create, Read, Update, Delete) operations and more, making it a comprehensive solution for your Firebase integration needs.
 
 <Callout emoji="⚠️" type="info">
-Presently, users do not have manual access to the underlying Firestore project; however, we have exciting plans to introduce a UI feature that will enable such access in the near future! 🚀
+  Presently, users do not have manual access to the underlying Firestore
+  project; however, we have exciting plans to introduce a UI feature that will
+  enable this in the near future! 🚀
 </Callout>
 
 ### Using BuildShip Database nodes
@@ -36,7 +41,6 @@ Insert the relevant Firestore integration nodes into your workflow. Customize th
 ## Option 2: Connecting to Your Own Firebase Project
 
 Users can connect their Firebase projects by **providing the Project ID** and **setting up permissions for the BuildShip Runtime Service Account**.
-
 
 Steps to set up your own Firebase Connection:
 
@@ -51,8 +55,8 @@ From the Node Explorer, insert any Firestore integration node into your workflow
 Navigate to the **Settings** section, found in the top-left corner of your dashboard, next to the Project Name.
 
 <Callout emoji="⚠️" type="warning">
-**Admin Access Required**
-You need to be the admin of the BuildShip account to access the BuildShip Settings.
+  **Admin Access Required** You need to be the admin of the BuildShip account to
+  access the BuildShip Settings.
 </Callout>
 
 Under the **General** tab in BuildShip Settings, you will find information about the **underlying Firebase Project ID** and **Service Account details**. Copy the Service Account details as we need this to grant access to your Firebase project.
@@ -87,19 +91,18 @@ Once you've added the Project ID in your BuildShip Firebase node, you're good to
 
 </Steps>
 
-
 ## Purpose and Corresponding Nodes
 
 Here's a comparison table highlighting the purpose of Firestore operations and the corresponding nodes for both BuildShip's Firestore Database and your own Firestore Database:
 
-| Purpose                       | BuildShip Database Nodes                 | Firestore Database Nodes                |
-| ----------------------------- | ---------------------------------- | ---------------------------------- |
-| **Create Document**                | Create Document            | Create Firestore Document          |
-| **Sync Collection to Algolia**    | Sync Collection to Algolia | Sync Firebase to Algolia Index          |
-| **Add Object to Array**           | Add Object to Array     | Add Object to Firestore Array              |
-| **Collection Query**              | Collection Query | Firestore Collection Query         |
-| **Query Count**                   | Query Count     | Firestore Query Count              |
-| **Delete Document**                | Delete Document  | Delete Firestore Document           |
-| **Get Document**                  | Get Document     | Get Firestore Document              |
-| **Get Field Value**               | Get Field Value | Get Document Field Value          |
-| **Update Field Value**            | Update Field Value | Update Firestore Field Value     |
+| Purpose                        | BuildShip Database Nodes   | Firestore Database Nodes       |
+| ------------------------------ | -------------------------- | ------------------------------ |
+| **Create Document**            | Create Document            | Create Firestore Document      |
+| **Sync Collection to Algolia** | Sync Collection to Algolia | Sync Firebase to Algolia Index |
+| **Add Object to Array**        | Add Object to Array        | Add Object to Firestore Array  |
+| **Collection Query**           | Collection Query           | Firestore Collection Query     |
+| **Query Count**                | Query Count                | Firestore Query Count          |
+| **Delete Document**            | Delete Document            | Delete Firestore Document      |
+| **Get Document**               | Get Document               | Get Firestore Document         |
+| **Get Field Value**            | Get Field Value            | Get Document Field Value       |
+| **Update Field Value**         | Update Field Value         | Update Firestore Field Value   |
