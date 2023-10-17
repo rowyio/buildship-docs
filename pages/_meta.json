@@ -35,5 +35,10 @@
   },
   "testing": "Testing",
   "logging": "Logging",
-  "secrets": "Secrets & API Keys"
+  "secrets": "Secrets & API Keys",
+  "help-and-troubleshooting": {
+    "type": "separator",
+    "title": "Help & Troubleshooting"
+  },
+  "support-messages": "Support Messages"
 }
