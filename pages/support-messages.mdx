@@ -1,0 +1,30 @@
+# Support Messages
+
+import Image from "next/image";
+import { Steps } from "nextra/components";
+import supportMessageForm from "/public/support/support-message-form.png";
+import nodeEditorParamsTab from "/public/support/node-editor-params-tab.png";
+
+If you ever get stuck or need help with anything BuildShip, you can reach out to us using Support Messages.
+
+To submit a support message, click on the 'Support' button in the bottom-left corner of the screen. This will open up a form where you can submit your message (including screenshots and video links if you wish to include any).
+
+<Image src={supportMessageForm} alt="Support Message Form" width={1200} />
+
+## Including a copy of the workflow
+
+If you're having trouble with a specific workflow, you can include a copy of it in your support message (using the checkbox at the bottom of the form) for us to take a look. For the checkbox to appear, you must have the workflow open in the editor before opening the support form.
+
+### Marking inputs as sensitive
+
+To ensure no sensitive data (like an API key) is included in the workflow, any input fields marked 'Sensitive' will be redacted from the copy of the workflow that is sent to us. You can mark a field as sensitive by following these steps:
+
+<Steps>
+- Open the Node Editor for the node whose input(s) you wish to mark as sensitive.
+- Switch to the 'Params' tab of the Node Editor.
+- Select the input you wish to mark as sensitive.
+- Enable the 'Sensitive' toggle for that input if it isn't already enabled.
+
+<Image src={nodeEditorParamsTab} alt="Support Message Form" width={1200} />
+
+</Steps>
