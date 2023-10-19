@@ -1,4 +1,5 @@
 {
+  "script": "Script Node",
   "if-else": "Branch (If Else)",
   "loop": "Loop",
   "parallel": "Parallel",

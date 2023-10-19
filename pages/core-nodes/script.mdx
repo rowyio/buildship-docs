@@ -1,0 +1,116 @@
+# Script Node
+
+import Image from 'next/image'
+import script1 from '/public/nodes/script-1.png'
+import script2 from '/public/nodes/script-2.png'
+import script3 from '/public/nodes/script-3.png'
+import script4 from '/public/nodes/script-4.png'
+import script5 from '/public/nodes/script-5.png'
+
+A Script Node is a flexible building block in your workflow automation system. It provides a **blank canvas** for you to write your custom logic. 
+
+Users can **configure input parameters**, **specify the output format**, and **add metadata** to describe the node's purpose and appearance.
+
+<Image src={script1} alt="script node" width="1200" />
+
+## Customzing the Script Node
+
+### Node Logic
+
+The core of a Script Node is its logic, where you define the custom behavior of the node. This logic is typically written in JavaScript. 
+
+<Image src={script2} alt="script node" width="1200" />
+
+Below is an example of a Script Logic for generating QR codes:
+
+```js
+import { toDataURL } from 'qrcode';
+
+export default async function generateQRCode({ url }) {
+    const qrCodeDataURL = await toDataURL(url);
+    return qrCodeDataURL;
+}
+```
+
+In the above example, we import the `toDataURL` function from the [qrcode NPM Library](https://www.npmjs.com/package/qrcode) and create an asynchronous function `generateQRCode`. It takes an input parameter `url`, generates a QR code image, and returns its data URL.
+
+### Input Parameters
+
+Input parameters are values that users can configure when using the Node. These parameters can be set in the form UI or via JSON schema. 
+
+<Image src={script3} alt="script node" width="1200" />
+
+Here's the input configuration (in JSON) for the QR code generation node:
+
+```json
+{
+    "type": "object",
+    "properties": {
+        "url": {
+            "buildship": {
+                "index": 0
+            },
+            "description": "The URL to generate a QR code for",
+            "title": "URL",
+            "type": "string"
+        }
+    },
+    "required": ["url"]
+}
+```
+Here,
+- `type`: Specifies that the input is an object.
+- `properties`: Defines the available input properties. In this case, we have a single property, "url."
+- `url`: Describes the "url" property. It has a title, description, and data type (string). The "buildship" section includes an index, which determines the order in which this input is displayed to users. The "required" field indicates that the "url" parameter is mandatory.
+
+### Output Format
+
+You can specify the output format of the node to inform users about what to expect from this node. 
+
+<Image src={script4} alt="script node" width="1200" />
+
+For the QR code generation node, the output format is as follows:
+
+```json
+{
+	"buildship": {
+		
+	},
+	"title": "Base64 Data URL",
+	"description": "base64 data URL of the generated QR code image",
+	"type": "string",
+	"properties": {
+		
+	}
+}
+```
+Here,
+- `description`: Provides a brief description of the output, which is the base64 data URL of the generated QR code image.
+- `type`: Indicates that the output is of type "string."
+
+### Node Metadata
+
+Node metadata allows you to provide information about the node's appearance and purpose. 
+
+<Image src={script5} alt="script node" width="1200" />
+
+Here's an example of metadata for the QR code generation node:
+
+```json
+{
+	"icon": {
+		"svg": "<path d=\"M15 21h-2v-2h2v2zm-2-7h-2v5h2v-5zm8-2h-2v4h2v-4zm-2-2h-2v2h2v-2zM7 12H5v2h2v-2zm-2-2H3v2h2v-2zm7-5h2V3h-2v2zm-7.5-.5v3h3v-3h-3zM8 9H4c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm-3.5 7.5v3h3v-3h-3zM8 21H4c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm8.5-16.5v3h3v-3h-3zM20 9h-4c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm-1 10v-3h-4v2h2v3h4v-2h-2zm-2-7h-4v2h4v-2zm-4-2H7v2h2v2h2v-2h2v-2zm1-1V7h-2V5h-2v4h4zM6.75 5.25h-1.5v1.5h1.5v-1.5zm0 12h-1.5v1.5h1.5v-1.5zm12-12h-1.5v1.5h1.5v-1.5z\"></path>",
+		"type": "SVG"
+	},
+	"name": "Generate QR Code",
+	"description": "Generates a QR code for the given URL and returns the QR code's URL",
+	"id": "generate-qr-code"
+}
+```
+Here,
+- `icon`: The node's icon, represented as an SVG path. It's defined in the SVG format.
+- `name`: The name of the node, which is "Generate QR Code" in this case.
+- `description`: A brief description of the node's purpose.
+- `id`: A unique identifier for the node, which can be useful for the **Save to Library** feature coming soon! 🚀
+
+This metadata helps users quickly identify the node and understand its purpose.
