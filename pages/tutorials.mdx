@@ -9,19 +9,19 @@ import { Card, Cards } from 'nextra/components'
 Step by step guided tutorial for powerful usecases and examples.
 
 <Cards>
-  <ShowcaseCard title="Firebase" href="./tutorials/firebase-project">
+  <ShowcaseCard title="Firebase" href="./tutorials/firebase-project" onClick={() => {window?.posthog?.capture?.('button_docs_tutorials_selected',{type:'button_click',option_clicked:'firebase'})}}>
     <>![Firebase Connection preview](../public/tutorial/firebase-connection.png)</>
   </ShowcaseCard>
-  <ShowcaseCard title="Firebase Full Text Search" href="./tutorials/firebase-full-text-search">
+  <ShowcaseCard title="Firebase Full Text Search" href="./tutorials/firebase-full-text-search" onClick={() => {window?.posthog?.capture?.('button_docs_tutorials_selected',{type:'button_click',option_clicked:'firebase-full-text-search'})}}>
     <>![Firebase Connection preview](../public/tutorial/firebase-search-cover.png)</>
   </ShowcaseCard>
-  <ShowcaseCard title="GCP File Storage" href="./tutorials/gcp-storage">
+  <ShowcaseCard title="GCP File Storage" href="./tutorials/gcp-storage" onClick={() => {window?.posthog?.capture?.('button_docs_tutorials_selected',{type:'button_click',option_clicked:'gcp-storage'})}}>
     <>![GCP Storage preview](../public/tutorial/gcp-storage.png)</>
   </ShowcaseCard>
-  <ShowcaseCard title="Supabase" href="./tutorials/supabase-crud">
+  <ShowcaseCard title="Supabase" href="./tutorials/supabase-crud" onClick={() => {window?.posthog?.capture?.('button_docs_tutorials_selected',{type:'button_click',option_clicked:'supabase-crud'})}}>
     <>![Supabase CRUD preview](../public/tutorial/supabase-crud.png)</>
   </ShowcaseCard>
-  <ShowcaseCard title="Postgres" href="./tutorials/postgres">
+  <ShowcaseCard title="Postgres" href="./tutorials/postgres" onClick={() => {window?.posthog?.capture?.('button_docs_tutorials_selected',{type:'button_click',option_clicked:'postgres'})}}>
     <>![Postgres CRUD preview](../public/tutorial/postgres-og.png)</>
   </ShowcaseCard>
 </Cards>
