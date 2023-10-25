@@ -12,51 +12,25 @@ The Loop node is a versatile tool in BuildShip that empowers you to **iterate ov
 
 The primary functionality of the Loop node is to **traverse through all the elements** present in the input data and perform specified actions on each element. It facilitates the **execution of a set of nodes within the loop**, allowing you to interact with and modify the data at each iteration.
 
-The Loop node introduces flexibility by offering two distinct modes of operation:
-
-### Parallel Mode
-
-In parallel mode, each element of the input is processed concurrently. This is suitable when each iteration is independent and can be executed simultaneously. For example, making API calls to multiple endpoints.
-
-### Series Mode
-
-In series mode, the loop processes each element sequentially. This mode is beneficial when the execution order matters, and actions must be taken step by step. For instance, performing data transformation on each element one after the other.
+The loop processes each element sequentially. This mode is beneficial when the execution order matters, and actions must be taken step by step. For instance, performing data transformation on each element one after the other.
 
 ## Using the Loop Node
 The Loop node's functionality revolves around iterating over the elements of the input data and executing a set of actions for each element. Here's how you can use the Loop node:
 
 - **Input Configuration**: The Loop node accepts three types of input: **JSON objects**, **arrays**, or **literals**. You can provide the input directly in the editor.
 
-- **Processing Mode**: Choose between **parallel** and **series** processing based on your workflow's needs. Parallel processing executes actions simultaneously for each element, while series processing executes actions one after another.
+- **Concurrency**: The Loop node offers the flexibility to set the number of concurrent executions to run. This allows you to control how many iterations are processed simultaneously, enhancing the efficiency of your workflow. (Note: To modify this option, please check the [pricing page](https://buildship.com/pricing) to see the maximum concurrency limit for your plan.)
 
 - **Node Actions**: The Loop node **encapsulates a series of nodes** within it. This allows you to define the actions you want to perform on each element. You can add nodes for logging, making API calls, calculations, or any other desired functionality.
 
 <Callout emoji="💡">
-**Example 1:**
+**Example:**
 
-**Parallel Mode: Processing Multiple API Calls**
-
-    Suppose you have a list of URLs that you want to send API requests to simultaneously. You can use the Loop node in parallel mode to achieve this:
-
-    **Input**: `JSON array containing URLs`
-
-    **Loop Mode**: `Parallel`
-
-    **Loop Body**: Inside the loop, add a series of nodes that make API calls to the URLs.
-
-    This configuration ensures that each API call is executed in parallel, optimizing time and efficiency.
-</Callout>
-
-<Callout emoji="💡">
-**Example 2:**
-
-**Series Mode: Data Transformation**
+**Data Transformation**
 
     Imagine you have an array of raw data that needs to undergo multiple processing steps. You can utilize the Loop node in series mode to accomplish this:
 
     **Input**: `JSON array containing raw data`
-
-    **Loop Mode**: `Series`
 
     **Loop Body**: Within the loop, include nodes that perform data transformation, filtering, and enrichment.
     
