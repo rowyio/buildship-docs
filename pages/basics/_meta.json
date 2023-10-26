@@ -2,5 +2,6 @@
   "workflow": "Creating Workflows",
   "trigger": "Triggers",
   "node": "Nodes",
-  "variables": "Using Variables"
+  "variables": "Using Variables",
+  "reordering-nodes": "Reordering Nodes"
 }
