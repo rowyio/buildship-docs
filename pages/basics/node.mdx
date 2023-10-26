@@ -1,6 +1,7 @@
 # What is a Node?
 
 import Image from 'next/image'
+import { Callout } from 'nextra/components'
 import anatomy1 from '/public/basics/anatomy1.png'
 
 Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete workflow. 
@@ -87,7 +88,13 @@ export default async function downloadFile({ url, folderPath, fileName }, { req 
 
 ### Input Params
 
-Easily adapt input parameters associated with your nodes, ensuring they align with your unique requirements.
+Input parameters for a node are variables or values that can be provided as input to the node when it is executed. These parameters serve as the data that the node needs to perform its specific task. 
+
+These parameters can be set in the form UI or via JSON schema. 
+
+<Callout emoji="💡" type="info">
+Learn more about customizing node input parameters on the [Node Inputs page](./input).
+</Callout>
 
 Input parameters are structured as an array of JSON objects. Here's an example of an input parameters:
 
