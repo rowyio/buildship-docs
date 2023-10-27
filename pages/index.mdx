@@ -2,33 +2,31 @@ import Image from 'next/image'
 import buildshipOG from '/public/welcome/buildship-og.png'
 import features from '/public/welcome/features.png'
 
+import { Bleed } from 'nextra-theme-docs'
+
 # Welcome to BuildShip
 
-BuildShip is a **low-code visual backend builder, powered by AI ✨** that lets you ship:  
-🚀 APIs  
-🚀 Scheduled Jobs  
-🚀 Backend tasks  
-🚀 Connect with any 3rd party APIs and tools  
-🚀 Integrate with any AI model  
-🚀 WhatsApp bot, chatbots ++  
-🚀 Database CRUD workflows for Firestore, Supabase, Postgres ... any database  
-🚀 Basically any backend workflow you can think of for your app
+A Low-code Visual Backend Builder, powered by AI ✨ Use BuildShip to create:    
 
-Get started fast with the ease of no-code, but maintain full power to extend flexibly with low-code if you want.  
+  -  Scalable APIs
+  -  Scheduled tasks / CRON jobs
+  -  Backend cloud functions  
+  -  Database CRUD or event data triggered functions  
+  -  WhatsApp, Telegram, Slack, Discord, AI chatbot   
+
+BuildShip integrates with any tools like Stripe, Sengrid, Whatsapp or AI model from OpenAI, Replicate etc or database like Firebase, Supabase, Postgres.   
+
+🪩 **Best part?** if any integration is missing, don't get stuck - use AI to generate you own workflow nodes. BuildShip gives you the best of no-code with the power of low-code. See the 5 minutes product walkthrough.
+
 <br/>
-<Image
-  src={buildshipOG}
-  alt="BuildShip"
-  width={1200}
-  priority={true}
-/>
 
-You can connect your favorite AI-models, tools, API services, and backend in minutes. Extend your workflow's capabilities with JavaScript / TypeScript code and 1M+ NPM packages! 🤯
-
-BuildShip lets you build scalable backend workflows for the apps you build on any stack. Be it a no-code app builder (FlutterFlow, Webflow, Framer, Adalo, Bubble, BravoStudio ...) or 
-a frontend framework (Next.js, React, Vue ...) - you can build scalable backend tasks for them in minutes. This means you don't need to wrangle or deploy things on the cloud platform, waiting for long build cycles of cloud functions, perform DevOps, etc.   
-
-✨✨ Just Build and Ship, instantly 🚀
+  <iframe
+    className="aspect-video w-full"
+    src="https://www.youtube.com/embed/k20_4hv7pT4"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    width="80%"
+  />
 
 ## Quick Start
 
@@ -37,16 +35,31 @@ import { Card, Cards } from 'nextra/components'
 Follow the learning resources below to get a deeper understanding of the platform:
 
 <Cards num={3}>
-  <Card image arrow title="Nodes" href="/basics/node">
+  <Card image arrow title="How to build a workflow?" href="/basics/workflow">
+      <>![BuildShip Workflows](/assets/workflow-cover.png)</>
+    </Card>
+  <Card image arrow title="What is a node?" href="/basics/node">
     <>![BuildShip Nodes](/assets/nodes-cover.png)</>
   </Card>
-  <Card image arrow title="Triggers" href="/basics/trigger">
+  <Card image arrow title="What are workflow triggers?" href="/basics/trigger">
     <>![BuildShip Triggers](/assets/triggers-cover.png)</>
   </Card>
-  <Card image arrow title="Building a Workflow" href="/basics/workflow">
-    <>![BuildShip Workflows](/assets/workflow-cover.png)</>
-  </Card>
+  
 </Cards>
+
+You can connect your favorite AI-models, tools, API services, and backend in minutes. Extend your workflow's capabilities with JavaScript / TypeScript code and 1M+ NPM packages! 🤯
+
+BuildShip lets you build scalable backend workflows for the apps you build on any stack. Be it a no-code app builder (FlutterFlow, Webflow, Framer, Adalo, Bubble, BravoStudio ...) or 
+a frontend framework (Next.js, React, Vue ...) - you can build scalable backend tasks for them in minutes. This means you don't need to wrangle or deploy things on the cloud platform, waiting for long build cycles of cloud functions, perform DevOps, etc.   
+
+
+No-code friendly but code of every node is accessible and tweakable in javascript/typescript.
+Comes with features like instant deploy (no need to wait for long build cycles), version control, multiple projects, copying workflows from one project to another, large number of templates on popular usecases - whatsapp bot, google vision, stripe payment, and so much more.
+
+
+✨✨ Just Build and Ship, instantly 🚀
+
+
 
 
 ## What's inside? 👀
