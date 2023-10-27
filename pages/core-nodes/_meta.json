@@ -4,5 +4,6 @@
   "loop": "Loop",
   "parallel": "Parallel",
   "repeat": "Repeat",
-  "return": "Return"
+  "return": "Return",
+  "api-call-node": "API / HTTP Call"
 }
