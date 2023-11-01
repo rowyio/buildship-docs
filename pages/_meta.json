@@ -34,7 +34,8 @@
     "type": "separator",
     "title": "Integrations"
   },
-  "integrations":"Meta",
+  "meta":"Meta",
+  "pinecone":"Pinecone",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
