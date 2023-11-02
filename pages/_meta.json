@@ -12,7 +12,10 @@
     }
   },
   "basics": {
-    "title": "Basics"
+    "title": "Basics",
+    "theme": {
+      "breadcrumb": false
+    }
   },
   "-- Theme": {
     "type": "separator",
@@ -28,13 +31,9 @@
     "title": "Node Types"
   },
   "core-nodes": "Core Nodes",
-  "ai-nodes": "AI Generated Nodes",
+  "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
-  "-- Integration": {
-    "type": "separator",
-    "title": "Integrations"
-  },
-  "integrations":"Meta",
+  "integrations":"Integrations",  
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
