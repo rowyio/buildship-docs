@@ -3,6 +3,7 @@
   "trigger": "Triggers",
   "node": "Nodes",
   "input": "Node Inputs",
+  "input-validation": "Input Validation",
   "output": "Node Output",
   "variables": "Using Variables",
   "reordering-nodes": "Reordering Nodes"
