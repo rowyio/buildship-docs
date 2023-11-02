@@ -3,6 +3,9 @@
 import Image from 'next/image'
 import { Callout } from 'nextra/components'
 import anatomy1 from '/public/basics/anatomy1.png'
+import script2 from '/public/nodes/script-2.png'
+import script4 from '/public/nodes/script-4.png'
+import script5 from '/public/nodes/script-5.png'
 
 Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete workflow. 
 
@@ -14,135 +17,75 @@ The fundamental building blocks of a workflow are the logic nodes. Let's delve i
 
 <Image src={anatomy1} alt="Node Anatomy" width={1200} />
 
-### Open Node Editor &lt;/&gt;
-
+- **Open Node Editor** `</>`
 This feature grants you the power to **modify the logic**, **input parameters**, **output configuration**, and **metadata descriptions** associated with a given node, providing the flexibility to tailor the nodes to your exact requirements.
 
-### Node Options 
+- **Node Options**
+Manage nodes through **AI-powered editing**, **deletion**, **copying**, and the ability to **view logs** specific to each individual node.
 
-Seamlessly manage nodes through **AI-powered editing**, **deletion**, **copying**, and the ability to **view logs** specific to each individual node.
-
-### Value Expression Editor 
-
+- **Value Expression Editor**
 Tap into the capabilities of **AI data autofill for inputs**, leverage **variables**, and safeguard sensitive information using **secret keys**.
 
-### Expand/Collapse Toggle 
-
+- **Expand/Collapse Toggle**
 Enhance your workspace by toggling between expanded and collapsed views for nodes, ensuring a **clutter-free experience**.
 
-## Editing and Customizing Nodes
+## Edit and Customize Nodes
 
 Whether selecting a node from the **Nodeverse library** or **generating one via AI**, the Node Editor provides a user-friendly environment for configuring nodes. 
 
 Moreover, the Node Editor is accompanied by a **testing environment**, enabling users to **edit and test nodes simultaneously**, all without the need for deployment.
 
 
+## Node Editor `</>`
 
-### Node Editor &lt;/&gt;
+<Image src={script2} alt="script node" width="1200" />
 
-- **Modify or Create Serverless Scripts** 
-Utilize AI Prompts to effortlessly modify existing Serverless Scripts or craft new ones, empowering you to tailor functionality with ease. Leverage the familiarity of JavaScript or TypeScript for script composition.
+Node Logic is a versatile code editor within BuildShip that empowers users to create and customize the functionality of a node. With Node Logic, you can:
 
-- **API Connectivity and NPM Packages** 
-Seamlessly connect to a wide array of APIs and select from over a million npm packages, effectively expanding the scope of your nodes' capabilities.
+- Write and modify the underlying functions for a node to suit your specific needs.
+- Seamlessly integrate with APIs, leverage AI models, or incorporate NPM libraries to enhance your workflow's capabilities.
 
-- **EventArc Backend Triggers** 
-Embrace the versatility of eventArc-based backend triggers, encompassing triggers like onCreate, onAuth, update, delete, and more, to cater to diverse use cases.
+```js filename="Generate QR Codes"
+import { toDataURL } from 'qrcode';
 
-
-```js filename="Node Logic - Download a file"
-import fetch from 'node-fetch';
-import fs from 'fs';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
-import path from 'path';
-import { URL } from 'url';
-
-const streamPipeline = promisify(pipeline);
-
-export default async function downloadFile({ url, folderPath, fileName }, { req }) {
-  if (!url) {
-    throw new Error('URL is required to download a file.');
-  }
-
-  const _folderPath = process.env.BUCKET_FOLDER_PATH + folderPath;
-  
-  // Create folder path if it doesn't exist
-  try {
-    await fs.promises.access(_folderPath);
-  } catch (error) {
-    await fs.promises.mkdir(_folderPath, { recursive: true });
-  }
-
-  const response = await fetch(url);
-  const parsedUrl = new URL(url);
-  const originalFileName = fileName || path.basename(parsedUrl.pathname); // Use original name without queries if fileName is not provided
-  const filePath = path.join(_folderPath, originalFileName);
-  const fileStream = fs.createWriteStream(filePath);
-  await streamPipeline(response.body, fileStream);
-  
-  return { success: true };
+export default async function generateQRCode({ url }) {
+    const qrCodeDataURL = await toDataURL(url);
+    return qrCodeDataURL;
 }
-
 ```
 
-### Input Params
+<Callout emoji="💡" type="tip">
+If you wish to create your own node from scratch, you can do so by using the [Script node](../core-nodes/script).
+</Callout>
+
+## Input Params
 
 Input parameters for a node are variables or values that can be provided as input to the node when it is executed. These parameters serve as the data that the node needs to perform its specific task. 
 
 These parameters can be set in the form UI or via JSON schema. 
 
 <Callout emoji="💡" type="info">
-Learn more about customizing node input parameters on the [Node Inputs page](./input).
+Learn more about setting input params via JSON Schema and customizing node input parameters on the [Node Inputs page](./input).
 </Callout>
 
-Input parameters are structured as an array of JSON objects. Here's an example of an input parameters:
+<Image src={script4} alt="script node" width="1200" />
 
-```json filename="Node Input Params"
-[
-	{
-		"label": "URL", // the label to be displayed on the Node UI
-		"key": "url", // key is used to access the node value in the logic script 
-		"description": "The URL of the file to download", // metadata description of the node value
-		"type": "string", // type of the input value
-		"required": true  // if the node value is required
-	},
-	{
-		"label": "Path",
-		"description": "The path where the file should be stored",
-		"type": "string",
-		"key": "path",
-		"required": true
-	}
-]
-```
-
-### Output
+## Output
 
 The Node Editor empowers you to modify your node's output configurations. The structured JSON format ensures clarity in handling resulting data, promoting seamless integration with downstream processes.
 
 <Callout emoji="💡" type="info">
-Learn more about configuring the node output on the [Node Output page](./output).
+Learn more about setting outputs via JSON Schema and customizing node input parameters on the [Node Inputs page](./input).
 </Callout>
 
-```json filename="Node Output"
-{
-  "success": {
-    "description": "Indicates whether the file was downloaded and saved successfully",
-    "label": "Success",
-    "type": "boolean"
-  }
-}
-```
+<Image src={script4} alt="script node" width="1200" />
 
-### Node Description
+## Node Info
 
-Just as input parameters are accompanied by comprehensive descriptions, the "Description" section encapsulates essential insights about the node's purpose and functionality. This contextual information aids in better understanding the node's role within your workflow.
+Just as input parameters are accompanied by comprehensive descriptions, the "Info" section contains essential insights about the node's purpose and functionality. This contextual information aids in better understanding the node's role within your workflow.
 
-```json filename="Node Description"
-{
-  "description": "Download a file from a given URL and store it at a specified path",
-  "id": "download-file",
-  "name": "Download File"
-}
-```
+<Callout emoji="💡" type="info">
+Learn more about Node Metadata [here](../core-nodes/script#node-metadata).
+</Callout>
+
+<Image src={script5} alt="script node" width="1200" />
