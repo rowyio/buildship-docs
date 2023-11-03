@@ -33,7 +33,12 @@
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
-  "integrations":"Integrations",  
+  "-- Integration": {
+    "type": "separator",
+    "title": "Integrations"
+  },
+  "meta":"Meta",
+  "pinecone":"Pinecone",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
