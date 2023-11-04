@@ -1,14 +1,15 @@
 # Connecting to your Firebase Project
 
-import { Callout } from "nextra/components";
-import { Steps } from "nextra/components";
-import Image from "next/image";
-import firebaseProject1 from "../../public/tutorial/firebase-1.png";
-import firebaseProject2 from "../../public/tutorial/firebase-2.png";
-import firebaseProject3 from "../../public/tutorial/firebase-3.png";
-import buildshipFirebase1 from "../../public/tutorial/buildship-firebase-1.png";
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import firebaseProject1 from '../../public/tutorial/firebase-1.png';
+import firebaseProject2 from '../../public/tutorial/firebase-2.png';
+import firebaseProject3 from '../../public/tutorial/firebase-3.png';
+import buildshipFirebase1 from '../../public/tutorial/buildship-firebase-1.png';
 
-BuildShip provides pre-defined nodes for Firestore integration, making it easy to interact with Firebase services within your workflows.
+BuildShip provides pre-defined nodes for Firestore integration, making it easy to interact with Firebase services within
+your workflows.
 
 BuildShip offers two options for interacting with Firebase:
 
@@ -17,30 +18,34 @@ BuildShip offers two options for interacting with Firebase:
 
 ## Option 1: Using BuildShip's Built-in Firestore Database
 
-BuildShip comes equipped with a built-in Firestore database that is automatically associated with your BuildShip project.
+BuildShip comes equipped with a built-in Firestore database that is automatically associated with your BuildShip
+project.
 
-<Image src={buildshipFirebase1} alt="BuildShip Firebase" width={1200} />
+<Image src={buildshipFirebase1} alt='BuildShip Firebase' width={1200} />
 
 - **No Additional Setup:** Everything is pre-configured and ready for immediate use.
 - **Easy Access:** Users can directly access and interact with the Firestore database through BuildShip.
-- **Full Functionality:** You can perform all CRUD (Create, Read, Update, Delete) operations and more, making it a comprehensive solution for your Firebase integration needs.
+- **Full Functionality:** You can perform all CRUD (Create, Read, Update, Delete) operations and more, making it a
+  comprehensive solution for your Firebase integration needs.
 
-<Callout emoji="⚠️" type="info">
-  Presently, users do not have manual access to the underlying Firestore
-  project; however, we have exciting plans to introduce a UI feature that will
-  enable this in the near future! 🚀
+<Callout emoji='⚠️' type='info'>
+  Presently, users do not have manual access to the underlying Firestore project; however, we have exciting plans to
+  introduce a UI feature that will enable this in the near future! 🚀
 </Callout>
 
 ### Using BuildShip Database nodes
 
-In the Node Explorer, navigate to the "**BuildShip Database**" category. You'll find a range of nodes for various Firestore operations.
-Insert the relevant Firestore integration nodes into your workflow. Customize the nodes by providing the necessary input parameters for your specific use case.
+In the Node Explorer, navigate to the "**BuildShip Database**" category. You'll find a range of nodes for various
+Firestore operations. Insert the relevant Firestore integration nodes into your workflow. Customize the nodes by
+providing the necessary input parameters for your specific use case.
 
-> You do not need to provide any additional information, like the `Project ID` parameter to use the BuildShip Database nodes. You can directly use the nodes to interact with your Firestore database.
+> You do not need to provide any additional information, like the `Project ID` parameter to use the BuildShip Database
+> nodes. You can directly use the nodes to interact with your Firestore database.
 
 ## Option 2: Connecting to Your Own Firebase Project
 
-Users can connect their Firebase projects by **providing the Project ID** and **setting up permissions for the BuildShip Runtime Service Account**.
+Users can connect their Firebase projects by **providing the Project ID** and **setting up permissions for the BuildShip
+Runtime Service Account**.
 
 Steps to set up your own Firebase Connection:
 
@@ -48,29 +53,30 @@ Steps to set up your own Firebase Connection:
 ### Insert any Firebase Integration Node
 From the Node Explorer, insert any Firestore integration node into your workflow. Add the required fields to the node and add the Project ID of your Firebase project to which you want to add the data.
 
-<Image src={firebaseProject1} alt="Firebase Project ID" width={1200} />
+<Image src={firebaseProject1} alt='Firebase Project ID' width={1200} />
 
 ### Access BuildShip Settings
 
 Navigate to the **Settings** section, found in the top-left corner of your dashboard, next to the Project Name.
 
-<Callout emoji="⚠️" type="warning">
-  **Admin Access Required** You need to be the admin of the BuildShip account to
-  access the BuildShip Settings.
+<Callout emoji='⚠️' type='warning'>
+  **Admin Access Required** You need to be the admin of the BuildShip account to access the BuildShip Settings.
 </Callout>
 
-Under the **General** tab in BuildShip Settings, you will find information about the **underlying Firebase Project ID** and **Service Account details**. Copy the Service Account details as we need this to grant access to your Firebase project.
+Under the **General** tab in BuildShip Settings, you will find information about the **underlying Firebase Project ID**
+and **Service Account details**. Copy the Service Account details as we need this to grant access to your Firebase
+project.
 
-<Image src={firebaseProject2} alt="Firebase Project ID" width={1200} />
+<Image src={firebaseProject2} alt='Firebase Project ID' width={1200} />
 
 ### Grant Access in Firebase IAM & Admin
 
-- Open a new browser tab or window and go to your Firebase Project's [Google Cloud Platform (GCP) Console](https://console.cloud.google.com/).
+- Open a new browser tab or window and go to your Firebase Project's
+  [Google Cloud Platform (GCP) Console](https://console.cloud.google.com/).
 
-  <Callout emoji="⚠️" type="warning">
-    Make sure you are logged in to the correct Google account that has access to
-    the Firebase project you want to connect to BuildShip. Also, make sure
-    you've selected the correct Firebase project in the GCP Console.
+  <Callout emoji='⚠️' type='warning'>
+    Make sure you are logged in to the correct Google account that has access to the Firebase project you want to
+    connect to BuildShip. Also, make sure you've selected the correct Firebase project in the GCP Console.
   </Callout>
 
 - Navigate to the **IAM & Admin** section from the Firebase project's GCP Console.
@@ -83,17 +89,19 @@ Under the **General** tab in BuildShip Settings, you will find information about
 
 - Hit the **Save** button to grant access to the Service Account.
 
-<Image src={firebaseProject3} alt="Firebase Project ID" width={1200} />
+<Image src={firebaseProject3} alt='Firebase Project ID' width={1200} />
 
 This will allow BuildShip to interact with your Firebase resources.
 
-Once you've added the Project ID in your BuildShip Firebase node, you're good to go! 🚀 You can now use the workflow to interact with your Firebase project's data.
+Once you've added the Project ID in your BuildShip Firebase node, you're good to go! 🚀 You can now use the workflow to
+interact with your Firebase project's data.
 
 </Steps>
 
 ## Purpose and Corresponding Nodes
 
-Here's a comparison table highlighting the purpose of Firestore operations and the corresponding nodes for both BuildShip's Firestore Database and your own Firestore Database:
+Here's a comparison table highlighting the purpose of Firestore operations and the corresponding nodes for both
+BuildShip's Firestore Database and your own Firestore Database:
 
 | Purpose                        | BuildShip Database Nodes   | Firestore Database Nodes       |
 | ------------------------------ | -------------------------- | ------------------------------ |

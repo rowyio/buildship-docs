@@ -1,19 +1,23 @@
 # Parallel
 
-import { Callout } from 'nextra/components'
-import Image from 'next/image'
-import parallel from '/public/nodes/parallel.png'
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import parallel from '/public/nodes/parallel.png';
 
-The Parallel node allows you to run other nodes at the same time. This node is useful if you want to independent pieces of logic to run at the same time, saving valueable time in your workflow. 
+The Parallel node allows you to run other nodes at the same time. This node is useful if you want to independent pieces
+of logic to run at the same time, saving valueable time in your workflow.
 
-<Image src={parallel} alt="Parallel node" width={1200} />
+<Image src={parallel} alt='Parallel node' width={1200} />
 
-In parallel mode, each element of the input is processed concurrently. This is suitable when each iteration is independent and can be executed simultaneously. For example, making API calls to multiple endpoints.
+In parallel mode, each element of the input is processed concurrently. This is suitable when each iteration is
+independent and can be executed simultaneously. For example, making API calls to multiple endpoints.
 
-Parallel processing executes actions simultaneously for each element, while series processing executes actions one after another.
+Parallel processing executes actions simultaneously for each element, while series processing executes actions one after
+another.
 
-<Callout emoji="✅">
-To use this node, please check the [BuildShip Pricing page](https://buildship.com/pricing) to see the maximum concurrency limit for your plan.
+<Callout emoji='✅'>
+  To use this node, please check the [BuildShip Pricing page](https://buildship.com/pricing) to see the maximum
+  concurrency limit for your plan.
 </Callout>
 
 <Callout emoji="💡">
@@ -26,4 +30,5 @@ To use this node, please check the [BuildShip Pricing page](https://buildship.co
     **Loop Body**: Inside the loop, add a series of nodes that make API calls to the URLs.
 
     This configuration ensures that each API call is executed in parallel, optimizing time and efficiency.
+
 </Callout>

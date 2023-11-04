@@ -1,27 +1,41 @@
 # Loop
 
-import { Callout } from 'nextra/components'
-import Image from 'next/image'
-import loop1 from '/public/nodes/loop-1.png'
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import loop1 from '/public/nodes/loop-1.png';
 
-The Loop node is a versatile tool in BuildShip that empowers you to **iterate over elements** within a JSON object, an array, or even a literal value. This node serves as a **powerful mechanism for processing and manipulating data iteratively**. It is particularly useful when you want to perform a series of actions on each element of the input provided.
+The Loop node is a versatile tool in BuildShip that empowers you to **iterate over elements** within a JSON object, an
+array, or even a literal value. This node serves as a **powerful mechanism for processing and manipulating data
+iteratively**. It is particularly useful when you want to perform a series of actions on each element of the input
+provided.
 
-<Image src={loop1} alt="Loop node" width={1200} />
+<Image src={loop1} alt='Loop node' width={1200} />
 
 ## Looping Functionality
 
-The primary functionality of the Loop node is to **traverse through all the elements** present in the input data and perform specified actions on each element. It facilitates the **execution of a set of nodes within the loop**, allowing you to interact with and modify the data at each iteration.
+The primary functionality of the Loop node is to **traverse through all the elements** present in the input data and
+perform specified actions on each element. It facilitates the **execution of a set of nodes within the loop**, allowing
+you to interact with and modify the data at each iteration.
 
-The loop processes each element sequentially. This mode is beneficial when the execution order matters, and actions must be taken step by step. For instance, performing data transformation on each element one after the other.
+The loop processes each element sequentially. This mode is beneficial when the execution order matters, and actions must
+be taken step by step. For instance, performing data transformation on each element one after the other.
 
 ## Using the Loop Node
-The Loop node's functionality revolves around iterating over the elements of the input data and executing a set of actions for each element. Here's how you can use the Loop node:
 
-- **Input Configuration**: The Loop node accepts three types of input: **JSON objects**, **arrays**, or **literals**. You can provide the input directly in the editor.
+The Loop node's functionality revolves around iterating over the elements of the input data and executing a set of
+actions for each element. Here's how you can use the Loop node:
 
-- **Concurrency**: The Loop node offers the flexibility to set the number of concurrent executions to run. This allows you to control how many iterations are processed simultaneously, enhancing the efficiency of your workflow. (Note: To modify this option, please check the [pricing page](https://buildship.com/pricing) to see the maximum concurrency limit for your plan.)
+- **Input Configuration**: The Loop node accepts three types of input: **JSON objects**, **arrays**, or **literals**.
+  You can provide the input directly in the editor.
 
-- **Node Actions**: The Loop node **encapsulates a series of nodes** within it. This allows you to define the actions you want to perform on each element. You can add nodes for logging, making API calls, calculations, or any other desired functionality.
+- **Concurrency**: The Loop node offers the flexibility to set the number of concurrent executions to run. This allows
+  you to control how many iterations are processed simultaneously, enhancing the efficiency of your workflow. (Note: To
+  modify this option, please check the [pricing page](https://buildship.com/pricing) to see the maximum concurrency
+  limit for your plan.)
+
+- **Node Actions**: The Loop node **encapsulates a series of nodes** within it. This allows you to define the actions
+  you want to perform on each element. You can add nodes for logging, making API calls, calculations, or any other
+  desired functionality.
 
 <Callout emoji="💡">
 **Example: Data Transformation**
@@ -31,7 +45,7 @@ The Loop node's functionality revolves around iterating over the elements of the
     **Input**: `JSON array containing raw data`
 
     **Loop Body**: Within the loop, include nodes that perform data transformation, filtering, and enrichment.
-    
+
     By using the Loop node in series mode, you ensure that each data point is processed methodically, producing the desired results.
 
 </Callout>

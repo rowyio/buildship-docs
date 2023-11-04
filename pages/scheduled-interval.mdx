@@ -1,21 +1,25 @@
 # Scheduled Interval Trigger
 
-import { Steps } from 'nextra/components'
-import { Callout } from 'nextra/components'
-import Image from 'next/image'
-import interval1 from '/public/nodes/interval-1.png'
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import interval1 from '/public/nodes/interval-1.png';
 
-The Scheduled Interval Trigger node is a versatile feature within BuildShip that **facilitates workflow automation at regular intervals**. With this trigger, you can **define specific time intervals and units**, allowing you to streamline tasks and processes based on your requirements.
+The Scheduled Interval Trigger node is a versatile feature within BuildShip that **facilitates workflow automation at
+regular intervals**. With this trigger, you can **define specific time intervals and units**, allowing you to streamline
+tasks and processes based on your requirements.
 
-<Image src={interval1} alt="Scheduled Interval Trigger" width={1200} />
+<Image src={interval1} alt='Scheduled Interval Trigger' width={1200} />
 
 ## How to Use Scheduled Interval Trigger
 
 Configuring the Scheduled Interval Trigger involves the following fields:
 
-- **Interval (Unit in digits)**: Set the **numeric value** that represents the interval at which your workflow should trigger.
+- **Interval (Unit in digits)**: Set the **numeric value** that represents the interval at which your workflow should
+  trigger.
 
-- **Time Unit**: Choose the appropriate **time unit** (e.g., seconds, minutes, hours) for your interval. This unit defines the **duration between successive triggers**.
+- **Time Unit**: Choose the appropriate **time unit** (e.g., seconds, minutes, hours) for your interval. This unit
+  defines the **duration between successive triggers**.
 
 ## Setting up the Scheduled Interval Trigger
 
@@ -24,10 +28,15 @@ To set up a Scheduled Interval Trigger in your BuildShip workflow, follow these 
 <Steps>
 
 ### Add Trigger Node
-Create a new workflow or edit an existing one. Click "Add Trigger" and select "Scheduled Interval" from the available trigger options.
+
+Create a new workflow or edit an existing one. Click "Add Trigger" and select "Scheduled Interval" from the available
+trigger options.
 
 ### Configure Trigger
-Configure the fields within the Scheduled Cron Trigger node. You can choose the desired Interval, and time units for your trigger as given in the above sections.
+
+Configure the fields within the Scheduled Cron Trigger node. You can choose the desired Interval, and time units for
+your trigger as given in the above sections.
+
 </Steps>
 
 <Callout type="tip" emoji="🦾">
@@ -43,10 +52,11 @@ Configure the fields within the Scheduled Cron Trigger node. You can choose the 
     **Description**: This setup triggers the workflow every 30 minutes, making it ideal for tasks that need to be performed multiple times within an hour.
 
     **Example 2: Hourly Maintenance**
-    
+
     **Interval**: `1`
 
     **Time Unit**: `Hours`
 
     **Description**: This configuration triggers the workflow every hour, allowing you to automate routine maintenance tasks.
+
 </Callout>
