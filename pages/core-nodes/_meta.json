@@ -1,9 +1,9 @@
 {
-  "script": "Script Node",
   "if-else": "Branch (If Else)",
   "loop": "Loop",
   "parallel": "Parallel",
   "repeat": "Repeat",
   "return": "Return",
-  "api-call-node": "API / HTTP Call"
+  "api-call-node": "API / HTTP Call",
+  "script": "Empty Script"
 }
