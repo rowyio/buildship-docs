@@ -26,7 +26,23 @@ export default withNextra({
       source: '/docs/docs-theme/built-ins/:slug(callout|steps|tabs)',
       destination: '/docs/guide/built-ins/:slug',
       permanent: true
+    },
+    {
+      source: '/:slug(rest-api|scheduled-cron|scheduled-interval|telegram-bot)',
+      destination: '/trigger-nodes/:slug',
+      permanent: true
+    },
+    {
+      source: '/meta/whatsapp',
+      destination: '/whatsapp',
+      permanent: true
+    },
+    {
+      source: '/utility-nodes/overview',
+      destination: '/utility-nodes',
+      permanent: true
     }
+    
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/

@@ -17,19 +17,11 @@
       "breadcrumb": false
     }
   },
-  "-- Theme": {
-    "type": "separator",
-    "title": "Trigger Types"
-  },
-  "rest-api": "Rest API",
-  "scheduled-cron": "Scheduled Cron",
-  "scheduled-interval": "Scheduled Interval",
-  "rowy-trigger": "Rowy Trigger",
-  "telegram-bot": "Telegram Bot",
   "-- Themes": {
     "type": "separator",
     "title": "Node Types"
   },
+  "trigger-nodes": "Trigger Nodes",
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
@@ -37,7 +29,7 @@
     "type": "separator",
     "title": "Integrations"
   },
-  "meta":"Meta",
+  "whatsapp":"Whatsapp",
   "pinecone":"Pinecone",
   "--Theme": {
     "type": "separator",
