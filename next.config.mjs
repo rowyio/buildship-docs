@@ -28,7 +28,7 @@ export default withNextra({
       permanent: true
     },
     {
-      source: '/:slug(rest-api|scheduled-cron|scheduled-interval|telegram-bot)',
+      source: '/:slug(rest-api|scheduled-cron|scheduled-interval|telegram-bot|rowy-trigger)',
       destination: '/trigger-nodes/:slug',
       permanent: true
     },
