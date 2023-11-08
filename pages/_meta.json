@@ -30,6 +30,7 @@
     "title": "Integrations"
   },
   "whatsapp": "Whatsapp",
+  "supabase": "Supabase",
   "pinecone": "Pinecone",
   "--Theme": {
     "type": "separator",
