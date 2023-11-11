@@ -41,6 +41,11 @@ export default withNextra({
       source: '/utility-nodes/overview',
       destination: '/utility-nodes',
       permanent: true
+    },
+    {
+      source: '/integrations/:slug(whatsapp)',
+      destination: '/whatsapp',
+      permanent: true
     }
     
   ],
