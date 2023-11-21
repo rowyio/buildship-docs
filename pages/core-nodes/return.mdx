@@ -1,14 +1,16 @@
-
-import Image from 'next/image'
-import return1 from '/public/nodes/return1.png'
+import Image from 'next/image';
+import return1 from '/public/nodes/return1.png';
 
 # Return Node
 
-The Return Node is used to **return values from the workflow**. It is the last node in the workflow and is always required. The Return Node is a crucial component in our workflow logic, designed to handle HTTP response codes and return a value upon execution.
+The Return Node is used to **return values from the workflow**. It is the last node in the workflow and is always
+required. The Return Node is a crucial component in our workflow logic, designed to handle HTTP response codes and
+return a value upon execution.
 
-The Return Node is a **non-configurable** node that takes in predefined HTTP status codes and produces a corresponding value as output.
+The Return Node is a **non-configurable** node that takes in predefined HTTP status codes and produces a corresponding
+value as output.
 
-<Image src={return1} alt="return1" width="1200" />
+<Image src={return1} alt='return1' width='1200' />
 
 ## Supported Status Codes
 
@@ -26,21 +28,34 @@ The Return Node supports the following HTTP status codes:
 
 ## Return Value
 
-The Return Nodes in the workflow allow users to generate specific output values based on various sources, providing flexibility and customization to the workflow logic. The Return Node can be used to return a value from the following sources:
+The Return Nodes in the workflow allow users to generate specific output values based on various sources, providing
+flexibility and customization to the workflow logic. The Return Node can be used to return a value from the following
+sources:
 
 ### Autofill Values using AI
 
-The Return Nodes can leverage the power of AI to autofill values automatically. By using AI-driven autofill feature, users can save time and ensure that the generated values align with the workflow's objectives.
+The Return Nodes can leverage the power of AI to autofill values automatically. By using AI-driven autofill feature,
+users can save time and ensure that the generated values align with the workflow's objectives.
 
 ### Values via Expressions
-Return Nodes support expressions, allowing users to create dynamic output values by combining variables, constants, and functions. Expressions enable users to manipulate data and perform calculations, making it possible to generate responses that adapt to changing conditions during workflow execution.
+
+Return Nodes support expressions, allowing users to create dynamic output values by combining variables, constants, and
+functions. Expressions enable users to manipulate data and perform calculations, making it possible to generate
+responses that adapt to changing conditions during workflow execution.
 
 ### Request Components
-In workflows **involving REST API triggers**, Return Nodes can return values derived from different components of the request. Users can extract data from the request's headers, parameters, and body to generate meaningful responses. 
 
-**For Example:** The Return Node can extract the user's name from the request header and use it to personalize the output message.
+In workflows **involving REST API triggers**, Return Nodes can return values derived from different components of the
+request. Users can extract data from the request's headers, parameters, and body to generate meaningful responses.
+
+**For Example:** The Return Node can extract the user's name from the request header and use it to personalize the
+output message.
 
 ### Returning Output Values from Previous Nodes
-The power of workflows lies in their ability to connect and pass data between nodes. Return Nodes can utilize output values from previous nodes in the workflow. By referencing the outputs of other nodes, users can build complex logic and create cascading effects. 
 
-**For Example:** If a previous node performs a calculation or retrieves data from a database, the Return Node can use that data to provide the final result of the workflow.
+The power of workflows lies in their ability to connect and pass data between nodes. Return Nodes can utilize output
+values from previous nodes in the workflow. By referencing the outputs of other nodes, users can build complex logic and
+create cascading effects.
+
+**For Example:** If a previous node performs a calculation or retrieves data from a database, the Return Node can use
+that data to provide the final result of the workflow.

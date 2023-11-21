@@ -1,138 +1,163 @@
-import Image from 'next/image'
-import buildshipOG from '/public/welcome/buildship-og.png'
-import features from '/public/welcome/features.png'
-import { Callout } from "nextra/components";
-import { Bleed } from 'nextra-theme-docs'
+import Image from 'next/image';
+import buildshipOG from '/public/welcome/buildship-og.png';
+import features from '/public/welcome/features.png';
+import { Callout } from 'nextra/components';
+import { Bleed } from 'nextra-theme-docs';
 
 # Welcome to BuildShip
 
-A Low-code Visual Backend Builder, powered by AI ✨ Use BuildShip to create:    
+A Low-code Visual Backend Builder, powered by AI ✨ Use BuildShip to create:
 
-  -  Scalable APIs
-  -  Scheduled tasks / CRON jobs
-  -  Backend cloud functions  
-  -  Database CRUD or event data triggered functions  
-  -  WhatsApp, Telegram, Slack, Discord, AI chatbot   
+- Scalable APIs
+- Scheduled tasks / CRON jobs
+- Backend cloud functions
+- Database CRUD or event data triggered functions
+- WhatsApp, Telegram, Slack, Discord, AI chatbot
 
-BuildShip integrates with any tools like Stripe, Sengrid, Whatsapp or AI model from OpenAI, Replicate etc or database like Firebase, Supabase, Postgres.   
+BuildShip integrates with any tools like Stripe, Sengrid, Whatsapp or AI model from OpenAI, Replicate etc or database
+like Firebase, Supabase, Postgres.
 
-🪩 **Best part?** if any integration is missing, don't get stuck - use AI to generate you own workflow nodes. BuildShip gives you the best of no-code with the power of low-code. See the 5 minutes product walkthrough.
+🪩 **Best part?** if any integration is missing, don't get stuck - use AI to generate you own workflow nodes. BuildShip
+gives you the best of no-code with the power of low-code. See the 5 minutes product walkthrough.
 
-<br/>
+<br />
 
-  <iframe
-    className="aspect-video w-full"
-    src="https://www.youtube.com/embed/k20_4hv7pT4"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-    width="80%"
-  />
+{" "}
+
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/k20_4hv7pT4'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
 
 ## Quick Start
 
-import { Card, Cards } from 'nextra/components'
+import { Card, Cards } from 'nextra/components';
 
 Follow the learning resources below to get a deeper understanding of the platform:
 
 <Cards num={3}>
-  <Card image arrow title="How to build a workflow?" href="/basics/workflow">
-      <>![BuildShip Workflows](/assets/workflow-cover.png)</>
-    </Card>
-  <Card image arrow title="What is a node?" href="/basics/node">
+  <Card image arrow title='How to build a workflow?' href='/basics/workflow'>
+    <>![BuildShip Workflows](/assets/workflow-cover.png)</>
+  </Card>
+  <Card image arrow title='What is a node?' href='/basics/node'>
     <>![BuildShip Nodes](/assets/nodes-cover.png)</>
   </Card>
-  <Card image arrow title="What are workflow triggers?" href="/basics/trigger">
+  <Card image arrow title='What are workflow triggers?' href='/basics/trigger'>
     <>![BuildShip Triggers](/assets/triggers-cover.png)</>
   </Card>
 </Cards>
 
-You can connect your favorite AI-models, tools, API services, and backend in minutes. Extend your workflow's capabilities with JavaScript / TypeScript code and 1M+ NPM packages! 🤯
+You can connect your favorite AI-models, tools, API services, and backend in minutes. Extend your workflow's
+capabilities with JavaScript / TypeScript code and 1M+ NPM packages! 🤯
 
-BuildShip lets you build scalable backend workflows for the apps you build on any stack. Be it a no-code app builder (FlutterFlow, Webflow, Framer, Adalo, Bubble, BravoStudio ...) or 
-a frontend framework (Next.js, React, Vue ...) - you can build scalable backend tasks for them in minutes. This means you don't need to wrangle or deploy things on the cloud platform, waiting for long build cycles of cloud functions, perform DevOps, etc.   
+BuildShip lets you build scalable backend workflows for the apps you build on any stack. Be it a no-code app builder
+(FlutterFlow, Webflow, Framer, Adalo, Bubble, BravoStudio ...) or a frontend framework (Next.js, React, Vue ...) - you
+can build scalable backend tasks for them in minutes. This means you don't need to wrangle or deploy things on the cloud
+platform, waiting for long build cycles of cloud functions, perform DevOps, etc.
 
-
-No-code friendly but code of every node is accessible and tweakable in javascript/typescript.
-Comes with features like instant deploy (no need to wait for long build cycles), version control, multiple projects, copying workflows from one project to another, large number of templates on popular usecases - whatsapp bot, google vision, stripe payment, and so much more.
-
+No-code friendly but code of every node is accessible and tweakable in javascript/typescript. Comes with features like
+instant deploy (no need to wait for long build cycles), version control, multiple projects, copying workflows from one
+project to another, large number of templates on popular usecases - whatsapp bot, google vision, stripe payment, and so
+much more.
 
 ✨✨ Just Build and Ship, instantly 🚀
 
-
 ## What's inside? 👀
 
-Built on top of powerful and scalable **Google Cloud Platform (GCP)**, BuildShip give you a friction-free serverless development experience. Now you can quickly transform your ideas into cloud-deployed scripts within seconds, without leaving your browser.
+Built on top of powerful and scalable **Google Cloud Platform (GCP)**, BuildShip give you a friction-free serverless
+development experience. Now you can quickly transform your ideas into cloud-deployed scripts within seconds, without
+leaving your browser.
 
-BuildShip uses **Cloud Run** to run your code in a serverless environment. It also supports EventArc-based backend triggers, HTTP and webhook backend triggers, data triggers, and BYOC (Bring Your Own Cloud) compatibility.
+BuildShip uses **Cloud Run** to run your code in a serverless environment. It also supports EventArc-based backend
+triggers, HTTP and webhook backend triggers, data triggers, and BYOC (Bring Your Own Cloud) compatibility.
 
 ## Features 🪄
 
-<Image
-  src={features}
-  alt="BuildShip Features"
-  width={1200}
-/>
+<Image src={features} alt='BuildShip Features' width={1200} />
 
 ### Combine the power of any AI Model
-Integrate the leading multimodal AI models and services with your APIs and Workflows like **ChatGPT**, **Stable Diffusion**, **Midjourney**, **DALL-E 2**, and many more.
+
+Integrate the leading multimodal AI models and services with your APIs and Workflows like **ChatGPT**, **Stable
+Diffusion**, **Midjourney**, **DALL-E 2**, and many more.
 
 ### The Nodeverse
-Explore and select from The Nodeverse, our library of pre-built nodes or generate your own using AI. Tweak the nodes to your liking and build your own custom workflows.
 
-### Build with JavaScript / TypeScript 
-Typical low-code, no-code tools use their own complicated formulae process as you start to building anything meaningful. With BuildShip you can build on javascript / typescript - which has lot of reference materials. So you will not get “**stuck**” 😶‍🌫️ in the tool’s features and can build without limits.
+Explore and select from The Nodeverse, our library of pre-built nodes or generate your own using AI. Tweak the nodes to
+your liking and build your own custom workflows.
+
+### Build with JavaScript / TypeScript
+
+Typical low-code, no-code tools use their own complicated formulae process as you start to building anything meaningful.
+With BuildShip you can build on javascript / typescript - which has lot of reference materials. So you will not get
+“**stuck**” 😶‍🌫️ in the tool’s features and can build without limits.
 
 ### One of a kind development experience
-BuildShip provides you with a powerful code editor with autocomplete, localhost like speedy debugging experience, and a sandboxing environment. Build serverless scripts fast, right from your browser! ⚡️ Schedule your function calls, save data to database, connect to any API, use 1M + NPM packages.
 
+BuildShip provides you with a powerful code editor with autocomplete, localhost like speedy debugging experience, and a
+sandboxing environment. Build serverless scripts fast, right from your browser! ⚡️ Schedule your function calls, save
+data to database, connect to any API, use 1M + NPM packages.
 
 ## Why use BuildShip? 🚢
 
-- **Faster development**: BuildShip makes it easy to build and deploy serverless applications, so you can **get your ideas to market faster**.
-- **Flexible and Extensible**:  BuildShip offers the most flexible and powerful platform to build APIs and backend workflows exactly the way you want. You will never be stuck waiting for an integration.
-- **Lower costs**: It's **serverless**, so you only **pay for the resources you use**. This can save you a lot of money on infrastructure costs. You can build 10x workflows for a whole lot less.
+- **Faster development**: BuildShip makes it easy to build and deploy serverless applications, so you can **get your
+  ideas to market faster**.
+- **Flexible and Extensible**: BuildShip offers the most flexible and powerful platform to build APIs and backend
+  workflows exactly the way you want. You will never be stuck waiting for an integration.
+- **Lower costs**: It's **serverless**, so you only **pay for the resources you use**. This can save you a lot of money
+  on infrastructure costs. You can build 10x workflows for a whole lot less.
 - **Scalability**: BuildShip is scalable. So, you can easily scale your applications as your traffic grows!
-- **GDPR Compliant**: You have option to select your project's location and all your workflows will be deployed to that region, which means your data never leaves your region of choice.
-- **Security**: Save your API Keys and Secrets on **Google Cloud Secret Manager** of your own single tenant project, so you can be confident that your data is safe.
-- **Templates to start fast**: 100s of pre-built integrations, from popular AI models like OpenAI text generation, Vector embedding, Sythesia video gen, image gen using Stable Diffusion, or literally use any AI model on platforms like Replicate, Hugging Face, etc., or even the ones that will launch in the future!
-- **AI-Generated Nodes**: You are not limited with pre-built nodes or the platform. Start from hundreds of pre-built nodes, but if something is missing - don’t wait for BuildShip to release an integration! Simply ask AI and it generates a custom workflow node just for you.
-- **Custom code**: Readily use any API or 1M+ NPM packages: You can use any NPM package in the workflow node or ask Ask AI to use an NPM package and generate a node for you.
-Code made accessible - anytime you want: BuildShip is not a black box, you can open the code of any node, tweak it any way you want. Use powerful developer tools like logging, version control, a code editor equipped with autocomplete, a lightning-fast debugger similar to localhost, and a secure sandboxing environment.
-One-click deploy: When ready, hit “ship” and get your backend workflow deployed instantly!
-Start fast with templates: We have templates featuring chatbots, music generators, reverse image search using Google Vision API, Vector DB search, HTML to PDF converter, and more!
-They are the team behind Rowy.io - a popular low-code tool for managing Firestore data and building low-code style on Firebase and Google Cloud. They have a great community already building with low-code and the team has been shipping products fast to help and solve products of the low-code community.
-The team is part of the first batch of AIGrant.org which has backed top emerging AI companies and their investors include Vercel CEO, execs from Figma, Google, Github and more.
+- **GDPR Compliant**: You have option to select your project's location and all your workflows will be deployed to that
+  region, which means your data never leaves your region of choice.
+- **Security**: Save your API Keys and Secrets on **Google Cloud Secret Manager** of your own single tenant project, so
+  you can be confident that your data is safe.
+- **Templates to start fast**: 100s of pre-built integrations, from popular AI models like OpenAI text generation,
+  Vector embedding, Sythesia video gen, image gen using Stable Diffusion, or literally use any AI model on platforms
+  like Replicate, Hugging Face, etc., or even the ones that will launch in the future!
+- **AI-Generated Nodes**: You are not limited with pre-built nodes or the platform. Start from hundreds of pre-built
+  nodes, but if something is missing - don’t wait for BuildShip to release an integration! Simply ask AI and it
+  generates a custom workflow node just for you.
+- **Custom code**: Readily use any API or 1M+ NPM packages: You can use any NPM package in the workflow node or ask Ask
+  AI to use an NPM package and generate a node for you. Code made accessible - anytime you want: BuildShip is not a
+  black box, you can open the code of any node, tweak it any way you want. Use powerful developer tools like logging,
+  version control, a code editor equipped with autocomplete, a lightning-fast debugger similar to localhost, and a
+  secure sandboxing environment. One-click deploy: When ready, hit “ship” and get your backend workflow deployed
+  instantly! Start fast with templates: We have templates featuring chatbots, music generators, reverse image search
+  using Google Vision API, Vector DB search, HTML to PDF converter, and more! They are the team behind Rowy.io - a
+  popular low-code tool for managing Firestore data and building low-code style on Firebase and Google Cloud. They have
+  a great community already building with low-code and the team has been shipping products fast to help and solve
+  products of the low-code community. The team is part of the first batch of AIGrant.org which has backed top emerging
+  AI companies and their investors include Vercel CEO, execs from Figma, Google, Github and more.
 
 ## BuildShip FAQ
 
-The BuildShip FAQ is a collection of useful questions and answers about the
-project. If you have a question that isn't answered here, please
-[open a discussion](https:/buildship.com/discord).
+The BuildShip FAQ is a collection of useful questions and answers about the project. If you have a question that isn't
+answered here, please [open a discussion](https:/buildship.com/discord).
 
 export function FAQBox({ title, children }) {
   return (
-    <details
-      open
-      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
-    >
+    <details open className='last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4'>
       <summary>
-        <strong className="text-lg">{title}</strong>
+        <strong className='text-lg'>{title}</strong>
       </summary>
-      <div className="nx-p-2">{children}</div>
+      <div className='nx-p-2'>{children}</div>
     </details>
-  )
+  );
 }
 
-<FAQBox title="What is a AI generated node?">
-  With BuildShip you can use our pre-build nodes or create one yourself by simply asking what you want to the node to do. You can learn more about it [here](/ai-nodes)
+<FAQBox title='What is a AI generated node?'>
+  With BuildShip you can use our pre-build nodes or create one yourself by simply asking what you want to the node to
+  do. You can learn more about it [here](/ai-nodes)
 </FAQBox>
 
-<FAQBox title="What is the pricing plan?">
-  We are a free tier for you to try out BuildShip and plans to accomodate your needs. 
-  You can learn all about pricing [here](https://buildship.com/pricing).
-  
+<FAQBox title='What is the pricing plan?'>
+  We are a free tier for you to try out BuildShip and plans to accomodate your needs. You can learn all about pricing
+  [here](https://buildship.com/pricing).
 </FAQBox>
 
-<Callout emoji="🙋🏻">
-    Need help? Chat with us and our community of low-code/no-code builders and developers on [Discord](https://buildship.com/discord).
+<Callout emoji='🙋🏻'>
+  Need help? Chat with us and our community of low-code/no-code builders and developers on
+  [Discord](https://buildship.com/discord).
 </Callout>

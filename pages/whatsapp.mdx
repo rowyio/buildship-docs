@@ -1,20 +1,22 @@
-import { Steps } from "nextra/components";
-import { Callout } from "nextra/components";
-import Image from "next/image";
-import whatsappBanner from "/public/integrations/meta/whatsapp-banner.png";
-import creteApp from "/public/integrations/meta/create-app.png";
-import addProduct from "/public/integrations/meta/add-product.png";
-import metaAccount from "/public/integrations/meta/meta-account.png";
-import dashboard from "/public/integrations/meta/dashboard.png";
-import testNode from "/public/integrations/meta/test-node.png";
-import testPost from "/public/integrations/meta/test-post.png";
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import whatsappBanner from '/public/integrations/meta/whatsapp-banner.png';
+import creteApp from '/public/integrations/meta/create-app.png';
+import addProduct from '/public/integrations/meta/add-product.png';
+import metaAccount from '/public/integrations/meta/meta-account.png';
+import dashboard from '/public/integrations/meta/dashboard.png';
+import testNode from '/public/integrations/meta/test-node.png';
+import testPost from '/public/integrations/meta/test-post.png';
 
 # WhatsApp Integration
 
-This integration provides the most straightforward and efficient means of utilizing the WhatsApp Business Platform Cloud API to interact with your users and customers.
-With BuildShip's WhatsApp Node, you can effortlessly construct an entire workflow that enables you to commence customer interactions within a matter of minutes, all without the burden of intricate backend configurations.
+This integration provides the most straightforward and efficient means of utilizing the WhatsApp Business Platform Cloud
+API to interact with your users and customers. With BuildShip's WhatsApp Node, you can effortlessly construct an entire
+workflow that enables you to commence customer interactions within a matter of minutes, all without the burden of
+intricate backend configurations.
 
-<Image src={whatsappBanner} alt="WhatsApp Send Node" width={1200} />
+<Image src={whatsappBanner} alt='WhatsApp Send Node' width={1200} />
 
 ## Sending Free-Form Messages through WhatsApp Node
 
@@ -38,58 +40,70 @@ You can use this BuildShip's WhatsApp integration node to send the following fre
 - Login to [Meta Developers Dashboard](https://developers.facebook.com/) and go to your app details.
 - Select My Apps --> Create App
 
-  <Image src={creteApp} alt="Create Meta Business App" width={800} />
+  <Image src={creteApp} alt='Create Meta Business App' width={800} />
 
 - Then, you’ll need to add products to your app. Scroll down until you see WhatsApp and click the Set up button:
 
-  <Image src={addProduct} alt="Add WhatsApp Product" width={800} />
+  <Image src={addProduct} alt='Add WhatsApp Product' width={800} />
 
 ### Select Meta Business Account
 
 - Finally, choose an existing Meta Business Account or ask the platform to create a new one and click Continue:
-<div class = "flex justify-center">
-  <Image src={metaAccount} alt="Add WhatsApp Business Account" width={400} />
-</div>
+  <div class='flex justify-center'>
+    <Image src={metaAccount} alt='Add WhatsApp Business Account' width={400} />
+  </div>
 
 ### Voila, You are all Set! 🎉
 
 - And with that, your app is created and ready to use. You’re automatically directed to the app’s dashboard.
 
   {" "}
-  <Image src={dashboard} alt="Meta Business Account Dashboard" width={800} />
+
+  <Image src={dashboard} alt='Meta Business Account Dashboard' width={800} />
 
 </Steps>
 
   <Callout emoji="💡">
 
-  Note that you have a temporary access token. For security reasons, the token expires in less than 24 hours. To get a permanent access refer [here](#steps-to-get-permanent-access-toekn-never-expires).
+Note that you have a temporary access token. For security reasons, the token expires in less than 24 hours. To get a
+permanent access refer [here](#steps-to-get-permanent-access-toekn-never-expires).
 
   </Callout>
 
-Also, When sending a series of messages, the order in which messages are delivered is not guaranteed to match the order of your API requests. 
-If you need to ensure the sequence of message delivery, confirm receipt of a delivered status in a messages webhook before sending the next message in your message sequence. 
+Also, When sending a series of messages, the order in which messages are delivered is not guaranteed to match the order
+of your API requests. If you need to ensure the sequence of message delivery, confirm receipt of a delivered status in a
+messages webhook before sending the next message in your message sequence.
 
 ### Time to Test and Ship WhatsApp Node 🚀
 
-Use the **```POST```** method to call the API and return the whatsapp message object.
+Use the **`POST`** method to call the API and return the whatsapp message object.
 
 You can test the node in 'Node Editor'
 
-  <Image src={testNode} alt="WhatsApp node in editor" width={800} />
+{" "}
+
+<Image src={testNode} alt='WhatsApp node in editor' width={800} />
 
 Test the Deployment
 
-  <Image src={testPost} alt="WhatsApp node in postman" width={800} />
+{" "}
 
-### Steps to get a permanent access token (never expires) 
-Understanding the necessity of incorporating a bearer token within the Authorization header of an HTTP request is informative, yet it's only the tip of the iceberg. The access tokens you've encountered thus far are essentially ephemeral. 
-It's likely that you aim to enable your application to interact with the API beyond a mere 24-hour timeframe, which necessitates the creation of a more enduring access token.
+<Image src={testPost} alt='WhatsApp node in postman' width={800} />
 
-All you need to do is add a System User to your business account to obtain an access token you can use to continue accessing the API. 
+### Steps to get a permanent access token (never expires)
+
+Understanding the necessity of incorporating a bearer token within the Authorization header of an HTTP request is
+informative, yet it's only the tip of the iceberg. The access tokens you've encountered thus far are essentially
+ephemeral. It's likely that you aim to enable your application to interact with the API beyond a mere 24-hour timeframe,
+which necessitates the creation of a more enduring access token.
+
+All you need to do is add a System User to your business account to obtain an access token you can use to continue
+accessing the API.
 
 #### To create a system user, do the following:
 
-- Go to Business Settings [here](https://developers.facebook.com/micro_site/url/?click_creative_path[0]=link&ums_creative_detail=link%26device_type%3Ddesktop&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fbusiness.facebook.com%2Fsettings&event_type=click&last_nav_impression_id=0AEeFjch8mUN92OaY&max_percent_page_viewed=90&max_viewport_height_px=984&max_viewport_width_px=1850&orig_request_uri=https%3A%2F%2Fdevelopers.facebook.com%2Fblog%2Fpost%2F2022%2F12%2F05%2Fauth-tokens%2F&region=apac&scrolled=true&session_id=1VV5dHDVNht7DIriz&site=developers&extra_data[create_type]=link&extra_data[create_type_detail]=&extra_data[creative_detail]=link%26device_type%3Ddesktop).
+- Go to Business Settings
+  [here](https://developers.facebook.com/micro_site/url/?click_creative_path[0]=link&ums_creative_detail=link%26device_type%3Ddesktop&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fbusiness.facebook.com%2Fsettings&event_type=click&last_nav_impression_id=0AEeFjch8mUN92OaY&max_percent_page_viewed=90&max_viewport_height_px=984&max_viewport_width_px=1850&orig_request_uri=https%3A%2F%2Fdevelopers.facebook.com%2Fblog%2Fpost%2F2022%2F12%2F05%2Fauth-tokens%2F&region=apac&scrolled=true&session_id=1VV5dHDVNht7DIriz&site=developers&extra_data[create_type]=link&extra_data[create_type_detail]=&extra_data[creative_detail]=link%26device_type%3Ddesktop).
 - Select the business account your app is associated with.
 - Below Users, click System Users.
 - Click Add.
@@ -99,4 +113,3 @@ All you need to do is add a System User to your business account to obtain an ac
 - Copy and save your token.
 
 Your access token is a random string of letters and numbers.
-

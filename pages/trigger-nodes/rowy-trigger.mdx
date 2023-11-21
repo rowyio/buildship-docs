@@ -1,22 +1,24 @@
 # Rowy Trigger
 
-import { Steps } from 'nextra/components'
-import { Callout } from 'nextra/components'
-import Image from 'next/image'
-import rowy1 from '/public/assets/rowy-trigger-1.png'
-import rowy2 from '/public/assets/rowy-trigger-2.png'
-import rowy3 from '/public/assets/rowy-trigger-3.png'
-import rowy4 from '/public/assets/rowy-trigger-4.png'
-import rowy5 from '/public/assets/rowy-trigger-5.png'
-import rowy6 from '/public/assets/rowy-trigger-6.png'
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import rowy1 from '/public/assets/rowy-trigger-1.png';
+import rowy2 from '/public/assets/rowy-trigger-2.png';
+import rowy3 from '/public/assets/rowy-trigger-3.png';
+import rowy4 from '/public/assets/rowy-trigger-4.png';
+import rowy5 from '/public/assets/rowy-trigger-5.png';
+import rowy6 from '/public/assets/rowy-trigger-6.png';
 
-Rowy Triggers in BuildShip allow you to initiate a BuildShip workflow in response to specific events within your Rowy Project. This integration enables you to automate tasks seamlessly based on events that occur in your Rowy environment.
+Rowy Triggers in BuildShip allow you to initiate a BuildShip workflow in response to specific events within your Rowy
+Project. This integration enables you to automate tasks seamlessly based on events that occur in your Rowy environment.
 
-<Callout emoji="🚀" type="tip">
-This method also acts as a **Firebase Trigger**, allowing you to efficiently manage your Firebase Data with both Rowy and BuildShip.
+<Callout emoji='🚀' type='tip'>
+  This method also acts as a **Firebase Trigger**, allowing you to efficiently manage your Firebase Data with both Rowy
+  and BuildShip.
 </Callout>
 
-<Image src={rowy1} alt="Rowy Trigger" width={1200} />
+<Image src={rowy1} alt='Rowy Trigger' width={1200} />
 
 ## Pre-requisites ✅
 
@@ -32,9 +34,10 @@ After creating a new workflow in BuildShip, click on **Add a Trigger** and selec
 
 ### Add in your Rowy Project ID
 
-In the Project ID field add your Rowy Project ID. Click on the link icon on the top right within the trigger to copy the configuration details required for the next steps.
+In the Project ID field add your Rowy Project ID. Click on the link icon on the top right within the trigger to copy the
+configuration details required for the next steps.
 
-<Image src={rowy3} alt="Rowy Project ID" width={1200} />
+<Image src={rowy3} alt='Rowy Project ID' width={1200} />
 
 <Callout emoji="👀">
 To get your Rowy Project ID, go to your Rowy Table and click on your profile picture on the top right. You'll find the Project ID under the your Email Id.
@@ -44,8 +47,8 @@ To get your Rowy Project ID, go to your Rowy Table and click on your profile pic
 
 </Steps>
 
-This is all you need to do in BuildShip to set up the Rowy Trigger. Now, let's set up the BuildShip Extension our Rowy Table.
-
+This is all you need to do in BuildShip to set up the Rowy Trigger. Now, let's set up the BuildShip Extension our Rowy
+Table.
 
 ## Setting up the Rowy Extension
 
@@ -53,31 +56,41 @@ This is all you need to do in BuildShip to set up the Rowy Trigger. Now, let's s
 ### Add the BuildShip Extension
 In your Rowy Table, access the extensions menu and add a "**BuildShip Trigger Extension**".
 
-<Image src={rowy4} alt="Rowy Project ID" width={1200} />
+<Image src={rowy4} alt='Rowy Project ID' width={1200} />
 
 ### Select Trigger Events
-Choose the specific events within Rowy that will trigger the BuildShip extension. You can select from events: 
-- Create 
-- Update 
+
+Choose the specific events within Rowy that will trigger the BuildShip extension. You can select from events:
+
+- Create
+- Update
 - Delete
 
-<Image src={rowy5} alt="Rowy Project ID" width={1200} />
+<Image src={rowy5} alt='Rowy Project ID' width={1200} />
 
 ### Specify Required Fields (Optional)
+
 Optionally, you can define the required fields that must be populated to trigger the extension.
 
 ### Set Trigger Conditions (Optional)
-If needed, add conditions that determine whether the extension should be triggered for a given row. 
+
+If needed, add conditions that determine whether the extension should be triggered for a given row.
 
 ### Configure BuildShip Trigger
-Within the extension body, navigate to the return statement. You'll find the "buildshipConfig" object, which includes the following fields:
+
+Within the extension body, navigate to the return statement. You'll find the "buildshipConfig" object, which includes
+the following fields:
+
 ```js
 buildshipConfig: {
       projectId: "",
       workflowId: ""
 }
 ```
-Replace the placeholder with the configuration details copied from your BuildShip Rowy Trigger. It should look something like this:
+
+Replace the placeholder with the configuration details copied from your BuildShip Rowy Trigger. It should look something
+like this:
+
 ```js
 buildshipConfig: {
   projectId: "buildship-008vd0",
@@ -85,17 +98,19 @@ buildshipConfig: {
 }
 ```
 
-<Image src={rowy6} alt="Rowy Project ID" width={1200} />
+<Image src={rowy6} alt='Rowy Project ID' width={1200} />
 
 ### Save and Deploy
+
 Once you've configured the extension to your requirements, click on "Add" and then deploy the extension.
+
 </Steps>
 
-Now, whenever the selected event (Create, Update, or Delete) occurs in your Rowy Table, it will trigger the BuildShip workflow linked to this extension.
+Now, whenever the selected event (Create, Update, or Delete) occurs in your Rowy Table, it will trigger the BuildShip
+workflow linked to this extension.
 
+<br />
 
-<br/>
-
-<Callout emoji="🙋🏻">
-    In case you of any issues or need further help, chat with us on [Discord](https://buildship.com/discord).
+<Callout emoji='🙋🏻'>
+  In case you of any issues or need further help, chat with us on [Discord](https://buildship.com/discord).
 </Callout>

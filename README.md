@@ -1,6 +1,6 @@
 # Buildship Docs
 
-Buildship documentation repo 
+Buildship documentation repo
 
 ## Development setup
 
@@ -10,4 +10,4 @@ Then, run `pnpm dev` to start the development server and visit localhost:3000.
 
 ### About this repo
 
-This docs project uses [Nextra](https://nextra.vercel.app/), which explains the documentation structure and details. 
+This docs project uses [Nextra](https://nextra.vercel.app/), which explains the documentation structure and details.

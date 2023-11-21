@@ -1,29 +1,32 @@
 # Telegram Bot Trigger
 
-import { Callout } from 'nextra/components'
-import { Steps } from 'nextra/components'
-import Image from 'next/image'
-import telegram from '/public/nodes/telegram-bot.png'
-import step1 from '/public/nodes/telegram/step1.png'
-import step2 from '/public/nodes/telegram/step2.png'
-import step3 from '/public/nodes/telegram/step3.png'
-import step4 from '/public/nodes/telegram/step4.png'
-import step5 from '/public/nodes/telegram/step5.png'
-import step6 from '/public/nodes/telegram/step6.png'
-import botfather from '/public/nodes/bot-father.png'
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import telegram from '/public/nodes/telegram-bot.png';
+import step1 from '/public/nodes/telegram/step1.png';
+import step2 from '/public/nodes/telegram/step2.png';
+import step3 from '/public/nodes/telegram/step3.png';
+import step4 from '/public/nodes/telegram/step4.png';
+import step5 from '/public/nodes/telegram/step5.png';
+import step6 from '/public/nodes/telegram/step6.png';
+import botfather from '/public/nodes/bot-father.png';
 
-The Telegram Bot is a handy trigger within BuildShip that enables you to **handle incoming messages in Telegram chat or Telegram group with a visual workflow builder.
+The Telegram Bot is a handy trigger within BuildShip that enables you to \*\*handle incoming messages in Telegram chat
+or Telegram group with a visual workflow builder.
 
-This trigger allows you to easily manage Telegram groups, moderate and respond with meaningful messages and even include OpenAI in your workflow to generate meaningful responses to assist users in your group.
+This trigger allows you to easily manage Telegram groups, moderate and respond with meaningful messages and even include
+OpenAI in your workflow to generate meaningful responses to assist users in your group.
 
-<Image src={telegram} alt="Telegram Bot Trigger" width={1200} />
+<Image src={telegram} alt='Telegram Bot Trigger' width={1200} />
 
 ## Pre-requisites ✅
 
-1. **Telegram bot API key** - The API keys of the Telegram bot that will be responding to the incoming messages. To setup a bot and get the API key, follow the instructions [here](#how-to-create-a-telegram-bot-workflow).
-    
-2. **Telegram group Chat ID** - This is the group on which your Telegram bot will operate and listen to messages and send responses to. To learn how setup a group and get chat id, go [here](#how-to-setup-a-telegram-group-and-get-chat-id).
-
+1. **Telegram bot API key** - The API keys of the Telegram bot that will be responding to the incoming messages. To
+   setup a bot and get the API key, follow the instructions [here](#how-to-create-a-telegram-bot-workflow).
+2. **Telegram group Chat ID** - This is the group on which your Telegram bot will operate and listen to messages and
+   send responses to. To learn how setup a group and get chat id, go
+   [here](#how-to-setup-a-telegram-group-and-get-chat-id).
 
 ## Step to create a Telegram Bot workflow
 
@@ -31,17 +34,22 @@ This trigger allows you to easily manage Telegram groups, moderate and respond w
 
 ### Add the Telegram Bot Trigger
 
-Add the telegram bot's API Key, that you can get from [this step](#how-to-create-a-telegram-bot-workflow). <br/>
-Also, optionally you can add a Verification Code if you want incoming requests to be verified. <br/> <br/>
-<Image src={step3} alt="Telegram Bot Trigger" width={600} />
+Add the telegram bot's API Key, that you can get from [this step](#how-to-create-a-telegram-bot-workflow). <br/> Also,
+optionally you can add a Verification Code if you want incoming requests to be verified. <br/> <br/>
+
+<Image src={step3} alt='Telegram Bot Trigger' width={600} />
 
 ### Add "Send Telegram message" Node
-- Next to you workflow, add a node by searching in the node explorer for "Send Telegram message" node to reply to incoming messages. 
+
+- Next to you workflow, add a node by searching in the node explorer for "Send Telegram message" node to reply to
+  incoming messages.
 - Add the "Chat ID" of the group that you want the bot to reply to.
-- To this node also add the response "Text" that you want the bot to reply with. We have added here, a generic message of "Welcome to the group...". 
-- You can however, add nodes like OpenAI text generation to respond with AI, or even verify if the incoming message is from a Stripe paying user before responding
+- To this node also add the response "Text" that you want the bot to reply with. We have added here, a generic message
+  of "Welcome to the group...".
+- You can however, add nodes like OpenAI text generation to respond with AI, or even verify if the incoming message is
+  from a Stripe paying user before responding
 - There is full flexibiliy to add more nodes and handle what your bot is replying with.<br/> <br/>
-<Image src={step5} alt="Telegram Bot Trigger" width={600} />
+  <Image src={step5} alt='Telegram Bot Trigger' width={600} />
 
 ### Return success status and click Ship
 
@@ -49,34 +57,44 @@ Finally, add a "Return" node that will respond with a success status. And click 
 
 ### Send a message to Test
 
-Finally, you can send a message and test the response is as expected. 
-<Image src={step6} alt="Telegram Bot Trigger" width={300} />
+Finally, you can send a message and test the response is as expected.
+
+<Image src={step6} alt='Telegram Bot Trigger' width={300} />
 
 ### That's it 🎉
+
 This is a starting point, you can tweak this anyway you like.
 
 </Steps>
 
-
 ## How to setup a Telegram bot and get API key
 
-1. Enter **@BotFather** in the search tab and select the verified bot with tick mark that shows up. <br/><br/> <Image src={step1} alt="Telegram Bot" width={300} />
+1. Enter **@BotFather** in the search tab and select the verified bot with tick mark that shows up. <br/><br/>
+   <Image src={step1} alt='Telegram Bot' width={300} />
 2. Click Start to activate the BotFather bot. You will receive a list of commands to manage the bots.
 3. Choose or type the **/newbot** command and click Send.
-4. Choose a name for your bot. Your subscribers will see it in their conversations. Next, choose a username for your bot. The bot can be found by its username in the search bar. The username must be unique and end with the word “bot.”
-5. Once you've made your selection for your bot's name, your bot will be brought to life. Shortly thereafter, you'll receive a message containing a link leading to your bot, which can be accessed at **"t.me/[bot_username]** as well as your API key.
-6. Make note of this API key as this is what you will need to use in the Telegram Trigger node on BuildShip. <br/><br/> <Image src={step2} alt="Telegram Bot" width="90%" />
-
+4. Choose a name for your bot. Your subscribers will see it in their conversations. Next, choose a username for your
+   bot. The bot can be found by its username in the search bar. The username must be unique and end with the word “bot.”
+5. Once you've made your selection for your bot's name, your bot will be brought to life. Shortly thereafter, you'll
+   receive a message containing a link leading to your bot, which can be accessed at **"t.me/[bot_username]** as well as
+   your API key.
+6. Make note of this API key as this is what you will need to use in the Telegram Trigger node on BuildShip. <br/><br/>
+   <Image src={step2} alt='Telegram Bot' width='90%' />
 
 ## How to setup a Telegram group and get chat id
 
 1. Create a group on Telegram
-2. Invite the bot you created in the previous steps 
+2. Invite the bot you created in the previous steps
 3. Also search and invite "RawDataBot" to your group. <br/><br/> <Image src={step4} alt="Telegram Bot" width={300} />
-4. Once you invite this RawDataBot to your group, it will post a message with the Chat ID of this group. Make a note of it for use in the Step 2 of your Telegram workflow. <br/><br/><Image src={step5} alt="Telegram Bot Trigger" width={600} />
+4. Once you invite this RawDataBot to your group, it will post a message with the Chat ID of this group. Make a note of
+   it for use in the Step 2 of your Telegram workflow.
+   <br />
+   <br />
+   <Image src={step5} alt='Telegram Bot Trigger' width={600} />
 
-<br/>
+<br />
 
-<Callout emoji="🙋🏻">
-    Need help? Chat with us and our community of low-code/no-code builders and developers on [Discord](https://buildship.com/discord).
+<Callout emoji='🙋🏻'>
+  Need help? Chat with us and our community of low-code/no-code builders and developers on
+  [Discord](https://buildship.com/discord).
 </Callout>

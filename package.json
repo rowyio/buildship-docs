@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "build:sitemap": "next build && next-sitemap",
     "postbuild": "next-sitemap && echo 'Removing .next/cache to resolve Nextra caching bug' && rm -rf .next/cache",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@vercel/og": "^0.5.0",
@@ -28,8 +30,14 @@
     "@types/react": "^18.0.26",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.30.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
     "postcss": "^8.4.21",
+    "prettier": "3.0.3",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.0"
-  }
+  },
+    "lint-staged": {
+      "**/*": "prettier --write --ignore-unknown"
+    }
 }

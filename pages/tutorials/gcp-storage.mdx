@@ -1,40 +1,46 @@
 # Storing Files using GCP File Storage
 
-import Image from "next/image";
-import { Steps } from 'nextra/components'
-import { Callout } from 'nextra/components'
-import gcpOG from '/public/tutorial/gcp-storage.png'
-import gcp1 from '/public/tutorial/gcp-storage-1.png'
-import gcp2 from '/public/tutorial/gcp-storage-2.png'
-import gcp3 from '/public/tutorial/gcp-storage-3.png'
-import gcp4 from '/public/tutorial/gcp-storage-4.png'
-import gcp5 from '/public/tutorial/gcp-storage-5.png'
-import gcp6 from '/public/tutorial/gcp-storage-6.png'
-import firebaseProject1 from "../../public/tutorial/firebase-1.png";
-import firebaseProject2 from "../../public/tutorial/firebase-2.png";
+import Image from 'next/image';
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import gcpOG from '/public/tutorial/gcp-storage.png';
+import gcp1 from '/public/tutorial/gcp-storage-1.png';
+import gcp2 from '/public/tutorial/gcp-storage-2.png';
+import gcp3 from '/public/tutorial/gcp-storage-3.png';
+import gcp4 from '/public/tutorial/gcp-storage-4.png';
+import gcp5 from '/public/tutorial/gcp-storage-5.png';
+import gcp6 from '/public/tutorial/gcp-storage-6.png';
+import firebaseProject1 from '../../public/tutorial/firebase-1.png';
+import firebaseProject2 from '../../public/tutorial/firebase-2.png';
 
+BuildShip simplifies the process of storing files and performing operations on them by offering **pre-built Storage
+nodes** designed to work seamlessly with GCP Cloud Storage.
 
-BuildShip simplifies the process of storing files and performing operations on them by offering **pre-built Storage nodes** designed to work seamlessly with GCP Cloud Storage. 
+With these nodes, you can effortlessly manage your files, including tasks such as uploading, creating, deleting, moving,
+and renaming files and folders within your GCP Bucket.
 
-With these nodes, you can effortlessly manage your files, including tasks such as uploading, creating, deleting, moving, and renaming files and folders within your GCP Bucket.
+<Image src={gcpOG} alt='GCP Storage' width={1200} />
 
-<Image src={gcpOG} alt="GCP Storage" width={1200} />
-
-The integration of BuildShip and GCP Cloud Storage is particularly valuable for users who need a reliable and scalable file storage solution. Whether you're generating AI images or handling other data, BuildShip's pre-built nodes ensure that your files are stored securely and are readily accessible for further processing and sharing.
-
+The integration of BuildShip and GCP Cloud Storage is particularly valuable for users who need a reliable and scalable
+file storage solution. Whether you're generating AI images or handling other data, BuildShip's pre-built nodes ensure
+that your files are stored securely and are readily accessible for further processing and sharing.
 
 ## Use Cases
 
-GCP Cloud Storage in BuildShip caters to a diverse range of day-to-day use cases. 
+GCP Cloud Storage in BuildShip caters to a diverse range of day-to-day use cases.
 
-Consider a scenario where you've employed a popular AI Image Generation model like "Replicate: Stability AI Image Generation." Models like these often generate images with short-lived links, making it imperative to store these images before sharing them. 
+Consider a scenario where you've employed a popular AI Image Generation model like "Replicate: Stability AI Image
+Generation." Models like these often generate images with short-lived links, making it imperative to store these images
+before sharing them.
 
-<Image src={gcp1} alt="GCP Storage" width={1200} />
+<Image src={gcp1} alt='GCP Storage' width={1200} />
 
-In such cases, the storage nodes in BuildShip offer a solution. By providing the external URL, these nodes save your images to your GCP bucket and generate permanent public URLs for easy and secure access by anyone.
+In such cases, the storage nodes in BuildShip offer a solution. By providing the external URL, these nodes save your
+images to your GCP bucket and generate permanent public URLs for easy and secure access by anyone.
 
-The use cases extend beyond image generation to encompass any situation where secure and efficient file storage is required. Whether you're managing data for machine learning models, archiving documents, or sharing resources with your team, BuildShip's integration with GCP Cloud Storage streamlines the process.
-
+The use cases extend beyond image generation to encompass any situation where secure and efficient file storage is
+required. Whether you're managing data for machine learning models, archiving documents, or sharing resources with your
+team, BuildShip's integration with GCP Cloud Storage streamlines the process.
 
 ## Options for Storing your Files
 
@@ -42,23 +48,31 @@ BuildShip provides flexible options for storing files and images to suit your sp
 
 ### Use BuildShip's GCP Project
 
-BuildShip's GCP Project is a convenient option for users who want to get started quickly. This option is ideal for users who don't have a GCP account or don't want to create one. 
+BuildShip's GCP Project is a convenient option for users who want to get started quickly. This option is ideal for users
+who don't have a GCP account or don't want to create one.
 
-<Image src={gcp2} alt="GCP Storage" width={1200} />
+<Image src={gcp2} alt='GCP Storage' width={1200} />
 
-- **No Extra Setup Required:** Begin using BuildShip's pre-built Storage nodes under the "BuildShip File Storage" category without the need for additional configuration.
-- **Utilize the Underlying GCP Project:** Enjoy the benefits of GCP's robust infrastructure without the hassle of setting it up yourself.
-- **Generous Storage Options:** BuildShip offers generous storage options that can be upgraded as your needs grow. For pricing details, visit [BuildShip Pricing](https://buildship.com/pricing).
-- **Access Storage using BuildShip's Built-in Storage UI:** Easily manage and access your stored files within the BuildShip environment, thanks to its user-friendly Storage UI.
+- **No Extra Setup Required:** Begin using BuildShip's pre-built Storage nodes under the "BuildShip File Storage"
+  category without the need for additional configuration.
+- **Utilize the Underlying GCP Project:** Enjoy the benefits of GCP's robust infrastructure without the hassle of
+  setting it up yourself.
+- **Generous Storage Options:** BuildShip offers generous storage options that can be upgraded as your needs grow. For
+  pricing details, visit [BuildShip Pricing](https://buildship.com/pricing).
+- **Access Storage using BuildShip's Built-in Storage UI:** Easily manage and access your stored files within the
+  BuildShip environment, thanks to its user-friendly Storage UI.
 
 ### Connect to your own GCP Project
 
-BuildShip also provides the option to connect to your own GCP Project. This option is ideal for users who already have a GCP account and want to manage their GCP resources independently.
+BuildShip also provides the option to connect to your own GCP Project. This option is ideal for users who already have a
+GCP account and want to manage their GCP resources independently.
 
-<Image src={gcp3} alt="GCP Storage" width={1200} />
+<Image src={gcp3} alt='GCP Storage' width={1200} />
 
-- **Manage Your Own Buckets:** If you prefer to manage your GCP Buckets independently, BuildShip provides the flexibility to connect to your existing GCP Project.
-- **Access to GCP:** You'll have full access to GCP's powerful features, allowing you to configure and manage your storage resources according to your specific requirements.
+- **Manage Your Own Buckets:** If you prefer to manage your GCP Buckets independently, BuildShip provides the
+  flexibility to connect to your existing GCP Project.
+- **Access to GCP:** You'll have full access to GCP's powerful features, allowing you to configure and manage your
+  storage resources according to your specific requirements.
 
 ## Connecting to Your Own GCP Project
 
@@ -67,21 +81,23 @@ To integrate your own Google Cloud Platform (GCP) Project with BuildShip, follow
 <Steps>
 ### Access BuildShip Settings
 
-Navigate to the Settings section, which is located in the top-left corner of your BuildShip dashboard, next to the Project Name.
+Navigate to the Settings section, which is located in the top-left corner of your BuildShip dashboard, next to the
+Project Name.
 
-<Callout emoji="⚠️" type="warning">
-  **Admin Access Required** You need to be the admin of the BuildShip account to
-  access the BuildShip Settings.
+<Callout emoji='⚠️' type='warning'>
+  **Admin Access Required** You need to be the admin of the BuildShip account to access the BuildShip Settings.
 </Callout>
 
-Under the General tab in BuildShip Settings, you will find information about the underlying Firebase Project ID and Service Account details.
+Under the General tab in BuildShip Settings, you will find information about the underlying Firebase Project ID and
+Service Account details.
 
-<Image src={firebaseProject2} alt="Firebase Project ID" width={1200} />
+<Image src={firebaseProject2} alt='Firebase Project ID' width={1200} />
 
 Copy the Service Account details as you will need this information to grant access to your GCP project.
 
-<Callout emoji="💡">
-  Each BuildShip project uses one service account to integrate with external services. Once integrated, you can access your GCP Projects via nodes across any workflow inside your project.
+<Callout emoji='💡'>
+  Each BuildShip project uses one service account to integrate with external services. Once integrated, you can access
+  your GCP Projects via nodes across any workflow inside your project.
 </Callout>
 
 ### Grant Access in Firebase IAM & Admin
@@ -98,21 +114,25 @@ Copy the Service Account details as you will need this information to grant acce
 
 - Hit the "Save" button to grant access to the Service Account.
 
-<Image src={gcp4} alt="Firebase Project ID" width={1200} />
+<Image src={gcp4} alt='Firebase Project ID' width={1200} />
 
-<Callout emoji="✅">
-If you've already granted permissions to the BuildShip Runtime Service Account for connecting your Firebase Project, click on the edit icon on the same service account and add the "Storage Admin" permission as well. This will enable you to use both Firebase and GCP Nodes in your workflows.
+<Callout emoji='✅'>
+  If you've already granted permissions to the BuildShip Runtime Service Account for connecting your Firebase Project,
+  click on the edit icon on the same service account and add the "Storage Admin" permission as well. This will enable
+  you to use both Firebase and GCP Nodes in your workflows.
 </Callout>
 
 ### Getting your Storage Bucket ID
 
-- Go to your Google Cloud Console and navigate to the "[Cloud Storage Buckets](https://console.cloud.google.com/storage)" section. Here, you'll see all the buckets available in your GCP Project.
+- Go to your Google Cloud Console and navigate to the
+  "[Cloud Storage Buckets](https://console.cloud.google.com/storage)" section. Here, you'll see all the buckets
+  available in your GCP Project.
 
 - You can either choose an existing bucket or create a new one from here.
 
 - Click on the name of the bucket you want to use and copy the Bucket ID from this location.
 
-<Image src={gcp5} alt="Firebase Project ID" width={1200} />
+<Image src={gcp5} alt='Firebase Project ID' width={1200} />
 
 ### Insert a Google Cloud Storage Node
 
@@ -120,11 +140,12 @@ If you've already granted permissions to the BuildShip Runtime Service Account f
 
 - Add the Bucket ID of your GCP project to which you want to add the data.
 
-<Image src={gcp6} alt="Firebase Project ID" width={1200} />
+<Image src={gcp6} alt='Firebase Project ID' width={1200} />
 
-<Callout emoji="💡">
-    All the nodes within BuildShip are well-documented. 
-    If you need help with how to add specific inputs or understand the functionality of a particular node, click on the info icon on the node. This will pop up the documentation for that specific node, which includes links and examples to guide you through the process.
+<Callout emoji='💡'>
+  All the nodes within BuildShip are well-documented. If you need help with how to add specific inputs or understand the
+  functionality of a particular node, click on the info icon on the node. This will pop up the documentation for that
+  specific node, which includes links and examples to guide you through the process.
 </Callout>
 
 </Steps>

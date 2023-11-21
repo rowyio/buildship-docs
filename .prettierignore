@@ -1,0 +1,16 @@
+*.svg
+*.ico
+*.css
+
+*/.DS_Store
+assets/**
+.next
+package.json
+vercel.json
+tsconfig.json
+yarn.lock
+public
+node_modules
+next-env.d.ts
+next.config.js
+**/__generated__/**

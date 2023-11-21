@@ -7,11 +7,13 @@ import regex2 from '/public/basics/regex2.png';
 import regexFail from '/public/basics/regex-fail.png';
 import regexPass from '/public/basics/regex-pass.png';
 
-In BuildShip, you have the ability to specify a regular expression pattern for input fields. This allows you to define a pattern that a value must match to be considered valid.
+In BuildShip, you have the ability to specify a regular expression pattern for input fields. This allows you to define a
+pattern that a value must match to be considered valid.
 
-If the value provided in the input does not match the specified pattern, the workflow will generate a node validation error, preventing the execution of the workflow.
+If the value provided in the input does not match the specified pattern, the workflow will generate a node validation
+error, preventing the execution of the workflow.
 
-<Image src={regex1} alt="regex1" width={1200} />
+<Image src={regex1} alt='regex1' width={1200} />
 
 ## How to Specify Validation Regex
 
@@ -22,21 +24,29 @@ To configure Validation Regex for an input field, follow these steps:
 Once you have a node for which you wish to validate the inputs, open the node editor by clicking on the `</>` icon in the top right corner of the node.
 
 ### Open the Input Editor
+
 Navigate to the "Inputs" tab within the Node Editor and select the input field/s you wish to validate.
 
 ### Specify the Validation Regex
-You'll spot the "**Validation Regex**" at the bottom of the input editor. Enter the regular expression pattern you wish to use to validate the input field.
 
-<Image src={regex2} alt="regex2" width={1200} />
+You'll spot the "**Validation Regex**" at the bottom of the input editor. Enter the regular expression pattern you wish
+to use to validate the input field.
+
+<Image src={regex2} alt='regex2' width={1200} />
 
 ### Test the Validation Regex
-Once this is done, click the "Save" button to save your changes. You can test your validation regex by entering a value that does not match the pattern you specified. If the value does not match the pattern, you'll see a validation error appear below the input field when you click on the "**Ship**" button.
+
+Once this is done, click the "Save" button to save your changes. You can test your validation regex by entering a value
+that does not match the pattern you specified. If the value does not match the pattern, you'll see a validation error
+appear below the input field when you click on the "**Ship**" button.
 
 </Steps>
 
 ## Example Validation Regex
 
-Let's consider an example using the regular expression pattern `^[A-Za-z0-9]+$`. This specific pattern is designed to match a string that consists of one or more alphanumeric characters, which includes letters (both uppercase and lowercase) and digits.
+Let's consider an example using the regular expression pattern `^[A-Za-z0-9]+$`. This specific pattern is designed to
+match a string that consists of one or more alphanumeric characters, which includes letters (both uppercase and
+lowercase) and digits.
 
 Here's how the process works:
 
@@ -45,15 +55,20 @@ Here's how the process works:
 In the Node Editor, you pick the input field you want to validate, and you add the regular expression pattern in the Validation Regex field for that input.
 
 ### Pattern Matching
-When the workflow is executed, the Validation Regex function checks if the value provided in the input field matches the regular expression pattern defined in the Validation Regex field.
+
+When the workflow is executed, the Validation Regex function checks if the value provided in the input field matches the
+regular expression pattern defined in the Validation Regex field.
 
 ### Validation Results
 
-- **CASE 1:** If the input is `abc123`, it matches the pattern (consisting of alphanumeric characters only), and therefore, no validation error is generated. The workflow proceeds as expected.
-<Image src = {regexPass} alt="regexPassed" width={1200} />
+- **CASE 1:** If the input is `abc123`, it matches the pattern (consisting of alphanumeric characters only), and
+  therefore, no validation error is generated. The workflow proceeds as expected.
 
-- **CASE 2:** If the input is `abc-123`,it contains a hyphen, which does not match the specified pattern. In this case, the workflow will generate a validation error before proceeding, preventing the building of the workflow.
+  <Image src={regexPass} alt='regexPassed' width={1200} />
 
-<Image src={regexFail} alt="regexFailed" width={1200} />
+- **CASE 2:** If the input is `abc-123`,it contains a hyphen, which does not match the specified pattern. In this case,
+  the workflow will generate a validation error before proceeding, preventing the building of the workflow.
+
+<Image src={regexFail} alt='regexFailed' width={1200} />
 
 </Steps>
