@@ -1,47 +1,58 @@
 # Integrate Supabase DB with BuildShip
 
-import { Callout } from 'nextra/components'
-import Image from 'next/image'
-import supabase1 from '/public/tutorial/supabase1.png'
-import supabaseCreate from '/public/tutorial/supabase-c.png'
-import supabaseRead from '/public/tutorial/supabase-r.png'
-import supabaseUpdate from '/public/tutorial/supabase-u.png'
-import supabaseDelete from '/public/tutorial/supabase-d.png'
-import supabase2 from '/public/tutorial/supabase2.png'
-import supabase3 from '/public/tutorial/supabase3.png'
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import supabase1 from '/public/tutorial/supabase1.png';
+import supabaseCreate from '/public/tutorial/supabase-c.png';
+import supabaseRead from '/public/tutorial/supabase-r.png';
+import supabaseUpdate from '/public/tutorial/supabase-u.png';
+import supabaseDelete from '/public/tutorial/supabase-d.png';
+import supabase2 from '/public/tutorial/supabase2.png';
+import supabase3 from '/public/tutorial/supabase3.png';
 
-BuildShip offers a powerful integration with Supabase allowing you to perform Create, Read, Update, and Delete (CRUD) operations on your data with ease.  This integration is achieved through the Supabase Realtime API.
+BuildShip offers a powerful integration with Supabase allowing you to perform Create, Read, Update, and Delete (CRUD)
+operations on your data with ease. This integration is achieved through the Supabase Realtime API.
 
-<Image src={supabase1} alt="Supabase Integration" width={1200} />
+<Image src={supabase1} alt='Supabase Integration' width={1200} />
 
 ## Prerequisites ✅
 
 ### Your Supabase Table
-A Supabase Table you want to integrate with BuildShip. If you don't have a Supabase project, you can create one at [supabase.io](https://supabase.io/).
+
+A Supabase Table you want to integrate with BuildShip. If you don't have a Supabase project, you can create one at
+[supabase.io](https://supabase.io/).
 
 ### API Key and URL
 
-<Image src={supabase2} alt="Supabase API Key and URL" width={1200} />
-<Image src={supabase3} alt="Supabase API Key and URL" width={1200} />
+<Image src={supabase2} alt='Supabase API Key and URL' width={1200} />
+<Image src={supabase3} alt='Supabase API Key and URL' width={1200} />
 
-Before you begin, make sure you have your Supabase API key and Table URL ready. You can obtain these keys from your Supabase project dashboard settings:
+Before you begin, make sure you have your Supabase API key and Table URL ready. You can obtain these keys from your
+Supabase project dashboard settings:
+
 - Log in to your Supabase account.
 - Navigate to your project's dashboard.
-- In the dashboard settings, find and copy your API key and Table URL. These keys will be used to connect BuildShip with your Supabase project.
+- In the dashboard settings, find and copy your API key and Table URL. These keys will be used to connect BuildShip with
+  your Supabase project.
 
 ### API Endpoints (Optional - For creating your own custom nodes)
-You can get access to API endpoints directly from your table by clicking on the "API" button located at the top right corner of the table view. This is useful if you wish to create your own custom nodes for specific endpoints.
+
+You can get access to API endpoints directly from your table by clicking on the "API" button located at the top right
+corner of the table view. This is useful if you wish to create your own custom nodes for specific endpoints.
 
 ## Creating Data
 
-<Image src={supabaseCreate} alt="Supabase Create Node" width={1200} />
+<Image src={supabaseCreate} alt='Supabase Create Node' width={1200} />
 
-With BuildShip's integration, you can easily create new records in your Supabase PostgreSQL database. Follow these steps:
+With BuildShip's integration, you can easily create new records in your Supabase PostgreSQL database. Follow these
+steps:
 
-- In your BuildShip Workflow, add a Supabase Create Node from the Node Explorer. You can find the Supabase Create Node under the "Supabase" integration category or you could simply enter `Supabase` on the search bar.
+- In your BuildShip Workflow, add a Supabase Create Node from the Node Explorer. You can find the Supabase Create Node
+  under the "Supabase" integration category or you could simply enter `Supabase` on the search bar.
 - Configure the node by providing your Supabase API Key, Bearer Token, Table URL, and Table Name.
 - Open the Node Editor to test your node.
-- Add the data you want to create in the "Data" field in the form of a JSON object. Here's an example of a JSON object you can use to create a new record in your Supabase table:
+- Add the data you want to create in the "Data" field in the form of a JSON object. Here's an example of a JSON object
+  you can use to create a new record in your Supabase table:
 
 ```json
 {
@@ -49,26 +60,31 @@ With BuildShip's integration, you can easily create new records in your Supabase
   "country_of_origin": "Burma"
 }
 ```
-- Test your node by clicking on the "Test" button. If the node is configured correctly, you should see a new record in your Supabase table.
-- Optionally, you could modify and customize the node according to your needs. Once you're done, click on the "Save" button to save your node.
+
+- Test your node by clicking on the "Test" button. If the node is configured correctly, you should see a new record in
+  your Supabase table.
+- Optionally, you could modify and customize the node according to your needs. Once you're done, click on the "Save"
+  button to save your node.
 - Add more nodes or simply add a Return node to complete your workflow.
 
 ## Reading Data
 
-<Image src={supabaseRead} alt="Supabase Read Node" width={1200} />
+<Image src={supabaseRead} alt='Supabase Read Node' width={1200} />
 
 To retrieve data from your Supabase database, use the Read Node:
 
-- In your BuildShip workflow, add a Supabase Read Node from the Node Explorer. You can find the Supabase Create Node under the "Supabase" integration category or you could simply enter `Supabase` on the search bar.
+- In your BuildShip workflow, add a Supabase Read Node from the Node Explorer. You can find the Supabase Create Node
+  under the "Supabase" integration category or you could simply enter `Supabase` on the search bar.
 - Configure the node by providing your Supabase API Key, Bearer Token, Table URL, and Table Name.
-- Specify the columns you want to retrieve from your table in the "Columns" field. You can also leave it empty which will by default retrieve all columns.
+- Specify the columns you want to retrieve from your table in the "Columns" field. You can also leave it empty which
+  will by default retrieve all columns.
 - Optionally you could customize, test and save the node.
 - Execute the workflow, and BuildShip will fetch the data from your Supabase database in real-time.
 - Now you can use this data anywhere in your workflow via the Expressions menu.
 
 ## Updating Data
 
-<Image src={supabaseUpdate} alt="Supabase Update Node" width={1200} />
+<Image src={supabaseUpdate} alt='Supabase Update Node' width={1200} />
 
 Updating records in your Supabase database is straightforward with the Update Node:
 
@@ -76,43 +92,53 @@ Updating records in your Supabase database is straightforward with the Update No
 - Configure the node by providing your Supabase API Key, Bearer Token, Table URL, and Table Name.
 - You need to add conditions to specify which records should be updated using filters like `eq`, `lt`, and `is`.
 
-<Callout emoji="💡" type="info">
-Refer to the [Filters section below](#filters) for more information on how to use filters.
+<Callout emoji='💡' type='info'>
+  Refer to the [Filters section below](#filters) for more information on how to use filters.
 </Callout>
 
 - You can optionally customize, test and save the node.
-- Deploy your workflow, and everytime your workflow triggers, your data will be updated in your Supabase database in real-time.
+- Deploy your workflow, and everytime your workflow triggers, your data will be updated in your Supabase database in
+  real-time.
 
 ## Deleting Data
 
-<Image src={supabaseDelete} alt="Supabase Delete Node" width={1200} />
+<Image src={supabaseDelete} alt='Supabase Delete Node' width={1200} />
 
 To delete records from your Supabase database, use the Delete Node:
 
 - In your BuildShip workflow, add a Supabase Delete Node from the Node Explorer.
 - Configure the node by providing your Supabase API Key, Bearer Token, Table URL, and Table Name.
-- Add filters to specify which records should be deleted using filters like `eq`, `lt`, and `is`. 
-<Callout emoji="💡" type="info">
-Refer to the [Filters section below](#filters) for more information on how to use filters.
-</Callout>
+- Add filters to specify which records should be deleted using filters like `eq`, `lt`, and `is`.
+  <Callout emoji='💡' type='info'>
+    Refer to the [Filters section below](#filters) for more information on how to use filters.
+  </Callout>
 - Deploy your workflow and the specified records will be deleted from your Supabase database in real-time.
-
 
 ## Filters
 
-Filters are used to specify which records should be retrieved, updated, or deleted. You can add multiple filters to a node. Here's a list of all the filters you can use:
+Filters are used to specify which records should be retrieved, updated, or deleted. You can add multiple filters to a
+node. Here's a list of all the filters you can use:
 
-- `eq` (Equal): This operator is used to filter records where a specific field is equal to a given value. For example, `name=eq.siamese` would match records where the name field is equal to "siamese."
-neq (Not Equal): This operator filters records where a specific field is not equal to a given value. For example, `age=neq.5` would match records where the age field is not equal to 5.
+- `eq` (Equal): This operator is used to filter records where a specific field is equal to a given value. For example,
+  `name=eq.siamese` would match records where the name field is equal to "siamese." neq (Not Equal): This operator
+  filters records where a specific field is not equal to a given value. For example, `age=neq.5` would match records
+  where the age field is not equal to 5.
 
-- `gt` (Greater Than): Use this operator to filter records where a specific field is greater than a given value. For instance, `age=gt.30` would match records where the age field is greater than 30.
+- `gt` (Greater Than): Use this operator to filter records where a specific field is greater than a given value. For
+  instance, `age=gt.30` would match records where the age field is greater than 30.
 
-- `lt` (Less Than): This operator filters records where a specific field is less than a given value. For example, `price=lt.10` would match records where the price field is less than 10.
+- `lt` (Less Than): This operator filters records where a specific field is less than a given value. For example,
+  `price=lt.10` would match records where the price field is less than 10.
 
-- `gte` (Greater Than or Equal To): This operator filters records where a specific field is greater than or equal to a given value. For example, `quantity=gte.100` would match records where the quantity field is greater than or equal to 100.
+- `gte` (Greater Than or Equal To): This operator filters records where a specific field is greater than or equal to a
+  given value. For example, `quantity=gte.100` would match records where the quantity field is greater than or equal
+  to 100.
 
-- `lte` (Less Than or Equal To): Use this operator to filter records where a specific field is less than or equal to a given value. For instance, `rating=lte.4.5` would match records where the rating field is less than or equal to 4.5.
+- `lte` (Less Than or Equal To): Use this operator to filter records where a specific field is less than or equal to a
+  given value. For instance, `rating=lte.4.5` would match records where the rating field is less than or equal to 4.5.
 
-- `is` (IS): This operator is used for comparing fields with specific values or conditions, such as checking if a field is null. For example, `email=is.null` would match records where the email field is null.
+- `is` (IS): This operator is used for comparing fields with specific values or conditions, such as checking if a field
+  is null. For example, `email=is.null` would match records where the email field is null.
 
-- `like` (LIKE): This operator allows you to perform partial string matching. For example, `name=like.%John%` would match records where the name field contains "John" anywhere in the string.
+- `like` (LIKE): This operator allows you to perform partial string matching. For example, `name=like.%John%` would
+  match records where the name field contains "John" anywhere in the string.

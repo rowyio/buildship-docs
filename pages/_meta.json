@@ -29,9 +29,9 @@
     "type": "separator",
     "title": "Integrations"
   },
-  "whatsapp":"Whatsapp",
-  "supabase":"Supabase",
-  "pinecone":"Pinecone",
+  "whatsapp": "Whatsapp",
+  "supabase": "Supabase",
+  "pinecone": "Pinecone",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"

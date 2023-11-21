@@ -3,12 +3,12 @@ title: Using Variables
 description: Learn how to use variables, contexts, and output values in your workflow logic.
 ---
 
-import { Callout } from 'nextra/components'
-import Image from 'next/image'
-import var1 from "/public/basics/variables1.png"
-import var2 from "/public/basics/variables2.png"
-import var3 from "/public/basics/variables3.png"
-import var4 from "/public/basics/variables4.png"
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import var1 from '/public/basics/variables1.png';
+import var2 from '/public/basics/variables2.png';
+import var3 from '/public/basics/variables3.png';
+import var4 from '/public/basics/variables4.png';
 
 # Using Variables in Workflows
 
@@ -16,33 +16,37 @@ Learn how to use context variables, HTTP request components, and output values f
 
 ## Using Incoming HTTP Request Components
 
-<Callout type="warning" emoji="⚠️">
+<Callout type='warning' emoji='⚠️'>
   This is only applicable while using REST API Trigger node.
 </Callout>
 
-When working with the REST API Call Trigger, you can leverage various request components like **Headers**, **Params**, and the **Request Body** to efficiently pass data to your logic nodes.
+When working with the REST API Call Trigger, you can leverage various request components like **Headers**, **Params**,
+and the **Request Body** to efficiently pass data to your logic nodes.
 
 ### Accessing Request Variables
 
 - Use the "**Expression Editor**" to select the request variables.
-<Image src={var1} alt="Variables" width="1200" />
-- Inside the **Expression Editor**, click on "**Insert Variable**" dropdown to browse and select from the available request variables.
-<Image src={var2} alt="Variables" width="1200" />
+  <Image src={var1} alt='Variables' width='1200' />
+- Inside the **Expression Editor**, click on "**Insert Variable**" dropdown to browse and select from the available
+  request variables.
+  <Image src={var2} alt='Variables' width='1200' />
 
 <Callout type="tip" emoji="💡">
 **Extracting a specific value from a Request Variable**
 
-Let's consider an example where we want to retrieve the `collectionName` variable from the request body. To do this, we can:
-- In the **Expression Editor**, pick the Request Body variable from the "**Insert Variable**" dropdown.
-- To access the specific value, add the key in one of the following formats:
-    - `["collectionName"]`
-    - `.collectionName`
-<Image src={var3} alt="Variables" width="1000" />
-</Callout>
+Let's consider an example where we want to retrieve the `collectionName` variable from the request body. To do this, we
+can:
 
+- In the **Expression Editor**, pick the Request Body variable from the "**Insert Variable**" dropdown.
+- To access the specific value, add the key in one of the following formats: - `["collectionName"]` - `.collectionName`
+  <Image src={var3} alt="Variables" width="1000" />
+  </Callout>
 
 ## Using Output values from other nodes
 
-When you have previously returned values from your logic nodes, you can access them conveniently through the **Expression Menu** `(x)`. To access a specific output, **click on the name of the node** associated with the desired output, and then **select your output variable**. This allows you to conveniently leverage the output values in your current workflow logic.
+When you have previously returned values from your logic nodes, you can access them conveniently through the
+**Expression Menu** `(x)`. To access a specific output, **click on the name of the node** associated with the desired
+output, and then **select your output variable**. This allows you to conveniently leverage the output values in your
+current workflow logic.
 
-<Image src={var4} alt="Variables" width="1200" />
+<Image src={var4} alt='Variables' width='1200' />

@@ -1,27 +1,30 @@
-
-import Image from 'next/image'
-import triggers1 from '/public/basics/triggers1.png'
-import triggers2 from '/public/basics/triggers2.png'
-import { Callout } from 'nextra/components'
-import { Cards, Card } from 'nextra/components'
-
+import Image from 'next/image';
+import triggers1 from '/public/basics/triggers1.png';
+import triggers2 from '/public/basics/triggers2.png';
+import { Callout } from 'nextra/components';
+import { Cards, Card } from 'nextra/components';
 
 # What is a Trigger?
 
-Triggers are the basis of the execution of any workflow. Each trigger node **serves as a starting point** for your workflow, allowing you to automate processes based on specific events or schedules. You can only add a single trigger node to a workflow.
+Triggers are the basis of the execution of any workflow. Each trigger node **serves as a starting point** for your
+workflow, allowing you to automate processes based on specific events or schedules. You can only add a single trigger
+node to a workflow.
 
-<Image src={triggers1} alt="Triggers" width={1200} priority={true} />
+<Image src={triggers1} alt='Triggers' width={1200} priority={true} />
 
 ## What are Trigger Nodes?
 
-Trigger nodes play a pivotal role in BuildShip as they are the **catalysts responsible for initiating the execution** of a workflow. Think of them as the "*starting points*" that kickstart the entire automation process.
+Trigger nodes play a pivotal role in BuildShip as they are the **catalysts responsible for initiating the execution** of
+a workflow. Think of them as the "_starting points_" that kickstart the entire automation process.
 
-<div style={{
-      display: 'flex',
-      justifyContent: 'center', // Center horizontally
-      alignItems: 'center', // Center vertically
-    }}>
-    <Image src={triggers2} alt="Triggers" width={1200} />
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center', // Center horizontally
+    alignItems: 'center', // Center vertically
+  }}
+>
+  <Image src={triggers2} alt='Triggers' width={1200} />
 </div>
 
 ## Characteristics of a Trigger
@@ -30,8 +33,8 @@ Trigger nodes play a pivotal role in BuildShip as they are the **catalysts respo
 - A workflow can have **only one trigger node**
 - Trigger nodes **do not have Input / Output manipulation** settings
 
-<Callout type="info" emoji="💡">
-Learn how to structure your HTTP Requests to trigger a workflow [here](). (Coming soon! 🚧)
+<Callout type='info' emoji='💡'>
+  Learn how to structure your HTTP Requests to trigger a workflow [here](). (Coming soon! 🚧)
 </Callout>
 
 ## Types of Triggers
@@ -39,16 +42,16 @@ Learn how to structure your HTTP Requests to trigger a workflow [here](). (Comin
 Below you'll find detailed explaination and examples of our most popular Triggers types:
 
 <Cards num={3}>
-  <Card image arrow title="Rest API Call" href="/rest-api">
+  <Card image arrow title='Rest API Call' href='/rest-api'>
     <>![Rest API Call Trigger](/nodes/rest-api-1.png)</>
   </Card>
-  <Card image arrow title="Scheduled Cron" href="/scheduled-cron">
+  <Card image arrow title='Scheduled Cron' href='/scheduled-cron'>
     <>![Scheduled Cron Trigger](/nodes/cron-1.png)</>
   </Card>
-  <Card image arrow title="Scheduled Interval" href="/scheduled-interval">
+  <Card image arrow title='Scheduled Interval' href='/scheduled-interval'>
     <>![Scheduled Interval Trigger](/nodes/interval-1.png)</>
   </Card>
-  <Card image arrow title="Telegram Bot" href="/telegram-bot">
+  <Card image arrow title='Telegram Bot' href='/telegram-bot'>
     <>![Telegram Bot](/nodes/telegram-bot.png)</>
   </Card>
 </Cards>

@@ -1,74 +1,85 @@
-import { Steps } from "nextra/components";
-import { Callout } from "nextra/components";
-import Image from "next/image";
-import pineconeBanner from "/public/integrations/meta/pinecone_banner.png";
-import pineconeIndex from "/public/integrations/meta/pinecone-index.png";
-import indexSetup from "/public/integrations/meta/index_setup.png";
-import pineconeAPI from "/public/integrations/meta/pinecone_api.png";
-import upsertNode from "/public/integrations/meta/pinecone-node.png";
-import pineconePostman from "/public/integrations/meta/pinecone_postman.png";
-import pineConeUpsert from "/public/integrations/meta/pinecone-upsert.png";
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import pineconeBanner from '/public/integrations/meta/pinecone_banner.png';
+import pineconeIndex from '/public/integrations/meta/pinecone-index.png';
+import indexSetup from '/public/integrations/meta/index_setup.png';
+import pineconeAPI from '/public/integrations/meta/pinecone_api.png';
+import upsertNode from '/public/integrations/meta/pinecone-node.png';
+import pineconePostman from '/public/integrations/meta/pinecone_postman.png';
+import pineConeUpsert from '/public/integrations/meta/pinecone-upsert.png';
 
 # Pinecone Integration
 
-This integration allows you to connect and interact with your Pinecone vector database and perform quick operations such as "Delete Vectors", "Upsert Pinecone Index", "Query Vectors".
-<br/>
-<Image src={pineconeBanner} alt="PineCone Nodes" width={800} />
+This integration allows you to connect and interact with your Pinecone vector database and perform quick operations such
+as "Delete Vectors", "Upsert Pinecone Index", "Query Vectors".
+
+<br />
+<Image src={pineconeBanner} alt='PineCone Nodes' width={800} />
 
 ## Steps to connect with Pinecone Database
+
 <Steps>
 
 ### Setup Pinecone App
- Create an account on [Pinecone](https://app.pinecone.io/) --> setup application and add organization (follow pinecone tour).
+
+Create an account on [Pinecone](https://app.pinecone.io/) --> setup application and add organization (follow pinecone
+tour).
 
 ### Create a New Index
-Create an Index to manage vectors and access the required credentials.
-<br/>
 
-<Image src={pineconeIndex} alt="PineCone Index" width={800} />
-- Give your index a name.
-- Add required configurations such as dimensions and metric
-- Click create
+Create an Index to manage vectors and access the required credentials.
+
+<br />
+
+<Image src={pineconeIndex} alt='PineCone Index' width={800} />- Give your index a name. - Add required configurations
+such as dimensions and metric - Click create
 
 ### Get Credentials and Variables from created Index
 
 Click on the created index.
-<br/>
-<Image src={indexSetup} alt="PineCone Index Setup" width={800} />
+
+<br />
+<Image src={indexSetup} alt='PineCone Index Setup' width={800} />
 
 ### Get Pinecone API Key
 
 You will find your Pinecone API key under AI agent API keys (see navigation bar)
-<br/>
 
-<Image src={pineconeAPI} alt="PineCone API Key" width={800} />
+<br />
+
+<Image src={pineconeAPI} alt='PineCone API Key' width={800} />
 
 You are all set to use BuildShip's Pinecone Nodes. 🎉
+
 </Steps>
 
 ### Example: Lets upsert some records to Pinecone vector database
 
 In this example we will upsert few values of records to the created Pinecone vector index.
-<br/>
 
-<Image src={upsertNode} alt="PineCone Upsert Node" width={800} />
+<br />
+
+<Image src={upsertNode} alt='PineCone Upsert Node' width={800} />
 
 - Add a REST API Trigger and select POST method.
 - Add all the required values from the Vector Index we created above.
 - Pass the API Key.
-- Sample Array for record: 
-```json 
+- Sample Array for record:
+
+```json
 [
   {
-    id: '1',
-    values: [0.236, 0.971],
-  },
+    "id": "1",
+    "values": [0.236, 0.971]
+  }
 ]
 ```
-- Lets deploy our workflow and test the API on Postman (choose your favorite tool) 
 
-<Image src={pineconePostman} alt="PineCone Node Testing" width={800} />
+- Lets deploy our workflow and test the API on Postman (choose your favorite tool)
+
+<Image src={pineconePostman} alt='PineCone Node Testing' width={800} />
 
 🎉 Congratulations you have successfully connected and upserted a record in Pinecone Database
 
-<Image src={pineConeUpsert} alt="PineCone Upsert Value" width={800} />
+<Image src={pineConeUpsert} alt='PineCone Upsert Value' width={800} />

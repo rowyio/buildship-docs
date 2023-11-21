@@ -1,78 +1,91 @@
 # Logging
 
-import Image from 'next/image'
-import { Steps } from 'nextra/components'
-import loggingPanel from '/public/dev-tools/logging-panel.png'
-import logging1 from '/public/dev-tools/logging1.png'
-import logging2 from '/public/dev-tools/logging2.png'
-import logging3 from '/public/dev-tools/logging3.png'
+import Image from 'next/image';
+import { Steps } from 'nextra/components';
+import loggingPanel from '/public/dev-tools/logging-panel.png';
+import logging1 from '/public/dev-tools/logging1.png';
+import logging2 from '/public/dev-tools/logging2.png';
+import logging3 from '/public/dev-tools/logging3.png';
 
-Logging plays a vital role in the development and maintenance of workflows. It allows you to **track and understand the flow** of your workflow, **monitor variable values**, and **identify potential issues**.
+Logging plays a vital role in the development and maintenance of workflows. It allows you to **track and understand the
+flow** of your workflow, **monitor variable values**, and **identify potential issues**.
 
-<Image src={logging1} alt="Logging" width={1200} />
+<Image src={logging1} alt='Logging' width={1200} />
 
 Logging statements serve as essential tools in your workflow development toolkit. They offer several advantages:
 
 - **Debugging**: Logging helps you identify and resolve issues within your workflow's logic.
-- **Monitoring**: By reviewing log messages, you can monitor the execution flow, identify bottlenecks, and improve efficiency.
-- **Data Visualization**: Logging enables you to visualize data, making it easier to understand how data changes as the workflow progresses.
+- **Monitoring**: By reviewing log messages, you can monitor the execution flow, identify bottlenecks, and improve
+  efficiency.
+- **Data Visualization**: Logging enables you to visualize data, making it easier to understand how data changes as the
+  workflow progresses.
 
 You can harness the power of logging in BuildShip through two primary methods:
 
 ## Via Logging Core Node
 
-The Logging Core Node provides a straightforward way to log messages and data directly to the BuildShip logging console. Here's how:
+The Logging Core Node provides a straightforward way to log messages and data directly to the BuildShip logging console.
+Here's how:
 
-<Image src={logging2} alt="Logging Core Node" width={1200} />
+<Image src={logging2} alt='Logging Core Node' width={1200} />
 
 <Steps>
 
 ### Add a Node
 
-Click on the "Add a Node" button within your workflow. This will open the Nodeverse Library, where you can explore various nodes.
+Click on the "Add a Node" button within your workflow. This will open the Nodeverse Library, where you can explore
+various nodes.
 
 ### Find the "Log Message to Console" Node
 
-Within the Core Nodes section, locate the "Log Message to Console" node. You can also use the search bar to quickly find this node.
+Within the Core Nodes section, locate the "Log Message to Console" node. You can also use the search bar to quickly find
+this node.
 
 ### Insert and Configure the Node
-Insert the "Log Message to Console" node into your workflow. Customize the node by adding a string or [variable](/basics/variables) that you want to log.
+
+Insert the "Log Message to Console" node into your workflow. Customize the node by adding a string or
+[variable](/basics/variables) that you want to log.
 
 </Steps>
 
 ## Via Logging Statements in Node Logic
 
-Another way to integrate logging in your workflow is by directly adding logging statements within the logic of individual nodes. This method gives you more control over when and what to log. Here's how:
+Another way to integrate logging in your workflow is by directly adding logging statements within the logic of
+individual nodes. This method gives you more control over when and what to log. Here's how:
 
-<Image src={logging3} alt="Logging Statements" width={1200} />
+<Image src={logging3} alt='Logging Statements' width={1200} />
 
 <Steps>
 ### Select and Edit a Logic Node
 Choose a Logic Node within your workflow. Open the Node Editor `</>` to access and edit the node's logic.
 
 ### Import the Logging Module
+
 Inside the parameters of the node, import the logging module. This allows you to use the logging functions.
 
 ```js copy
 export default async function yourNodeFunction({ input }, { logging }) {
-    // the function body
-    logging.log('This is a logging statement')
-    logging.warn("This is a warning message")
-    logging.error("This is an error message")
+  // the function body
+  logging.log('This is a logging statement');
+  logging.warn('This is a warning message');
+  logging.error('This is an error message');
 }
 ```
+
 Within your node's logic, utilize the logging functions to log messages, variables, and other relevant data.
 
 </Steps>
 
-
 ## Viewing the Cloud Logs
 
-After incorporating logging statements into your workflow, you can conveniently view these statements using the built-in logging panel in BuildShip.
+After incorporating logging statements into your workflow, you can conveniently view these statements using the built-in
+logging panel in BuildShip.
 
-<Image src={loggingPanel} alt="Logging Panel" width={1200} />
+<Image src={loggingPanel} alt='Logging Panel' width={1200} />
 
 - The logging panel is **located at the bottom** of your BuildShip Workspace, initially minimized.
 - Users can simply open or close the panel using the **expand button** on the right to **see old logs**, if any.
-- To **enable live logs** while your workflow executes, toggle the "**Live**" switch on. This allows you to monitor logs as your workflow progresses via the trigger.
-- To **view logs specific to a node** or the entire workflow, switch from the default Workflow view to the Node view. To view logs for a particular node, select the node from the Node View.
+- To **enable live logs** while your workflow executes, toggle the "**Live**" switch on. This allows you to monitor logs
+  as your workflow progresses via the trigger.
+- To **view logs specific to a node** or the entire workflow, switch from the default Workflow view to the Node view. To
+  view logs for a particular node, select the node from the Node View.

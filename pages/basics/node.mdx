@@ -1,91 +1,104 @@
 # What is a Node?
 
-import Image from 'next/image'
-import { Callout } from 'nextra/components'
-import anatomy1 from '/public/basics/anatomy1.png'
-import script2 from '/public/nodes/script-2.png'
-import script4 from '/public/nodes/script-4.png'
-import script5 from '/public/nodes/script-5.png'
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import anatomy1 from '/public/basics/anatomy1.png';
+import script2 from '/public/nodes/script-2.png';
+import script4 from '/public/nodes/script-4.png';
+import script5 from '/public/nodes/script-5.png';
 
-Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete workflow. 
+Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete
+workflow.
 
-> It's important to note that the initial node in any workflow must be a trigger node (find more information on triggers [here](/basics/trigger)).
+> It's important to note that the initial node in any workflow must be a trigger node (find more information on triggers
+> [here](/basics/trigger)).
 
-The fundamental building blocks of a workflow are the logic nodes. Let's delve into the details of a logic node's structure and functionality.
+The fundamental building blocks of a workflow are the logic nodes. Let's delve into the details of a logic node's
+structure and functionality.
 
 ## Node Anatomy
 
-<Image src={anatomy1} alt="Node Anatomy" width={1200} />
+<Image src={anatomy1} alt='Node Anatomy' width={1200} />
 
-- **Open Node Editor** `</>`
-This feature grants you the power to **modify the logic**, **input parameters**, **output configuration**, and **metadata descriptions** associated with a given node, providing the flexibility to tailor the nodes to your exact requirements.
+- **Open Node Editor** `</>` This feature grants you the power to **modify the logic**, **input parameters**, **output
+  configuration**, and **metadata descriptions** associated with a given node, providing the flexibility to tailor the
+  nodes to your exact requirements.
 
-- **Node Options**
-Manage nodes through **AI-powered editing**, **deletion**, **copying**, and the ability to **view logs** specific to each individual node.
+- **Node Options** Manage nodes through **AI-powered editing**, **deletion**, **copying**, and the ability to **view
+  logs** specific to each individual node.
 
-- **Value Expression Editor**
-Tap into the capabilities of **AI data autofill for inputs**, leverage **variables**, and safeguard sensitive information using **secret keys**.
+- **Value Expression Editor** Tap into the capabilities of **AI data autofill for inputs**, leverage **variables**, and
+  safeguard sensitive information using **secret keys**.
 
-- **Expand/Collapse Toggle**
-Enhance your workspace by toggling between expanded and collapsed views for nodes, ensuring a **clutter-free experience**.
+- **Expand/Collapse Toggle** Enhance your workspace by toggling between expanded and collapsed views for nodes, ensuring
+  a **clutter-free experience**.
 
 ## Edit and Customize Nodes
 
-Whether selecting a node from the **Nodeverse library** or **generating one via AI**, the Node Editor provides a user-friendly environment for configuring nodes. 
+Whether selecting a node from the **Nodeverse library** or **generating one via AI**, the Node Editor provides a
+user-friendly environment for configuring nodes.
 
-Moreover, the Node Editor is accompanied by a **testing environment**, enabling users to **edit and test nodes simultaneously**, all without the need for deployment.
-
+Moreover, the Node Editor is accompanied by a **testing environment**, enabling users to **edit and test nodes
+simultaneously**, all without the need for deployment.
 
 ## Node Editor `</>`
 
-<Image src={script2} alt="script node" width="1200" />
+<Image src={script2} alt='script node' width='1200' />
 
-Node Logic is a versatile code editor within BuildShip that empowers users to create and customize the functionality of a node. With Node Logic, you can:
+Node Logic is a versatile code editor within BuildShip that empowers users to create and customize the functionality of
+a node. With Node Logic, you can:
 
 - Write and modify the underlying functions for a node to suit your specific needs.
-- Seamlessly integrate with APIs, leverage AI models, or incorporate NPM libraries to enhance your workflow's capabilities.
+- Seamlessly integrate with APIs, leverage AI models, or incorporate NPM libraries to enhance your workflow's
+  capabilities.
 
 ```js filename="Generate QR Codes"
 import { toDataURL } from 'qrcode';
 
 export default async function generateQRCode({ url }) {
-    const qrCodeDataURL = await toDataURL(url);
-    return qrCodeDataURL;
+  const qrCodeDataURL = await toDataURL(url);
+  return qrCodeDataURL;
 }
 ```
 
-<Callout emoji="💡" type="tip">
-If you wish to create your own node from scratch, you can do so by using the [Script node](../core-nodes/script).
+<Callout emoji='💡' type='tip'>
+  If you wish to create your own node from scratch, you can do so by using the [Script node](../core-nodes/script).
 </Callout>
 
 ## Input Params
 
-Input parameters for a node are variables or values that can be provided as input to the node when it is executed. These parameters serve as the data that the node needs to perform its specific task. 
+Input parameters for a node are variables or values that can be provided as input to the node when it is executed. These
+parameters serve as the data that the node needs to perform its specific task.
 
-These parameters can be set in the form UI or via JSON schema. 
+These parameters can be set in the form UI or via JSON schema.
 
-<Callout emoji="💡" type="info">
-Learn more about setting input params via JSON Schema and customizing node input parameters on the [Node Inputs page](./input).
+<Callout emoji='💡' type='info'>
+  Learn more about setting input params via JSON Schema and customizing node input parameters on the [Node Inputs
+  page](./input).
 </Callout>
 
-<Image src={script4} alt="script node" width="1200" />
+<Image src={script4} alt='script node' width='1200' />
 
 ## Output
 
-The Node Editor empowers you to modify your node's output configurations. The structured JSON format ensures clarity in handling resulting data, promoting seamless integration with downstream processes.
+The Node Editor empowers you to modify your node's output configurations. The structured JSON format ensures clarity in
+handling resulting data, promoting seamless integration with downstream processes.
 
-<Callout emoji="💡" type="info">
-Learn more about setting outputs via JSON Schema and customizing node input parameters on the [Node Inputs page](./input).
+<Callout emoji='💡' type='info'>
+  Learn more about setting outputs via JSON Schema and customizing node input parameters on the [Node Inputs
+  page](./input).
 </Callout>
 
-<Image src={script4} alt="script node" width="1200" />
+<Image src={script4} alt='script node' width='1200' />
 
 ## Node Info
 
-Just as input parameters are accompanied by comprehensive descriptions, the "Info" section contains essential insights about the node's purpose and functionality. This contextual information aids in better understanding the node's role within your workflow.
+Just as input parameters are accompanied by comprehensive descriptions, the "Info" section contains essential insights
+about the node's purpose and functionality. This contextual information aids in better understanding the node's role
+within your workflow.
 
-<Callout emoji="💡" type="info">
-Learn more about Node Metadata [here](../core-nodes/script#node-metadata).
+<Callout emoji='💡' type='info'>
+  Learn more about Node Metadata [here](../core-nodes/script#node-metadata).
 </Callout>
 
-<Image src={script5} alt="script node" width="1200" />
+<Image src={script5} alt='script node' width='1200' />
