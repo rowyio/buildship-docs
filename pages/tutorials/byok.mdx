@@ -1,0 +1,80 @@
+# Bring Your Own Key (BYOK)
+
+import Image from 'next/image';
+import Video from '../../components/video/index.jsx';
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import byokOg from '/public/tutorial/byok-og.png';
+import byok1 from '/public/tutorial/byok1.png';
+
+This tutorial demonstates how you can implement **"Bring Your Own Key" (BYOK)** feature in BuildShip. BYOK allows
+individual users or businesses to let their end-users integrate their own API keys within workflows.
+
+This ensures greater flexibility and cost management, particularly in scenarios where multiple users or clients require
+separate API access.
+
+<Image src={byokOg} alt='BYOK' width='1200' />
+
+Let's dig deeper into how you can implement BYOK in your BuildShip workflows.
+
+## Prerequisites ✅
+
+- A system within your front-end application where users can input and securely store their respective API keys.
+
+<Callout type='warning' emoji='🔐'>
+  Ensure that the provided keys are securely stored on your platform, implementing necessary security measures to
+  protect sensitive information.
+</Callout>
+
+## Accessing BYOK keys
+
+<Steps>
+### Passing the user's API Key in the Request
+
+Pass the user's API key as an **Authorization header** in the request made to your BuildShip's API. This header will
+serve as a means to authenticate and authorize the user's access to specific functionalities within your workflow.
+
+### Accessing the API Key
+
+You can easily **access the user's API key from the Request's Authorization Headers**:
+
+- Click on the **Edit icon (✎)** for the input field where you want to access the API key.
+- Access the "**Request**" variable from the dropdown menu and select "**Headers**".
+- Then, select the "**Authorization**" header from the list of headers.
+
+<Video src='/tutorial/getAuth.mp4' />
+
+</Steps>
+
+## BYOK Example Workflow
+
+Let's take a look at how you can implement BYOK in your BuildShip workflow using the OpenAI Text Generator model within
+BuildShip:
+
+<Image src={byok1} alt='BYOK' width='1200' />
+
+This workflow showcases the use of the OpenAI Text Generator node, ensuring that each user can utilize their individual
+API keys and prompts received from request parameters.
+
+<Steps>
+### "Get Authorization Header" Node
+Validates the presence of the `Authorization` Header in the incoming request, ensuring the user's API key is included.
+
+### "Get Query Param" Node
+
+Validates the existence of the `prompt` query parameter in the incoming request, which provides the prompt for Text
+Generation.
+
+### "OpenAI Text Generator" Node
+
+- **API Key Input:** Retrieves the `Authorization` Header from the incoming request containing the user's unique API
+  key.
+- **User Prompt Input:** Fetches the Query Parameters from the incoming request, acquiring the specific prompt for Text
+  Generation.
+  </Steps>
+
+<Callout type='tip' emoji='💡'>
+  Click [here](https://drive.google.com/file/d/1hXEAqvWZLbiqDSdDQ59QoDNg_ifl9zR4/view?usp=sharing) to get a JSON File
+  for this example workflow which can be copied and pasted to your own project. Feel free to play around and tweak it
+  according to your use-case.
+</Callout>

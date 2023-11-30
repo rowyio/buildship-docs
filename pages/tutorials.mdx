@@ -69,6 +69,18 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Postgres CRUD preview](../public/tutorial/postgres-og.png)</>
   </ShowcaseCard>
+  <ShowcaseCard
+    title='Bring Your Own Key'
+    href='./tutorials/byok'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'byok',
+      });
+    }}
+  >
+    <>![Bring Your Own Key preview](../public/tutorial/byok-og.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(
