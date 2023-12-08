@@ -6,5 +6,6 @@
   "input-validation": "Input Validation",
   "output": "Node Output",
   "variables": "Using Variables",
-  "reordering-nodes": "Reordering Nodes"
+  "reordering-nodes": "Reordering Nodes",
+  "api-spec": "API Specification"
 }

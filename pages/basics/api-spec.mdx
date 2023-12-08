@@ -1,0 +1,91 @@
+# API Specification
+
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import Video from '../../components/video/index.jsx';
+import apiSpec1 from '/public/basics/api-spec-1.png';
+import apiSpec2 from '/public/basics/api-spec-2.png';
+import apiSpec3 from '/public/basics/api-spec-3.png';
+import apiSpec4 from '/public/basics/api-spec-4.png';
+import apiSpec5 from '/public/basics/api-spec-5.png';
+import apiSpec6 from '/public/basics/api-spec-6.png';
+
+The API Specification feature allows users to define and structure incoming requests and expected responses for their
+workflow APIs. This functionality simplifies accessing request values as defined variables throughout the workflow.
+
+## Request Specification
+
+<Callout type='warning' emoji='⚠️'>
+  This is only applicable while using REST API Trigger node.
+</Callout>
+
+Users can define the expected request structure for the API Call.
+
+- Click on the **Trigger Menu (•••)** on the **REST API Call Trigger** and click on **Edit**.
+
+  {' '}
+  <Image src={apiSpec1} alt='API Specification' width={1200} />
+
+- Under the **“Request”** section you’ll see the default request structure.
+
+- Click on the **+** icon to add fields to the request schema. You can also click on a field, let’s say `query`, to add
+  nested fields.
+  {' '}
+  <Image src={apiSpec2} alt='API Specification' width={1200} />
+
+## Response Specification
+
+Users can also define the expected response from the API.
+
+- Click on the `</>` icon on the Return Node to open the **Response Specification**.
+
+  {' '}
+  <Image src={apiSpec3} alt='API Specification' width={1200} />
+
+- Under the **“Response”** section you’ll see the default response structure.
+
+```json
+{
+  "200": {
+    "title": "Success Response",
+    "type": "object",
+    "properties": {
+      "text": {
+        // added this property
+        "type": "string",
+        "description": "The generated text"
+      }
+    }
+  }
+}
+```
+
+## Accessing Request Values
+
+Users can access the request values defined in the Request Specification throughout the workflow using the **Context
+Menu**.
+
+<Video src='/basics/api-spec.mp4' />
+
+## Example Scenario - Implementing BYOK
+
+Let's consider implementing a **Bring Your Own Key (BYOK)** system within BuildShip.
+
+We require incoming API requests to include an `Authorization` header containing the user's API Key. Additionally, the
+API needs a `prompt` query parameter, which will act as the User Prompt for the OpenAI Text Generator node generating a
+story.
+
+<Image src={apiSpec4} alt='API Specification' width={1200} />
+
+To modify the Request Definition for this scenario:
+
+- Go to the **Request** section in your REST API Call trigger.
+- **Define the `Authorization` header:** Click on the Request Headers and use the + icon to add a nested field. Provide
+  appropriate Label, Key, Description, and set its type to string.
+  <Image src={apiSpec5} alt='API Specification' width={1200} />
+- **Define the `prompt` query parameter:** Click on the Query section and add a nested field using the + icon. Provide
+  appropriate Label, Key, Description, and set its type to string.
+  <Image src={apiSpec6} alt='API Specification' width={1200} />
+
+These defined request variables can now be easily accessed via the context menu throughout the workflow.
