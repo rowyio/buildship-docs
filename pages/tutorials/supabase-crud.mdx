@@ -3,12 +3,13 @@
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
 import supabase1 from '/public/tutorial/supabase1.png';
-import supabaseCreate from '/public/tutorial/supabase-c.png';
-import supabaseRead from '/public/tutorial/supabase-r.png';
-import supabaseUpdate from '/public/tutorial/supabase-u.png';
-import supabaseDelete from '/public/tutorial/supabase-d.png';
+import supabaseCreate from '/public/tutorial/create-row.png';
+import supabaseRead from '/public/tutorial/get-row.png';
+import supabaseUpdate from '/public/tutorial/update-row.png';
+import supabaseDelete from '/public/tutorial/delete-row.png';
 import supabase2 from '/public/tutorial/supabase2.png';
 import supabase3 from '/public/tutorial/supabase3.png';
+import rls from '/public/tutorial/rls.png';
 
 BuildShip offers a powerful integration with Supabase allowing you to perform Create, Read, Update, and Delete (CRUD)
 operations on your data with ease. This integration is achieved through the Supabase Realtime API.
@@ -38,7 +39,17 @@ Supabase project dashboard settings:
 ### API Endpoints (Optional - For creating your own custom nodes)
 
 You can get access to API endpoints directly from your table by clicking on the "API" button located at the top right
-corner of the table view. This is useful if you wish to create your own custom nodes for specific endpoints.
+corner of the Supabase table view. This is useful if you wish to create your own custom nodes for specific endpoints.
+
+<Callout emoji="💡" type="info">
+To perform CRUD operations on your Supabase database, you'll be required to create a custom RLS Policy (Row Level Security). By default, Supabase RLS is enabled to restrict all access using the anon key, this will prevent any operation and might result in an empty array.
+
+<Image src={rls} alt='Supabase RLS' width={800} />
+
+Note: You can also disable the RLS, but its not recommended. You can securely store your Supabase API key using
+BuildShip's secret manager, learn more [here](https://docs.buildship.com/workflow-operations).
+
+</Callout>
 
 ## Creating Data
 
@@ -66,6 +77,16 @@ steps:
 - Optionally, you could modify and customize the node according to your needs. Once you're done, click on the "Save"
   button to save your node.
 - Add more nodes or simply add a Return node to complete your workflow.
+
+<Callout emoji="💡" >
+BuildShip offers two versions of Supabase nodes, with and without Authorization Token. The `with Token` nodes are a slightly adapted version to **support an Authorization token being passed in from your client**. This allows **Supabase Row Level Security** to be utilised as a passthrough with Buildship.
+
+This is useful for users using BuildShip along with FlutterFlow or other no-code frontend tools, and authenticating with
+Supabase using their out-of-the-box functionality.
+
+Note: If you do not have an Access Token, use the Supabase "Create Row" node instead.
+
+</Callout>
 
 ## Reading Data
 
