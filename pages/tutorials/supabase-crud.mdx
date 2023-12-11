@@ -79,7 +79,9 @@ steps:
 - Add more nodes or simply add a Return node to complete your workflow.
 
 <Callout emoji="💡" >
-There are two nodes, one with `Token` and without `Token`. The node with `Token` uses your Supabase User Access Token from the client. This allows Supabase Row Level Security to be utilized as a passthrough with Buildship.
+BuildShip offers two versions of Supabase nodes, with and without Authorization Token. The `with Token` nodes are a slightly adapted version to **support an Authorization token being passed in from your client**. This allows **Supabase Row Level Security** to be utilised as a passthrough with Buildship.
+
+This is useful for users using BuildShip along with FlutterFlow or other no-code frontend tools, and authenticating with Supabase using their out-of-the-box functionality.
 
 Note: If you do not have an Access Token, use the Supabase "Create Row" node instead.
 
