@@ -3,12 +3,13 @@
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
 import supabase1 from '/public/tutorial/supabase1.png';
-import supabaseCreate from '/public/tutorial/supabase-c.png';
-import supabaseRead from '/public/tutorial/supabase-r.png';
-import supabaseUpdate from '/public/tutorial/supabase-u.png';
-import supabaseDelete from '/public/tutorial/supabase-d.png';
+import supabaseCreate from '/public/tutorial/create-row.png';
+import supabaseRead from '/public/tutorial/get-row.png';
+import supabaseUpdate from '/public/tutorial/update-row.png';
+import supabaseDelete from '/public/tutorial/delete-row.png';
 import supabase2 from '/public/tutorial/supabase2.png';
 import supabase3 from '/public/tutorial/supabase3.png';
+import rls from '/public/tutorial/rls.png';
 
 BuildShip offers a powerful integration with Supabase allowing you to perform Create, Read, Update, and Delete (CRUD)
 operations on your data with ease. This integration is achieved through the Supabase Realtime API.
@@ -40,6 +41,16 @@ Supabase project dashboard settings:
 You can get access to API endpoints directly from your table by clicking on the "API" button located at the top right
 corner of the table view. This is useful if you wish to create your own custom nodes for specific endpoints.
 
+<Callout emoji="💡" type="info">
+To perform CRUD operations on your Supabase database, you'll require to create a custom RLS (Row Level Security), as by default RLS is enabled with a policy to restrict all access using `anon key` which will prevent you to perform operation and will result in empty array.
+
+<Image src={rls} alt='Supabase RLS' width={800} />
+
+Note: You can also disable the RLS, but its not recommended. You can securely store your Supabase API key using
+BuildShip's secret manager, learn more [here](https://docs.buildship.com/workflow-operations).
+
+</Callout>
+
 ## Creating Data
 
 <Image src={supabaseCreate} alt='Supabase Create Node' width={1200} />
@@ -67,6 +78,13 @@ steps:
   button to save your node.
 - Add more nodes or simply add a Return node to complete your workflow.
 
+<Callout emoji="💡" >
+There are two nodes, one with `Token` and without `Token`. The node with `Token` uses your Supabase User Access Token from the client. This allows Supabase Row Level Security to be utilized as a passthrough with Buildship.
+
+Note: If you do not have an Access Token, use the Supabase "Create Row" node instead.
+
+</Callout>
+
 ## Reading Data
 
 <Image src={supabaseRead} alt='Supabase Read Node' width={1200} />
@@ -81,6 +99,13 @@ To retrieve data from your Supabase database, use the Read Node:
 - Optionally you could customize, test and save the node.
 - Execute the workflow, and BuildShip will fetch the data from your Supabase database in real-time.
 - Now you can use this data anywhere in your workflow via the Expressions menu.
+
+<Callout emoji="💡" >
+There are two nodes, one with `Token` and without `Token`. The node with `Token` uses your Supabase User Access Token from the client. This allows Supabase Row Level Security to be utilized as a passthrough with Buildship.
+
+Note: If you do not have an Access Token, use the Supabase "Get Row" node instead.
+
+</Callout>
 
 ## Updating Data
 
@@ -100,6 +125,13 @@ Updating records in your Supabase database is straightforward with the Update No
 - Deploy your workflow, and everytime your workflow triggers, your data will be updated in your Supabase database in
   real-time.
 
+<Callout emoji="💡" >
+There are two nodes, one with `Token` and without `Token`. The node with `Token` uses your Supabase User Access Token from the client. This allows Supabase Row Level Security to be utilized as a passthrough with Buildship.
+
+Note: If you do not have an Access Token, use the Supabase "Update Row" node instead.
+
+</Callout>
+
 ## Deleting Data
 
 <Image src={supabaseDelete} alt='Supabase Delete Node' width={1200} />
@@ -113,6 +145,13 @@ To delete records from your Supabase database, use the Delete Node:
     Refer to the [Filters section below](#filters) for more information on how to use filters.
   </Callout>
 - Deploy your workflow and the specified records will be deleted from your Supabase database in real-time.
+
+<Callout emoji="💡" >
+There are two nodes, one with `Token` and without `Token`. The node with `Token` uses your Supabase User Access Token from the client. This allows Supabase Row Level Security to be utilized as a passthrough with Buildship.
+
+Note: If you do not have an Access Token, use the Supabase "Delete Row" node instead.
+
+</Callout>
 
 ## Filters
 
