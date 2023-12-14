@@ -3,5 +3,6 @@
   "scheduled-cron": "Scheduled Cron",
   "scheduled-interval": "Scheduled Interval",
   "rowy-trigger": "Rowy Trigger",
-  "telegram-bot": "Telegram Bot"
+  "telegram-bot": "Telegram Bot",
+  "supabase-trigger": "Supabase Trigger"
 }
