@@ -1,0 +1,65 @@
+# MySQL Integration
+
+import { Card, Cards } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import mysql1 from '../public/assets/mysql1.png';
+
+The MySQL Integration in BuildShip allows users to interact seamlessly with MySQL databases, performing a range of
+operations without extensive coding.
+
+With BuildShip's nodes, users can connect to their MySQL databases effortlessly, allowing the creation of APIs,
+scheduled jobs, and other backend workflows without extensive coding requirements.
+
+## Get Started ✅
+
+<Cards num={3}>
+  <Card image title='Perform CRUD operations on MySQL database in your workflows' href='./tutorials/mysql-crud'>
+    <>![Perform CRUD operations on Supabase database in your workflows](../public/assets/mysql.png)</>
+  </Card>
+</Cards>
+
+## How to Connect to MySQL
+
+To connect MySQL with BuildShip, users need to ensure they have a hosted version of MySQL that is publicly accessible
+from the internet. Localhosts or local IP addresses cannot be used for this integration.
+
+To use the MySQL Nodes, we’d need the following information:
+
+- Database Host
+- Database Name
+- Database Username
+- Database Password
+
+Follow our dedicated guide below to understand how to establish a connection, enabling operations such as reading,
+creating, updating, and deleting data within your MySQL database.
+
+<Cards num={1}>
+  <Card
+    image
+    arrow
+    title='Perform CRUD operations on MySQL database in your workflows'
+    href='./tutorials/supabase-crud'
+  >
+    <>![Perform CRUD operations on Supabase database in your workflows](../public/assets/mysql.png)</>
+  </Card>
+</Cards>
+
+## MySQL Nodes
+
+<Image src={mysql1} alt='MySQL Nodes' width={1200} />
+
+Our nodes facilitate functionalities such as inserting new rows, updating existing data, deleting specific records,
+executing custom SQL queries, and fetching desired data based on specific criteria. You can find the following nodes in
+the Node Library under the MySQL Integration:
+
+- **Insert Row:** Insert new data into a MySQL table with ease.
+- **Update Row:** Update specific rows in a MySQL table based on defined criteria.
+- **Delete Row:** Remove rows from a MySQL table using specified filters.
+- **Execute SQL Query:** Execute custom SQL queries tailored to your requirements.
+- **Select Rows:** Fetch rows from a MySQL table based on specified filters or criteria.
+
+<Callout emoji='🙋🏻'>
+  Need help? Chat with us and our community of low-code/no-code builders and developers on
+  [Discord](https://buildship.com/discord).
+</Callout>

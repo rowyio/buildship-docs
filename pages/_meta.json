@@ -32,6 +32,7 @@
   "whatsapp": "Whatsapp",
   "supabase": "Supabase",
   "pinecone": "Pinecone",
+  "mysql": "MySQL",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
