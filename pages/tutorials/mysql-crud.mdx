@@ -1,1 +1,127 @@
 # Integrating MySQL with BuildShip
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import mysqlOg from '/public/assets/mysql1.png';
+import mysql1 from '/public/tutorial/mysql1.png';
+import mysql2 from '/public/tutorial/mysql2.png';
+import mysql3 from '/public/tutorial/mysql3.png';
+import mysql4 from '/public/tutorial/mysql4.png';
+import mysql5 from '/public/tutorial/mysql5.png';
+
+The MySQL integration in BuildShip offers a set of nodes enabling users to perform diverse operations on their MySQL
+databases. Each node provides specific functionalities, allowing for easy manipulation and management of data within the
+MySQL environment.
+
+<Image src={mysqlOg} alt='MySQL Nodes' width={1200} />
+
+## Prerequisites ✅
+
+### Hosted MySQL Database
+
+A hosted version of MySQL that is publicly accessible from the internet. This can be a MySQL database hosted on a cloud
+service such as AWS, Azure, or GCP, or a MySQL database hosted on a local server with a public IP address.
+
+<Callout type='info'>Localhosts or local IP addresses cannot be used for this integration.</Callout>
+
+### MySQL Database Credentials
+
+The MySQL database credentials are required to authenticate the connection between BuildShip and the MySQL database. The
+credentials include the following:
+
+- Database Host
+- Database Name
+- Database Username
+- Database Password
+- Database Name
+
+## Insert Row
+
+The Insert Row node facilitates the addition of new data into a specified MySQL table.
+
+<Image src={mysql1} alt='mysql1' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                                                                                                                                             |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the MySQL server                                                                                                                                          |
+| `database` | string | The name of the MySQL database where the insertion will occur                                                                                                                           |
+| `username` | string | The username used for authenticating access to the MySQL database                                                                                                                       |
+| `password` | string | The password for authentication                                                                                                                                                         |
+| `table`    | string | The name of the table where the new row will be inserted                                                                                                                                |
+| `data`     | json   | An object containing the data to be inserted into the table. The object's keys represent the column names, and the corresponding values are the data to be inserted into those columns. |
+
+<Callout type='warning' emoji='‼️'>
+  Assign appropriate values to each key in the data object according to the column's data type in the table (e.g.,
+  strings for text columns, numbers for integer columns).
+</Callout>
+
+## Update Row
+
+The Update Row node facilitates the modification of row data by applying a defined filter.
+
+<Image src={mysql2} alt='mysql1' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                                                                                                                                             |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the MySQL server                                                                                                                                          |
+| `database` | string | The name of the MySQL database where the insertion will occur                                                                                                                           |
+| `username` | string | The username used for authenticating access to the MySQL database                                                                                                                       |
+| `password` | string | The password for authentication                                                                                                                                                         |
+| `table`    | string | The name of the table where the row(s) will be updated                                                                                                                                  |
+| `filter`   | json   | The filter to select the rows to update                                                                                                                                                 |
+| `data`     | json   | An object containing the data to be inserted into the table. The object's keys represent the column names, and the corresponding values are the data to be inserted into those columns. |
+
+## Delete Row
+
+The Delete Row node enables the deletion of rows by applying defined filters.
+
+<Image src={mysql3} alt='mysql3' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                       |
+| ---------- | ------ | ----------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the MySQL server                    |
+| `database` | string | The name of the MySQL database where the deletion will occur      |
+| `username` | string | The username used for authenticating access to the MySQL database |
+| `password` | string | The password for authentication                                   |
+| `table`    | string | The name of the table from where the row will be deleted          |
+| `filter`   | json   | The filter to select the rows to delete                           |
+
+## SQL Query
+
+The SQL Query node is used to execute an SQL query on a specified database.
+
+<Image src={mysql4} alt='mysql4' width={1200} />
+
+### Input Fields
+
+| Input       | Type   | Description                                                       |
+| ----------- | ------ | ----------------------------------------------------------------- |
+| `host`      | string | The hostname or IP address of the MySQL server                    |
+| `database`  | string | The name of the MySQL database where the query will run           |
+| `username`  | string | The username used for authenticating access to the MySQL database |
+| `password`  | string | The password for authentication                                   |
+| `SQL query` | string | The SQL query to be executed                                      |
+
+## Select Query
+
+The Select Query performs a Select query on a MySQL table data.
+
+<Image src={mysql5} alt='mysql5' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                          |
+| ---------- | ------ | -------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the MySQL server                       |
+| `database` | string | The name of the MySQL database                                       |
+| `username` | string | The username used for authenticating access to the MySQL database    |
+| `password` | string | The password for authentication                                      |
+| `table`    | string | The name of the table where the select query is to be run            |
+| `columns`  | array  | The columns to be selected. Leave empty to select all columns        |
+| `filter`   | json   | The filter to apply on the selection. Leave empty to select all rows |
