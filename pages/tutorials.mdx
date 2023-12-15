@@ -81,6 +81,18 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Bring Your Own Key preview](../public/tutorial/byok-og.png)</>
   </ShowcaseCard>
+  <ShowcaseCard
+    title='MySQL'
+    href='./tutorials/mysql-crud'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'mysql',
+      });
+    }}
+  >
+    <>![MySQL Connection preview](../public/tutorial/mysql.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(

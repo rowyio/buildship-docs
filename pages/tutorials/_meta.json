@@ -16,5 +16,8 @@
   },
   "byok": {
     "display": "hidden"
+  },
+  "mysql-crud": {
+    "display": "hidden"
   }
 }
