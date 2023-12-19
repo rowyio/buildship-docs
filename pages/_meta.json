@@ -33,6 +33,7 @@
   "supabase": "Supabase",
   "pinecone": "Pinecone",
   "mysql": "MySQL",
+  "stripe": "Stripe",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
