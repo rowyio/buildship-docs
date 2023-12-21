@@ -1,0 +1,47 @@
+# Copy & Paste
+
+import Video from '../../components/video/index.jsx';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import workflowActions from '/public/support/workflow-actions.png';
+import nodeOptions1 from '/public/support/copy-options.png';
+
+In BuildShip, copy and pasting functionality let's duplicate your workflows and nodes easily wherever required.
+
+## Duplicating Workflows
+
+The easiest way to duplicate an existing workflow is via copy and pasting. Users can copy and paste workflows across
+projects, or within the same project.
+
+<Steps>
+### Copy Workflow
+- Open the **Workflow Menu** (▿) next to the workflow name, and select '**Copy**' to copy the entire workflow schema.
+<Image src={workflowActions} alt='copy/paste node' width={1200} />
+
+### Paste Workflow
+
+- Click the ✚ icon to create a new workflow (or open an existing workflow you wish to overwrite).
+- Access the Workflow Menu again (▿), and choose '**Paste**' to duplicate or replace an existing workflow with the
+  copied schema.
+
+<Video src='/support/workflow-paste.mov' />
+</Steps>
+
+## Duplicating Nodes
+
+You can also copy and paste individual nodes across projects, workflows, and within the same workflow.
+
+<Steps>
+
+### Copy Node
+
+- Open the Node Menu (•••) on the node to be duplicated and select '**Copy**' to copy the node schema.
+  <Image src={nodeOptions1} alt='copy/paste node' width={1200} />
+
+### Paste Node
+
+- Place the node in the desired location by clicking the ✚ icon between connected nodes.
+- Navigate to the node explorer and select '**Paste from Clipboard**' to paste the copied node schema.
+
+<Video src='/support/node-paste.mov' />
+</Steps>
