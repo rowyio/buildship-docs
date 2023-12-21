@@ -38,6 +38,7 @@
     "type": "separator",
     "title": "Dev Tools"
   },
+  "features": "Explore Features",
   "testing": "Testing",
   "logging": "Logging",
   "secrets": "Secrets & API Keys",

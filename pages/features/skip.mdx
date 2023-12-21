@@ -1,0 +1,55 @@
+# Skip Nodes
+
+import { Steps } from 'nextra/components';
+import Video from '../../components/video/index.jsx';
+import Image from 'next/image';
+import skip1 from '../../public/support/skip-1.png';
+import skip2 from '../../public/support/skip-2.png';
+
+The "**Skip Nodes**" feature is designed to allow users to bypass the execution of specific nodes within their workflows
+during workflow testing and deployment.
+
+<Video src='/support/skip.mp4' />
+
+## Why Use Skip Nodes?
+
+When dealing with nodes like the **OpenAI Chat** node or others that **involve frequent API requests**, repetitive
+testing can be **costly**. The Skip Node feature allows users to exclude the execution of specific nodes during both
+workflow testing and deployment.
+
+The Skip Node preserves the output of the node from the previous node testing and re-uses it for all subsequent
+executions.
+
+## How Skip Node Works
+
+<Steps>
+### Skip Node Operation
+
+- To skip the execution of a particular node, access the node menu.
+
+- Click on the **Skip Node** option to enable the feature. If you have initially performed the node testing (via the
+  Play Button (▹) on the node), the node will be marked with a **Skip** icon.
+
+### Testing Data Input
+
+<Image src={skip1} alt='skip1' width='1200' />
+
+- **If the node hasn't been tested before** and you wish to skip it, clicking the "**Skip Node**" button will prompt the
+  node testing menu.
+
+- **Input your testing data** within this menu and run the test. The output generated from this testing will be stored
+  for future workflow execution.
+
+After successful testing, the node can be skipped, utilizing the stored output for subsequent workflow runs.
+
+### Unskipping a Node
+
+If you wish to reintroduce the skipped nodes into live workflow execution, access the node menu again and click on
+"**Unskip**".
+
+<Image src={skip2} alt='skip2' width='1200' />
+
+</Steps>
+
+Using the Skip Nodes feature ensures smoother development cycles by allowing selective node execution control,
+optimizing workflows during testing, and preserving tested node outputs for subsequent runs.
