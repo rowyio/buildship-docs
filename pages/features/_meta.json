@@ -2,5 +2,6 @@
   "copy-paste": "Copy & Paste",
   "rename": "Rename Workflow",
   "skip": "Skip Nodes",
-  "node-failure": "Handle Node Failure"
+  "node-failure": "Handle Node Failure",
+  "using-templates": "Using Templates"
 }
