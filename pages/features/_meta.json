@@ -1,5 +1,6 @@
 {
   "copy-paste": "Copy & Paste",
   "rename": "Rename Workflow",
-  "skip": "Skip Nodes"
+  "skip": "Skip Nodes",
+  "node-failure": "Handle Node Failure"
 }

@@ -1,0 +1,67 @@
+# Handle Node Failure
+
+import Video from '../../components/video/index.jsx';
+import Image from 'next/image';
+import onFail1 from '../../public/support/onFail1.png';
+import onFail2 from '../../public/support/onFail2.png';
+import onFail3 from '../../public/support/onFail3.png';
+import onFail4 from '../../public/support/onFail4.png';
+
+The On Fail feature allows users to specify how individual nodes behave in case of logic failure.
+
+By defining On Fail behaviors, users can effectively manage workflow execution, ensuring seamless handling of node
+errors.
+
+<Video src='/support/onFail.mov' />
+
+## Enabling On Fail Behavior
+
+To enable the On Fail for a node, open the **Node Menu (•••)** for the desired node.
+
+Click on "**Add On Fail**" to append an On Fail behavior section to the node. Users can pick from three On Fail
+behaviors:
+
+- Retry
+- Terminate
+- Custom Flow
+
+<Image src={onFail1} alt='onFail1' width={1200} />
+
+## Understanding On Fail Behaviors
+
+### Retry
+
+This behavior allows the system to automatically attempt the node logic again within specified intervals. Users can set
+the maximum number of retries and determine if the workflow should continue after retry attempts.
+
+<Image src={onFail4} alt='onFail4' width={1200} />
+
+| Configuration        | Purpose                                                                            |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| On Fail              | Retry                                                                              |
+| Max Retries          | Define the maximum number of retry attempts the backend should make.               |
+| Interval (ms)        | Set the time interval between retries (maximum: 10000ms).                          |
+| Continue after retry | Determine whether the workflow should proceed after exhausting the retry attempts. |
+
+### Terminate
+
+This option terminates the entire workflow if the specific node fails, ensuring an immediate halt to the execution.
+
+<Image src={onFail3} alt='onFail3' width={1200} />
+
+| Configuration | Purpose   |
+| ------------- | --------- |
+| On Fail       | Terminate |
+
+### Custom Flow
+
+Users can create a custom sub-workflow to execute if a node fails, offering a tailored response to node failure. By
+editing the sub-flow, users can add nodes from the library, paste from clipboard, or generate nodes using AI.
+
+<Image src={onFail2} alt='onFail2' width={1200} />
+
+| Configuration              | Purpose                                                                      |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| On Fail                    | Custom Flow                                                                  |
+| Custom Flow                | Define a sub-workflow to execute if the node fails.                          |
+| Continue After Custom Flow | Choose whether the main workflow continues after executing the sub-workflow. |
