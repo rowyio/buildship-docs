@@ -1,0 +1,8 @@
+{
+  "copy-paste": "Copy & Paste",
+  "api-spec": "Export / Import API Spec",
+  "rename": "Rename Workflow",
+  "skip": "Skip Nodes",
+  "node-failure": "Handle Node Failure",
+  "using-templates": "Using Templates"
+}
