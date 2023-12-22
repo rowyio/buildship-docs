@@ -1,0 +1,87 @@
+# Scrape Web URL
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import buildshipGoogleSearch from '/public/tutorial/buildship-google-search.jpg';
+import puppeteerTypeMethodParams from '/public/tutorial/puppeteer-type-method-params.png';
+
+Extract data from web pages by scraping their content.
+
+## Using the Scrape Web URL Node
+
+The Scrape Web URL node's functionality includes fetching the content of a web page for the provided url, the node
+accepts below parameters:
+
+- **URL (required)**: The URL of the page you want to scrape. Example: https://docs.buildship.com.
+
+- **Selector (optional)**: Specific HTML selector you want to extract text content from (by default body will be used).
+
+- **Steps (optional)**: List of steps to follow after loading the page in given url.
+
+  **Usage Example:** Suppose you want to scrape the below information:
+
+  {' '}
+
+  <Image src={buildshipGoogleSearch} alt='Buildship google search' width={800} />
+
+  So, the `steps` input value would look something like below:
+
+  ```json
+  {
+    "url": "https://www.google.com/",
+    "selector": "#result-stats",
+    "steps": [
+      // type "buildship" in google search input box
+      {
+        "action": "type",
+        "params": ["#APjFqb", "buildship"]
+      },
+
+      // click on google search button
+      {
+        "action": "click",
+        "params": [".gNO89b"]
+      },
+
+      // wait for searched query to load and if page doesn't load within 3 seconds, move to next step
+      {
+        "action": "waitForNavigation",
+        "params": [
+          {
+            "timeout": 3000,
+            "waitUntil": "load"
+          }
+        ]
+      }
+    ]
+  }
+  ```
+
+  The root `selector` value is the selector from which you want to extract the text-content, after all steps are
+  executed.
+
+  Each step object in `steps` list consists of `action` and `params`.
+
+  The `action` parameter is the name of any method from
+  [puppeteer-page-methods](https://pptr.dev/api/puppeteer.page#methods) list. And, the `params` is list of parameters
+  required in the selected `action` (a puppeteer method name).
+
+  For one of the `action` - `type`, the parameters for the
+  [puppeteer-type-method](https://pptr.dev/api/puppeteer.page.type) are:
+
+  <Image src={puppeteerTypeMethodParams} alt='Puppeteer type method parameters' width={800} height={400} />
+
+  Hence, the step object for `type` action would look like:
+
+  ```json
+  {
+    // puppeteer method name
+    "action": "type",
+
+    // "#APjFqb" is the "selector" (the selector to find <input>)
+    // "buildship" is the "text" (the value to be typed in <input>)
+    // As per parameters list of "type" method, the third parameter is optional,
+    // hence we can either include or exclude it from "params" list
+    "params": ["#APjFqb", "buildship"]
+  }
+  ```
