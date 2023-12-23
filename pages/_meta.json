@@ -5,6 +5,12 @@
       "breadcrumb": false
     }
   },
+  "docs-feedback": {
+    "title": "Docs Feedback ↗",
+    "type": "page",
+    "href": "https://docs.google.com/forms/d/e/1FAIpQLSfI6wcST5ax4mIu34ksDj4WuftYVGkDekSbheM2Wr-o40Hriw/viewform",
+    "newWindow": true
+  },
   "tutorials": {
     "title": "Tutorials",
     "theme": {
