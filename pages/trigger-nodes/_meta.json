@@ -4,5 +4,7 @@
   "scheduled-interval": "Scheduled Interval",
   "rowy-trigger": "Rowy Trigger",
   "telegram-bot": "Telegram Bot",
-  "supabase-trigger": "Supabase Trigger"
+  "supabase-trigger": "Supabase Trigger",
+  "buildship-trigger": "Buildship Trigger",
+  "firebase-auth": "Firebase Auth Trigger"
 }

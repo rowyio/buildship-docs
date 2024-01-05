@@ -5,6 +5,12 @@
       "breadcrumb": false
     }
   },
+  "docs-feedback": {
+    "title": "Docs Feedback ↗",
+    "type": "page",
+    "href": "https://docs.google.com/forms/d/e/1FAIpQLSfI6wcST5ax4mIu34ksDj4WuftYVGkDekSbheM2Wr-o40Hriw/viewform",
+    "newWindow": true
+  },
   "tutorials": {
     "title": "Tutorials",
     "theme": {
@@ -33,10 +39,12 @@
   "supabase": "Supabase",
   "pinecone": "Pinecone",
   "mysql": "MySQL",
+  "stripe": "Stripe",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
   },
+  "features": "Explore Features",
   "testing": "Testing",
   "logging": "Logging",
   "secrets": "Secrets & API Keys",
