@@ -1,0 +1,49 @@
+# BuildShip Tables
+
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import Video from '../../components/video/index.jsx';
+import tables1 from '/public/basics/BuildShipTables.png';
+import tables2 from '/public/basics/BuildShipDatabase.png';
+import tables3 from '/public/basics/BuildShipTablesHowTo1.png';
+import tables4 from '/public/basics/BuildShipTablesHowTo2.png';
+
+BuildShip Tables gives you an easy visual way to manage your BuildShip Database. Every BuildShip project comes with a
+ready-to-use Firestore database.
+
+<br />
+<Image src={tables1} alt='API Specification' width={1200} />
+
+With BuildShip, your get the ultimate flexibility to choose the database that best works for your project.
+
+- **Use BuildShip Database:** If you are looking for quick and ready-to-use database with an instant database management
+  UI.
+- **Pick Your Own Database:** Firestore, Postgres, Supabase, MySQL….or any database. Choose a database that works for
+  you if you do not want to use the BuildShip database. In this case, you can simply use them in the workflows and APIs
+  using CRUD nodes.
+
+## How to use BuildShip Table
+
+If you use BuildShip database, by using these nodes in your workflows - then you can access BuildShip Tables to
+visualize and manage the data populated by these nodes.
+
+<Callout type='warning' emoji='⚠️'>
+  BuildShip Tables is available only on Pro plan or above. You can still use BuildShip database in your workflows using
+  the CRUD nodes but will not have access to the Tables in Free or Starter plans.
+</Callout>
+<br />
+<Image src={tables2} alt='API Specification' width={1200} />
+
+### Access BuildShip Table
+
+You can access BuildShip Tables directly from the CRUD node you are using database icon. Note this will be shown only to
+Pro or above plan users.
+
+<br />
+<Image src={tables3} alt='API Specification' width={1200} />
+
+Alternatively, you can access BuildShip Tables from the navigator bar.
+
+<br />
+<Image src={tables4} alt='API Specification' width={1200} />

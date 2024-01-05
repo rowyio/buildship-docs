@@ -7,5 +7,6 @@
   "output": "Node Output",
   "variables": "Using Variables",
   "reordering-nodes": "Reordering Nodes",
-  "api-spec": "API Specification"
+  "api-spec": "API Specification",
+  "buildship-tables": "BuildShip Database"
 }
