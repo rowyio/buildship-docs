@@ -8,6 +8,18 @@ import tables1 from '/public/basics/BuildShipTables.png';
 import tables2 from '/public/basics/BuildShipDatabase.png';
 import tables3 from '/public/basics/BuildShipTablesHowTo1.png';
 import tables4 from '/public/basics/BuildShipTablesHowTo2.png';
+import tables5 from '/public/basics/BuildShipTablesHowTo3.png';
+import tables6 from '/public/basics/BuildShipTablesHowTo4.png';
+import tables7 from '/public/basics/BuildShipTablesHowTo5.png';
+import tables8 from '/public/basics/BuildShipTablesCreate.png';
+import tables9 from '/public/basics/BuildShipTablesCreate2.png';
+import tables10 from '/public/basics/BuildShipTablesCreate3.png';
+import tables11 from '/public/basics/BuildShipNodeCreate.png';
+import tables12 from '/public/basics/BuildShipNodeQuery.png';
+import tables13 from '/public/basics/BuildShipNodeGet.png';
+import tables14 from '/public/basics/BuildShipNodeDocPath.png';
+import tables15 from '/public/basics/BuildShipNodeUpdate.png';
+import tables16 from '/public/basics/BuildShipNodeDelete.png';
 
 BuildShip Tables gives you an easy visual way to manage your BuildShip Database. Every BuildShip project comes with a
 ready-to-use Firestore database.
@@ -25,25 +37,182 @@ With BuildShip, you get the ultimate flexibility to choose the database that bes
 
 ## How to use BuildShip Table
 
-If you use BuildShip database, by using these nodes in your workflows - then you can access BuildShip Tables to
-visualize and manage the data populated by these nodes.
+If you're using the **BuildShip database**, by using the **BuildShip Database** nodes in your workflows, you can access
+BuildShip Tables to visualize and manage the data populated by these nodes.
 
 <Callout type='warning' emoji='⚠️'>
   BuildShip Tables is available only on Pro plan or above. You can still use BuildShip database in your workflows using
   the CRUD nodes but will not have access to the Tables in Free or Starter plans.
 </Callout>
-<br />
-<Image src={tables2} alt='API Specification' width={1200} />
 
-### Access BuildShip Table
+## Access BuildShip Table
 
-You can access BuildShip Tables directly from the CRUD node you are using database icon. Note this will be shown only to
-Pro or above plan users.
+You can access BuildShip Tables **directly from the CRUD node** you are using database icon. Once you click on the table
+icon available on the **BuildShip Database** node, you'll be prompted to create a new table or select an existing table.
+
+<Callout type='warning'>Ensure pop-ups are unblocked for buildship.app.</Callout>
+
+<Callout type='info' emoji='ℹ️'>
+  This will be shown only to users on the Pro plan or above.
+</Callout>
 
 <br />
 <Image src={tables3} alt='API Specification' width={1200} />
 
-Alternatively, you can access BuildShip Tables from the navigator bar.
+Alternatively, you can access BuildShip Tables from the **side navigation bar**. Click on the **Database** icon to
+access the BuildShip Tables.
 
 <br />
 <Image src={tables4} alt='API Specification' width={1200} />
+
+## Creating Tables
+
+There are two ways of creating a BuildShip Table:
+
+### Set up an existing collection
+
+<Image src={tables5} alt='API Specification' width={1200} />
+
+After navigating to the Databases tab, users will be able to check out the existing collections as tables, if any. If
+you do not have any existing tables, proceed to the [Creating a new table](buildship-tables#creating-a-new-table)
+section.
+
+- To initialize an existing collection as a BuildShip table, simply click on the **Setup ➤** button.
+
+<Image src={tables6} alt='API Specification' width={1200} />
+
+- Select the table type, or leave it as default. Under the **Display** section, users can edit the **Table Name** and
+  **ID**. Optionally create and select display sections, add description for easy access.
+
+- Under the **Columns** section, select the columns to initialize with the table. Click on **Create**.
+
+<Image src={tables7} alt='API Specification' width={1200} />
+
+- Now a table will be initialized for the collection name provided. Click on “Import Existing Data” to import the data
+  into your table.
+
+- Follow the step-by-step guided process to import your data and hit “Finish”.
+
+### Creating a new table
+
+- Once you’ve navigated to the “Databases” tab, click on the “Create Table” button. (or look for the ✚ icon on the
+  bottom right corner to add a new table)
+
+- Select a Collection Name. You can also copy and paste the name of the collection used in your BuildShip Database Nodes
+  to import the existing data in your table.
+
+- Optionally, you can add the display information for your table and select initial “Row ID” as the column. Users also
+  have the option to quickly copy existing column data from any existing tables.
+
+- Click on “Create” to create the table.
+
+<Image src={tables8} alt='API Specification' width={1200} />
+
+## Manipulating Table Data
+
+There are two ways to manipulate the Firebase Collection data associated with your table.
+
+### Via BuildShip Table UI
+
+- In your empty table, click on “**Add Column**” button. Add in the Field Name, Field Key, and the Field Type.
+
+<Callout emoji='💡'>
+  If you already have existing fields in your collection, make sure to match the **Field Key value with your existing
+  keys to sync data.
+</Callout>
+
+<Image src={tables9} alt='API Specification' width={1200} />
+
+- Click on “**Add Row**” button to add values to your table.
+
+<Image src={tables10} alt='API Specification' width={1200} />
+
+### Via BuildShip Database Nodes
+
+BuildShip has **pre-built CRUD nodes** available under the **BuildShip Database Integrations** section in the Node
+Library. These nodes are similar to the Firestore database nodes and are meant to help you insert, query, and manipulate
+your BuildShip Data.
+
+In the next section, we’ll see how we can perform some basic operations on our data.
+
+## BuildShip Database Nodes
+
+<Image src={tables2} alt='API Specification' width={1200} />
+
+Let’s see how we can perform some basic operations and visualize them in our BuildShip Tables interface:
+
+### Creating Documents
+
+To create a document in a collection, we need to add the **Create Document** node from the **BuildShip Database**
+integration.
+
+To test it out, let’s try to add the data in the collection connected to a BuildShip table. Add in the data as shown in
+the image below.
+
+<br />
+
+<Image src={tables11} alt='API Specification' width={1200} />
+
+### Querying Collection
+
+To query a collection, we can use the **Collection Query** node from the **BuildShip Database** integration.
+
+Add the collection name, same as the one linked to the BuildShip Table. For the Filters field, let’s copy the sample
+input available in the Node Info (ℹ️) and modify it according to our data.
+
+```json
+[
+  {
+    "field": "username",
+    "operator": "==",
+    "value": "CillianMurphy"
+  }
+]
+```
+
+Next, let’s limit the number of responses being returned by specifying a limit and add a condition to order the results.
+For example:
+
+```js
+[{ username: 'asc' }]; // order in ascending order by the username
+```
+
+<Image src={tables12} alt='API Specification' width={1200} />
+
+### Get Document
+
+To get a document from a collection, lets use the **Get Documen** node from the **BuildShip Database** integration.
+
+Add in the Collection Name and the Document ID to retrieve.
+
+<Image src={tables13} alt='API Specification' width={1200} />
+
+### Updating Fields
+
+To update a field in the document from a collection, lets use the **Update Field Value** node from the **BuildShip
+Database** integration.
+
+For this, we’d require the **Document Path** instead of the Collection Name and Document ID. To get the Document Path,
+let’s go to our BuildShip Table for the document we wish to update. Right click any value for that particular row and
+click on “**Copy Path**”.
+
+<Image src={tables14} alt='API Specification' width={1200} />
+
+Paste the copied document path in the input field. The Document Path is in the following format:
+
+```json
+collectionName/DocumentID
+```
+
+Add in the fieldName to update and the value to update.
+
+<Image src={tables15} alt='API Specification' width={1200} />
+
+### Delete Document
+
+To update a field in the document from a collection, lets use the **Delete Document** node from the **BuildShip
+Database** integration.
+
+Add in the Collection Name and the Document ID of the document to delete.
+
+<Image src={tables16} alt='API Specification' width={1200} />
