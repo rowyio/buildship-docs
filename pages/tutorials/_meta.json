@@ -19,5 +19,8 @@
   },
   "mysql-crud": {
     "display": "hidden"
+  },
+  "secure-api": {
+    "display": "hidden"
   }
 }
