@@ -35,11 +35,9 @@
     "type": "separator",
     "title": "Integrations"
   },
-  "whatsapp": "Whatsapp",
-  "supabase": "Supabase",
-  "pinecone": "Pinecone",
-  "mysql": "MySQL",
-  "stripe": "Stripe",
+  "messaging": "Messaging",
+  "payment": "Payment",
+  "database": "Database",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
