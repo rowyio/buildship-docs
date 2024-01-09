@@ -40,13 +40,28 @@ export default withNextra({
     {
       source: '/utility-nodes/overview',
       destination: '/utility-nodes',
-      permanent: true
+      permanent: true,
     },
     {
       source: '/integrations/:slug(whatsapp)',
       destination: '/whatsapp',
-      permanent: true
-    }
+      permanent: true,
+    },
+    {
+      source: '/:slug(whatsapp)',
+      destination: '/messaging/:slug',
+      permanent: true,
+    },
+    {
+      source: '/:slug(stripe)',
+      destination: '/payment/:slug',
+      permanent: true,
+    },
+    {
+      source: '/:slug(supabase|pinecone|mysql)',
+      destination: '/database/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

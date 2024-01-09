@@ -1,0 +1,7 @@
+{
+  "whatsapp": "WhatsApp",
+  "telegram-bot": {
+    "title": "Telegram",
+    "href": "/trigger-nodes/telegram-bot"
+  }
+}

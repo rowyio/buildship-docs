@@ -1,0 +1,9 @@
+{
+  "firebase": {
+    "title": "Firebase",
+    "href": "/tutorials/firebase-project"
+  },
+  "supabase": "Supabase",
+  "pinecone": "Pinecone",
+  "mysql": "MySQL"
+}
