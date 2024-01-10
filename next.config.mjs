@@ -62,6 +62,11 @@ export default withNextra({
       destination: '/database/:slug',
       permanent: true,
     },
+    {
+      source: '/workflow-operations',
+      destination: '/features/copy-paste',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
