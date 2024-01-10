@@ -19,5 +19,8 @@
   },
   "mysql-crud": {
     "display": "hidden"
+  },
+  "notion-oauth": {
+    "display": "hidden"
   }
 }
