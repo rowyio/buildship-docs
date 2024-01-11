@@ -38,6 +38,8 @@
   "messaging": "Messaging",
   "payment": "Payment",
   "database": "Database",
+  "productivity": "Productivity",
+  "storage": "Storage",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
