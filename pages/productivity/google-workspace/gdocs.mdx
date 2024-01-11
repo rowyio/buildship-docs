@@ -1,0 +1,15 @@
+# Google Docs Nodes
+
+import Image from 'next/image';
+import gdocsNodes from '/public/assets/gdocs-nodes.png';
+
+<Image src={gdocsNodes} alt='Google Docs Nodes' width={1200} />
+
+The Google Docs Nodes allow you to interact with your Google Docs documents. You can create, update, delete, and read
+documents. Currently, the following nodes are available:
+
+| Node name             | Description                                 | API Reference                                                                                           |
+| --------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Get Document          | Get a document                              | [Get Document](https://developers.google.com/docs/api/reference/rest/v1/documents/get)                  |
+| Create Document       | Initializes a document                      | [Create Document](https://developers.google.com/docs/api/reference/rest/v1/documents/create)            |
+| Batch Update Document | Applies one or more updates to the document | [Batch Update Document](https://developers.google.com/docs/api/reference/rest/v1/documents/batchUpdate) |
