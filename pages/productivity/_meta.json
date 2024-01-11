@@ -2,5 +2,6 @@
   "notion": {
     "title": "Notion",
     "href": "/tutorials/notion-oauth"
-  }
+  },
+  "google-workspace": "Google Workspace"
 }

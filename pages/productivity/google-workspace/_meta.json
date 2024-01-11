@@ -1,0 +1,14 @@
+{
+  "gmail": {
+    "display": "hidden"
+  },
+  "gcal": {
+    "display": "hidden"
+  },
+  "gdocs": {
+    "display": "hidden"
+  },
+  "gsheets": {
+    "display": "hidden"
+  }
+}

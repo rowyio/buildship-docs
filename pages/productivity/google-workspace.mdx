@@ -1,0 +1,66 @@
+# Google Workspace
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import oauth1 from '/public/basics/oauth-1.png';
+import gsuite from '/public/assets/gsuite.png';
+import { Cards, Card } from 'nextra/components';
+
+Google Workspace is an integral part of managing communication and improving efficiency. Formerly known as G Suite and
+Google Apps, Google Workspace provides a suite of productivity and office tools, including **Gmail**, **Google Drive**,
+**Google Docs**, **Google Sheets**, and **Google Meet**.
+
+<Image src={gsuite} alt='Google Workspace' width={1200} />
+
+BuildShip introduces pre-built Google Workspace Nodes for Gmail, Google Calendar, Google Docs, and Google Sheets, with
+more integrations in the pipeline. These GSuite nodes are seamlessly integrated with OAuth, allowing you to connect to
+your Google Tools through a single sign-in process. No need for additional setup or managing API Keys.
+
+Automate your daily tasks, from importing information into Google Sheets to creating documents in Google Docs or
+automating Gmail communications - all in low-code.
+
+## Google Workspace Nodes
+
+Explore the Google Workspace Integrations available in the Node Library under their respective sections. For detailed
+technical information on a specific integration, please refer to their dedicated pages:
+
+<Cards num={3}>
+  <Card image arrow title='Gmail' href='/productivity/google-workspace/gmail'>
+    <>![Gmail Nodes](/assets/gmail.png)</>
+  </Card>
+  <Card image arrow title='Google Calendar' href='/productivity/google-workspace/gcal'>
+    <>![Google Calendar Nodes](/assets/gcal.png)</>
+  </Card>
+  <Card image arrow title='Google Docs' href='/productivity/google-workspace/gdocs'>
+    <>![Google Docs Nodes](/assets/gdocs.png)</>
+  </Card>
+  <Card image arrow title='Google Sheets' href='/productivity/google-workspace/gsheets'>
+    <>![Google Sheets Nodes](/assets/gsheets.png)</>
+  </Card>
+</Cards>
+
+## Authentication Process
+
+OAuth Nodes for Google Workspace integrations utilize a distinctive Fingerprint Icon, initially displayed in red to
+indicate an unauthenticated state.
+
+<Image src={oauth1} alt='OAuth Node' width={1200} />
+
+### Initiating Authentication
+
+- Click on the Fingerprint Icon associated with the desired Google Workspace node.
+- This action initiates an OAuth authentication window, prompting users to log in to the integration securely via their
+  associated Google Accounts.
+
+### Successful Authentication
+
+- Upon successful login, the Fingerprint Icon transitions to green, signaling the completion of the authentication
+  process.
+
+- In cases where the icon doesn't transition automatically, users can manually select the authenticated user account by
+  clicking the Fingerprint Icon again.
+
+<Callout>
+  For in-depth technical insights into OAuth Nodes and authentication, refer to our dedicated [OAuth Nodes
+  documentation](/basics/oauth).
+</Callout>
