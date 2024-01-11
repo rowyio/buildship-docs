@@ -1,1 +1,16 @@
 # Gmail Nodes
+
+import Image from 'next/image';
+import gmailNodes from '/public/assets/gmail-nodes.png';
+
+<Image src={gmailNodes} alt='Gmail Nodes' width={1200} />
+
+The Gmail nodes allow you to interact with your Gmail account. You can send emails, retrieve emails, and retrieve
+attachments. Currently, the following nodes are available:
+
+| Node name        | Description                                        | API Reference                                                                                         |
+| ---------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Get User Profile | Retrieve the profile of the authenticated account. | [Get Profile](https://developers.google.com/gmail/api/v1/reference/users/getProfile)                  |
+| Send Email       | Send an email.                                     | [Send Message](https://developers.google.com/gmail/api/v1/reference/users/messages/send)              |
+| List Emails      | Retrieve a list of emails.                         | [List Messages](https://developers.google.com/gmail/api/v1/reference/users/messages/list)             |
+| Get Attachment   | Retrieve an attachment.                            | [Get Attachment](https://developers.google.com/gmail/api/v1/reference/users/messages/attachments/get) |
