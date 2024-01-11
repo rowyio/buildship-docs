@@ -1,1 +1,117 @@
 # Notion Integration using OAuth Nodes
+
+import Image from 'next/image';
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import notionOnboarding from '/public/tutorial/notion-onboarding.png';
+import authentication from '/public/basics/oauth-1.png';
+import createPage from '/public/tutorial/notion-create-page.png';
+import getPage from '/public/tutorial/notion-get-page.png';
+import listUsers from '/public/tutorial/notion-list-users.png';
+import queryDb from '/public/tutorial/notion-query-db.png';
+import search from '/public/tutorial/notion-search.png';
+
+In the realm of productivity tools, Notion stands out as an all-encompassing platform for planning, brainstorming, and
+project management.
+
+Leveraging the capabilities of the Notion API, we can now extend its functionality to build automations and workflows
+that enhance our productivity.
+
+With the introduction of BuildShip OAuth Notion Nodes, connecting to your Notion workspace and crafting automations
+becomes a seamless, no-code experience.
+
+## Prerequisites ✅
+
+### A Notion Account
+
+To get started, you'll need a Notion account. If you don't have one, you can sign up for free
+[here](https://www.notion.so/signup).
+
+<Image src={notionOnboarding} alt='Notion Onboarding' width={1200} />
+
+## Authenticating Notion OAuth Nodes
+
+Notion OAuth Nodes feature a distinctive Fingerprint Icon initially highlighted in red, indicating a lack of
+authentication to any specific account.
+
+<Image src={authentication} alt='Notion Authentication' width={1200} />
+
+Follow the steps below to authenticate:
+
+<Steps>
+### Initiating Authentication
+
+- Click on the Fingerprint Icon associated with the Notion OAuth Node.
+
+- This action triggers an authentication window, prompting users to log in to their Notion integration.
+
+### Successful Authentication
+
+- Upon successful login, the Fingerprint Icon turns green, signifying a completed authentication process.
+
+- If the icon doesn't change automatically, users can manually select the authenticated user account by clicking the
+  Fingerprint Icon again.
+
+<Callout>
+Learn more about the OAuth Nodes [here](/basics/oauth).
+</Callout>
+</Steps>
+
+## Notion OAuth Nodes
+
+### Fetch Page
+
+Fetch Page node let's you retrieve a Notion page simply by logging in.
+
+Get the required information from a Notion page to incorporate it into another application or workflow.
+
+<Image src={getPage} alt='Notion Get Page' width={1200} />
+
+<Callout type='tip' emoji='💡'>
+  **SAMPLE USE CASE:** Consider a scenario where you have a Notion page containing the latest sales figures. You can use
+  the Fetch Page node to extract this data and display it on an external dashboard without manual data entry.
+</Callout>
+
+### Create Page
+
+The Create Page creates a new page that is a child of an existing page or database.
+
+<Callout type="tip" emoji="💡">
+**SAMPLE USE CASE:** Imagine you have a support ticket system, and each new ticket requires a dedicated Notion page for tracking.
+
+With the Create Page node, you can automatically generate a new Notion page for each incoming support ticket,
+streamlining your workflow.
+
+</Callout>
+
+<Image src={createPage} alt='Notion Create Page' width={1200} />
+
+### List Users
+
+The List Users node returns a list of users that have access to the workspace.
+
+<Callout type='tip' emoji='💡'>
+  **SAMPLE USE CASE:** Suppose you are building an internal tool that requires sending notifications to specific users
+  in your Notion workspace. The List Users node enables you to fetch the user details dynamically and send targeted
+  notifications.
+</Callout>
+
+<Image src={listUsers} alt='Notion List Users' width={1200} />
+
+### Query Database
+
+Gets a list of Pages and/or Databases contained in the database, filtered and ordered according to the filter conditions
+and sort criteria provided in the request using OAuth.
+
+<Image src={queryDb} alt='Notion Query Database' width={1200} />
+
+### Search by Title
+
+Performs a search on Notion for a given title through all the parent and child pages.
+
+<Callout type='tip' emoji='💡'>
+  **SAMPLE USE CASE:** For content creation, you might have various documents scattered across different pages in
+  Notion. The Search by Title node allows you to efficiently locate relevant documents by searching for specific titles.
+</Callout>
+
+<Image src={search} alt='Notion Query Database' width={1200} />
