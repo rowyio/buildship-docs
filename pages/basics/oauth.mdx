@@ -6,6 +6,7 @@ import Image from 'next/image';
 import oauthOg from '/public/basics/oauth-og.png';
 import oauth1 from '/public/basics/oauth-1.png';
 import oauth2 from '/public/basics/oauth-2.png';
+import { Cards, Card } from 'nextra/components';
 
 OAuth Nodes are a new addition to the BuildShip Node Library, designed to seamlessly integrate with various services
 through OAuth authentication.
@@ -79,3 +80,16 @@ provider’s authorization endpoint.
 
 After account is successfully logged in and the request for the permissions is approved, the authorization code is
 exchanged for an Access Token. This Access Token substitutes for the API Keys.
+
+## BuildShip OAuth Nodes
+
+The BuildShip Node Library currently features the following OAuth Nodes (more to be added soon! 🤩):
+
+<Cards num={2}>
+  <Card image arrow title='Google Workspace' href='/productivity/google-workspace'>
+    <>![Gmail Nodes](/assets/gsuite.png)</>
+  </Card>
+  <Card image arrow title='Notion' href='/tutorials/notion-oauth'>
+    <>![Google Calendar Nodes](/assets/notion.png)</>
+  </Card>
+</Cards>
