@@ -10,6 +10,7 @@ import getPage from '/public/tutorial/notion-get-page.png';
 import listUsers from '/public/tutorial/notion-list-users.png';
 import queryDb from '/public/tutorial/notion-query-db.png';
 import search from '/public/tutorial/notion-search.png';
+import subpage from '/public/tutorial/notion-subpage.png';
 import ids from '/public/tutorial/notion-ids.png';
 
 In the realm of productivity tools, Notion stands out as an all-encompassing platform for planning, brainstorming, and
@@ -123,3 +124,15 @@ Performs a search on Notion for a given title through all the parent and child p
 </Callout>
 
 <Image src={search} alt='Notion Query Database' width={1200} />
+
+### Create a Database as a Subpage
+
+Creates a database as a subpage in the specified parent page, with the specified properties schema. Currently, the
+parent of a new database must be a Notion page or a wiki database.
+
+<Callout type='tip' emoji='💡'>
+  **SAMPLE USE CASE:** For sub-chapters creation, Suppose you are creating a Book on your Database or Notion Page, with
+  Create a Database as a Subpage node you can add subchapters to it.
+</Callout>
+
+<Image src={subpage} alt='Notion Create a Database as a Subpage' width={1200} />
