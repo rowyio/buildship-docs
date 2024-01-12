@@ -1,0 +1,48 @@
+# How to send emails with Resend
+
+import Image from 'next/image';
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import resend1 from '/public/integrations/messaging/resend-1.png';
+import resend2 from '/public/integrations/messaging/resend-2.png';
+import resend3 from '/public/integrations/messaging/resend-3.png';
+import resend4 from '/public/integrations/messaging/resend-4.png';
+
+Integrate Resend in your BuildShip workflow to send transactional email notifications to your users.
+
+## Integrating Resend with BuildShip
+
+To integrate Resend with BuildShip, let’s get started with the following steps:
+
+<Steps>
+
+### Resend Account
+
+- Go to your Resend account's [API Keys page](https://resend.com/api-keys).
+
+<Image src={resend1} alt='Resend API Keys' width={1200} />
+
+- Create a new API key, ensuring that you grant full access or specific permissions necessary for integration in
+  BuildShip’s prebuilt node.
+
+<Image src={resend2} alt='Resend API Keys' width={1200} />
+
+### Pre-built Resend BuildShip Node
+
+- Go to BuildShip and click on “Add node” to add the Resend node to your workflow.
+
+<Image src={resend3} alt='Resend API Keys' width={1200} />
+
+- The sketch up of the Resend node is shown below. Enter the newly created API key in the “API key” field for setting up
+  the connection.
+
+<Callout emoji='✅'>
+  **Store your keys in the Secret Manager** The API Key is a sensitive piece of information and should not be shared
+  publicly. Make sure you keep your API Key secure and do not share it with anyone. Learn how to store your API Keys as
+  secrets [here](/secrets#leveraging-buildship-secret-manager).
+</Callout>
+
+<Image src={resend4} alt='Resend API Keys' width={1200} />
+
+</Steps>
+The Resend node is versatile, catering to a range of use cases. For instance, you can use it to send scheduled emails containing highly personalized GPT-4 generated content, enhancing audience engagement and optimizing your marketing campaigns. Check out a [detailed workflow example video](https://www.youtube.com/watch?v=soczzk2D5UE) or [directly clone the template](https://buildship.com/templates/scheduled-emails) for quick implementation.

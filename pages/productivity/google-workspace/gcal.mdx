@@ -1,0 +1,16 @@
+# Google Calendar Nodes
+
+import Image from 'next/image';
+import gcalNodes from '/public/assets/gcal-nodes.png';
+
+<Image src={gcalNodes} alt='Google Calendar Nodes' width={1200} />
+
+The Google Calendar nodes let you read, create, update, and delete events and calendars in your Google Calendar.
+Currently, the following nodes are available:
+
+| Node name         | Description                                        | API Reference                                                                               |
+| ----------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| List Calendars    | Returns the calendars on the user's calendar list. | [List Calendars](https://developers.google.com/calendar/api/v3/reference/calendarList/list) |
+| Get Events        | Returns the events on the specified calendar.      | [List Events](https://developers.google.com/calendar/api/v3/reference/events/list)          |
+| Create Event      | Creates an event on the specified calendar.        | [Insert Event](https://developers.google.com/calendar/api/v3/reference/events/insert)       |
+| Get Event Details | Returns the details of a specific event.           | [Get Event](https://developers.google.com/calendar/api/v3/reference/events/get)             |

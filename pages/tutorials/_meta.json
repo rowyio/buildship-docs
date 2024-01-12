@@ -20,7 +20,9 @@
   "mysql-crud": {
     "display": "hidden"
   },
-  "secure-api": {
+  "notion-oauth": {
     "display": "hidden"
-  }
+  },
+   "secure-api": {
+     "display": "hidden"
 }

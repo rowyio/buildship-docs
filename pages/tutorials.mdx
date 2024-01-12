@@ -104,6 +104,19 @@ Step by step guided tutorial for powerful usecases and examples.
     }}
   >
     <>![Secure Your API Endpoint preview](../public/tutorial/secureworkflow.png)</>
+
+  </ShowcaseCard>
+    <ShowcaseCard
+    title='Notion'
+    href='./tutorials/notion-oauth'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'notion',
+      });
+    }}
+  >
+    <>![Notion Connection preview](../public/tutorial/notionOG.png)</>
   </ShowcaseCard>
 </Cards>
 
