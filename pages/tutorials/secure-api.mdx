@@ -3,22 +3,17 @@
 import Image from 'next/image';
 import { Callout } from 'nextra/components';
 import { Steps } from 'nextra/components';
-import secureworkflow from '/public/tutorial/secureworkflow.png';
-import condition from '/public/tutorial/authorization.png';
+import secureworkflow from '/public/tutorial/secureworkflows.png';
+import condition from '/public/tutorial/branch.png';
 import header from '/public/tutorial/header.png';
-import secureAPI from '/public/tutorial/secure-api.png';
+import secureAPI from '/public/tutorial/secure-apis.png';
 
-As you build workflows on BuildShip and Deploy 🚀 it on your application and make it accessible on the internet, you're
-going to need to secure it too.
+As you build, ship, and deploy workflows on BuildShip, it's crucial to ensure the security of your API endpoint when
+making it accessible on the internet.
 
 <Image src={secureworkflow} alt='Secure-workflow' width='1200' />
 
 Let's see the best practices and methods on how to do that.
-
-<Callout type='warning' emoji='🔐'>
-  Ensure to store keys securely using BuildShip's [Secret Manager](/secrets) as it addresses this concern by providing
-  an effective way to safeguard your secret keys using Google Cloud Platform (GCP) Secret Manager under the hood.
-</Callout>
 
 ## Using Get Authorization Header
 
@@ -26,7 +21,8 @@ Let's see the best practices and methods on how to do that.
 
 ### Accessing the API Key and Authorization Header
 
-You can easily **access the user's API key from the Request's Authorization Headers**:
+To secure your API endpoint, you can utilize the **Authorization Header** for easy access to the user's API key. Follow
+these simple steps:
 
 - Click on the **Edit icon (✎)** on the REST API Trigger.
 - Add a new input under **Request Headers** - authorization.
@@ -34,34 +30,42 @@ You can easily **access the user's API key from the Request's Authorization Head
 
 <Image src={header} alt='authorizarion-header' width='1200' />
 
-### Using the Get Authorization Header Node
-
-This validates the presence of the Authorization Header in the incoming request, ensuring the user's API key is included
-and verifying it.
-
-- Add the **Get Authorization Header Node** from the Node Explorer next to the REST API Call.
-- In the Request, pass the Request of the REST API Call as a variable.
-
 ### Adding Condition to Validate Header
 
-We will use Branch Node to add condition to validate and verify the authorization header in the API request.
+To enhance security, use a Branch Node to add a condition that validates and verifies the authorization header in the
+API request:
 
-- In the condition set the condition as `Authorization Header Value == ${APIKey}`, use variable to do this, refer to
-  below image.
-- Now you can add the nodes of your workflow to then and else condition accordingly.
+- Set the condition in the Branch Node as `Authorization Header Value == key-to-match`. Utilize variables for
+  flexibility (refer to the image below).
+- Organize your workflow nodes into the "then" and "else" conditions accordingly.
 
 <Image src={condition} alt='authorizarion-header-condition' width='1200' />
 
-### Yay! The API Endpoint is Now Secured
+### Congratulations! Your API Endpoint is Now Secured
 
-You can now test and Ship your workflow without worry and use the endpoint freely on your application. You workflow
-should look like this:
+With the implemented security measures, you can confidently test and ship your workflow, ensuring the endpoint's safe
+usage within your application. Your workflow structure should resemble the following after following the above steps:
 
 <Image src={secureAPI} alt='authorizarion-header-condition-workflow' width='1200' />
 
 </Steps>
 
-<Callout type='tip' emoji='💡'>
-  If you are using Firebase as your Database you can refer to a dedicated **Firebase Authenticated User Trigger**, refer
-  to this docs [here](/trigger-nodes/firebase-auth).
-</Callout>
+## Additional Resources for Database Integration
+
+### For Supabase Database
+
+If you're using Supabase as your database, refer to a video tutorial that demonstrates building a complete application
+from scratch.
+
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/uhc8732Dpq4'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+### For Firebase Database
+
+If you're using Firebase as your database, check out our dedicated Firebase Authenticated User Trigger documentation for
+seamless integration [here](/trigger-nodes/firebase-auth).

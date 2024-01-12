@@ -23,6 +23,7 @@
   "notion-oauth": {
     "display": "hidden"
   },
-   "secure-api": {
-     "display": "hidden"
+  "secure-api": {
+    "display": "hidden"
+  }
 }
