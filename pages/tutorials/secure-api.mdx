@@ -13,7 +13,7 @@ making it accessible on the internet.
 
 <Image src={secureworkflow} alt='Secure-workflow' width='1200' />
 
-## Using Get Authorization Header
+## Using Authorization Header
 
 The Authorization header provides the server with information to authenticate and authorize the client making a request.
 It typically contains a token or credentials that the server uses to validate the client’s identity and grant or deny
@@ -21,9 +21,9 @@ access to the requested resource.
 
 <Steps>
 
-### Accessing the API Key and Authorization Header
+### Accessing Authorization Header
 
-To secure your API endpoint, you can utilize the **Authorization Header** for access to the user's API key. It enables
+To secure your API endpoint, you can utilize the REST API **Authorization Header** to validates the API key. It enables
 to authenticate and authorize users, protecting the API from unauthorized access. Follow these simple steps:
 
 - Click on the **Edit icon (✎)** on the REST API Trigger.
@@ -56,8 +56,8 @@ usage within your application. Your workflow structure should resemble the follo
 
 ### For Supabase Database
 
-If you're using Supabase as your database, refer to a video tutorial that demonstrates building a complete application
-from scratch.
+If you're using Supabase as your database, refer to this video tutorial that demonstrates building a complete secure
+Supabase application from scratch.
 
 <iframe
   className='aspect-video w-full'
