@@ -93,8 +93,20 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![MySQL Connection preview](../public/tutorial/mysql.png)</>
   </ShowcaseCard>
-
   <ShowcaseCard
+    title='Secure Your API Endpoint'
+    href='./tutorials/secure-api'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'secure-api',
+      });
+    }}
+  >
+    <>![Secure Your API Endpoint preview](../public/tutorial/secureworkflows.png)</>
+
+  </ShowcaseCard>
+    <ShowcaseCard
     title='Notion'
     href='./tutorials/notion-oauth'
     onClick={() => {

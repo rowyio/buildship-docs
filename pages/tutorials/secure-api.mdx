@@ -1,0 +1,73 @@
+# Secure Your API Endpoint
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import secureworkflow from '/public/tutorial/secureworkflows.png';
+import condition from '/public/tutorial/branch.png';
+import header from '/public/tutorial/header.png';
+import secureAPI from '/public/tutorial/secure-apis.png';
+
+As you build, ship, and deploy workflows on BuildShip, it's crucial to ensure the security of your API endpoint when
+making it accessible on the internet.
+
+<Image src={secureworkflow} alt='Secure-workflow' width='1200' />
+
+## Using Authorization Header
+
+The Authorization header provides the server with information to authenticate and authorize the client making a request.
+It typically contains a token or credentials that the server uses to validate the client’s identity and grant or deny
+access to the requested resource.
+
+<Steps>
+
+### Accessing Authorization Header
+
+To secure your API endpoint, you can utilize the REST API **Authorization Header** to validates the API key. It enables
+to authenticate and authorize users, protecting the API from unauthorized access. Follow these simple steps:
+
+- Click on the **Edit icon (✎)** on the REST API Trigger.
+- Add a new input under **Request Headers** - authorization.
+- Click on Save.
+
+<Image src={header} alt='authorizarion-header' width='1200' />
+
+### Adding Condition to Validate Header
+
+To enhance security, use a Branch Node to add a condition that validates and verifies the authorization header in the
+API request:
+
+- Set the condition in the Branch Node as `Authorization Header Value == key-to-match`. Utilize variables for
+  flexibility (refer to the image below).
+- Organize your workflow nodes into the "then" and "else" conditions accordingly.
+
+<Image src={condition} alt='authorizarion-header-condition' width='1200' />
+
+### Congratulations! Your API Endpoint is Now Secured
+
+With the implemented security measures, you can confidently test and ship your workflow, ensuring the endpoint's safe
+usage within your application. Your workflow structure should resemble the following after following the above steps:
+
+<Image src={secureAPI} alt='authorizarion-header-condition-workflow' width='1200' />
+
+</Steps>
+
+## Additional Resources for Database Integration
+
+### For Supabase Database
+
+If you're using Supabase as your database, refer to this video tutorial that demonstrates building a complete secure
+Supabase application from scratch.
+
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/uhc8732Dpq4'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+### For Firebase Database
+
+If you're using Firebase as your database, check out our dedicated Firebase Authenticated User Trigger documentation for
+seamless integration [here](/trigger-nodes/firebase-auth).
