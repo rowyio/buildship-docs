@@ -9,5 +9,6 @@
   "reordering-nodes": "Reordering Nodes",
   "api-spec": "API Specification",
   "buildship-tables": "BuildShip Database",
-  "oauth": "OAuth Nodes"
+  "oauth": "OAuth Nodes",
+  "ship-an-api": "SHIP an API"
 }
