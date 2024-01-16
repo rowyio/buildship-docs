@@ -8,6 +8,7 @@ import aiNode2 from '/public/assets/ai-node2.png';
 import aiNode3 from '/public/assets/ai-node3.png';
 import autofill1 from '/public/assets/autofill1.png';
 import autofill2 from '/public/assets/autofill2.png';
+import aiPrompt from '/public/assets/aiPrompt.png';
 
 There are two ways to build custom nodes in BuildShip:
 
@@ -62,6 +63,27 @@ The resultant output should be in the form of a JSON object with the following f
 
 </Callout>
 
+### Example Prompt to Generate Node using any API
+
+With this example prompt you can generate a perfect node for any API or SDK module. For this example, we will generate a
+node for the Adalo API.
+
+Typically the best way to generate a node with AI is using a prompt like this.. 1. input, 2. output, and 3. docs API
+code (which can be found in the official documentation -
+https://help.adalo.com/integrations/the-adalo-api/push-notifications#curl.) You can customize the steps according to
+your usecase.
+
+{' '}
+
+<Image src={aiPrompt} alt='AI Node Prompt' width={1200} />
+
+{' '}
+<Callout emoji='💡' type='info'>
+  Make sure to always import any npm package using [Named
+  import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#named_import) declaration.
+  Example: `import module from "module-name";` & `import Crypto from 'crypto';`
+</Callout>
+
 ### Explore and Modify the Node via the Node Explorer
 
 Once the AI generates the node based on your prompt, you can explore its functionalities and make further modifications
@@ -75,7 +97,7 @@ parameters**, **output configurations**, and **metadata descriptions**. For more
 
 The Node Editor provides a convenient testing feature, allowing you to test the newly created node using sample data
 without deploying the entire workflow. This ensures that the node operates as expected before full implementation. To
-learn more about testing nodes, refer to [the testing nodes section]().
+learn more about testing nodes, refer to [the testing nodes section](/testing).
 
 </Steps>
 
