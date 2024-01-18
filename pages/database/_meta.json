@@ -5,6 +5,7 @@
   },
   "buildship-db": "Buildship",
   "buildship-db-nodes": {
+    "title": "Buildship Database Nodes",
     "display": "hidden"
   },
   "supabase": "Supabase",
