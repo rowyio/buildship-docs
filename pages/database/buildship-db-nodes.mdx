@@ -1,0 +1,36 @@
+# BuildShip Built-in Database Nodes
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import buildshipDbNodes from '/public/assets/buildship-db-nodes.png';
+
+In the Node Explorer, navigate to the "**BuildShip Database**" category. You'll find a range of nodes for various
+database operations. Insert the relevant BuildShip Database nodes into your workflow. Customize the nodes by providing
+the necessary input parameters for your specific use case.
+
+<br />
+
+<Image src={buildshipDbNodes} alt='BuildShip Database Nodes' width={1200} />
+
+<Callout>
+  The BuildShip Nodes work in the same way as the **Firebase Nodes**. However, you do not need to provide any additional
+  information, like the **Project ID** input to use the BuildShip Database nodes. It directly uses the Firebase Storage
+  account associated wit your BuildShip Project to interact with your BuildShip database.
+</Callout>
+
+## Purpose and Corresponding Nodes
+
+Here's a comparison table highlighting the purpose of Database operations and the corresponding nodes for both
+BuildShip's Database and [your own Firestore Database](/database/firebase):
+
+| Purpose                        | BuildShip Database Nodes   | Firestore Database Nodes       |
+| ------------------------------ | -------------------------- | ------------------------------ |
+| **Create Document**            | Create Document            | Create Firestore Document      |
+| **Sync Collection to Algolia** | Sync Collection to Algolia | Sync Firebase to Algolia Index |
+| **Add Object to Array**        | Add Object to Array        | Add Object to Firestore Array  |
+| **Collection Query**           | Collection Query           | Firestore Collection Query     |
+| **Query Count**                | Query Count                | Firestore Query Count          |
+| **Delete Document**            | Delete Document            | Delete Firestore Document      |
+| **Get Document**               | Get Document               | Get Firestore Document         |
+| **Get Field Value**            | Get Field Value            | Get Document Field Value       |
+| **Update Field Value**         | Update Field Value         | Update Firestore Field Value   |

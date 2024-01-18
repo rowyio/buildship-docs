@@ -3,6 +3,10 @@
   "firestore-nodes": {
     "display": "hidden"
   },
+  "buildship-db": "Buildship",
+  "buildship-db-nodes": {
+    "display": "hidden"
+  },
   "supabase": "Supabase",
   "pinecone": "Pinecone",
   "mysql": "MySQL"
