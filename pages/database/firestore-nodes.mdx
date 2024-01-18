@@ -1,0 +1,46 @@
+# Firestore Database Nodes
+
+import Image from 'next/image';
+import firestoreList from '/public/assets/firestore-list.png';
+import firebaseList from '/public/assets/firebase-list.png';
+
+BuildShip supports two categories of nodes for interacting with your Firebase Projects.
+
+## Firestore Nodes
+
+<Image src={firestoreList} alt='Firestore Nodes' width={1200} />
+
+Firestore nodes are used to interact with the Firestore database. They are located in the `Firestore` category in the
+node Library. The Firestore nodes let you perform CRUD operations on your Firestore database.
+
+Check the table below to see the list of pre-built Firestore nodes that are currently supported by BuildShip.
+
+| Purpose                        | Firestore Database Nodes       |
+| ------------------------------ | ------------------------------ |
+| **Create Document**            | Create Firestore Document      |
+| **Sync Collection to Algolia** | Sync Firebase to Algolia Index |
+| **Add Object to Array**        | Add Object to Firestore Array  |
+| **Collection Query**           | Firestore Collection Query     |
+| **Query Count**                | Firestore Query Count          |
+| **Delete Document**            | Delete Firestore Document      |
+| **Get Document**               | Get Firestore Document         |
+| **Get Field Value**            | Get Document Field Value       |
+| **Update Field Value**         | Update Firestore Field Value   |
+
+## Firebase Nodes
+
+Firebase nodes are used to interact with the Firebase project. They are located in the `Firebase` category in the node
+Library. The Firebase nodes let you perform authentication operations on your Firebase project like getting user
+details.
+
+<Image src={firebaseList} alt='Firebase Nodes' width={1200} />
+
+Check the table below to see the list of pre-built Firestore nodes that are currently supported by BuildShip.
+
+| Firebase Nodes                     | Purpose                                                             |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| **Create Firebase User**           | Create a new Firebase Auth User with email, full name, and password |
+| **Get User Data With ID**          | Fetch user data from Firebase Auth based given their user ID        |
+| **Get User Data With Auth Token**  | Fetch user data from Firebase based on the auth token               |
+| **User Exists Check**              | Checks if a firebase user already exists for the given email        |
+| **Mark Firebase User as Verified** | Mark a Firebase Auth User as verified using user id                 |

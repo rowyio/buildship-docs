@@ -1,7 +1,7 @@
 {
-  "firebase": {
-    "title": "Firebase",
-    "href": "/tutorials/firebase-project"
+  "firebase": "Firebase",
+  "firestore-nodes": {
+    "display": "hidden"
   },
   "supabase": "Supabase",
   "pinecone": "Pinecone",
