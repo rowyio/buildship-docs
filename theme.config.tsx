@@ -116,7 +116,7 @@ const config: DocsThemeConfig = {
         />
         <meta
           property='og:image'
-          content='https://firebasestorage.googleapis.com/v0/b/rowy-testing-bhavya.appspot.com/o/image%2Fzzzzzzzzzzzzzzzzzzzy%2Fimage%2FSQZ6mwWhm8HB1D3JWOxP-og.png?alt=media&token=58aec1b7-2b6a-4ffa-9bcc-b3e3e23139d5'
+          content='https://storage.googleapis.com/website-a1s39m.appspot.com/buildship-app-logos/OG.png'
         />
 
         <meta name='apple-mobile-web-app-title' content='BuildShip Docs' />
