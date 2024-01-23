@@ -4,5 +4,6 @@
     "title": "Telegram",
     "href": "/trigger-nodes/telegram-bot"
   },
-  "resend": "Resend"
+  "resend": "Resend",
+  "mailchimp": "Mailchimp"
 }

@@ -1,0 +1,76 @@
+# Automate Emails with MailChimp
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import mailchimpOG from '/public/integrations/messaging/mailchimpOG.png';
+import mailchimp1 from '/public/integrations/messaging/mailchimp1.png';
+import mailchimp2 from '/public/integrations/messaging/mailchimp2.png';
+import mailchimp3 from '/public/integrations/messaging/mailchimp3.png';
+import mailchimp4 from '/public/integrations/messaging/mailchimp4.png';
+
+The MailChimp BuildShip integration lets you build automations and backend workflows that revolves around your MailChimp
+account. Add new subscribers to mailing lists, send campaign emails on a schedule or on an event, and more.
+
+<br />
+<Image src={mailchimpOG} alt='MailChimp OG Image' width={1200} />
+
+## Prerequisites ✅
+
+### MailChimp API Key
+
+Follow the steps below to get your MailChimp API Key:
+
+1. Log in to your **MailChimp Account** and navigate to
+   [Profile > Extras > API Keys](https://us9.admin.mailchimp.com/account/api/).
+2. Click on the **Create A Key** button.
+3. Give the API Key a Name as prompted and click “**Generate Key**”.
+4. Copy the API Key and save it somewhere safe as you won't be able to see or copy it again.
+
+<Callout type='info'>
+  **Recommended:** Save your API Keys securely with [BuildShip Secret Manager](/secrets) and easily re-use it in your
+  nodes.
+</Callout>
+
+<br />
+<Image src={mailchimp1} alt='MailChimp API Key' width={1200} />
+
+### MailChimp List ID
+
+- In **MailChimp Dashboard**, go to [Audience](https://us9.admin.mailchimp.com/audience/) tab and click on Manage
+  Audience > Settings.
+
+- Scroll to the extreme bottom and you’ll find the **Unique Audience ID** for your mailing list. This is your List ID.
+  <br />
+  <Image src={mailchimp2} alt='MailChimp List ID' width={1200} />
+
+### Data Centre
+
+The Root URL for the API is `https://<dc>.api.mailchimp.com/3.0/`. The `<dc>` part of the URL corresponds to the **Data
+Center** for your account.
+
+**EXAMPLE:**
+
+If the URL is `https://us6.mailchimp.com/account/api/`, then the data center subdomain is `us6`.
+
+<Image src={mailchimp3} alt='MailChimp Data Centre' width={1200} />
+
+## MailChimp Nodes
+
+### Add Email to Mailing List
+
+This nodes lets you add a new subscriber to a mailing list. You can use this node in combination with a REST API Call,
+let's say whenever a user signs up on your website, you can add them to your mailing list.
+
+<Image src={mailchimp4} alt='MailChimp Add Email to Mailing List' width={1200} />
+
+Add in the [API Key](#mailchimp-api-key), [List ID](#mailchimp-list-id), and [Data Centre](#data-centre) as shown in the
+above section. You can pass in the email address of the user as input to the node.
+
+Once you've built your workflow, you can click the "**SHIP**" button to deploy it. Every time this workflow gets
+triggered, it will add the email address to your mailing list, which you can then use to send out emails.
+
+<Callout>
+  **Why wait for us to add more MailChimp nodes when you can DIY!** 😱 Use the [MailChimp
+  API](https://mailchimp.com/developer/) and leverage [BuildShip's AI Node Generator](/ai-nodes) to build your own
+  custom nodes in seconds.
+</Callout>
