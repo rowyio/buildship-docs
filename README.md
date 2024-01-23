@@ -3,6 +3,7 @@
 <img src="https://storage.googleapis.com/website-a1s39m.appspot.com/buildship-app-logos/OG.png" alt="BuildShip Docs" />
 
 <br />
+
 The official [BuildShip Documentation](https://docs.buildship.com/) source code.
 
 ## Development Setup 🧑‍💻
