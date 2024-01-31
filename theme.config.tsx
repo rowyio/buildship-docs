@@ -76,7 +76,7 @@ const config: DocsThemeConfig = {
     const { frontMatter } = useConfig();
 
     const ogConfig = {
-      title: 'BuildShip.com',
+      title: 'docs.buildship.com',
       description:
         'A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.',
       favicon: favicon32,
@@ -113,10 +113,7 @@ const config: DocsThemeConfig = {
         <meta property='twitter:url' content={description} />
         <meta property='twitter:title' content={title} />
         <meta property='twitter:description' content={description} />
-        <meta
-          property='twitter:image'
-          content='https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FOG.png?alt=media&token=2110fc66-8abb-41ef-9576-0ab0e0fd19be'
-        />
+        <meta property='twitter:image' content={ogUrl} />
 
         {/* Open Graph */}
         <meta property='og:type' content='website' />
