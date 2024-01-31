@@ -10,5 +10,6 @@
   },
   "supabase": "Supabase",
   "pinecone": "Pinecone",
-  "mysql": "MySQL"
+  "mysql": "MySQL",
+  "airtable": "Airtable"
 }

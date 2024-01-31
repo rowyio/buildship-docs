@@ -1,0 +1,123 @@
+# Build Backend Visually with Airtable and BuildShip
+
+import { Card, Cards } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import airtableOg from '/public/integrations/airtable/airtableOG.png';
+import airtable1 from '/public/integrations/airtable/airtable1.png';
+import airtable2 from '/public/integrations/airtable/airtable2.png';
+import airtable3 from '/public/integrations/airtable/airtable3.png';
+import airtable4 from '/public/integrations/airtable/airtable4.png';
+import airtableList from '/public/integrations/airtable/airtableList.png';
+import airtableGet from '/public/integrations/airtable/airtableGet.png';
+import airtableCreate from '/public/integrations/airtable/airtableCreate.png';
+import airtableUpdate from '/public/integrations/airtable/airtableUpdate.png';
+
+The Airtable Integration allows you to build a backend visually with Airtable and BuildShip. BuildShip Nodes let you
+build APIs and **perform CRUD operations** on your Airtable bases **based on an event**. Imagine you want to create a
+new record in your Airtable base when a user signs up, or generate personalized marketing emails for your users. You can
+do that with the Airtable Nodes.
+
+<br />
+<Image src={airtableOg} alt='Airtable OG' width={1200} />
+
+## Prerequisites ✅
+
+### Personal Access Token
+
+Airtable reccomends using a Personal Access Token for authentication. You can create a Personal Access Token by
+following the steps below:
+
+- Go to your [Airtable Dashboard](https://airtable.com/create/tokens) and click on “**Create a Token**”.
+
+- **Add a name** for the token, **grant access to your desired bases or workspaces**, and select the following scopes:
+
+  - [`data.records:read`](https://airtable.com/developers/web/api/scopes#data-records-read)
+  - [`data.records:write`](https://airtable.com/developers/web/api/scopes#data-records-write)
+  - Feel free to add any addtional scopes if you wish to create your own Airtable nodes! 🤩
+
+  {' '}
+
+  <Image src={airtable1} alt='Grant scopes for your Airtable bases and workspaces' width={1200} />
+
+- Click on “Create Token” and **copy the token** that is generated.
+
+<Callout type='info'>
+  **Recommended:** Save your API Keys securely with [BuildShip Secret Manager](/secrets) and easily re-use it in your
+  nodes.
+</Callout>
+
+### Base ID
+
+<Image src={airtable2} alt='Base ID' width={1200} />
+
+Get the Base ID of the base you want to use in your Airtable node. You can find the Base ID in the URL of your base. For
+example, if the URL of your base is `https://airtable.com/appxxxxxxxxx/tblxxxxxxxxx/viwxxxxxxxx/recxxxxxxxx.`, then the
+Base ID is `appXXXXXXXXXXXXX`.
+
+### Table ID
+
+Get the Table ID of the table you want to use in your Airtable node. You can find the Table ID in the URL of your table.
+For example, if the URL of your table is `https://airtable.com/appxxxxxxxxx/tblxxxxxxxxx/viwxxxxxxxx/recxxxxxxxx.`, then
+the Table ID is `tblXXXXXXXXXXXXX`.
+
+### Record ID
+
+- Select and expand a record.
+
+- Get the Record ID of the record you want to use in your Airtable node. You can find the Record ID in the URL of your
+  record. For example, if the URL of your record is
+  `https://airtable.com/appxxxxxxxxx/tblxxxxxxxxx/viwxxxxxxxx/recxxxxxxxx.`, then the Record ID is `recXXXXXXXXXXXXX`.
+
+<Image src={airtable3} alt='Record ID' width={1200} />
+
+<Callout type='tip' emoji="✅">
+Optionally, you can create a field for Record ID in your Airtable. This will allow you to use the Record ID in your Airtable node without having to expand the record.
+
+> Follow the steps below:
+>
+> 1. Visit your [Airtable homepage](https://airtable.com/).
+> 2. Open your preferred base.
+> 3. Click the **+** icon to the right of your desired table.
+> 4. Select the **Formula** >
+>    [field type](https://support.airtable.com/v1/docs/supported-field-types-in-airtable-overview) and
+>    enter `RECORD_ID()`.
+> 5. Click **Create field**.
+
+<Image src={airtable4} alt='Record ID field in Airtable' width={1200} />
+
+</Callout>
+
+## Airtable Nodes
+
+Users will be able to find the Airtable Nodes in the Node Library under the **Airtable** integrations category.
+
+### List Record
+
+The List Record Node allows you to list records from your Airtable base.
+
+To filter, sort, and format the results use [Airtable's URI Encoder tool](https://codepen.io/airtable/pen/MeXqOg) to
+generate an alternate endpoint. If we choose to use the **API URL**, we can **omit the Base ID and Table ID** as adding
+this field will override Base ID and Table ID fields.
+
+<Image src={airtableList} alt='List Record Node' width={1200} />
+
+### Get Record
+
+The Get Record Node allows you to get a record from your Airtable base. Use the Record ID to get the record.
+
+<Image src={airtableGet} alt='Get Record Node' width={1200} />
+
+### Create Record
+
+The Create Record Node allows you to create a record in your Airtable base. Use the Base ID and Table ID to create the
+record. The data to be created is passed as a **an Array of JSON object**. (Check the Node Info for sample inputs.)
+
+<Image src={airtableCreate} alt='Create Record Node' width={1200} />
+
+### Update Record
+
+The Update Record Node allows you to **update a record** in your Airtable base. You can use the Base ID, Table ID, and
+Record ID to update the record. The data to be updated is passed as a **JSON object**.
+
+<Image src={airtableUpdate} alt='Update Record Node' width={1200} />
