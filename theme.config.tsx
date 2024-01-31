@@ -72,8 +72,14 @@ const config: DocsThemeConfig = {
   },
   logo,
   head: function useHead() {
+    const { title } = useConfig();
     const { asPath, pathname } = useRouter();
     const { frontMatter } = useConfig();
+    const { route } = useRouter();
+    const socialCard =
+      route === '/' || !title
+        ? 'https://docs.buildship.com/og.png'
+        : `https://docs.buildship.com/api/og?title=${title}`;
 
     const ogConfig = {
       title: 'docs.buildship.com',
@@ -82,7 +88,6 @@ const config: DocsThemeConfig = {
       favicon: favicon32,
     };
     const favicon = String(ogConfig.favicon);
-    const title = String(frontMatter.title || ogConfig.title);
     const description = String(frontMatter.description || ogConfig.description);
     const canonical = new URL(asPath, 'https://docs.buildship.com').toString();
 
@@ -113,7 +118,7 @@ const config: DocsThemeConfig = {
         <meta property='twitter:url' content={description} />
         <meta property='twitter:title' content={title} />
         <meta property='twitter:description' content={description} />
-        <meta property='twitter:image' content={ogUrl} />
+        <meta property='twitter:image' content={socialCard} />
 
         {/* Open Graph */}
         <meta property='og:type' content='website' />
