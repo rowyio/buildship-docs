@@ -33,6 +33,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://buildship.com/discord', // Link to the Rowy Discord server
   },
+  docsRepositoryBase: 'https://github.com/rowyio/buildship-docs/tree/main/docs',
   navbar: {
     extraContent: (
       <>
@@ -61,7 +62,6 @@ const config: DocsThemeConfig = {
       </>
     ),
   },
-  docsRepositoryBase: 'https://github.com/rowyio/buildship-docs/tree/main/docs',
   useNextSeoProps() {
     const { asPath } = useRouter();
     if (asPath !== '/') {
@@ -72,8 +72,24 @@ const config: DocsThemeConfig = {
   },
   logo,
   head: function useHead() {
+    const { asPath, pathname } = useRouter();
     const { frontMatter } = useConfig();
-    const { route } = useRouter();
+
+    const ogConfig = {
+      title: 'BuildShip.com',
+      description:
+        'A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.',
+      favicon: favicon32,
+    };
+    const favicon = String(ogConfig.favicon);
+    const title = String(frontMatter.title || ogConfig.title);
+    const description = String(frontMatter.description || ogConfig.description);
+    const canonical = new URL(asPath, 'https://docs.buildship.com').toString();
+
+    const ogUrl =
+      pathname === '/'
+        ? `https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FOG.png?alt=media&token=2110fc66-8abb-41ef-9576-0ab0e0fd19be`
+        : `https://docs.buildship.com/og?title=${title}&description=${description}`;
 
     return (
       <>
@@ -81,28 +97,30 @@ const config: DocsThemeConfig = {
         <meta name='theme-color' content='#fff' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta httpEquiv='Content-Language' content='en' />
-        <meta name='title' content='BuildShip Documentation' />
+        <meta property='og:url' content={canonical} />
+        <link rel='canonical' href={canonical} />
+
+        <meta name='description' content={description} />
+        <meta property='og:description' content={description} />
+        {/* <meta name='title' content='BuildShip Documentation' />
         <meta
           name='description'
           content='A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.'
-        />
+        /> */}
 
         {/* Twitter */}
         <meta property='twitter:card' content='summary_large_image' />
-        <meta property='twitter:url' content='https://docs.buildship.com' />
-        <meta property='twitter:title' content='BuildShip Documentation' />
-        <meta
-          property='twitter:description'
-          content='A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.'
-        />
+        <meta property='twitter:url' content={description} />
+        <meta property='twitter:title' content={title} />
+        <meta property='twitter:description' content={description} />
         <meta
           property='twitter:image'
-          content='https://firebasestorage.googleapis.com/v0/b/rowy-testing-bhavya.appspot.com/o/image%2Fzzzzzzzzzzzzzzzzzzzy%2Fimage%2FSQZ6mwWhm8HB1D3JWOxP-og.png?alt=media&token=58aec1b7-2b6a-4ffa-9bcc-b3e3e23139d5'
+          content='https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FOG.png?alt=media&token=2110fc66-8abb-41ef-9576-0ab0e0fd19be'
         />
 
         {/* Open Graph */}
         <meta property='og:type' content='website' />
-        <meta property='og:url' content='' />
+        <meta property='og:url' content={description} />
         <meta
           property='og:title'
           content={frontMatter.title ? frontMatter.title + ' – BuildShip Docs' : 'BuildShip Documentation'}
@@ -119,7 +137,7 @@ const config: DocsThemeConfig = {
           content='https://storage.googleapis.com/website-a1s39m.appspot.com/buildship-app-logos/OG.png'
         />
 
-        <meta name='apple-mobile-web-app-title' content='BuildShip Docs' />
+        <meta name='apple-mobile-web-app-title' content={description} />
         <link rel='apple-touch-icon' sizes='180x180' href={appleTouchIcon.src}></link>
         <link rel='icon' type='image/png' sizes='32x32' href={favicon32.src}></link>
         <link rel='icon' type='image/png' sizes='16x16' href={favicon16.src}></link>
@@ -143,7 +161,60 @@ const config: DocsThemeConfig = {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
-  footer: { component: null },
+  footer: {
+    text: (
+      <div className='flex flex-col items-start gap-6 xl:flex-row   w-full justify-between'>
+        <div>© {new Date().getFullYear()} BuildShip </div>
+        {/* TODO: UPDATE FOOTER */}
+
+        {/* <div>
+          <p className="text-base pb-2 text-white font-bold">Resources</p>
+          <ul className="flex flex-col gap-2">
+            <li>
+              <a href="/docs/introduction" className="text-sm">
+                Documentation
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-base pb-2 text-white font-bold">Ecosystem</p>
+          <ul className="flex flex-col gap-2">
+            <li>
+              <a href="/showcase" className="text-sm">
+                Showcase
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/rowyio/buildship-docs#contributing"
+                className="text-sm"
+              >
+                Contributing
+              </a>
+            </li>
+            <li>
+              <a href="https://buildship.com/discord" className="text-sm">
+                Discord
+              </a>
+            </li>
+          </ul>
+        </div> */}
+
+        <div>
+          <p className='text-base pb-2 text-white font-bold'>About</p>
+          <ul className='flex flex-col gap-2'>
+            <li>
+              <a href='https://www.rowy.io/about' className='text-sm'>
+                Built by BuildShip Team
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
   gitTimestamp: null,
 };
 
