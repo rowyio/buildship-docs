@@ -72,24 +72,24 @@ const config: DocsThemeConfig = {
   },
   logo,
   head: function useHead() {
+    const { title } = useConfig();
     const { asPath, pathname } = useRouter();
     const { frontMatter } = useConfig();
+    const { route } = useRouter();
+    const socialCard =
+      route === '/' || !title
+        ? 'https://docs.buildship.com/og.png'
+        : `https://docs.buildship.com/api/og?title=${title}`;
 
     const ogConfig = {
-      title: 'BuildShip.com',
+      title: 'docs.buildship.com',
       description:
         'A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.',
       favicon: favicon32,
     };
     const favicon = String(ogConfig.favicon);
-    const title = String(frontMatter.title || ogConfig.title);
     const description = String(frontMatter.description || ogConfig.description);
     const canonical = new URL(asPath, 'https://docs.buildship.com').toString();
-
-    const ogUrl =
-      pathname === '/'
-        ? `https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FOG.png?alt=media&token=2110fc66-8abb-41ef-9576-0ab0e0fd19be`
-        : `https://docs.buildship.com/og?title=${title}&description=${description}`;
 
     return (
       <>
@@ -109,14 +109,12 @@ const config: DocsThemeConfig = {
         /> */}
 
         {/* Twitter */}
-        <meta property='twitter:card' content='summary_large_image' />
-        <meta property='twitter:url' content={description} />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:image' content={socialCard} />
+        <meta name='twitter:site' content='@BuildShipApp' />
+        <meta name='twitter:url' content='https://docs.buildship.com' />
         <meta property='twitter:title' content={title} />
         <meta property='twitter:description' content={description} />
-        <meta
-          property='twitter:image'
-          content='https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FOG.png?alt=media&token=2110fc66-8abb-41ef-9576-0ab0e0fd19be'
-        />
 
         {/* Open Graph */}
         <meta property='og:type' content='website' />
