@@ -159,60 +159,7 @@ const config: DocsThemeConfig = {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
-  footer: {
-    text: (
-      <div className='flex flex-col items-start gap-6 xl:flex-row   w-full justify-between'>
-        <div>© {new Date().getFullYear()} BuildShip </div>
-        {/* TODO: UPDATE FOOTER */}
-
-        {/* <div>
-          <p className="text-base pb-2 text-white font-bold">Resources</p>
-          <ul className="flex flex-col gap-2">
-            <li>
-              <a href="/docs/introduction" className="text-sm">
-                Documentation
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <p className="text-base pb-2 text-white font-bold">Ecosystem</p>
-          <ul className="flex flex-col gap-2">
-            <li>
-              <a href="/showcase" className="text-sm">
-                Showcase
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/rowyio/buildship-docs#contributing"
-                className="text-sm"
-              >
-                Contributing
-              </a>
-            </li>
-            <li>
-              <a href="https://buildship.com/discord" className="text-sm">
-                Discord
-              </a>
-            </li>
-          </ul>
-        </div> */}
-
-        <div>
-          <p className='text-base pb-2 text-white font-bold'>About</p>
-          <ul className='flex flex-col gap-2'>
-            <li>
-              <a href='https://www.rowy.io/about' className='text-sm'>
-                Built by BuildShip Team
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    ),
-  },
+  footer: { component: null },
   gitTimestamp: null,
 };
 
