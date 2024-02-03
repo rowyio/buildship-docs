@@ -6,6 +6,8 @@ import switchOG from '/public/nodes/switchOG.png';
 import switch1 from '/public/nodes/switch1.png';
 import switch2 from '/public/nodes/switch2.png';
 import switch3 from '/public/nodes/switch3.png';
+import switchExp from '/public/nodes/switchExp.png';
+import switchCase from '/public/nodes/switchCase.png';
 
 Control the flow of your BuildShip workflow based on **switch statements** with the Switch Node. The switch node
 evaluates an expression and then executes the corresponding flow that matches the expression’s result.
@@ -28,6 +30,8 @@ The Expression input is the main expression whose **value is to be evaluated** f
 Query.type // to use switch case on the type parameter in the query
 ```
 
+<Image src={switchExp} alt='Switch Node' width={1200} />
+
 ### Cases
 
 The switch node will evaluate the value of the specified expression and execute the corresponding case that matches the
@@ -43,6 +47,8 @@ expression's result.
   The expression and the case fields of the switch node can be any of the following types: - string - number - boolean
 </Callout>
 
+<Image src={switchCase} alt='Switch Node' width={1200} />
+
 ### Next Case Toggle
 
 The Next Case Toggle exists on every switch flow. When toggled to `true`, it will continue to **execute its subsequent
@@ -52,8 +58,7 @@ case**. We can think of this Next Case Toggle like a switch case without a break
 
 ### Default Case
 
-If there’s no matching constant specified in the "case" inputs, control is transferred to the flow under the
-"**default**" case.
+If there’s no match specified in the "**Case**" inputs, control is transferred to the flow under the "**Default**" case.
 
 ## Example Implementation
 
@@ -95,9 +100,8 @@ So the value of the type query parameter can be: `"image"`, `"video"`, `"animati
 values as our cases.
 
 After defining the cases, we get 5 different branches for each of the specified types and one for the “**Default Case**”
-which is a fallback case - i.e. if there’s no matching constant specified in the "case" inputs, control is transferred
-to the flow under the "default" case. For the Default case, we can simply add a return node saying that the `type` is
-undefined.
+which is a fallback case - i.e. if there’s no match specified in the "case" inputs, control is transferred to the flow
+under the "default" case. For the Default case, we can simply add a return node saying that the `type` is undefined.
 
 ### Return
 
