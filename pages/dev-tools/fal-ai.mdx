@@ -1,0 +1,100 @@
+---
+title: Using Fal AI Models with BuildShip
+description:
+  Fal AI offers a range of popular models such as Stable Diffusion XL, Whisper, and more, available as ready-to-use
+  APIs. With BuildShip Fal AI Nodes, you can seamlessly integrate these powerful AI models into your workflows, APIs,
+  backend processes, schedule jobs, and automate everyday tasks with AI capabilities.
+---
+
+# Using Fal AI Models with BuildShip
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import falOG from '/public/integrations/developer-tools/falOG.png';
+import Video from '../../components/video/index.jsx';
+import falStable from '/public/integrations/developer-tools/falStable.png';
+import falWhisper from '/public/integrations/developer-tools/falWhisper.png';
+import falImage from '/public/integrations/developer-tools/falImg.png';
+
+Fal AI offers a range of popular models such as Stable Diffusion XL, Whisper, and more, available as ready-to-use APIs.
+With BuildShip Fal AI Nodes, you can seamlessly integrate these powerful AI models into your workflows, APIs, backend
+processes, schedule jobs, and automate everyday tasks with AI capabilities.
+
+<Callout emoji='🚀'>
+  Check out the [Fal AI Model Gallery](https://fal.ai/models), and build your own Fal AI Model nodes.
+</Callout>
+
+<br />
+<Image src={falOG} alt='falOG' width={1200} />
+
+## Prerequisites ✅
+
+### Fal AI API Key
+
+To integrate Fal AI with BuildShip, you need to obtain an API Key from the Fal AI Dashboard. Follow these steps:
+
+- Visit the [Fal AI Dashboard](https://www.fal.ai/dashboard).
+- Click on “**Create New Key Pair**” to generate a new API Key.
+- Copy the generated API Key and store it securely. This key will be required for authentication in the Fal AI Nodes.
+
+<Callout type='info'>
+  **Recommended:** Save your API Keys securely with [BuildShip Secret Manager](/secrets) to easily reuse them in your
+  nodes.
+</Callout>
+
+## Fal AI Nodes
+
+### Stable Video Diffusion
+
+Generates short video clips from a given image. This node utilizes the FAL API to create a stable diffusion video.
+Provide the URL of the image from which you want to generate the video.
+
+<Video src='/integrations/developer-tools/FalVideo.mov' />
+
+### Stable Diffusion XL Image Generator
+
+Generates an image based on a given prompt using Stable Diffusion XL Image Generator. Input the prompt to guide the
+image generation process.
+
+<Image src={falStable} alt='falStable' width={1200} />
+
+**SAMPLE PROMPT:**
+
+```
+photo of a rhino dressed suit and tie sitting at a table in a bar with a bar stools, award winning photography, Elke vogelsang
+```
+
+### Generate Animation
+
+Generates animations based on a prompt using the AnimateDiff Fal AI Model. Specify the prompt to define the content and
+style of the animation.
+
+<Video src='/integrations/developer-tools/FalAnimate.mov' />
+
+**Sample Prompt:**
+
+```
+masterpiece, best quality, 1girl, solo, cherry blossoms, hanami, pink flower, white flower, spring season, wisteria, petals, flower, plum blossoms, outdoors, falling petals, white hair, black eyes
+```
+
+### Whisper Speech to Text
+
+Converts speech to text using Fal AI's Whisper model. Input the URL of the audio file that needs to be transcribed.
+
+**TIP 💡:** To use your own audio file, upload it to the BuildShip Storage Manager and obtain the "Public Download URL"
+to be used as the Audio URL.
+
+<Image src={falWhisper} alt='falWhisper' width={1200} />
+
+### Text to Image Generator
+
+Generates images from text using the Fooocus model by Fal AI. Provide the text prompt to generate the corresponding
+image.
+
+<Image src={falImage} alt='falImage' width={1200} />
+
+**Sample Prompt:**
+
+```
+photo of a panda dressed suit and tie sitting at a table in a bar with a bar stools
+```
