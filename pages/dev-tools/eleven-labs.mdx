@@ -1,0 +1,80 @@
+---
+title: Eleven Labs - Text to Speech
+description:
+  With Eleven Labs nodes users can generate text to speech or audio using BuildShip. This is particularly useful when
+  building apps that require audio content, such as Story Books, Blog apps with audio versions, or apps that provide
+  voice directions. By incorporating voice capabilities into your app, you can enhance user experience and
+  accessibility.
+---
+
+# Eleven Labs - Text to Speech
+
+import Image from 'next/image';
+import eleven1 from '/public/integrations/developer-tools/eleven1.png';
+import eleven2 from '/public/integrations/developer-tools/eleven2.png';
+import eleven3 from '/public/integrations/developer-tools/eleven3.png';
+import eleven4 from '/public/integrations/developer-tools/eleven4.png';
+import { Callout } from 'nextra/components';
+
+With Eleven Labs nodes users can generate text to speech or audio using BuildShip. This is particularly useful when
+building apps that require audio content, such as **Story Books**, **blog apps with audio versions**, or **apps that
+provide voice directions**. By incorporating voice capabilities into your app, you can enhance user experience and
+accessibility.
+
+<br />
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/TLd6evPS7fY?si=mL-cUjDO-Z8UmVCz'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+The Eleven Labs nodes offers over 35 built-in voices to choose from. You can also customize the voice, pitch, and speed
+of the audio output.
+
+## Prerequisites ✅
+
+### Eleven Labs API Key
+
+To use the Eleven Labs nodes you need an Eleven Labs API key. Follow the steps below to get your API key:
+
+- Log in to your Eleven Labs Account. You can sign up for a free account at [Eleven Labs](https://elevenlabs.io/).
+- Click on your profile picture in the bottom left corner and select the **Profile** option from the menu.
+- Copy the generated API Key and store it securely. This key will be required for authentication in the Eleven Labs Text
+  to Speech node.
+
+<Callout type='info'>
+  **Recommended:** Save your API Keys securely with [BuildShip Secret Manager](/secrets) to easily reuse them in your
+  nodes.
+</Callout>
+<br />
+<Image src={eleven1} alt='Eleven Labs' width={1200} />
+
+## Node: Text to Speech
+
+The Text to Speech node converts text to speech using the Eleven Labs API. You can use this node to generate audio files
+from text. The node supports multiple languages and voices.
+
+<Image src={eleven3} alt='Eleven Labs' width={1200} />
+
+To configure the Text to Speech node, you will need to provide the following information:
+
+- **API key**: Obtain your API key from the [Eleven Labs developer dashboard](https://elevenlabs.io/).
+- **Voice ID**: Choose the voice you want to use from the available options. You can even use your own custom voices.
+  <Callout type='info'>
+    Simply append the Voice Name and Voice ID in the Node Input section, in the Node Editor.
+    <br />
+    <Image src={eleven2} alt='Eleven Labs' width={1200} />
+  </Callout>
+- **Text**: Enter the text that you want to convert into speech. You can also use editor variables to fetch the text
+  dynamically.
+- **Storage folder**: Specify the folder in the Google Cloud Storage bucket where the generated MP3 files will be
+  stored. By default, it is set to `/ElevenLabs`.
+- **Optimization level for streaming latency**: This is set to zero by default.
+
+Once you have filled in the necessary details, the text to speech node will convert the provided text into speech using
+the Eleven Labs API. The generated audio file will be saved in Google Cloud Storage, and the node will return a URL
+pointing to the audio file.
+
+<Image src={eleven4} alt='Eleven Labs' width={1200} />
