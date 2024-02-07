@@ -1,0 +1,195 @@
+---
+title: Build Low-Code Visual Backend with MongoDB
+description:
+  With BuildShip X MongoDB Nodes, users can now leverage MongoDB's capabilities to create REST APIs, Scheduled
+Jobs, integrate with other databases like - Firestore, Supabase, and Airtable, build chatbots, and
+much more, all through a low-code approach.
+---
+
+# Build Low-Code Visual Backend with MongoDB
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import mongoOg from '/public/integrations/database/mongoOG.png';
+import mongo1 from '/public/integrations/database/mongo1.png';
+import mongo2 from '/public/integrations/database/mongo2.png';
+import mongo3 from '/public/integrations/database/mongo3.png';
+import mongoInsert from '/public/integrations/database/mongoInsert.png';
+import mongoFetch from '/public/integrations/database/mongoFetch.png';
+import mongoUpdate from '/public/integrations/database/mongoUpdate.png';
+import mongoDelete from '/public/integrations/database/mongoDelete.png';
+import mongoQuery from '/public/integrations/database/mongoQuery.png';
+
+MongoDB is a **popular open-source, NoSQL database**, falling under the category of document-oriented databases. It
+offers flexibility in storing data in JSON-like documents, providing users with scalability and versatility in managing
+their data.
+
+<br />
+<Image src={mongoOg} alt='MongoDB' width={1200} />
+
+With **BuildShip X MongoDB Nodes**, users can now leverage MongoDB's capabilities to create **REST APIs**, **Scheduled
+Jobs**, integrate with other databases like - **Firestore**, **Supabase**, and **Airtable**, build **chatbots**, and
+much more, all through a low-code approach.
+
+## Prerequisites ✅
+
+Before proceeding, ensure you have a MongoDB project. If not, you can sign up
+[here](https://www.mongodb.com/cloud/atlas/register) and follow the guided walkthrough.
+
+<br />
+<Image src={mongo1} alt='MongoDB' width={1200} />
+
+<Callout>
+  **QUICK TIP 💡:** Make sure to add `0.0.0.0/0` under the Network Access tab to enable database access via the
+  BuildShip MongoDB Nodes. Failure to do so might result in unsuccessful responses.
+  <Image src={mongo2} alt='MongoDB' width={800} />
+</Callout>
+
+<Steps>
+### Database
+Navigate to the Databases section in MongoDB, and create a database if one does not already exist. For security purposes, you'll be required to create a user with a username and password. Make note of the Database Name and Password for connecting BuildShip nodes to the MongoDB database.
+
+### Connection String
+
+After creating the database user, choose a connection method. Select the driver as Node.js and copy the Connection
+String provided. It should look something like this:
+
+```
+mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority
+```
+
+Replace `<password>` with the password set for your database user. Store this connection string separately as this will
+be required for establishing the connection later.
+
+<Image src={mongo3} alt='MongoDB' width={800} />
+
+### Collection
+
+Once the Database Name, Connection String, and database setup are complete, you can either create a new collection or
+use an existing one for CRUD operations.
+
+</Steps>
+
+## MongoDB CRUD Nodes
+
+BuildShip currently offers the following pre-built MongoDB nodes.
+
+<Callout emoji='⭐️'>
+  Want more MongoDB nodes? Why wait for us? Create your own custom nodes using AI, [learn more](/ai-nodes).
+</Callout>
+
+### Insert Document
+
+The Insert Document Node allows users to add new data entries into a MongoDB collection. It takes an array of documents
+as input and inserts them into the specified collection within the MongoDB database. After successful insertion, it
+returns the IDs of the inserted documents.
+
+<Image src={mongoInsert} alt='MongoDB' width={1200} />
+
+**Usage:**
+
+- Provide the MongoDB connection string, database name, and collection name.
+- Input an array of JSON documents to be inserted into the collection.
+
+**Sample Input:**
+
+```json
+[
+  {
+    "_id": "document1",
+    "name": "Sicilian pizza",
+    "shape": "square"
+  },
+  {
+    "_id": "document2",
+    "name": "New York pizza",
+    "shape": "round"
+  }
+]
+```
+
+### Fetch Document
+
+The Fetch Document Node retrieves specific documents from a MongoDB collection based on their unique Document IDs. It
+fetches the entire document data corresponding to the provided document IDs and returns them as output.
+
+<Image src={mongoFetch} alt='MongoDB' width={1200} />
+
+**Usage:**
+
+- Specify the MongoDB connection string, database name, collection name, and the document ID(s) to fetch.
+
+### Update Document
+
+The Update Document Node modifies existing documents in a MongoDB collection. It uses the `updateOne` function to update
+a specific document identified by its unique ObjectID (Document ID). The node takes new JSON data as input and updates
+the document accordingly.
+
+<Image src={mongoUpdate} alt='MongoDB' width={1200} />
+
+**Usage:**
+
+- Provide the MongoDB connection string, database name, collection name, document ID, and new JSON data for updating the
+  document.
+
+**Sample Input:**
+
+```json
+{
+  "name": "Sicilian pizza",
+  "shape": "square"
+}
+```
+
+### Delete Document
+
+The Delete Document Node removes specific documents from a MongoDB collection based on their unique IDs. It deletes
+document identified by the ObjectID (Document ID) from the specified collection in the MongoDB database.
+
+<Image src={mongoDelete} alt='MongoDB' width={1200} />
+
+**Usage:**
+
+- Specify the MongoDB connection string, database name, collection name, and the document ID to delete.
+
+### Query Collection
+
+The Query Collection Node retrieves multiple documents from a MongoDB collection based on specified criteria. It allows
+users to query documents using parameters like the connection string, database name, collection name, query, sort, and
+projection.
+
+<Image src={mongoQuery} alt='MongoDB' width={1200} />
+
+**Usage:**
+
+- Provide the MongoDB connection string, database name, collection name, and query criteria.
+- Optionally, specify sorting and projection parameters to organize and filter the returned documents.
+
+**Sample Input:**
+
+- **Query** to return only Pizza with a cooking time of less than 60 minutes:
+
+  ```json
+  {
+    "time": { "$lt": 60 }
+  }
+  ```
+
+- **Sorting** by name in ascending order:
+
+  ```json
+  {
+    "name": 1
+  }
+  ```
+
+- **Projection** to include only the `name`, `time`, and `_id` fields:
+
+  ```json
+  {
+    "name": 1,
+    "time": 1,
+    "_id": 1
+  }
+  ```

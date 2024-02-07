@@ -11,5 +11,6 @@
   "supabase": "Supabase",
   "pinecone": "Pinecone",
   "mysql": "MySQL",
-  "airtable": "Airtable"
+  "airtable": "Airtable",
+  "mongodb": "MongoDB"
 }
