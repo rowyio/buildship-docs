@@ -67,6 +67,11 @@ export default withNextra({
       destination: '/features/copy-paste',
       permanent: true,
     },
+    {
+      source: '/dev-tools/:slug(fal-ai|eleven-labs)',
+      destination: '/ai-models/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
