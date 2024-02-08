@@ -1,0 +1,170 @@
+---
+title: Bring Your Own Storage with AWS S3
+description:
+  BuildShip's AWS S3 Bucket Nodes enable users to interact with AWS S3 Bucket Storage, allowing them to store various
+  types of files such as images, audio, and video in cloud buckets.
+---
+
+# Bring Your Own Storage with AWS S3
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import awsOg from '/public/integrations/storage/awsOG.png';
+import aws1 from '/public/integrations/storage/aws1.png';
+import aws2 from '/public/integrations/storage/aws2.png';
+import aws3 from '/public/integrations/storage/aws3.png';
+import aws4 from '/public/integrations/storage/aws4.png';
+import aws5 from '/public/integrations/storage/aws5.png';
+import aws6 from '/public/integrations/storage/aws6.png';
+import aws7 from '/public/integrations/storage/aws7.png';
+import aws8 from '/public/integrations/storage/aws8.png';
+
+BuildShip's AWS S3 Bucket Nodes enable users to interact with AWS S3 Bucket Storage, allowing them to store various
+types of files such as images, audio, and video in cloud buckets. Users can bring their own storage using AWS S3 Bucket.
+
+<br />
+<Image src={awsOg} alt='AWS S3 Storage' width={1200} />
+
+## Prerequisites ✅
+
+### An AWS Account
+
+Before using the AWS S3 Bucket nodes, ensure you have an AWS account. If you don't have one, you can
+[sign up for a free account](https://aws.amazon.com/). Additionally, create an S3 Storage Bucket. For guidance, refer to
+the [Getting Started](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html) section by Amazon.
+
+### Access Credentials
+
+<Image src={aws1} alt='AWS S3 Storage' width={1200} />
+
+Make sure to gather the following access credentials:
+
+- **Region**
+- **Access ID (AWS Access Key ID)**
+- **Access Secret (AWS Secret Access Key)**
+- **Bucket Name**
+
+<Callout>
+**NOTE:** Modify the bucket permissions to **allow ACL (Access Control List)**, and uncheck the “**Block all public access**”. This can be done via the **Permissions tab in the Bucket settings**.
+
+<Image src={aws2} alt='AWS S3 Storage' width={1200} />
+</Callout>
+
+## AWS S3 Nodes
+
+BuildShip offers the following pre-built nodes for interacting with AWS S3 Bucket Storage. Feel free to
+[customize them](/core-nodes/script#customzing-the-script-node), or [create your own using AI](/ai-nodes) to suit your
+specific needs.
+
+### Upload File from External URL
+
+This node allows users to upload a file from an external URL to an AWS S3 Bucket. It provides a convenient way to
+transfer files from other sources directly to the S3 bucket.
+
+<Image src={aws3} alt='AWS S3 Storage' width={1200} />
+
+**Required Inputs:**
+
+- **Region:** The AWS region to which this client will send requests.
+- **Access ID:** Your AWS Access Key ID.
+- **Access Secret:** AWS Secret Access Key.
+- **Bucket Name:** The name of the Bucket to fetch the file from.
+- **File Path:** The path of the file. **Example:** Suppose you have a folder assets with a file `og-image.jpg` in your
+  S3 bucket `bucketName`, then the Key would be: `assets/og-image.jpg`
+
+### Create File
+
+This node creates a file with the given content in an AWS S3 bucket. It allows users to dynamically generate files and
+store them directly in the S3 bucket.
+
+<Image src={aws4} alt='AWS S3 Storage' width={1200} />
+
+**Required Inputs:**
+
+- **Region:** The AWS region to which this client will send requests.
+- **Access ID:** Your AWS Access Key ID.
+- **Access Secret:** AWS Secret Access Key.
+- **Bucket Name:** The name of the Bucket to fetch the file from.
+- **File Path:** The path of the file. **Example:** Suppose you have a folder assets with a file `og-image.jpg` in your
+  S3 bucket `bucketName`, then the Key would be: `assets/og-image.jpg`
+- **File Content:** The content of the file to be created.
+
+### Upload Base64 File
+
+This node uploads a Base64 encoded file to an AWS S3 bucket. It is useful when dealing with file data encoded in Base64
+format.
+
+<Image src={aws5} alt='AWS S3 Storage' width={1200} />
+
+In some scenarios, you may receive file data in Base64 format from external sources or APIs. This node allows you to
+directly upload such files to your S3 bucket without the need for additional encoding or decoding steps.
+
+**Required Inputs:**
+
+- **Region:** The AWS region to which this client will send requests.
+- **Access ID:** Your AWS Access Key ID.
+- **Access Secret:** AWS Secret Access Key.
+- **Bucket Name:** The name of the Bucket to fetch the file from.
+- **File Path:** The path of the file. **Example:** Suppose you have a folder assets with a file `og-image.jpg` in your
+  S3 bucket `bucketName`, then the Key would be: `assets/og-image.jpg`
+- **Base64 File:** The Base64 string of the file to upload.
+
+### Generate Public URL
+
+This node makes a file in an S3 bucket publicly accessible and returns its public URL. It is useful when you want to
+share files stored in your S3 bucket with external users.
+
+<Image src={aws6} alt='AWS S3 Storage' width={1200} />
+
+Suppose you have media files or documents stored in your S3 bucket that need to be accessed by users outside your
+organization. You can use this node to generate public URLs for these files, allowing external users to view or download
+them.
+
+**Required Inputs:**
+
+- **Region:** The AWS region to which this client will send requests.
+- **Access ID:** Your AWS Access Key ID.
+- **Access Secret:** AWS Secret Access Key.
+- **Bucket Name:** The name of the Bucket to fetch the file from.
+- **File Path:** The path of the file. **Example:** Suppose you have a folder assets with a file `og-image.jpg` in your
+  S3 bucket `bucketName`, then the Key would be: `assets/og-image.jpg`
+
+### Generate Signed URL
+
+This node generates a public signed URL for a specific file in an AWS S3 bucket, providing more control over access to
+the file. The signed URL allows temporary access to the file with specified validity.
+
+<Image src={aws7} alt='AWS S3 Storage' width={1200} />
+
+You may have files in your S3 bucket that should only be accessible for a limited time or under certain conditions. This
+node allows you to generate signed URLs with controlled access, enhancing security and compliance.
+
+**Required Inputs:**
+
+- **Region:** The AWS region to which this client will send requests.
+- **Access ID:** Your AWS Access Key ID.
+- **Access Secret:** AWS Secret Access Key.
+- **Bucket Name:** The name of the Bucket to fetch the file from.
+- **File Path:** The path of the file. **Example:** Suppose you have a folder assets with a file `og-image.jpg` in your
+  S3 bucket `bucketName`, then the Key would be: `assets/og-image.jpg`
+- **Validity:** The time duration for which the signed URL will be valid, in seconds. (Defaults to **7 Days**)
+
+### Zip Folder
+
+This node zips an existing folder in an S3 bucket and returns a download URL for the zip file. It is useful for bundling
+multiple files or documents stored in the S3 bucket into a single zip archive.
+
+<Image src={aws8} alt='AWS S3 Storage' width={1200} />
+
+Suppose you have a collection of files or documents stored in a folder within your S3 bucket that you want to share or
+distribute as a single package. This node allows you to zip the folder and provide a convenient download link for the
+zip file.
+
+**Required Inputs:**
+
+- **Region:** The AWS region to which this client will send requests.
+- **Access ID:** Your AWS Access Key ID.
+- **Access Secret:** AWS Secret Access Key.
+- **Bucket Name:** The name of the Bucket to fetch the file from.
+- **Folder Path:** The path of the folder to be zipped. **Example:** Suppose you have a folder assets in your S3 bucket
+  `bucketName`, then the Key would be: `assets`
