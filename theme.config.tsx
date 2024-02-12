@@ -5,6 +5,7 @@ import { useConfig } from 'nextra-theme-docs';
 import favicon16 from './public/favicon-16x16.png';
 import favicon32 from './public/favicon-32x32.png';
 import appleTouchIcon from './public/apple-touch-icon.png';
+import Help from '@components/features/help';
 
 const logo = (
   <span>
@@ -159,6 +160,15 @@ const config: DocsThemeConfig = {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
+  main: function useMain({ children }) {
+    return (
+      <>
+        {children}
+        <Help />
+      </>
+    );
+  },
+  navigation: { prev: false, next: false },
   footer: { component: null },
   gitTimestamp: null,
 };
