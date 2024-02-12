@@ -2,5 +2,6 @@
   "gcp": {
     "title": "Google Cloud Storage",
     "href": "/tutorials/gcp-storage"
-  }
+  },
+  "aws-s3": "AWS S3"
 }
