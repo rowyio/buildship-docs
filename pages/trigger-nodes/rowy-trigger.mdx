@@ -9,6 +9,8 @@ import rowy3 from '/public/assets/rowy-trigger-3.png';
 import rowy4 from '/public/assets/rowy-trigger-4.png';
 import rowy5 from '/public/assets/rowy-trigger-5.png';
 import rowy6 from '/public/assets/rowy-trigger-6.png';
+import rowy7 from '/public/assets/rowy-trigger-7.png';
+import rowy8 from '/public/assets/rowy-trigger-8.png';
 
 Rowy Triggers in BuildShip allow you to initiate a BuildShip workflow in response to specific events within your Rowy
 Project. This integration enables you to automate tasks seamlessly based on events that occur in your Rowy environment.
@@ -120,6 +122,55 @@ workflow linked to this extension.
 
 <br />
 
-<Callout emoji='🙋🏻'>
-  In case you of any issues or need further help, chat with us on [Discord](https://buildship.com/discord).
+## The Request Structure
+
+When the BuildShip Workflow is triggered via the Rowy Extension, it passes the following request body structure:
+
+<Image src={rowy7} alt='Rowy Project ID' width={1200} />
+
+This body structure can then be referenced in different parts of the workflow as variables.
+
+## Updating Rowy Table with the API Response
+
+Once you've configured your Rowy Trigger and the BuildShip Extension on Rowy, let's explore **how to update fields or
+add a row in our Rowy table** from our BuildShip Workflow using an example.
+
+In this scenario, we have a Rowy Table containing a list of items. The BuildShip Extension triggers the connected
+BuildShip Workflow every time a new item is added or updated.
+
+The triggered workflow employs **OpenAI’s GPT Model** to generate an adjective to describe each item and updates the
+adjective column in the Rowy Table accordingly.
+
+To implement this, after setting up the Rowy Extension and Trigger mechanism, proceed to add an OpenAI Text Generator
+node.
+
+- Add your [OpenAI API Key](https://platform.openai.com/account/api-keys).
+- Set the **User Prompt** to `Row.item`.
+- Define the **System Prompt** as follows:
+  ```
+  Generate a unique adjective for a given item. Provide only one word.
+  ```
+
+<Image src={rowy8} alt='Rowy Project ID' width={1200} />
+
+**To update the Rowy Table** with the generated adjective, utilize the **Update Firestore Field Value** node. This node
+**updates the Firestore Collection associated with your Rowy project**, thereby reflecting changes in the Rowy Table.
+
+<Callout>
+  NOTE: To utilize the Firebase/Firestore nodes and connect to your Firebase project, follow the step-by-step guide to
+  initiate the connection [here](/tutorials/firebase-project#option-2-connecting-to-your-own-firebase-project).
+</Callout>
+
+In the **Update Firestore Field Value** node:
+
+- Enter the same **Project ID** used in the Rowy Trigger.
+- Set the **Document Path** input to the variable `Body > Ref > Path`.
+- Define the **Field Key** as `adjective` (for this example).
+- Pass the output of the OpenAI Text Generator node into the \*\*New Value(()) input.
+
+<Callout type="warning">
+The **Return** node does not update the Rowy Table or returns any values in this case as the BuildShip Extension doesn't support returning values to the Rowy Table.
+
+The **Update Firestore Field Value** node has to be used to update the Rowy Table with the response values.
+
 </Callout>
