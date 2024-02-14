@@ -98,8 +98,7 @@ Assistant.
 Lets now explore the output from OpenAI assistant node. We can access also to the following parameters:
 
 - **Messages**: a list of all the messages from the conversation
-- **ThreadID**: unique id of the current conversation
-  ![parameters.gif](./assistant-src/parameters.gif)
+- **ThreadID**: unique id of the current conversation ![parameters.gif](./assistant-src/parameters.gif)
 
 In the following section, you’ll learn how to use _Thread ID_ to save and continue conversations.
 
@@ -252,7 +251,10 @@ en example, this is the instructions we use.
 
 ```json
 {
-  "instructions": "You are a personal history tutor. You will answer questions in a concise way. If no question is given, you should provide a historical fact. You must also engage with users by creating little quizzes with 4 possible options to answer in each question. Then, you must the 'updateDatabase' tool to save the latest quiz to the database."
+  "instructions": "You are a personal history tutor. You will answer questions in a concise way.
+  If no question is given, you should provide a historical fact.
+  You must also engage with users by creating little quizzes with 4 possible options to answer in each question.
+  Then, you must the 'updateDatabase' tool to save the latest quiz to the database."
 }
 ```
 
@@ -492,8 +494,13 @@ Make sure that your collection has the fields name and email set.
 Let’s start by giving the task and the context to the assistant. We are also describing the tools its gonna use and some
 extra information on how to handle if users refers to themselves
 
+**INSTRUCTIONS**:
+
 ```json
-**INSTRUCTIONS**: You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient. You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact. Consider that if the user says myself or me you should use sender email
+You are specialized on sending emails with a concise response given a context.
+Users will describe the message they want to send and the expected recipient.
+You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact.
+Consider that if the user says myself or me you should use sender email
 ```
 
 ### Step 2. Add the nodes and describe them
@@ -532,9 +539,13 @@ account that a new message will be send correctly!
 You can explore different instructions to guide the Assistant how to respond. As a simple example, you can tell the
 Assistant how to sign the message.
 
-```json
-**INSTRUCTIONS**: You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient. You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact. Consider that if the user says myself or me you should use sender email
+**INSTRUCTIONS**:
 
+```json
+ You are specialized on sending emails with a concise response given a context.
+ Users will describe the message they want to send and the expected recipient.
+ You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact.
+ Consider that if the user says myself or me you should use sender email
 Your signature should be always: AI curated message from Mail Assistant
 ```
 
@@ -548,25 +559,26 @@ tasks.
 We hope that this guide help you better understand how to use and integrate Assistants to our own workflows. We imagine
 that combining Assistants together with BuildShip you can explore many interesting scenarios:
 
-- Custom chats: use AI capabilities to create a chat in your own product.
-- Chat with your data : create assistants that access your knowledge to respond
-- Seamless integration with your apps: make them use your tools like Gmail, Supabase, etc
-- Teams of AI agents: divide tasks into multiple assistants and make them handle
+- **Custom chats**: use AI capabilities to create a chat in your own product. -**Chat with your data** : create
+  assistants that access your knowledge to respond
+- **Seamless integration with your apps**: make them use your tools like Gmail, Supabase, etc -**Teams of AI agents**:
+  divide tasks into multiple assistants and make them handle
 
 As you will see, making them to use tools requires a good tool’s description and detailed instructions. If you give them
 more autonomy, they can end up deciding not to use the tools as you expect. To succeed, we provide a set of guidelines
 on defining instructions based on our explorations:
 
-- Use the name of the tool. _E.g: use 'Send email' tool_
-- Don’t make assumptions, AI doesn’t have content. _E.g: inform Gerard to update the guide on prompting → inform Gerard,
-  from my contacts_
-- Use imperative to force using the tool. _E.g: you must save to the database,_
-- Provide a clear sequence of actions. _E.g: first generate an idea and then send it to client_
-- Imagine and describe possible logical paths. _E.g: if you need more information, ask the user before sending a
+- **Use the name of the tool**. _E.g: use 'Send email' tool_
+- **Don’t make assumptions**, AI doesn’t have content. _E.g: inform Gerard to update the guide on prompting → inform
+  Gerard, from my contacts_
+- **Use imperative** to force using the tool. _E.g: you must save to the database,_
+- Provide a **clear sequence of actions**. _E.g: first generate an idea and then send it to client_
+- Imagine and **describe possible logical paths**. _E.g: if you need more information, ask the user before sending a
   message_
-- Provide example of formatting when needed. _E.g: data in a json format `{name:value email:value}`_
+- Provide **examples of formatting** when needed. _E.g: data in a json format `{name:value email:value}`_
 
-We are gonna keep updating this guide with more use cases and recommendations. Don’t hesitate to join our Discord for
-more updates or contact us to discuss what you want to build
+We are gonna keep updating this guide with more use cases and recommendations. Don’t hesitate to join our
+[Discord](https://discord.com/invite/rowy-853498675484819476) for more updates or contact us to discuss what you want to
+build
 
-Happy exploration!
+Happy exploration! ✨
