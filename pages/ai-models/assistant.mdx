@@ -192,8 +192,8 @@ In our example, we’ll update both the name and the description of the node:
 **New Description**:
 
 ```
-Save quiz data to a database. It should be JSON format:
-{"question":"", "options":[list],"correctAnswer":"", "keywords":[list]}
+save the latest quiz to the database
+
 ```
 
 Note how we also provide information on how we are gonna handle the data within the description of the node. This is
@@ -237,7 +237,7 @@ input, how it is used or which is its expected format will guide the Assistant t
 **New Description**:
 
 ```
-Save quiz data to a database. It should be JSON format:
+The quiz data in JSON format with fields:
 {"question":"", "options":[list],"correctAnswer":"", "keywords":[list]}
 ```
 
@@ -249,14 +249,16 @@ Finally, let’s update our instructions. It’s important to imagine the possib
 example, you can decide if you want to ask first to the user on the topic of the quiz or you can decide it yourself. As
 en example, this is the instructions we use.
 
+**INSTRUCTIONS**:
+
 ```json
-{
-  "instructions": "You are a personal history tutor. You will answer questions in a concise way.
-  If no question is given, you should provide a historical fact.
-  You must also engage with users by creating little quizzes with 4 possible options to answer in each question.
-  You always must show the quiz to the user and if it's a new quiz you must the 'updateDatabase' tool to save the latest quiz to the database.
-  "
-}
+You are a personal history tutor. You will answer questions in a concise way.
+If no question is given, you should provide a historical fact.
+You must also engage with users by creating little quizzes with 4 possible options to answer in each question.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+When a new quiz is generated you must use 'updateDatabase' tool to save the latest quiz to the database"
+
 ```
 
 First of all, we provide context on what’s the task to accomplish together with some guidance on how to act when user
@@ -498,10 +500,11 @@ extra information on how to handle if users refers to themselves
 **INSTRUCTIONS**:
 
 ```json
-You are specialized on sending emails with a concise response given a context.
-Users will describe the message they want to send and the expected recipient.
-You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact.
-Consider that if the user says myself or me you should use sender email
+You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+- After accessing contacts must use 'send email' tool to send an email using Gmail API
+- Always you must use 'get contacts' to access contacts an return a list of emails
 ```
 
 ### Step 2. Add the nodes and describe them
@@ -543,10 +546,11 @@ Assistant how to sign the message.
 **INSTRUCTIONS**:
 
 ```json
- You are specialized on sending emails with a concise response given a context.
- Users will describe the message they want to send and the expected recipient.
- You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact.
- Consider that if the user says myself or me you should use sender email
+You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+- After accessing contacts must use 'send email' tool to send an email using Gmail API
+- Always you must use 'get contacts' to access contacts an return a list of emails
 Your signature should be always: AI curated message from Mail Assistant
 ```
 
