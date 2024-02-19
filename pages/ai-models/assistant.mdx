@@ -60,9 +60,8 @@ also update your _Instructions_ from here or already use what you defined.
 ![example_assistant.gif](./assistant-src/example_assistant.gif)
 
 <Callout emoji='☝'>
-  If you leave Instructions field empty, have to **will consider what you have already defined** in OpenAI playground.
-
- </Callout>
+  If you leave Instructions field empty, OpenAI **will consider what you have already defined** in OpenAI playground.
+</Callout>
 
 After that, you can test it out via a message like _Who was Leonardo da Vinci?_ Remember you can use variables to easily
 change the inputs for your nodes.
@@ -106,13 +105,13 @@ In the following section, you’ll learn how to use _Thread ID_ to save and cont
 
 When you start chatting with an Assistant, a _Thread_ is created representing this conversation. We recommend saving
 them as soon the conversation is initiated. You can use BuildShip internal database to do that. We provide two basic
-templates on Saving a Thread ID and access to our historic of threads. For now, let’s just copy the thread id,
+templates on Saving a Thread ID and access to our history of threads. For now, let’s just copy the thread id.
 
 For now, let’s assume that we copy the thread ID from the first message and we include it in our request. Our new
 message is the answer of the past quiz and the previous threadID
 
 ```json
-{ "message": "The School Of Atens", "threadID": "your_thread_id" }
+{ "message": "The School Of Athens", "threadID": "your_thread_id" }
 ```
 
 And it works! We can see from the Assistant’s response that we correctly answered and the conversation continues.
@@ -192,8 +191,8 @@ In our example, we’ll update both the name and the description of the node:
 **New Description**:
 
 ```
-Save quiz data to a database. It should be JSON format:
-{"question":"", "options":[list],"correctAnswer":"", "keywords":[list]}
+save the latest quiz to the database
+
 ```
 
 Note how we also provide information on how we are gonna handle the data within the description of the node. This is
@@ -237,7 +236,7 @@ input, how it is used or which is its expected format will guide the Assistant t
 **New Description**:
 
 ```
-Save quiz data to a database. It should be JSON format:
+The quiz data in JSON format with fields:
 {"question":"", "options":[list],"correctAnswer":"", "keywords":[list]}
 ```
 
@@ -249,13 +248,16 @@ Finally, let’s update our instructions. It’s important to imagine the possib
 example, you can decide if you want to ask first to the user on the topic of the quiz or you can decide it yourself. As
 en example, this is the instructions we use.
 
+**INSTRUCTIONS**:
+
 ```json
-{
-  "instructions": "You are a personal history tutor. You will answer questions in a concise way.
-  If no question is given, you should provide a historical fact.
-  You must also engage with users by creating little quizzes with 4 possible options to answer in each question.
-  Then, you must the 'updateDatabase' tool to save the latest quiz to the database."
-}
+You are a personal history tutor. You will answer questions in a concise way.
+If no question is given, you should provide a historical fact.
+You must also engage with users by creating little quizzes with 4 possible options to answer in each question.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+When a new quiz is generated you must use 'updateDatabase' tool to save the latest quiz to the database"
+
 ```
 
 First of all, we provide context on what’s the task to accomplish together with some guidance on how to act when user
@@ -347,7 +349,7 @@ You can copy the code below and paste it in a new workflow.
       },
       "onFail": null,
       "id": "81165841-47ed-4646-8097-b6f57d6b8578",
-      "script": "import { Firestore } from '@google-cloud/firestore';\n\nexport default async function firestoreQueryDocuments(\n  {\n    collection,\n    filters = [],\n    limit,\n    orderBy = [],\n  },\n  {}\n) {\n  const firestore = new Firestore(undefined);\n\n  let query = firestore.collection(collection);\n\n  orderBy.forEach(orderObj => {\n    for (const [field, direction] of Object.entries(orderObj)) {\n      const lowerCaseDirection = direction.toLowerCase();\n      if (lowerCaseDirection === 'asc' || lowerCaseDirection === 'desc')\n        query = query.orderBy(field, lowerCaseDirection);\n    }\n  });\n\n  // Validate that filters exist and each filter has necessary properties\n  if (Array.isArray(filters)) {\n    filters.forEach(filter => {\n      if (filter.field && filter.operator && filter.hasOwnProperty('value')) {\n        query = query.where(filter.field, filter.operator, filter.value);\n      }\n    });\n  }\n\n  let snapshot = await query.limit(limit ?? 100).get();\n  return snapshot.docs.map(doc => ({\n    id: doc.id,\n    data: doc.data()\n  }));\n}\n",
+      "script": "import { Firestore } from '@google-cloud/firestore';\n\nexport default async function firestoreQueryDocuments(\n {\n collection,\n filters = [],\n limit,\n orderBy = [],\n },\n {}\n) {\n const firestore = new Firestore(undefined);\n\n let query = firestore.collection(collection);\n\n orderBy.forEach(orderObj => {\n for (const [field, direction] of Object.entries(orderObj)) {\n const lowerCaseDirection = direction.toLowerCase();\n if (lowerCaseDirection === 'asc' || lowerCaseDirection === 'desc')\n query = query.orderBy(field, lowerCaseDirection);\n }\n });\n\n // Validate that filters exist and each filter has necessary properties\n if (Array.isArray(filters)) {\n filters.forEach(filter => {\n if (filter.field && filter.operator && filter.hasOwnProperty('value')) {\n query = query.where(filter.field, filter.operator, filter.value);\n }\n });\n }\n\n let snapshot = await query.limit(limit ?? 100).get();\n return snapshot.docs.map(doc => ({\n id: doc.id,\n data: doc.data()\n }));\n}\n",
       "bsTablePopup": true,
       "version": "1.0.1",
       "src": "https://storage.googleapis.com/buildship-app-us-central1/builtNodes/buildship-firestore-collection-query/1.0.1.cjs"
@@ -438,14 +440,14 @@ You can copy the code below and paste it in a new workflow.
       "properties": {}
     },
     "type": "webhook",
-    "script": "import { OAuth2Client } from \"google-auth-library\";\n\nconst onCreate = async ({ _ }, { workflow, runtimeUrl }) => {\n  return { success: true };\n};\n\nconst onExecution = async ({ serviceAccount }, { workflow, req, logging }) => {\n\n  const idToken = req.request.headers.authorization?.split(\"Bearer \")[1];\n  logging.log({ idToken });\n\n  if (idToken === undefined) {\n    req.throw(`Missing authorization header`);\n  }\n\n  try {\n    // Ensure that token is valid and not expired\n    const oAuth2client = new OAuth2Client();\n    const ticket = await oAuth2client.verifyIdToken({\n      idToken,\n      audience: `${process.env.GCLOUD_PROJECT}-${workflow.id}`\n    });\n\n    // Extract payload from token\n    const payload = ticket.getPayload();\n    if (payload === undefined) {\n      req.throw(\"Invalid token\");\n    }\n    const expectedServiceAccount = serviceAccount || `runtime@${process.env.GCLOUD_PROJECT}.iam.gserviceaccount.com`\n    if (payload.email !== expectedServiceAccount) {\n      req.throw(`Wrong service account, got ${payload.email}, expected ${expectedServiceAccount}`);\n    }\n\n    // Ensure that the token issuer is https://accounts.google.com or accounts.google.com\n    if (\n      payload.iss !== \"https://accounts.google.com\" &&\n      payload.iss !== \"accounts.google.com\"\n    ) {\n      req.throw(\"Wrong issuer\");\n    }\n\n  logging.log(`Verified request, body: `, req.request.body)\n  return req.request.body;\n  }\n  catch (e){\n    return e\n  }\n};\nexport default {\n  onCreate,\n  onUpdate: onCreate,\n  onExecution\n};\n",
+    "script": "import { OAuth2Client } from \"google-auth-library\";\n\nconst onCreate = async ({ _ }, { workflow, runtimeUrl }) => {\n return { success: true };\n};\n\nconst onExecution = async ({ serviceAccount }, { workflow, req, logging }) => {\n\n const idToken = req.request.headers.authorization?.split(\"Bearer \")[1];\n logging.log({ idToken });\n\n if (idToken === undefined) {\n req.throw(`Missing authorization header`);\n }\n\n try {\n // Ensure that token is valid and not expired\n const oAuth2client = new OAuth2Client();\n const ticket = await oAuth2client.verifyIdToken({\n idToken,\n audience: `${process.env.GCLOUD_PROJECT}-${workflow.id}`\n });\n\n // Extract payload from token\n const payload = ticket.getPayload();\n if (payload === undefined) {\n req.throw(\"Invalid token\");\n }\n const expectedServiceAccount = serviceAccount || `runtime@${process.env.GCLOUD_PROJECT}.iam.gserviceaccount.com`\n if (payload.email !== expectedServiceAccount) {\n req.throw(`Wrong service account, got ${payload.email}, expected ${expectedServiceAccount}`);\n }\n\n // Ensure that the token issuer is https://accounts.google.com or accounts.google.com\n if (\n payload.iss !== \"https://accounts.google.com\" &&\n payload.iss !== \"accounts.google.com\"\n ) {\n req.throw(\"Wrong issuer\");\n }\n\n logging.log(`Verified request, body: `, req.request.body)\n return req.request.body;\n }\n catch (e){\n return e\n }\n};\nexport default {\n onCreate,\n onUpdate: onCreate,\n onExecution\n};\n",
     "icon": {
       "type": "URL",
       "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fbuildship.png?alt=media&token=c5248170-8cb1-4a66-af37-436c7a2aa6b8"
     },
     "live": true,
     "instruction": {
-      "bodyTemplate": "{\n  projectId: \"{{projectId}}\",\n  workflowId: \"{{workflowId}}\"\n}",
+      "bodyTemplate": "{\n projectId: \"{{projectId}}\",\n workflowId: \"{{workflowId}}\"\n}",
       "title": "Configuration for \"Execute Workflow\" node"
     }
   },
@@ -497,10 +499,11 @@ extra information on how to handle if users refers to themselves
 **INSTRUCTIONS**:
 
 ```json
-You are specialized on sending emails with a concise response given a context.
-Users will describe the message they want to send and the expected recipient.
-You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact.
-Consider that if the user says myself or me you should use sender email
+You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+- After accessing contacts must use 'send email' tool to send an email using Gmail API
+- Always you must use 'get contacts' to access contacts an return a list of emails
 ```
 
 ### Step 2. Add the nodes and describe them
@@ -542,10 +545,11 @@ Assistant how to sign the message.
 **INSTRUCTIONS**:
 
 ```json
- You are specialized on sending emails with a concise response given a context.
- Users will describe the message they want to send and the expected recipient.
- You must use 'get contacts' to look for your contacts and then use 'Send Email' to the required contact.
- Consider that if the user says myself or me you should use sender email
+You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+- After accessing contacts must use 'send email' tool to send an email using Gmail API
+- Always you must use 'get contacts' to access contacts an return a list of emails
 Your signature should be always: AI curated message from Mail Assistant
 ```
 
