@@ -53,5 +53,6 @@
     "type": "separator",
     "title": "Help & Troubleshooting"
   },
-  "support-messages": "Support Messages"
+  "support-messages": "Support Messages",
+  "subscriptions-billing": "Subscriptions & Billing"
 }
