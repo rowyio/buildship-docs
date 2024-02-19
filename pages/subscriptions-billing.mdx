@@ -1,0 +1,58 @@
+---
+title: Managing BuildShip Subscriptions and Billing
+description:
+  Learn how to download mange your BuildShip subscriptions, billing and how to get invoice and recipts from Stripe.
+---
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import subscription from '/public/support/subscription.png';
+import checkout from '/public/support/checkout.png';
+
+# Manage BuildShip Subscriptions & Billing
+
+BuildShip integrates Stripe to manage payments, you can get all your past invoices by logging into your Stripe Account
+(with the same email used in your BuildShip account).
+
+<Image src={subscription} alt='buildship subscription and billing' width={1200} />
+
+<Steps>
+### Access Subscriptions Modal
+
+- Click on the Mange or Upgrade button in the bottom left corner of the BuildShip app.
+
+- This will opens subscriptions modal where you can select your current plan and click "Mange Current Plan".
+
+- You will be redirected to the Stripe where you can manage your subscription.
+
+### Stripe Checkout Page (applicable on upgrade or new subscription)
+
+- On the Stripe Checkout Page, you can fill in your payment details.
+
+- You can also add a coupon code if you have one.
+
+<Image src={checkout} alt='buildship stripe checkout' width={1200} />
+
+</Steps>
+
+## Downloading Invoice and Receipts from Stripe Dashboard
+
+To download your invoice and receipts from your Stripe Dashboard, follow these steps:
+
+1. Log in to your Stripe Dashboard https://dashboard.stripe.com.
+2. Navigate to the "Billing" or "Payments" section.
+3. Look for the "Invoices" or "Receipts" tab.
+4. Click on the desired invoice or receipt that you want to download.
+5. On the invoice or receipt page, you will find a download button.
+6. Click on the download button to get the invoice or recipt.
+
+That's it! You have successfully downloaded your invoice or receipt from your Stripe Dashboard.
+
+Note: Billing address and user information cannot be changed on already full paid subscriptions. As any change on the
+fully paid invoice and recipts requires a new charge (subscription/purchase).
+
+<Callout emoji='💡' type='info'>
+  If you encounter any issues in billing or have further questions, please reach out to our support team for assistance
+  at support@buildship.com.
+</Callout>
