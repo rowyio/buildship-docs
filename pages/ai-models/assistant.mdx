@@ -236,8 +236,7 @@ input, how it is used or which is its expected format will guide the Assistant t
 **New Description**:
 
 ```
-The quiz data in JSON format with fields:
-{"question":"", "options":[list],"correctAnswer":"", "keywords":[list]}
+The quiz data in JSON format with fields: question, options, correctAnswer, keywords
 ```
 
 Your node is ready to be used by the Assistant, now we only need to update it in our instructions.
@@ -252,11 +251,10 @@ en example, this is the instructions we use.
 
 ```json
 You are a personal history tutor. You will answer questions in a concise way.
-If no question is given, you should provide a historical fact.
 You must also engage with users by creating little quizzes with 4 possible options to answer in each question.
 When you are given tools to use, you must use them following the guidelines for each tool.
 Guidelines:
-When a new quiz is generated you must use 'updateDatabase' tool to save the latest quiz to the database"
+- If new quiz is generated you must use 'updateDatabase' tool to save the latest quiz to the database"
 
 ```
 
@@ -272,7 +270,604 @@ the Green Run icon.
 You have learnt a basic example on how to use BuildShip nodes with the Assistant. Let’s now learn how to combine using
 nodes and workflows together with the Assistant.
 
-## Tool usage (II): your AI marketer, generate and send emails
+## Tool usage (II): access your private data
+
+In this example, we are learn how you can ask the Assistant to use your own data for answering your questions. Until
+now, we assumed that assistant will use its training data information to answer our requests. However, we can also make
+our Assistants use our internal data sources.
+
+We'll illustrate this with a use case on handling data. Let’s imagine we have an Italian restaurant and we want our
+customers to get recommendations based on our menu.
+
+### Step 1. Prepare your data
+
+In our case, let’s assume this menu is in our own database with full descriptions, prices and option for each dish.
+
+![Untitled](./assistant-src/menu-db.png)
+
+<Callout type='info'>
+A prerequisite for this tutorial is to create a collection within BuildShip named MyMenu . You can use your preferred format for your data just make sure that you are giving the Assistant a node or workflow to access it
+
+</Callout>
+
+You can use our sample dataset in a JSON format and import it to your project to test this workflow. Here, we propose
+two sample datasets including starters, main dishes, dessert and beverages:
+
+- **Small**: 16 elements
+
+```json
+[
+  {
+    "id": "yCjFWpo8U8ImTzwlwdfB",
+    "itemName": "Soave Classico",
+    "category": "White Wine",
+    "mainIngredients": "Garganega grapes",
+    "vegetarian": true,
+    "price": 10,
+    "description": "A light-bodied white wine from the Veneto region, known for its melon and citrus flavors, with a hint of almond."
+  },
+  {
+    "id": "G8vk6ECaOmfQW97Z9nXM",
+    "itemName": "Eggplant Parmigiana",
+    "category": "Vegetarian",
+    "mainIngredients": "Eggplant, tomato sauce, mozzarella, parmesan",
+    "vegetarian": true,
+    "price": 15,
+    "description": "Layers of thinly sliced eggplants, coated in breadcrumbs, fried, and layered with tomato sauce, mozzarella, Parmesan cheese, and baked until bubbly."
+  },
+  {
+    "id": "3Dnw0SoP7VqQssLEM0uP",
+    "itemName": "Risotto al Funghi",
+    "category": "Vegetarian",
+    "mainIngredients": "Arborio rice, mushrooms, parmesan",
+    "vegetarian": true,
+    "price": 16,
+    "description": "Creamy and aromatic risotto cooked with a variety of mushrooms and Parmesan cheese, finished with a touch of butter for richness."
+  },
+  {
+    "id": "ihd7gdG02R1nMauKaPmt",
+    "itemName": "Arancini",
+    "category": "Starter",
+    "mainIngredients": "Rice, mozzarella, tomato sauce",
+    "vegetarian": false,
+    "price": 12,
+    "description": "Crispy fried risotto balls, often stuffed with ragù, mozzarella, and peas, a staple of Sicilian cuisine."
+  },
+  {
+    "id": "ykUcwLAMvJZuxQYGioH2",
+    "itemName": "Chianti Classico",
+    "category": "Red Wine",
+    "mainIngredients": "Sangiovese grapes",
+    "vegetarian": true,
+    "price": 9,
+    "description": "From the heart of the Chianti region, this red wine showcases flavors of red fruits and spices, with firm tannins and a lingering finish."
+  },
+  {
+    "id": "xcLbEJ5SQXDgvDNmo4CA",
+    "itemName": "Lasagna Bolognese",
+    "category": "Pasta",
+    "mainIngredients": "Lasagna noodles, ragù (beef sauce), béchamel, parmesan",
+    "vegetarian": false,
+    "price": 15,
+    "description": "A traditional Italian lasagna made with layers of flat lasagna noodles, ragù (a slow-cooked meat sauce), béchamel sauce, and topped with Parmesan cheese."
+  },
+  {
+    "id": "GqagsOZAdN9V3jjRgy5o",
+    "itemName": "Linguine with Clam Sauce",
+    "category": "Pasta",
+    "mainIngredients": "Linguine, clams, garlic, white wine",
+    "vegetarian": false,
+    "price": 18,
+    "description": "A flavorful pasta dish featuring linguine tossed with a sauce made from clams, garlic, white wine, and olive oil."
+  },
+  {
+    "id": "DkxfyiXkHpdUCyCOqCE3",
+    "itemName": "Penne Arrabbiata",
+    "category": "Pasta",
+    "mainIngredients": "Penne, tomato sauce, garlic, chili peppers",
+    "vegetarian": true,
+    "price": 12,
+    "description": "A spicy pasta dish from Rome made with penne in a garlic tomato sauce and red chili flakes."
+  },
+  {
+    "id": "6I9sXqHFfpQiRK1ZccFI",
+    "itemName": "Fettuccine Alfredo",
+    "category": "Pasta",
+    "mainIngredients": "Fettuccine, butter, parmesan",
+    "vegetarian": true,
+    "price": 13,
+    "description": "A simple yet rich pasta dish combining fettuccine tossed with butter and melted parmesan cheese, creating a creamy sauce."
+  },
+  {
+    "id": "Y8EGZoMOK0Gp8dhrKPnn",
+    "itemName": "Bistecca Fiorentina",
+    "category": "Main",
+    "mainIngredients": "T-bone steak, olive oil, rosemary",
+    "vegetarian": false,
+    "price": 30,
+    "description": "A large, thick cut of T-bone steak from the Chianina breed of cattle, grilled over a wood fire, seasoned with olive oil, rosemary, and salt."
+  },
+  {
+    "id": "U4Ip4OWtdBAJo4LSww6J",
+    "itemName": "Water (Still)",
+    "category": "Drink",
+    "mainIngredients": "",
+    "vegetarian": true,
+    "price": 2,
+    "description": "Pure, still water, served chilled for refreshment."
+  },
+  {
+    "id": "OaGPQZB4CwcaY1Adw9xs",
+    "itemName": "Tiramisu",
+    "category": "Dessert",
+    "mainIngredients": "Mascarpone, espresso, ladyfingers",
+    "vegetarian": true,
+    "price": 7,
+    "description": "A classic Italian no-bake dessert made with layers of coffee-soaked ladyfingers and a rich, creamy mascarpone mixture, dusted with cocoa powder."
+  },
+  {
+    "id": "5UaRMAxa3KLYQkUXiVEK",
+    "itemName": "Panna Cotta",
+    "category": "Dessert",
+    "mainIngredients": "Cream, sugar, gelatin, vanilla",
+    "vegetarian": true,
+    "price": 6,
+    "description": "A smooth, creamy dessert made with sweetened cream thickened with gelatin and molded, often served with a berry coulis or caramel sauce."
+  },
+  {
+    "id": "PXU8ynpcTmgxHyE4VyOR",
+    "itemName": "Aperol Spritz",
+    "category": "Cocktail",
+    "mainIngredients": "Aperol, prosecco, soda water",
+    "vegetarian": true,
+    "price": 8,
+    "description": "A popular Italian aperitif cocktail, light and refreshing, made with Aperol, prosecco, and a splash of soda, garnished with an orange slice."
+  },
+  {
+    "id": "8c2TvmhCVB1TJqLkvrqZ",
+    "itemName": "Negroni",
+    "category": "Cocktail",
+    "mainIngredients": "Gin, Campari, sweet vermouth",
+    "vegetarian": true,
+    "price": 10,
+    "description": "An iconic Italian cocktail, known for its strong and bitter flavor, made with equal parts of gin, Campari, and sweet vermouth, served over ice and garnished with an orange peel."
+  },
+  {
+    "id": "aIMvynGWM2rSl3oVCS09",
+    "itemName": "Peroni",
+    "category": "Beer",
+    "mainIngredients": "Barley malt, hops",
+    "vegetarian": true,
+    "price": 6,
+    "description": "A premium Italian lager with a crisp, refreshing taste and a delicate balance of bitterness and citrus aromatic notes."
+  }
+]
+```
+
+- **Large**: 42 elements
+
+```json
+[
+  {
+    "id": "1ziU4VC2E6G0W9GIpslq",
+    "itemName": "Minestrone Soup",
+    "category": "Starter",
+    "mainIngredients": "Vegetables, beans, pasta, tomato",
+    "vegetarian": true,
+    "price": 9,
+    "description": "A hearty Italian vegetable soup made with tomato broth, pasta, beans, and a variety of vegetables."
+  },
+  {
+    "id": "3Dnw0SoP7VqQssLEM0uP",
+    "itemName": "Risotto al Funghi",
+    "category": "Vegetarian",
+    "mainIngredients": "Arborio rice, mushrooms, parmesan",
+    "vegetarian": true,
+    "price": 16,
+    "description": "Creamy and aromatic risotto cooked with a variety of mushrooms and Parmesan cheese, finished with a touch of butter for richness."
+  },
+  {
+    "id": "4heNMDSLZ6PsuNatZKjs",
+    "itemName": "Pollo alla Cacciatora",
+    "category": "Main",
+    "mainIngredients": "Chicken, tomatoes, onions, bell peppers",
+    "vegetarian": false,
+    "price": 17,
+    "description": "A rustic Italian chicken stew cooked with tomatoes, onions, bell peppers, and a variety of herbs, offering a hearty and flavorful dish."
+  },
+  {
+    "id": "5UaRMAxa3KLYQkUXiVEK",
+    "itemName": "Panna Cotta",
+    "category": "Dessert",
+    "mainIngredients": "Cream, sugar, gelatin, vanilla",
+    "vegetarian": true,
+    "price": 6,
+    "description": "A smooth, creamy dessert made with sweetened cream thickened with gelatin and molded, often served with a berry coulis or caramel sauce."
+  },
+  {
+    "id": "6G47Vd5ehoD66uD1gCdh",
+    "itemName": "Gnocchi Sorrentina",
+    "category": "Vegetarian",
+    "mainIngredients": "Gnocchi, tomato sauce, mozzarella, basil",
+    "vegetarian": true,
+    "price": 14,
+    "description": "Soft potato gnocchi baked in a rich tomato sauce with melted mozzarella cheese and fresh basil."
+  },
+  {
+    "id": "6I9sXqHFfpQiRK1ZccFI",
+    "itemName": "Fettuccine Alfredo",
+    "category": "Pasta",
+    "mainIngredients": "Fettuccine, butter, parmesan",
+    "vegetarian": true,
+    "price": 13,
+    "description": "A simple yet rich pasta dish combining fettuccine tossed with butter and melted parmesan cheese, creating a creamy sauce."
+  },
+  {
+    "id": "8c2TvmhCVB1TJqLkvrqZ",
+    "itemName": "Negroni",
+    "category": "Cocktail",
+    "mainIngredients": "Gin, Campari, sweet vermouth",
+    "vegetarian": true,
+    "price": 10,
+    "description": "An iconic Italian cocktail, known for its strong and bitter flavor, made with equal parts of gin, Campari, and sweet vermouth, served over ice and garnished with an orange peel."
+  },
+  {
+    "id": "DKG7hbVqI8zfe0jaIy9y",
+    "itemName": "Coca-Cola",
+    "category": "Soda",
+    "mainIngredients": "Carbonated water, sugar, caffeine",
+    "vegetarian": true,
+    "price": 3,
+    "description": "A classic, sweetened carbonated soda, known for its refreshing taste and energizing caffeine content."
+  },
+  {
+    "id": "Dk9iTy0CXJ5A6Ayl9aRQ",
+    "itemName": "Osso Buco",
+    "category": "Main",
+    "mainIngredients": "Veal shanks, vegetables, white wine, broth",
+    "vegetarian": false,
+    "price": 22,
+    "description": "A Milanese specialty of cross-cut veal shanks, braised with vegetables, white wine, and broth, traditionally garnished with gremolata and served with risotto alla milanese."
+  },
+  {
+    "id": "DkxfyiXkHpdUCyCOqCE3",
+    "itemName": "Penne Arrabbiata",
+    "category": "Pasta",
+    "mainIngredients": "Penne, tomato sauce, garlic, chili peppers",
+    "vegetarian": true,
+    "price": 12,
+    "description": "A spicy pasta dish from Rome made with penne in a garlic tomato sauce and red chili flakes."
+  },
+  {
+    "id": "Dr5fODt55U26vilvHo3r",
+    "itemName": "Moretti",
+    "category": "Beer",
+    "mainIngredients": "Barley malt, hops",
+    "vegetarian": true,
+    "price": 6,
+    "description": "A traditional Italian lager, characterized by its golden color, smooth malt flavors, and a balanced hop aroma."
+  },
+  {
+    "id": "E7wza9kakvae8ZjlwbC2",
+    "itemName": "Fanta",
+    "category": "Soda",
+    "mainIngredients": "Carbonated water, sugar, orange flavor",
+    "vegetarian": true,
+    "price": 3,
+    "description": "A fruit-flavored carbonated soft drink, most commonly associated with its bright orange flavor."
+  },
+  {
+    "id": "G8vk6ECaOmfQW97Z9nXM",
+    "itemName": "Eggplant Parmigiana",
+    "category": "Vegetarian",
+    "mainIngredients": "Eggplant, tomato sauce, mozzarella, parmesan",
+    "vegetarian": true,
+    "price": 15,
+    "description": "Layers of thinly sliced eggplants, coated in breadcrumbs, fried, and layered with tomato sauce, mozzarella, Parmesan cheese, and baked until bubbly."
+  },
+  {
+    "id": "GqagsOZAdN9V3jjRgy5o",
+    "itemName": "Linguine with Clam Sauce",
+    "category": "Pasta",
+    "mainIngredients": "Linguine, clams, garlic, white wine",
+    "vegetarian": false,
+    "price": 18,
+    "description": "A flavorful pasta dish featuring linguine tossed with a sauce made from clams, garlic, white wine, and olive oil."
+  },
+  {
+    "id": "IuhKE80qSdNP4Oa7a81t",
+    "itemName": "Gelato",
+    "category": "Dessert",
+    "mainIngredients": "Milk, sugar, flavoring",
+    "vegetarian": true,
+    "price": 5,
+    "description": "Italian-style ice cream known for its dense texture and intense flavor, available in a variety of flavors."
+  },
+  {
+    "id": "LPWuzp43OHtu3g9w6M2n",
+    "itemName": "Zucchini Fritti",
+    "category": "Vegetarian",
+    "mainIngredients": "Zucchini, flour, eggs",
+    "vegetarian": true,
+    "price": 9,
+    "description": "Thinly sliced zucchini, battered and fried until crispy, served with a side of marinara sauce for dipping."
+  },
+  {
+    "id": "LST4ECXBCxbOGKYyWDIh",
+    "itemName": "Barolo",
+    "category": "Red Wine",
+    "mainIngredients": "Nebbiolo grapes",
+    "vegetarian": true,
+    "price": 15,
+    "description": "Often described as the 'King of Wines,' this robust red wine from Piedmont offers complex flavors of fruit, tar, and roses, with high tannins and acidity."
+  },
+  {
+    "id": "LxkAu740NG2HkRHz4MMp",
+    "itemName": "Verdicchio",
+    "category": "White Wine",
+    "mainIngredients": "Verdicchio grapes",
+    "vegetarian": true,
+    "price": 12,
+    "description": "A structured and refreshing white wine with notes of citrus and green apple, accompanied by a slight bitterness and mineral finish."
+  },
+  {
+    "id": "OaGPQZB4CwcaY1Adw9xs",
+    "itemName": "Tiramisu",
+    "category": "Dessert",
+    "mainIngredients": "Mascarpone, espresso, ladyfingers",
+    "vegetarian": true,
+    "price": 7,
+    "description": "A classic Italian no-bake dessert made with layers of coffee-soaked ladyfingers and a rich, creamy mascarpone mixture, dusted with cocoa powder."
+  },
+  {
+    "id": "PXU8ynpcTmgxHyE4VyOR",
+    "itemName": "Aperol Spritz",
+    "category": "Cocktail",
+    "mainIngredients": "Aperol, prosecco, soda water",
+    "vegetarian": true,
+    "price": 8,
+    "description": "A popular Italian aperitif cocktail, light and refreshing, made with Aperol, prosecco, and a splash of soda, garnished with an orange slice."
+  },
+  {
+    "id": "TYShQeHYWMov7lab6P7N",
+    "itemName": "Spaghetti Carbonara",
+    "category": "Pasta",
+    "mainIngredients": "Spaghetti, pancetta, eggs, parmesan",
+    "vegetarian": false,
+    "price": 14,
+    "description": "A rich pasta dish made with eggs, cheese, pancetta, and pepper, offering a creamy texture without the use of cream."
+  },
+  {
+    "id": "TdFbLwDv9jCXUUqAhvtv",
+    "itemName": "Calamari Fritti",
+    "category": "Starter",
+    "mainIngredients": "Calamari, flour, lemon",
+    "vegetarian": false,
+    "price": 11,
+    "description": "Lightly battered and fried calamari, served with a side of marinara sauce for dipping."
+  },
+  {
+    "id": "U4Ip4OWtdBAJo4LSww6J",
+    "itemName": "Water (Still)",
+    "category": "Drink",
+    "mainIngredients": "",
+    "vegetarian": true,
+    "price": 2,
+    "description": "Pure, still water, served chilled for refreshment."
+  },
+  {
+    "id": "VQaDm9IjGKccmJRMPNzG",
+    "itemName": "Caprese Salad",
+    "category": "Starter",
+    "mainIngredients": "Tomato, mozzarella, basil, olive oil",
+    "vegetarian": true,
+    "price": 10,
+    "description": "Simple Italian salad, made of sliced fresh mozzarella, tomatoes, and sweet basil, seasoned with salt and olive oil."
+  },
+  {
+    "id": "WETr2KXTZcswmHuCRXI1",
+    "itemName": "Bellini",
+    "category": "Cocktail",
+    "mainIngredients": "Prosecco, peach purée",
+    "vegetarian": true,
+    "price": 9,
+    "description": "A Venetian cocktail made with Prosecco and peach purée, offering a sweet and refreshing taste, traditionally served in a flute glass."
+  },
+  {
+    "id": "XrorbG1LiYoHZook0tIq",
+    "itemName": "Antipasto Platter",
+    "category": "Starter",
+    "mainIngredients": "Cured meats, cheese, olives, peppers",
+    "vegetarian": false,
+    "price": 16,
+    "description": "A traditional Italian appetizer consisting of various cured meats, cheeses, olives, and pickled vegetables."
+  },
+  {
+    "id": "Y8EGZoMOK0Gp8dhrKPnn",
+    "itemName": "Bistecca Fiorentina",
+    "category": "Main",
+    "mainIngredients": "T-bone steak, olive oil, rosemary",
+    "vegetarian": false,
+    "price": 30,
+    "description": "A large, thick cut of T-bone steak from the Chianina breed of cattle, grilled over a wood fire, seasoned with olive oil, rosemary, and salt."
+  },
+  {
+    "id": "Z5lw9np3FImnsG0GICBI",
+    "itemName": "Branzino al Forno",
+    "category": "Main",
+    "mainIngredients": "Branzino (sea bass), herbs, lemon",
+    "vegetarian": false,
+    "price": 25,
+    "description": "Whole branzino, seasoned with herbs and lemon, oven-roasted to perfection, often served with a side of roasted vegetables."
+  },
+  {
+    "id": "aIMvynGWM2rSl3oVCS09",
+    "itemName": "Peroni",
+    "category": "Beer",
+    "mainIngredients": "Barley malt, hops",
+    "vegetarian": true,
+    "price": 6,
+    "description": "A premium Italian lager with a crisp, refreshing taste and a delicate balance of bitterness and citrus aromatic notes."
+  },
+  {
+    "id": "aTAVCDZs0IdrlxsoAhQo",
+    "itemName": "Saltimbocca",
+    "category": "Main",
+    "mainIngredients": "Veal, prosciutto, sage, white wine",
+    "vegetarian": false,
+    "price": 20,
+    "description": "Tender veal escalopes, layered with prosciutto and sage, pan-fried in butter and deglazed with white wine."
+  },
+  {
+    "id": "frnyjIsuD5W47oUVwIJV",
+    "itemName": "Limoncello Martini",
+    "category": "Cocktail",
+    "mainIngredients": "Limoncello, vodka, lemon juice",
+    "vegetarian": true,
+    "price": 11,
+    "description": "A zesty cocktail blending the sweet and tangy flavors of limoncello with vodka and fresh lemon juice, served chilled with a sugar rim."
+  },
+  {
+    "id": "h97CRqdiQNvJwFmBPPGm",
+    "itemName": "Bruschetta",
+    "category": "Starter",
+    "mainIngredients": "Tomato, basil, garlic, olive oil",
+    "vegetarian": true,
+    "price": 8,
+    "description": "Classic Italian appetizer consisting of toasted bread garnished with juicy tomatoes, fresh basil, garlic, and drizzled with olive oil and vinegar."
+  },
+  {
+    "id": "ihd7gdG02R1nMauKaPmt",
+    "itemName": "Arancini",
+    "category": "Starter",
+    "mainIngredients": "Rice, mozzarella, tomato sauce",
+    "vegetarian": false,
+    "price": 12,
+    "description": "Crispy fried risotto balls, often stuffed with ragù, mozzarella, and peas, a staple of Sicilian cuisine."
+  },
+  {
+    "id": "m54fl7v3beaoDZuitmVj",
+    "itemName": "Sprite",
+    "category": "Soda",
+    "mainIngredients": "Carbonated water, sugar, lemon-lime flavor",
+    "vegetarian": true,
+    "price": 3,
+    "description": "A clear, lemon-lime flavored soda, known for its crisp, refreshing taste without the caffeine."
+  },
+  {
+    "id": "nrUG6RJt92Q6SKz98Q2C",
+    "itemName": "Affogato",
+    "category": "Dessert",
+    "mainIngredients": "Espresso, vanilla gelato",
+    "vegetarian": true,
+    "price": 6,
+    "description": "A simple, elegant Italian dessert consisting of a scoop of vanilla gelato or ice cream topped with a shot of hot espresso."
+  },
+  {
+    "id": "pbu2dGRTIhWAPFmhoRvi",
+    "itemName": "Amarone della Valpolicella",
+    "category": "Red Wine",
+    "mainIngredients": "Corvina, Rondinella, Molinara grapes",
+    "vegetarian": true,
+    "price": 18,
+    "description": "A rich Italian red, made from partially dried grapes, which results in a full-bodied wine with intense flavors of cherry, fig, chocolate, and almonds."
+  },
+  {
+    "id": "tnBUpEdvESuK1KRTsJTA",
+    "itemName": "Cannoli",
+    "category": "Dessert",
+    "mainIngredients": "Ricotta cheese, sugar, chocolate chips, cannoli shells",
+    "vegetarian": true,
+    "price": 4,
+    "description": "Crispy tube-shaped shells filled with a sweet, creamy filling made from ricotta cheese, sugar, and often chocolate chips or candied fruit."
+  },
+  {
+    "id": "xcLbEJ5SQXDgvDNmo4CA",
+    "itemName": "Lasagna Bolognese",
+    "category": "Pasta",
+    "mainIngredients": "Lasagna noodles, ragù (beef sauce), béchamel, parmesan",
+    "vegetarian": false,
+    "price": 15,
+    "description": "A traditional Italian lasagna made with layers of flat lasagna noodles, ragù (a slow-cooked meat sauce), béchamel sauce, and topped with Parmesan cheese."
+  },
+  {
+    "id": "y9wpe9bbahss5mYqCAkt",
+    "itemName": "Pinot Grigio",
+    "category": "White Wine",
+    "mainIngredients": "Pinot grigio grapes",
+    "vegetarian": true,
+    "price": 8,
+    "description": "A popular white wine with crisp flavors of white peaches and pears, with a refreshing finish, perfect for a sunny day."
+  },
+  {
+    "id": "yCjFWpo8U8ImTzwlwdfB",
+    "itemName": "Soave Classico",
+    "category": "White Wine",
+    "mainIngredients": "Garganega grapes",
+    "vegetarian": true,
+    "price": 10,
+    "description": "A light-bodied white wine from the Veneto region, known for its melon and citrus flavors, with a hint of almond."
+  },
+  {
+    "id": "ykUcwLAMvJZuxQYGioH2",
+    "itemName": "Chianti Classico",
+    "category": "Red Wine",
+    "mainIngredients": "Sangiovese grapes",
+    "vegetarian": true,
+    "price": 9,
+    "description": "From the heart of the Chianti region, this red wine showcases flavors of red fruits and spices, with firm tannins and a lingering finish."
+  },
+  {
+    "id": "z1fmiNQ5KK1dhNYl5gQq",
+    "itemName": "Carpaccio",
+    "category": "Starter",
+    "mainIngredients": "Beef, arugula, parmesan",
+    "vegetarian": false,
+    "price": 14,
+    "description": "Thinly sliced raw beef served with arugula, parmesan cheese, lemon, and olive oil."
+  }
+]
+```
+
+### Step 2. Update instructions and node descriptions
+
+In this case, we are gonna tell the Assistant to access our BuildShip Collection via the _Collection Query node_.
+
+Once added, we update the node name and description to match this new scenario.
+
+<aside>
+✨ New Name → access menu
+New Description → get the list of dishes from restaurant menu
+
+</aside>
+
+![Untitled](./assistant-src/accessMenu.gif)
+
+Then, we also update your instructions to include this tool usage
+
+**INSTRUCTIONS**:
+
+```
+You are an expert waitress at an Italian fine dining restaurant. You are familiar with all of the dishes on the menu and are able to recommend the best dishes to customers based on their preferences.
+When you are given tools to use, you must use them following the guidelines for each tool.
+Guidelines:
+- When the user asks for a menu recommendation you must use 'access menu' get the list of dishes from restaurant menu
+```
+
+### Step 3 Test it out
+
+You can test your new Menu Assistant and get recommendations based on your database. As an example below you can check
+how the Assistant gives as a nice recommendation
+
+**Prompt**:
+
+```
+We want a vegetarian menu for two, we are gonna share two starters and a main dish. We want wine pairing recommendations.
+```
+
+![Untitled](./assistant-src/menu-recommendations.gif)
+
+## Tool usage (III): your AI marketer, generate and send emails
 
 Using BuildShip we can also teach our Assistants to use workflows as tools. In this example, we are gonna build an
 Assistant that generates responses and sends emails to your contacts. To do that you can download the Mail Assistant
@@ -285,13 +880,211 @@ template.
 
 You can copy the code below and paste it in a new workflow.
 
-```json
-{ "nodes": [ { "inputs": { "required": ["collection", "filters"], "properties": { "orderBy": { "pattern": "", "buildship": { "index": 3, "sensitive": false }, "type": "array", "description": "Order results in desc or asc order.\nEg: `[{fieldName: \"asc\"}]` or `[{fieldName: \"desc\"}]`", "title": "Order By" }, "collection": { "buildship": { "index": 0 }, "title": "Collection Name", "type": "string", "description": "The name of the BuildShip collection" }, "filters": { "pattern": "", "type": "array", "description": "The array of filter objects, each object includes {field, operator, value}[]\n\nSAMPLE INPUT: \n```\n[{\"field\":\"Name\",\"operator\":\"==\",\"value\":\"Alice\"}]\n```", "default": [{ "field": "", "value": "", "operator": "" }], "title": "Filters", "buildship": { "index": 1, "sensitive": false } }, "limit": { "buildship": { "index": 2 }, "description": "Maximum number of returned documents", "type": "number", "title": "Limit", "default": "" } }, "type": "object" }, "meta": { "icon": { "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FIcon.png?alt=media&token=878ed11b-1cf2-45d8-9951-7e95a16d26af&_gl=1*1ld9l67*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkyMzc5OC4yLjEuMTY5NjkyMzgzMy4yNS4wLjA.", "type": "URL" }, "id": "buildship-firestore-collection-query", "name": "Collection Query", "description": "Get documents of a query in Firestore with multiple filters\n\n<video src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' width=180/>\n" }, "description": "Get documents of a query in Firestore with multiple filters", "label": "Collection Query", "integrity": "19ce3941be33d8272186fea43546e2fc73c2d5a8559deb4f8e3fec3c0242d92b", "type": "script", "dependencies": { "@google-cloud/firestore": "7.1.0" }, "output": { "description": "The array of documents that match the query", "properties": { "data": { "type": "object", "title": "Document Data", "buildship": { "index": 1 } }, "id": { "buildship": { "index": 0 }, "type": "string", "title": "Document ID" } }, "type": "array", "buildship": {}, "title": "Documents" }, "onFail": null, "id": "81165841-47ed-4646-8097-b6f57d6b8578", "script": "import { Firestore } from '@google-cloud/firestore';\n\nexport default async function firestoreQueryDocuments(\n {\n collection,\n filters = [],\n limit,\n orderBy = [],\n },\n {}\n) {\n const firestore = new Firestore(undefined);\n\n let query = firestore.collection(collection);\n\n orderBy.forEach(orderObj => {\n for (const [field, direction] of Object.entries(orderObj)) {\n const lowerCaseDirection = direction.toLowerCase();\n if (lowerCaseDirection === 'asc' || lowerCaseDirection === 'desc')\n query = query.orderBy(field, lowerCaseDirection);\n }\n });\n\n // Validate that filters exist and each filter has necessary properties\n if (Array.isArray(filters)) {\n filters.forEach(filter => {\n if (filter.field && filter.operator && filter.hasOwnProperty('value')) {\n query = query.where(filter.field, filter.operator, filter.value);\n }\n });\n }\n\n let snapshot = await query.limit(limit ?? 100).get();\n return snapshot.docs.map(doc => ({\n id: doc.id,\n data: doc.data()\n }));\n}\n", "bsTablePopup": true, "version": "1.0.1", "src": "https://storage.googleapis.com/buildship-app-us-central1/builtNodes/buildship-firestore-collection-query/1.0.1.cjs" }, { "label": "Return", "type": "return", "response": { "200": { "type": "object", "buildship": {}, "title": "Document Data" } }, "description": "The Return Node is used to return values from the workflow. It is generally the last node in the workflow. The return node is optional as the API can inherently return a 200 OK response by default. [Full Documentation](https://docs.buildship.com/core-nodes/return).", "id": "2e0571db-4c98-4bd5-bf2e-08118a0b4893", "inputs": { "required": [], "type": "object", "properties": { "status": { "default": "200", "enum": ["200", "201", "202", "204", "400", "401", "403", "404", "500"], "buildship": { "index": 0, "options": [ { "label": "OK (200)", "value": "200" }, { "value": "201", "label": "Created (201)" }, { "label": "Accepted (202)", "value": "202" }, { "label": "Redirect (301)", "value": "301" }, { "label": "No Content (204)", "value": "204" }, { "label": "Bad Request (400)", "value": "400" }, { "value": "401", "label": "Unauthorized (401)" }, { "value": "403", "label": "Forbidden (403)" }, { "value": "404", "label": "Not Found (404)" }, { "value": "500", "label": "Internal Server Error (500)" } ] }, "type": "string", "description": "The HTTP status code to return", "title": "Status code" }, "cacheMaxAge": { "type": "number", "buildship": { "index": 2 }, "title": "Cache Time", "default": 0, "description": "Set cache duration" }, "value": { "default": "", "title": "Value", "buildship": { "index": 1 }, "description": "The value to return", "type": "string" } } } } ], "trigger": { "inputs": { "required": [null], "properties": { "serviceAccount": { "pattern": "", "title": "Service Account", "description": "**(OPTIONAL)** If you're calling this workflow from a different BuildShip Project, you need to specify the **Runtime Service Account** of other project here. \n\nYou can get the BuildShip Runtime Service Account from your Project Settings.", "buildship": { "sensitive": false, "index": 0 }, "default": "", "type": "string" } }, "type": "object" }, "id": "x-buildship-trigger", "label": "BuildShip Trigger", "meta": { "icon": { "type": "URL", "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fbuildship.png?alt=media&token=c5248170-8cb1-4a66-af37-436c7a2aa6b8" }, "id": "x-buildship-trigger", "name": "BuildShip Trigger", "description": "Trigger a workflow from any BuildShip Workflow via the \"**Execute Workflow**\" node. [Full documentation](https://docs.buildship.com/trigger-nodes/buildship-trigger)" }, "output": { "title": "Data", "parameters": [], "buildship": {}, "type": "object", "description": "Request Data", "label": "Body", "properties": {} }, "type": "webhook", "script": "import { OAuth2Client } from \"google-auth-library\";\n\nconst onCreate = async ({ _ }, { workflow, runtimeUrl }) => {\n return { success: true };\n};\n\nconst onExecution = async ({ serviceAccount }, { workflow, req, logging }) => {\n\n const idToken = req.request.headers.authorization?.split(\"Bearer \")[1];\n logging.log({ idToken });\n\n if (idToken === undefined) {\n req.throw(`Missing authorization header`);\n }\n\n try {\n // Ensure that token is valid and not expired\n const oAuth2client = new OAuth2Client();\n const ticket = await oAuth2client.verifyIdToken({\n idToken,\n audience: `${process.env.GCLOUD_PROJECT}-${workflow.id}`\n });\n\n // Extract payload from token\n const payload = ticket.getPayload();\n if (payload === undefined) {\n req.throw(\"Invalid token\");\n }\n const expectedServiceAccount = serviceAccount || `runtime@${process.env.GCLOUD_PROJECT}.iam.gserviceaccount.com`\n if (payload.email !== expectedServiceAccount) {\n req.throw(`Wrong service account, got ${payload.email}, expected ${expectedServiceAccount}`);\n }\n\n // Ensure that the token issuer is https://accounts.google.com or accounts.google.com\n if (\n payload.iss !== \"https://accounts.google.com\" &&\n payload.iss !== \"accounts.google.com\"\n ) {\n req.throw(\"Wrong issuer\");\n }\n\n logging.log(`Verified request, body: `, req.request.body)\n return req.request.body;\n }\n catch (e){\n return e\n }\n};\nexport default {\n onCreate,\n onUpdate: onCreate,\n onExecution\n};\n", "icon": { "type": "URL", "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fbuildship.png?alt=media&token=c5248170-8cb1-4a66-af37-436c7a2aa6b8" }, "live": true, "instruction": { "bodyTemplate": "{\n projectId: \"{{projectId}}\",\n workflowId: \"{{workflowId}}\"\n}", "title": "Configuration for \"Execute Workflow\" node" } }, "nodeValues": { "43fe208b-9b48-47cc-bb38-9b562700083a": { "filters": { "expression": "[]" }, "collection": "contacts", "limit": 20 }, "81165841-47ed-4646-8097-b6f57d6b8578": { "collection": "contacts", "limit": 20, "orderBy": { "expression": "\"\"" }, "filters": { "expression": "[]" } }, "mock-id": { "cacheMaxAge": 0, "status": "200", "value": "" }, "test-node-81165841-47ed-4646-8097-b6f57d6b8578": { "orderBy": "", "limit": 20, "filters": [{ "field": "", "value": "", "operator": "" }], "collection": "contacts" }, "http": { "method": "GET", "path": "/" }, "e38db03c-eabf-45da-8576-cffe316ce3db": { "limit": 20, "collection": "contacts", "filters": { "expression": "[]" } }, "x-buildship-trigger": { "serviceAccount": "" }, "2e0571db-4c98-4bd5-bf2e-08118a0b4893": { "status": "200", "cacheMaxAge": 0, "value": { "keys": ["81165841-47ed-4646-8097-b6f57d6b8578", "data"] } } }, "notes": "" }
-```
+````json
+{
+  "nodes": [
+    {
+      "inputs": {
+        "required": ["collection", "filters"],
+        "properties": {
+          "orderBy": {
+            "pattern": "",
+            "buildship": { "index": 3, "sensitive": false },
+            "type": "array",
+            "description": "Order results in desc or asc order.\nEg: `[{fieldName: \"asc\"}]` or `[{fieldName: \"desc\"}]`",
+            "title": "Order By"
+          },
+          "collection": {
+            "buildship": { "index": 0 },
+            "title": "Collection Name",
+            "type": "string",
+            "description": "The name of the BuildShip collection"
+          },
+          "filters": {
+            "pattern": "",
+            "type": "array",
+            "description": "The array of filter objects, each object includes {field, operator, value}[]\n\nSAMPLE INPUT: \n```\n[{\"field\":\"Name\",\"operator\":\"==\",\"value\":\"Alice\"}]\n```",
+            "default": [{ "field": "", "value": "", "operator": "" }],
+            "title": "Filters",
+            "buildship": { "index": 1, "sensitive": false }
+          },
+          "limit": {
+            "buildship": { "index": 2 },
+            "description": "Maximum number of returned documents",
+            "type": "number",
+            "title": "Limit",
+            "default": ""
+          }
+        },
+        "type": "object"
+      },
+      "meta": {
+        "icon": {
+          "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FIcon.png?alt=media&token=878ed11b-1cf2-45d8-9951-7e95a16d26af&_gl=1*1ld9l67*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkyMzc5OC4yLjEuMTY5NjkyMzgzMy4yNS4wLjA.",
+          "type": "URL"
+        },
+        "id": "buildship-firestore-collection-query",
+        "name": "Collection Query",
+        "description": "Get documents of a query in Firestore with multiple filters\n\n<video src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' width=180/>\n"
+      },
+      "description": "Get documents of a query in Firestore with multiple filters",
+      "label": "Collection Query",
+      "integrity": "19ce3941be33d8272186fea43546e2fc73c2d5a8559deb4f8e3fec3c0242d92b",
+      "type": "script",
+      "dependencies": { "@google-cloud/firestore": "7.1.0" },
+      "output": {
+        "description": "The array of documents that match the query",
+        "properties": {
+          "data": { "type": "object", "title": "Document Data", "buildship": { "index": 1 } },
+          "id": { "buildship": { "index": 0 }, "type": "string", "title": "Document ID" }
+        },
+        "type": "array",
+        "buildship": {},
+        "title": "Documents"
+      },
+      "onFail": null,
+      "id": "81165841-47ed-4646-8097-b6f57d6b8578",
+      "script": "import { Firestore } from '@google-cloud/firestore';\n\nexport default async function firestoreQueryDocuments(\n {\n collection,\n filters = [],\n limit,\n orderBy = [],\n },\n {}\n) {\n const firestore = new Firestore(undefined);\n\n let query = firestore.collection(collection);\n\n orderBy.forEach(orderObj => {\n for (const [field, direction] of Object.entries(orderObj)) {\n const lowerCaseDirection = direction.toLowerCase();\n if (lowerCaseDirection === 'asc' || lowerCaseDirection === 'desc')\n query = query.orderBy(field, lowerCaseDirection);\n }\n });\n\n // Validate that filters exist and each filter has necessary properties\n if (Array.isArray(filters)) {\n filters.forEach(filter => {\n if (filter.field && filter.operator && filter.hasOwnProperty('value')) {\n query = query.where(filter.field, filter.operator, filter.value);\n }\n });\n }\n\n let snapshot = await query.limit(limit ?? 100).get();\n return snapshot.docs.map(doc => ({\n id: doc.id,\n data: doc.data()\n }));\n}\n",
+      "bsTablePopup": true,
+      "version": "1.0.1",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/builtNodes/buildship-firestore-collection-query/1.0.1.cjs"
+    },
+    {
+      "label": "Return",
+      "type": "return",
+      "response": { "200": { "type": "object", "buildship": {}, "title": "Document Data" } },
+      "description": "The Return Node is used to return values from the workflow. It is generally the last node in the workflow. The return node is optional as the API can inherently return a 200 OK response by default. [Full Documentation](https://docs.buildship.com/core-nodes/return).",
+      "id": "2e0571db-4c98-4bd5-bf2e-08118a0b4893",
+      "inputs": {
+        "required": [],
+        "type": "object",
+        "properties": {
+          "status": {
+            "default": "200",
+            "enum": ["200", "201", "202", "204", "400", "401", "403", "404", "500"],
+            "buildship": {
+              "index": 0,
+              "options": [
+                { "label": "OK (200)", "value": "200" },
+                { "value": "201", "label": "Created (201)" },
+                { "label": "Accepted (202)", "value": "202" },
+                { "label": "Redirect (301)", "value": "301" },
+                { "label": "No Content (204)", "value": "204" },
+                { "label": "Bad Request (400)", "value": "400" },
+                { "value": "401", "label": "Unauthorized (401)" },
+                { "value": "403", "label": "Forbidden (403)" },
+                { "value": "404", "label": "Not Found (404)" },
+                { "value": "500", "label": "Internal Server Error (500)" }
+              ]
+            },
+            "type": "string",
+            "description": "The HTTP status code to return",
+            "title": "Status code"
+          },
+          "cacheMaxAge": {
+            "type": "number",
+            "buildship": { "index": 2 },
+            "title": "Cache Time",
+            "default": 0,
+            "description": "Set cache duration"
+          },
+          "value": {
+            "default": "",
+            "title": "Value",
+            "buildship": { "index": 1 },
+            "description": "The value to return",
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "trigger": {
+    "inputs": {
+      "required": [null],
+      "properties": {
+        "serviceAccount": {
+          "pattern": "",
+          "title": "Service Account",
+          "description": "**(OPTIONAL)** If you're calling this workflow from a different BuildShip Project, you need to specify the **Runtime Service Account** of other project here. \n\nYou can get the BuildShip Runtime Service Account from your Project Settings.",
+          "buildship": { "sensitive": false, "index": 0 },
+          "default": "",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "id": "x-buildship-trigger",
+    "label": "BuildShip Trigger",
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fbuildship.png?alt=media&token=c5248170-8cb1-4a66-af37-436c7a2aa6b8"
+      },
+      "id": "x-buildship-trigger",
+      "name": "BuildShip Trigger",
+      "description": "Trigger a workflow from any BuildShip Workflow via the \"**Execute Workflow**\" node. [Full documentation](https://docs.buildship.com/trigger-nodes/buildship-trigger)"
+    },
+    "output": {
+      "title": "Data",
+      "parameters": [],
+      "buildship": {},
+      "type": "object",
+      "description": "Request Data",
+      "label": "Body",
+      "properties": {}
+    },
+    "type": "webhook",
+    "script": "import { OAuth2Client } from \"google-auth-library\";\n\nconst onCreate = async ({ _ }, { workflow, runtimeUrl }) => {\n return { success: true };\n};\n\nconst onExecution = async ({ serviceAccount }, { workflow, req, logging }) => {\n\n const idToken = req.request.headers.authorization?.split(\"Bearer \")[1];\n logging.log({ idToken });\n\n if (idToken === undefined) {\n req.throw(`Missing authorization header`);\n }\n\n try {\n // Ensure that token is valid and not expired\n const oAuth2client = new OAuth2Client();\n const ticket = await oAuth2client.verifyIdToken({\n idToken,\n audience: `${process.env.GCLOUD_PROJECT}-${workflow.id}`\n });\n\n // Extract payload from token\n const payload = ticket.getPayload();\n if (payload === undefined) {\n req.throw(\"Invalid token\");\n }\n const expectedServiceAccount = serviceAccount || `runtime@${process.env.GCLOUD_PROJECT}.iam.gserviceaccount.com`\n if (payload.email !== expectedServiceAccount) {\n req.throw(`Wrong service account, got ${payload.email}, expected ${expectedServiceAccount}`);\n }\n\n // Ensure that the token issuer is https://accounts.google.com or accounts.google.com\n if (\n payload.iss !== \"https://accounts.google.com\" &&\n payload.iss !== \"accounts.google.com\"\n ) {\n req.throw(\"Wrong issuer\");\n }\n\n logging.log(`Verified request, body: `, req.request.body)\n return req.request.body;\n }\n catch (e){\n return e\n }\n};\nexport default {\n onCreate,\n onUpdate: onCreate,\n onExecution\n};\n",
+    "icon": {
+      "type": "URL",
+      "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fbuildship.png?alt=media&token=c5248170-8cb1-4a66-af37-436c7a2aa6b8"
+    },
+    "live": true,
+    "instruction": {
+      "bodyTemplate": "{\n projectId: \"{{projectId}}\",\n workflowId: \"{{workflowId}}\"\n}",
+      "title": "Configuration for \"Execute Workflow\" node"
+    }
+  },
+  "nodeValues": {
+    "43fe208b-9b48-47cc-bb38-9b562700083a": {
+      "filters": { "expression": "[]" },
+      "collection": "contacts",
+      "limit": 20
+    },
+    "81165841-47ed-4646-8097-b6f57d6b8578": {
+      "collection": "contacts",
+      "limit": 20,
+      "orderBy": { "expression": "\"\"" },
+      "filters": { "expression": "[]" }
+    },
+    "mock-id": { "cacheMaxAge": 0, "status": "200", "value": "" },
+    "test-node-81165841-47ed-4646-8097-b6f57d6b8578": {
+      "orderBy": "",
+      "limit": 20,
+      "filters": [{ "field": "", "value": "", "operator": "" }],
+      "collection": "contacts"
+    },
+    "http": { "method": "GET", "path": "/" },
+    "e38db03c-eabf-45da-8576-cffe316ce3db": {
+      "limit": 20,
+      "collection": "contacts",
+      "filters": { "expression": "[]" }
+    },
+    "x-buildship-trigger": { "serviceAccount": "" },
+    "2e0571db-4c98-4bd5-bf2e-08118a0b4893": {
+      "status": "200",
+      "cacheMaxAge": 0,
+      "value": { "keys": ["81165841-47ed-4646-8097-b6f57d6b8578", "data"] }
+    }
+  },
+  "notes": ""
+}
+````
 
 Make sure that your collection has the fields name and email set.
 
-![Untitled](./assistant-src/Untitled%202.png)
+![An example of collection example](./assistant-src/Untitled%202.png)
 
 ### Step 1. Create the Assistant
 
@@ -302,6 +1095,7 @@ extra information on how to handle if users refers to themselves
 
 ```json
 You are specialized on sending emails with a concise response given a context. Users will describe the message they want to send and the expected recipient.
+
 When you are given tools to use, you must use them following the guidelines for each tool.
 Guidelines:
 - After accessing contacts must use 'send email' tool to send an email using Gmail API
