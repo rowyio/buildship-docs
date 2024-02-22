@@ -437,14 +437,24 @@ tasks.
 We hope that this guide help you better understand how to use and integrate Assistants to our own workflows. We imagine
 that combining Assistants together with BuildShip you can explore many interesting scenarios:
 
-- **Custom chats**: use AI capabilities to create a chat in your own product. -**Chat with your data** : create
-  assistants that access your knowledge to respond
-- **Seamless integration with your apps**: make them use your tools like Gmail, Supabase, etc -**Teams of AI agents**:
+- **Custom chats**: use AI capabilities to create a chat in your own product. 
+- **Chat with your data** : create assistants that access your knowledge to respond
+- **Seamless integration with your apps**: make them use your tools like Gmail, Supabase, etc 
+- **Teams of AI agents**:
   divide tasks into multiple assistants and make them handle
 
-As you will see, making them to use tools requires a good tool’s description and detailed instructions. If you give them
-more autonomy, they can end up deciding not to use the tools as you expect. To succeed, we provide a set of guidelines
-on defining instructions based on our explorations:
+As you will see, making them to use tools requires a good tool’s description and detailed instructions. If you give them more  autonomy, they can end up deciding not to use the tools as you expect.  
+
+We recommend using the following Instructions prompt structure when using Assistant + tools
+
+```
+{Your Instructions}
+When you are given tools to use, you must use them following the guidelines for each tool
+Guidelines: 
+{tool condition} you must use '{toolName}' to {toolDescription}
+```
+
+To succeed, we also provide a set of guidelines on defining instructions based on our explorations:
 
 - **Use the name of the tool**. _E.g: use 'Send email' tool_
 - **Don’t make assumptions**, AI doesn’t have content. _E.g: inform Gerard to update the guide on prompting → inform
