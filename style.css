@@ -13,6 +13,12 @@ body {
   line-height: 1.75em;
 }
 
+.nextra-code-block > pre[data-language="markdown"] {
+  white-space: pre-wrap; /* Allows text to wrap */
+  word-wrap: break-word; /* Breaks words to prevent overflow */
+  overflow-wrap: break-word; /* Ensures overflow text is wrapped */
+}
+
 .home-content a {
   --tw-ring-color: hsl(var(--nextra-primary-hue) 100% 50%/0.3);
   --tw-text-opacity: 1;
