@@ -127,7 +127,7 @@ another master of the Renaissance.",
 ```
 ## Use case (I): Chat with Assistant
 
-Now it’s your turn, you can download the template [Chat with Assistant](https://buildship.app/remix?template=assistant-conversation) as an example to start. You can modify the Instructions and your messages and see how the Assistant behaves. 
+Now it’s your turn, you can download the template [Chat with Assistant](https://buildship.com/templates/chat-with-assistant) as an example to start. You can modify the Instructions and your messages and see how the Assistant behaves. 
 
 **INSTRUCTIONS**:
 
@@ -162,8 +162,10 @@ In addition, you should consider that it’s a generative model which means that
 
 To overcome this limitation, OpenAI offers up the [knowledge retrieval](https://platform.openai.com/docs/assistants/tools/knowledge-retrieval) tool to upload files as context for the assistant. There are some limitations (e.g: 512 MB and around 2M tokens), so make sure you check it when you prepare your assistants.
 
-In our BuildShip integration we can also use this functionality from OpenAI, we must upload the files and then make sure to enable retrieval.  In this example, we are gonna use [Augmenting Human Intellect](https://www.dougengelbart.org/pubs/papers/scanned/Doug_Engelbart-AugmentingHumanIntellect.pdf) from Douglas Engelbart as a reference material. This book from the early 1960s, has had a profound impact on fields such as computer science, artificial intelligence, and human-computer interaction. 
-Let’s see how we can create an Assistant that responds us and provides references this pioneer's work. 
+In our BuildShip integration we can also use this functionality from OpenAI, we must upload the files and then make sure to enable retrieval.  
+In this example, we are gonna use [Augmenting Human Intellect](https://www.dougengelbart.org/pubs/papers/scanned/Doug_Engelbart-AugmentingHumanIntellect.pdf) from Douglas Engelbart as a reference material. This book from the early 1960s, has had a profound impact on fields such as computer science, artificial intelligence, and human-computer interaction. 
+
+Let’s see how we can create an Assistant that responds us and provides references this pioneer's work. You can also download the template [Assistant with Retrieval](https://buildship.com/templates/assistant-with-retrieval) as an starting point.
 
 ### Step 1. Set up your Assistant
 
@@ -239,6 +241,7 @@ In the following examples, we’ll explore different ways to make our agents to 
 We have learn how to access and follow-up conversations with Assistants within BuildShip and how to use internal OpenAI functions. Now let’s explore how we can teach these AI agents to use tools to perform the tasks they are required. This can include connecting to different services and products such as Gmail, Discord messaging, Notion API or Supabase amongst others.  
 
 Using BuildShip we can simply provide this extra capabilities to these agents by adding nodes to the assistant and modifying the original instructions to support that.  
+This tutorial corresponds to the template [Website Q&A](https://buildship.com/templates/website-q-a)
 
 ### Step 1. Decide which nodes to use
 
@@ -296,7 +299,7 @@ In the following example we are gonna see how to provide a different knowledge b
 
 ## Use case  (IV): Chat with your GSheets
 
-In this example, we are gonna learn how you can to give access to a Google spreadsheet to your assistant using the Get Sheets node. 
+In this example, we are gonna learn how you can to give access to a Google spreadsheet to your assistant using the Get Sheets node.  You can also download the template [Chat with your GSheets](https://buildship.com/templates/chat-with-gsheets)
 
 In this tutorial, let’s imagine we have an online shop of sustainable furniture called **Azura Home.** We have our collection of products in a spreadsheet. We have created a public dataset for you to access, called [Azura Home Collection](https://docs.google.com/spreadsheets/d/1ZUmpMKUZzbgTNbWzjtsTURlDlmp7EjOUASWaBG_XLd8/edit#gid=1340319221). It basically contains data emulating different products for this shop:
 
@@ -382,7 +385,7 @@ With this simple example, you see how to take advantage of assistants capabiliti
 
 ## Use case  (V): Data analyst assistant
 
-In this tutorial, we are gonna show how our assistants can access data from a spreadsheet and help us analyse this data.
+In this tutorial, we are gonna show how our assistants can access data from a spreadsheet and help us analyse this data. You can also explore the template [Data Analyst](https://buildship.com/templates/data-analyst) to see how its build. 
 
 We have generated possible responses from a [discovery survey](https://docs.google.com/spreadsheets/d/1Z6El2jk0D8Ph_Evk9LzL3swWkLqdjoR6eirjTBjBLtY/edit#gid=0) for a fictional app called AI Tutor. The goal for this survey is to capture potential users challenges when learning or teaching and their perception on how technology could help them. 
 
@@ -482,8 +485,12 @@ By proving this access to our spreadsheets now we can explore together with our 
 In this example, we'll learn how you can ask the Assistant to use your own data for answering your questions. Until
 now, we assumed that assistants will use their training data to answer our requests. However, we can also make them use our internal data sources.
 
+
 Let's illustrate this with a use case involving internal databases. Let’s imagine we have an Italian restaurant and we want our
 customers to get recommendations based on our menu.
+
+This tutorial corresponds to [Chat with your Database](https://buildship.com/templates/chat-with-your-database) from our templates.
+
 
 ### Step 1. Prepare your data
 
@@ -564,6 +571,8 @@ database for you.
   A prerequisite for this template is to create a database with a collection named ‘Quiz’ in your project. Learn more on
   [Buildship Databases](https://docs.buildship.com/basics/buildship-tables )
 </Callout>
+
+You can also download the template [Quiz Master](https://buildship.com/templates/quiz-master) as an starting point.
 
 We are gonna use the following structure to save each generated quiz:
 
