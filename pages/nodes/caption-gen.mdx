@@ -1,0 +1,27 @@
+---
+title: Image Processing - Caption Image
+description: Generate captions for images using Hugging Face's Salesforce/blip-image-captioning-large model for image captioning pretrained on COCO dataset.
+---
+
+# Image Processing - Caption Image
+This node is designed to generate captions for images using Hugging Face's Salesforce/blip-image-captioning-large model for image captioning pretrained on COCO dataset. It takes an image file path and an access token as inputs, and returns a caption for the image as output.
+
+## How to use?
+The node script uses the fetch API to make a POST request to the Hugging Face's API, passing the image data and the access token in the headers. The response from the API, which contains the generated caption, is then returned as the output of the node.
+
+## Inputs / Outputs
+The node requires two inputs:
+
+- `imageFilePath`: The storage path or URL of the image to be captioned. This should be a string. For example, "/path/to/image.jpg" or "http://example.com/image.jpg".
+
+- `accessToken`: The access token generated at Hugging Face. You can generate an access token at [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). This should also be a string.
+
+The node returns an array of objects, where each object contains a `generated_text` property that holds the generated caption for the image. For example:
+
+```json
+[
+  {
+    "generated_text": "A giraffe cat with blue eyes laying on a stone floor"
+  }
+]
+```
