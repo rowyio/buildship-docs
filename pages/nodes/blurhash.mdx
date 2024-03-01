@@ -1,0 +1,19 @@
+---
+title: BlurHash - Generate BlurHash String
+description: This document provides a detailed overview of the BlurHash node which generates a blurhash string from a PNG or JPEG image URL.
+---
+
+# BlurHash - Generate BlurHash String
+BlurHash is a workflow node that generates a blurhash string from a PNG or JPEG image URL. It is a useful tool for creating a blurred placeholder for an image, which can be displayed while the actual image is loading.
+
+## How to use?
+The BlurHash node works by taking an image URL as an input, downloading the image, and then converting the image data into a blurhash string. The image can be in either PNG or JPEG format. The node uses the `axios` library to download the image, `jpeg-js` to decode JPEG images, and `get-pixels` to decode PNG images. The blurhash string is generated using the `blurhash` library.
+
+## Inputs / Outputs
+The BlurHash node requires the following inputs:
+
+- `imageUrl`: This is the URL of the image you want to generate a blurhash string from. It should be a string and is a required field. For example, `"imageUrl": "https://example.com/image.jpg"`.
+
+The output of the BlurHash node is a blurhash string. This string can be used to create a blurred placeholder for an image. If the node encounters an error while generating the blurhash, it will log the error and return `null`. For example, the output might look like this: `"LKF5+.8kA^p*00%2Mxuk00_4s:R*"`.
+
+Please note that the actual blurhash string will vary depending on the input image.
