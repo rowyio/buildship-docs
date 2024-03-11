@@ -26,13 +26,13 @@ This mechanism ensures that only authenticated users of your application can sen
 
 ## Understanding the Mechanism
 
-This trigger functions similar to the [REST API Call Trigger](./rest-api). It necessitates a **POST** Request sent to
-the **Endpoint URL** provided by the Firebase Auth Trigger config. The Request Structure is outlined below:
+This trigger functions similar to the [REST API Call Trigger](/trigger-nodes/rest-api). It allows you to specify the
+**Path** of the API Endpoint and the **HTTP Method** for the incoming request. The Request Structure is outlined below:
 
 ### Request Method
 
-A **POST** Request is mandatory for the Endpoint URL provided by the Firebase Auth Trigger. This URL can be retrieved
-from the **Firebase Authenticated User Trigger configuration**.
+The HTTP Method for the incoming request can be specified in the Firebase Authenticated User Trigger configuration. The
+supported methods are GET, POST, PUT, and DELETE.
 
 <Image src={fbAuth2} alt='Firebase Authenticated User Trigger' width={1200} />
 
@@ -60,8 +60,8 @@ Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsImtpZC...',
 
 ### Request Body
 
-Users have the option to pass any desired **data to be accessed within the Workflow** associated with the Firebase Auth
-Trigger. This data format must adhere to a **JSON Object**.
+For HTTP Methods like **POST**, and **PUT**, users have the option to pass any desired data to be accessed within the
+Workflow associated with the Firebase Auth Trigger. This data format must adhere to a **JSON Object**.
 
 **SAMPLE INPUT**:
 
@@ -81,7 +81,7 @@ implementation, this request must be made through the client application.
 
 In a blank workflow, click on “**Add Trigger**” button and select the “**Firebase Authenticated User**” trigger.
 
-The **Project ID** input is required for configuring the trigger for your project.
+The **Project ID**, **Path**, and **Method** inputs are required for configuring the trigger for your project.
 
 ### Firebase Project ID
 
@@ -91,6 +91,16 @@ authentication and validates the token passed in the request.
 <Callout type='info'>
   If no Project ID is provided, the Trigger employs the default Project ID linked with your BuildShip Project.
 </Callout>
+
+### Path
+
+The **Path** specifies the endpoint where the incoming request is directed. This can be any valid URL path, such as
+`/users`, `/products`, or `/orders`.
+
+### Method
+
+The Method input specifies the HTTP Method for the incoming request. The supported methods are GET, POST, PUT, and
+DELETE.
 
 ## Trigger Outputs
 
