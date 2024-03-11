@@ -6,5 +6,6 @@
   "telegram-bot": "Telegram Bot",
   "supabase-trigger": "Supabase Trigger",
   "buildship-trigger": "Buildship Trigger",
-  "firebase-auth": "Firebase Auth Trigger"
+  "firebase-auth": "Firebase Auth Trigger",
+  "github-trigger": "GitHub Trigger"
 }
