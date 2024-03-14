@@ -8,5 +8,6 @@
   "buildship-trigger": "Buildship Trigger",
   "firebase-auth": "Firebase Auth Trigger",
   "github-trigger": "GitHub Trigger",
-  "file-upload": "File Upload Trigger"
+  "file-upload": "File Upload Trigger",
+  "firebase-file-upload": "Firebase File Upload Trigger"
 }
