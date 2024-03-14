@@ -1,0 +1,23 @@
+---
+title: Buildship - Background Remover
+description: A node that removes the background from images using the Replicate API.
+---
+
+# Buildship - Background Remover
+This node is part of the Buildship group and is named Background Remover. It is designed to remove the background from images using the Replicate API. The node uses the Replicate library version 0.21.1.
+
+## How to use?
+The Background Remover node works by taking an image URL and an API key as inputs and then using the Replicate API to remove the background from the image. 
+
+The script for the node is written in JavaScript and uses the Replicate library to create a new instance of Replicate with the provided API key. It then runs the Replicate function with the image URL as the input and returns the output, which is the URL of the image with the background removed.
+
+## Inputs / Outputs
+The node takes two inputs:
+
+1. `apiKey`: This is your Replicate API Key. You can get it from your Replicate account. This input is sensitive and is required for the node to work. For example, the apiKey could be "1234567890abcdef".
+
+2. `url`: This is the URL of the image from which you want to remove the background. This input is not sensitive and is also required for the node to work. For example, the URL could be "https://example.com/image.jpg".
+
+The node returns an output:
+
+- `output`: This is the URL of the image with the background removed. The output is a string. For example, the output could be "https://example.com/image_no_bg.jpg".
