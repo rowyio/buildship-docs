@@ -1,4 +1,4 @@
-# Firebase Authenticated User Trigger
+# Firebase Auth Request Trigger
 
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
@@ -11,7 +11,7 @@ import fbAuth6 from '/public/assets/fb-auth-6.png';
 import fbAuth7 from '/public/assets/fb-auth-7.png';
 import { Steps } from 'nextra/components';
 
-The Firebase Authenticated User Trigger facilitates seamless API Calls to BuildShip from a Web Client. Leveraging the
+The Firebase Authenticated Request Trigger facilitates seamless API Calls to BuildShip from a Web Client. Leveraging the
 user's ID token as the authentication key, it automatically rejects unauthenticated requests, ensuring robust security
 measures.
 
@@ -31,10 +31,10 @@ This trigger functions similar to the [REST API Call Trigger](/trigger-nodes/res
 
 ### Request Method
 
-The HTTP Method for the incoming request can be specified in the Firebase Authenticated User Trigger configuration. The
-supported methods are GET, POST, PUT, and DELETE.
+The HTTP Method for the incoming request can be specified in the Firebase Authenticated Request Trigger configuration.
+The supported methods are GET, POST, PUT, and DELETE.
 
-<Image src={fbAuth2} alt='Firebase Authenticated User Trigger' width={1200} />
+<Image src={fbAuth2} alt='Firebase Authenticated Request Trigger' width={1200} />
 
 ### Request Headers
 
@@ -48,7 +48,7 @@ For more details about Firebase ID Tokens, refer to the documentation
 <Callout type="info" emoji="💡">
 For testing purposes, users can conveniently copy and paste their token from the network tab.
 
-<Image src={fbAuth3} alt="Firebase Authenticated User Trigger" width={1200} />
+<Image src={fbAuth3} alt="Firebase Authenticated Request Trigger" width={1200} />
 </Callout>
 
 **SAMPLE INPUT**:
@@ -75,11 +75,11 @@ Workflow associated with the Firebase Auth Trigger. This data format must adhere
 Here’s an example demonstrating a similar request using the API Call Node in BuildShip. However, for actual
 implementation, this request must be made through the client application.
 
-<Image src={fbAuth4} alt='Firebase Authenticated User Trigger' width={1200} />
+<Image src={fbAuth4} alt='Firebase Authenticated Request Trigger' width={1200} />
 
-## The Firebase Authenticated User Trigger
+## The Firebase Authenticated Request Trigger
 
-In a blank workflow, click on “**Add Trigger**” button and select the “**Firebase Authenticated User**” trigger.
+In a blank workflow, click on “**Add Trigger**” button and select the “**Firebase Authenticated Request**” trigger.
 
 The **Project ID**, **Path**, and **Method** inputs are required for configuring the trigger for your project.
 
@@ -111,18 +111,18 @@ The Firebase User Details include the Display Name, Photo URL, Email, and UID.
 
 All these outputs can be accessed as variables using the Context Menu in the Editor.
 
-<Image src={fbAuth5} alt='Firebase Authenticated User Trigger' width={1200} />
+<Image src={fbAuth5} alt='Firebase Authenticated Request Trigger' width={1200} />
 
 ## Example Workflow
 
 Consider a scenario where we aim to generate custom tokens for users whose emails end with a specific domain, such as
 `@buildship.com`. Let's outline the steps for achieving this:
 
-<Image src={fbAuth7} alt='Firebase Authenticated User Trigger' width={1200} />
+<Image src={fbAuth7} alt='Firebase Authenticated Request Trigger' width={1200} />
 
 <Steps>
 
-### Firebase Authenticated User Trigger
+### Firebase Authenticated Request Trigger
 
 Add the Project ID associated with the client that authenticates the user and generates the ID Token.
 
@@ -135,7 +135,7 @@ following condtion in the Editor:
 ctx["root"]["firebase-trigger"]["user"]["email"].includes("@buildship.com")
 ```
 
-<Image src={fbAuth6} alt='Firebase Authenticated User Trigger' width={1200} />
+<Image src={fbAuth6} alt='Firebase Authenticated Request Trigger' width={1200} />
 
 ### Conditional Workflow Execution
 
