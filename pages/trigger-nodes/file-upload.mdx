@@ -1,8 +1,8 @@
 ---
-title: File Upload Trigger
+title: Rest API File Upload
 description:
-  The File Upload Trigger is designed to handle incoming HTTP requests with multipart/form-data content type, which is
-  commonly used for file uploads.
+  The Rest API File Upload Trigger is designed to handle incoming HTTP requests with multipart/form-data content type,
+  which is commonly used for file uploads.
 ---
 
 import Image from 'next/image';
@@ -12,12 +12,12 @@ import fileUpload3 from '/public/assets/file-upload-3.png';
 import fileUpload4 from '/public/assets/file-upload-4.png';
 import fileUpload5 from '/public/assets/file-upload-5.png';
 
-# File Upload Trigger
+# Rest API File Upload Trigger
 
-The File Upload Trigger is designed to handle incoming HTTP requests with multipart/form-data content type, which is
-commonly used for file uploads.
+The Rest API File Upload Trigger is designed to handle incoming HTTP requests with multipart/form-data content type,
+which is commonly used for file uploads.
 
-<Image src={fileUpload1} alt='File Upload Trigger' width={1200} />
+<Image src={fileUpload1} alt='Rest API File Upload Trigger' width={1200} />
 
 When a request is sent to the specified endpoint, the trigger parses the request body and extracts the uploaded file
 along with its metadata. The file is then stored in a buffer, which can be used for further processing or storage.
@@ -28,7 +28,7 @@ The Upload File Trigger allows you to specify a **Path** and **Method** for the 
 endpoint where the trigger will listen for incoming requests. The **Method** is the HTTP method that the trigger will
 listen for.
 
-<Image src={fileUpload2} alt='File Upload Trigger' width={1200} />
+<Image src={fileUpload2} alt='Rest API File Upload Trigger' width={1200} />
 
 The trigger expects an HTTP request with the following structure:
 
@@ -43,7 +43,7 @@ Node.js.
 
 The trigger produces the following output which can be used in subsequent workflow nodes:
 
-<Image src={fileUpload3} alt='File Upload Trigger' width={1200} />
+<Image src={fileUpload3} alt='Rest API File Upload Trigger' width={1200} />
 
 - **file:** An object containing the uploaded file and its metadata, including:
 
@@ -63,12 +63,12 @@ Here's a basic template that can be cloned and used as a starting point. This ex
 Upload Trigger to handle incoming file uploads and save the file to the BuildShip Cloud Storage to get back a public
 URL. ([Click here to clone the template in your project!](https://buildship.app/remix?template=basic-file-upload)) ⭐️
 
-<Image src={fileUpload4} alt='File Upload Trigger' width={1200} />
+<Image src={fileUpload4} alt='Rest API File Upload Trigger' width={1200} />
 
 ## Testing the Trigger
 
-You can test the File Upload Trigger using tools like Postman or Hoppscotch. Here's an example of how to test it using
-Postman:
+You can test the Rest API File Upload Trigger using tools like Postman or Hoppscotch. Here's an example of how to test
+it using Postman:
 
 1. Open Postman and create a new request.
 2. Set the request method to `POST` or `PUT`.
@@ -78,6 +78,6 @@ Postman:
 6. If you have additional form fields, you can add them under the "form-data" section.
 7. Click the "Send" button to submit the request.
 
-<Image src={fileUpload5} alt='File Upload Trigger' width={1200} />
+<Image src={fileUpload5} alt='Rest API File Upload Trigger' width={1200} />
 
 If the request is successful, you should see the response from the workflow containing the public URL of the file.
