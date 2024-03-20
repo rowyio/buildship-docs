@@ -1,7 +1,10 @@
 {
   "rest-api": "Rest API",
   "scheduled-cron": "Scheduled Cron",
-  "scheduled-interval": "Scheduled Interval",
+  "scheduled-interval": {
+    "title": "Scheduled Interval",
+    "display": "hidden"
+  },
   "rowy-trigger": "Rowy Trigger",
   "telegram-bot": "Telegram Bot",
   "supabase-trigger": "Supabase Trigger",
