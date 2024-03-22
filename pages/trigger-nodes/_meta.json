@@ -12,5 +12,6 @@
   "firebase-auth": "Firebase Auth Request",
   "github-trigger": "GitHub Trigger",
   "file-upload": "Rest API File Upload",
-  "firebase-file-upload": "Rest API File Upload (Auth)"
+  "firebase-file-upload": "Rest API File Upload (Auth)",
+  "whatsapp-bot": "WhatsApp Bot"
 }
