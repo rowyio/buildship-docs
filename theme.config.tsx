@@ -149,7 +149,7 @@ const config: DocsThemeConfig = {
     labels: 'feedback',
     useLink: () => 'https://buildship.com/discord',
   },
-  editLink: { component: null },
+  // editLink: { component: null },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {
