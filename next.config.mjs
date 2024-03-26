@@ -74,7 +74,7 @@ export default withNextra({
     },
     {
       source: '/ai-models/typesense',
-      destination: '/search/typeseanse',
+      destination: '/search/typesense',
       permanent: true,
     },
   ],
