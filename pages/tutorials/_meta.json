@@ -25,5 +25,8 @@
   },
   "secure-api": {
     "display": "hidden"
+  },
+  "vector-applications": {
+    "display": "hidden"
   }
 }

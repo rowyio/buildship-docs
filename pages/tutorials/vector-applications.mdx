@@ -1,0 +1,98 @@
+---
+title: Vector Database Applications with BuildShip
+description:
+  Learn how to quickly and easily create vector database applications, understand the process of ingesting text,
+  creating vector embeddings, and performing efficient vector searches with BuildShip.
+---
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import vectorOg from '/public/tutorial/vectorOG.png';
+import vector1 from '/public/tutorial/vector1.png';
+import vector2 from '/public/tutorial/vector2.png';
+
+# Vector Database Applications with BuildShip
+
+Vector databases are a powerful tool for efficiently storing and retrieving unstructured data like text, images, and
+audio using **vector embeddings and similarity-based searches**.
+
+Unlike traditional databases that rely on exact keyword matching, **vector databases use vector embeddings** to
+represent data in high-dimensional vector spaces. This approach enables **similarity-based searches**, making it easier
+to find relevant information even when exact matches are not available.
+
+<Image src={vectorOg} alt='Vector Database Applications with BuildShip' width={1200} />
+
+One of the key applications of vector databases is in the field of **Natural Language Processing (NLP)**, where they are
+used in conjunction with **Retrieval-Augmented Generation (RAG)** models. These models leverage vector databases to
+retrieve relevant information from large text corpora, which is then used to **generate more informed and context-aware
+responses**.
+
+With BuildShip, you can quickly and easily create vector database applications, streamlining the process of ingesting
+text, creating vector embeddings, and performing efficient vector searches.
+
+## SECTION 1: Vector Databases
+
+Vector databases are designed to **store and retrieve vector embeddings**, which are high-dimensional numerical
+representations of text or other data. These embeddings capture the semantic meaning of the data, allowing for efficient
+similarity searches based on vector distances.
+
+In a vector database, **each entry typically consists of an ID, metadata, and the vector embedding itself**. For
+example, a JSON object representing a text entry might look like this:
+
+```json
+{
+  "id": "text_1",
+  "metadata": {
+    "source": "example.com",
+    "title": "Introduction to Vector Databases"
+  },
+  "embedding": [0.021, -0.032, 0.112, ... ]
+}
+```
+
+The process of **generating vector embeddings** involves using a machine learning model trained on large text corpora.
+One popular option is **OpenAI's ada embedding model**, which can generate embeddings for text up to 8,192 tokens
+(approximately 8,000 words).
+
+<Image src={vector1} alt='Vector Database Applications with BuildShip' width={1200} />
+
+BuildShip offers a pre-built node for generating embeddings using the **OpenAI ada model**, making it easy to integrate
+into your workflows.
+
+<Callout>
+  OpenAI provides comprehensive documentation on their embeddings API, [learn
+  more](https://platform.openai.com/docs/guides/embeddings).
+</Callout>
+
+Several vector database services are available, each with its own features and pricing models. BuildShip provides
+pre-built, ready-to-use CRUD (Create, Read, Update, Delete) nodes for **Pinecone**, a managed vector database service.
+[Know more.](https://docs.buildship.com/database/pinecone).
+
+Additionally, [MongoDB](/database/mongodb), a popular NoSQL database, can also be used as a vector database by storing
+vector embeddings as data fields.
+
+<Callout>
+  BuildShip let’s you easily build custom nodes for MongoDB or other databases using [Generate with AI](/ai-nodes).
+</Callout>
+
+### EXAMPLE: Syncing Documentation to a Vector Index
+
+Here's an example of how you can use BuildShip to sync documentation to a vector index:
+
+<Image src={vector2} alt='Vector Database Applications with BuildShip' width={1200} />
+
+- In this example we're using the sitemap for the documentation website to get all the URL paths for the content present
+  on the website. We have an "**XML to JSON**" node that converts the sitemap XML to JSON format.
+
+- Next, we use the "**Concat Property Values**" nodes to extract the paths from the JSON object to get an array of URLs.
+
+- Then we pass the list of the URLs to a loop node. The loop node will iterate through each URL and fetch the content
+  from the URL using the "**Scrape Web URL**" node. Inside the loop, we can **generate the vector embeddings** using the
+  "**Generate Embeddings**" node, and **parse it into a JSON format** which we'll be able to use for upserting the data
+  into the vector index.
+
+- Finally, outside the loop, we can use the "**Upsert Document**" node to add the documents to the vector index. For
+  this example, we've used the Pinecone vector database.
+
+This process allows you to quickly and easily ingest text data, generate vector embeddings, and add documents to the
+vector index.
