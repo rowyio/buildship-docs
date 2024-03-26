@@ -118,6 +118,18 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Notion Connection preview](../public/tutorial/notionOG.png)</>
   </ShowcaseCard>
+    <ShowcaseCard
+    title='Vector Database'
+    href='./tutorials/vector-applications'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'vector-applications',
+      });
+    }}
+  >
+    <>![Vector Database Applications preview](../public/tutorial/vectorOG.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(

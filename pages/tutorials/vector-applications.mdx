@@ -10,6 +10,7 @@ import Image from 'next/image';
 import vectorOg from '/public/tutorial/vectorOG.png';
 import vector1 from '/public/tutorial/vector1.png';
 import vector2 from '/public/tutorial/vector2.png';
+import vector3 from '/public/tutorial/vector3.png';
 
 # Vector Database Applications with BuildShip
 
@@ -30,7 +31,7 @@ responses**.
 With BuildShip, you can quickly and easily create vector database applications, streamlining the process of ingesting
 text, creating vector embeddings, and performing efficient vector searches.
 
-## SECTION 1: Vector Databases
+## SECTION 1: Creating a Vector Database
 
 Vector databases are designed to **store and retrieve vector embeddings**, which are high-dimensional numerical
 representations of text or other data. These embeddings capture the semantic meaning of the data, allowing for efficient
@@ -96,3 +97,45 @@ Here's an example of how you can use BuildShip to sync documentation to a vector
 
 This process allows you to quickly and easily ingest text data, generate vector embeddings, and add documents to the
 vector index.
+
+## SECTION 2: Querying the Vector Database
+
+Once you have ingested your data into a vector database, you can perform efficient similarity-based searches to retrieve
+relevant information. This process involves comparing the vector embeddings of a query with the embeddings of the stored
+documents to find the most similar matches.
+
+### How to Query the Vector Database
+
+- **Convert the question/prompt to a vector embedding:** The first step is to convert your question or prompt into a
+  vector embedding using the same model and process used for generating embeddings during the data ingestion stage.
+
+- **Query the vector database collection:** With the vector embedding of your prompt, you can query your vector database
+  collection to retrieve the top relevant documents based on vector similarity. This is typically achieved by specifying
+  a topK parameter, which determines the number of closest vector matches to return.
+
+<Callout>
+  BuildShip offers a bunch of pre-built nodes for querying vector databases available in the Node Library, making it
+  super easy to integrate vector searches into your workflows.
+</Callout>
+
+- **Utilize the retrieved data:** The top relevant documents retrieved from the vector database can be used in various
+  ways, depending on your requirements. For example, you could display the relevant documents directly to the user,
+  extract specific information from the documents, or pass the data to an AI model for further processing.
+
+### EXAMPLE: Creating a Chat Bot
+
+One compelling use case for querying vector databases is the creation of a chat bot trained on your specific data. This
+approach is **significantly more efficient and straightforward** compared to **alternatives like fine-tuning language
+models**, which can be time-consuming and resource-intensive.
+
+By leveraging a vector database, you can create a chat bot that provides precise and relevant responses based on the
+data stored in the vector index. Here's an example of how you can query a vector index, retrieve relevant data, and pass
+it to an AI model to generate a response:
+
+<br />
+<Image src={vector3} width={1200} />
+
+In this example, we first **convert the prompt to a vector embedding**. Then, we **query the vector index** to retrieve
+the top 3 most relevant documents based on vector similarity. The text content of these documents is concatenated to
+form the context, which is passed along with the prompt to an AI model. The AI model can then generate a precise
+response by leveraging both the prompt and the relevant context from the vector database.
