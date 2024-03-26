@@ -1,7 +1,7 @@
 ---
-title: TypeSense
+title: Typesense
 description:
-  The TypeSense Integration in BuildShip allows users to leverage TypeSense for their searching and indexing needs.
+  The Typesense Integration in BuildShip allows users to leverage Typesense for their searching and indexing needs.
 ---
 
 import { Callout } from 'nextra/components';
@@ -18,64 +18,64 @@ import typesense8 from '/public/assets/typesense8.png';
 import typesense9 from '/public/assets/typesense9.png';
 import typesense10 from '/public/assets/typesense10.png';
 
-# TypeSense Search
+# Typesense Search
 
-The TypeSense Integration in BuildShip allows users to leverage TypeSense for their **searching and indexing** needs
-with a low-code visual experience. TypeSense is a **fast, scalable, and developer-friendly open-source search engine**
+The Typesense Integration in BuildShip allows users to leverage Typesense for their **searching and indexing** needs
+with a low-code visual experience. Typesense is a **fast, scalable, and developer-friendly open-source search engine**
 for building high-performance search experiences in your apps and products.
 
 <br />
 
-<Image src={typesenseOG} alt='TypeSense' width={1200} />
+<Image src={typesenseOG} alt='Typesense' width={1200} />
 
-With BuildShip's TypeSense Nodes, users **can connect to their TypeSense Cloud deployment or their own TypeSense
+With BuildShip's Typesense Nodes, users **can connect to their Typesense Cloud deployment or their own Typesense
 instances** (easily modify the node logic according to your requirements) effortlessly. This integration empowers users
 to create **APIs, Scheduled Jobs**, and other backend workflows related to search and indexing operations without
 extensive coding requirements.
 
-The TypeSense Nodes in BuildShip provide a no-code solution for interacting with TypeSense, enabling users to leverage
+The Typesense Nodes in BuildShip provide a no-code solution for interacting with Typesense, enabling users to leverage
 its powerful search capabilities within their workflows seamlessly. Whether you need to **index data, perform searches,
-or manage collections**, the TypeSense Nodes offer a straightforward and user-friendly approach.
+or manage collections**, the Typesense Nodes offer a straightforward and user-friendly approach.
 
 ## Prerequisites ✅
 
-Before you can start using the TypeSense Nodes in BuildShip, ensure that you have the following prerequisites in place:
+Before you can start using the Typesense Nodes in BuildShip, ensure that you have the following prerequisites in place:
 
-### TypeSense Instance or TypeSense Cloud Account
+### Typesense Instance or Typesense Cloud Account
 
-You'll need access to a TypeSense instance or a TypeSense Cloud account. If you're using TypeSense Cloud, follow these
+You'll need access to a Typesense instance or a Typesense Cloud account. If you're using Typesense Cloud, follow these
 steps:
 
-- Go to [TypeSense Cloud](https://cloud.typesense.org) and create an account if you don't have one already.
+- Go to [Typesense Cloud](https://cloud.typesense.org) and create an account if you don't have one already.
 - Create a new cluster (this process may take 4-6 minutes, after which you'll be able to generate your API keys).
 - Click on the "Generate API Keys" button to download a file containing your API keys.
 
-<Image src={typesense1} alt='TypeSense' width={1200} />
+<Image src={typesense1} alt='Typesense' width={1200} />
 
 ### API Keys
 
 Depending on your use case, you'll need to provide different **API keys** for authentication. Refer to the
-[TypeSense documentation](https://typesense.org/docs/0.25.2/api/api-keys.html#create-an-api-key) to learn more about
+[Typesense documentation](https://typesense.org/docs/0.25.2/api/api-keys.html#create-an-api-key) to learn more about
 which API key to use for different operations.
 
 ### Host
 
-The **Node** mentioned on your TypeSense Dashboard is your host. This value will be used as an input to the TypeSense
+The **Node** mentioned on your Typesense Dashboard is your host. This value will be used as an input to the Typesense
 nodes in BuildShip.
 
 ## Create Collection
 
-The "Create Collection" node allows you to create a new collection in your TypeSense instance. A collection is a logical
+The "Create Collection" node allows you to create a new collection in your Typesense instance. A collection is a logical
 grouping of documents that share the same schema. You can use this node to create a new collection and define its
 schema.
 
-<Image src={typesense2} alt='TypeSense' width={1200} />
+<Image src={typesense2} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance. This should be provided as a
+- **API Key**: The API key required for authentication with your Typesense instance. This should be provided as a
   secret.
-- **Host**: The host address of your TypeSense instance or cluster.
+- **Host**: The host address of your Typesense instance or cluster.
 - **Collection Name**: The name you want to give to the new collection.
 - **Schema Fields**: The schema fields for the new collection, provided as a JSON array. Each field should specify a
   name and a type (e.g., string, int32, geopoint, etc.).
@@ -93,7 +93,7 @@ schema.
 ```
 
 <Callout>
-  You can use the "Create Collection" node when you need to set up a new collection in your TypeSense instance to store
+  You can use the "Create Collection" node when you need to set up a new collection in your Typesense instance to store
   and search data. For example, if you're building an application that deals with location-based data, you might create
   a collection called "places" with fields like "title", "points", and "location" (a geopoint type).
 </Callout>
@@ -135,16 +135,16 @@ field, schema fields, and other configuration details.
 
 ## Add Document
 
-The "Add Document" node allows you to create or insert a new document into an existing TypeSense collection.
+The "Add Document" node allows you to create or insert a new document into an existing Typesense collection.
 
-<Image src={typesense3} alt='TypeSense' width={1200} />
+<Image src={typesense3} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance. This should be provided as a
+- **API Key**: The API key required for authentication with your Typesense instance. This should be provided as a
   secret.
-- **Host**: The host address of your TypeSense instance or cluster. This can be provided as a secret.
-- **Collection Name**: The name of the TypeSense collection where you want to insert the document.
+- **Host**: The host address of your Typesense instance or cluster. This can be provided as a secret.
+- **Collection Name**: The name of the Typesense collection where you want to insert the document.
 - **Document**: The document object that you want to insert into the collection. This should follow the schema defined
   for the collection.
 
@@ -159,7 +159,7 @@ The "Add Document" node allows you to create or insert a new document into an ex
 ```
 
 <Callout>
-  You can use the "Add Document" node whenever you need to insert new data into a TypeSense collection. For example, if
+  You can use the "Add Document" node whenever you need to insert new data into a Typesense collection. For example, if
   you have a collection called "users" with fields like "id", "name", and "email", you can use this node to add a new
   user document with the provided details.
 </Callout>
@@ -177,16 +177,16 @@ The `success` property indicates whether the document was added successfully or 
 
 ## Add Documents
 
-The "Add Documents" node allows you to insert multiple documents into an existing TypeSense collection in a single
+The "Add Documents" node allows you to insert multiple documents into an existing Typesense collection in a single
 operation.
 
-<Image src={typesense4} alt='TypeSense' width={1200} />
+<Image src={typesense4} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance.
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection where you want to insert the documents.
+- **API Key**: The API key required for authentication with your Typesense instance.
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection where you want to insert the documents.
 - **Documents**: An array of document objects that you want to insert into the collection. Each document should follow
   the schema defined for the collection.
 
@@ -218,7 +218,7 @@ operation.
 ```
 
 <Callout>
-  You can use the "Add Documents" node when you need to insert multiple documents into a TypeSense collection in a
+  You can use the "Add Documents" node when you need to insert multiple documents into a Typesense collection in a
   single operation. This can be useful when you have a batch of data that needs to be indexed or when you want to
   populate a collection with initial data.
 </Callout>
@@ -243,20 +243,20 @@ the id of each inserted document.
 
 ## Get Document
 
-The "Get Document" node allows you to retrieve a specific document from a TypeSense collection by its unique identifier
+The "Get Document" node allows you to retrieve a specific document from a Typesense collection by its unique identifier
 (ID).
 
-<Image src={typesense5} alt='TypeSense' width={1200} />
+<Image src={typesense5} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance.
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection from which you want to retrieve the document.
+- **API Key**: The API key required for authentication with your Typesense instance.
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection from which you want to retrieve the document.
 - **Document ID**: The unique identifier (ID) of the document you want to retrieve.
 
 <Callout>
-  You can use the "Get Document" node when you need to fetch a specific document from a TypeSense collection based on
+  You can use the "Get Document" node when you need to fetch a specific document from a Typesense collection based on
   its ID. This can be useful when you want to retrieve and display detailed information about a particular document or
   perform further operations on it.
 </Callout>
@@ -272,20 +272,20 @@ The node returns an object with the following properties:
 ```
 
 The `success` property indicates whether the document was retrieved successfully or not. The `document` object contains
-the full document data as retrieved from the TypeSense collection.
+the full document data as retrieved from the Typesense collection.
 
 ## Update Document
 
-The "Update Document" node allows you to update an existing document in a TypeSense collection by providing the
+The "Update Document" node allows you to update an existing document in a Typesense collection by providing the
 document's ID and the updated field values.
 
-<Image src={typesense6} alt='TypeSense' width={1200} />
+<Image src={typesense6} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance. This should be provided as a secret
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection in which you want to update the document.
+- **API Key**: The API key required for authentication with your Typesense instance. This should be provided as a secret
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection in which you want to update the document.
 - **Document ID**: The unique identifier (ID) of the document you want to update.
 - **Data**: An object containing the updated field values for the document. This should follow the schema defined for
   the collection.
@@ -301,7 +301,7 @@ document's ID and the updated field values.
 ```
 
 <Callout>
-  You can use the "Update Document" node when you need to modify the data of an existing document in a TypeSense
+  You can use the "Update Document" node when you need to modify the data of an existing document in a Typesense
   collection. This can be useful when you want to update user information, product details, or any other data stored in
   the collection.
 </Callout>
@@ -315,24 +315,24 @@ The node returns an object with the following properties:
 ```
 
 The `success` property indicates whether the document was updated successfully or not. The `document` object contains
-the updated document data as stored in the TypeSense collection.
+the updated document data as stored in the Typesense collection.
 
 ## Delete Document
 
-The "Delete Document" node allows you to delete a specific document from a TypeSense collection by providing its unique
+The "Delete Document" node allows you to delete a specific document from a Typesense collection by providing its unique
 identifier (ID).
 
-<Image src={typesense7} alt='TypeSense' width={1200} />
+<Image src={typesense7} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance.
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection from which you want to delete the document.
+- **API Key**: The API key required for authentication with your Typesense instance.
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection from which you want to delete the document.
 - **Document ID**: The unique identifier (ID) of the document you want to delete.
 
 <Callout>
-  You can use the "Delete Document" node when you need to remove a specific document from a TypeSense collection. This
+  You can use the "Delete Document" node when you need to remove a specific document from a Typesense collection. This
   can be useful when you want to delete outdated or irrelevant data, or when a user requests the deletion of their
   information from your application.
 </Callout>
@@ -350,23 +350,23 @@ further output is provided.
 
 ## Full Text Search
 
-The "Full Text Search" node allows you to perform full-text searches on a TypeSense collection, enabling you to find
+The "Full Text Search" node allows you to perform full-text searches on a Typesense collection, enabling you to find
 documents that match a specific search query.
 
-<Image src={typesense8} alt='TypeSense' width={1200} />
+<Image src={typesense8} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance.
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection on which you want to perform the search.
+- **API Key**: The API key required for authentication with your Typesense instance.
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection on which you want to perform the search.
 - **Query**: The search query string that you want to use for finding matching documents.
 - **Field**: The specific field in the collection's schema on which you want to perform the search.
 - **Sort By**: (Optional) The field by which you want to sort the search results.
 - **Filter By**: (Optional) Additional filters to apply to the search results.
 
 <Callout>
-  You can use the "Full Text Search" node when you need to search for documents in a TypeSense collection based on a
+  You can use the "Full Text Search" node when you need to search for documents in a Typesense collection based on a
   specific query. This can be useful in various scenarios, such as implementing a search functionality in your
   application, finding relevant data based on user input, or filtering data based on specific criteria.
 </Callout>
@@ -402,21 +402,21 @@ contains the following properties:
 
 ## Geo Search
 
-The "Geo Search" node allows you to perform geographic searches on a TypeSense collection, enabling you to find
+The "Geo Search" node allows you to perform geographic searches on a Typesense collection, enabling you to find
 documents within a specified radius of a given location.
 
 <Callout>
   Refer to [Geo Search Documentation by
-  TypeSense](https://typesense.org/docs/0.24.0/api/geosearch.html#searching-within-a-radius) for detailed information.
+  Typesense](https://typesense.org/docs/0.24.0/api/geosearch.html#searching-within-a-radius) for detailed information.
 </Callout>
 
-<Image src={typesense9} alt='TypeSense' width={1200} />
+<Image src={typesense9} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance.
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection on which you want to perform the geo search.
+- **API Key**: The API key required for authentication with your Typesense instance.
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection on which you want to perform the geo search.
 - **Search Query**: The search query string that you want to use for finding matching documents (`*` matches all
   documents).
 - **Location**: The geographic coordinates (latitude and longitude) around which you want to search for documents (Eg:
@@ -425,7 +425,7 @@ documents within a specified radius of a given location.
 - **Sort By**: (Optional) The field by which you want to sort the search results.
 
 <Callout>
-  You can use the "Geo Search" node when you need to search for documents in a TypeSense collection based on their
+  You can use the "Geo Search" node when you need to search for documents in a Typesense collection based on their
   geographic location. This can be useful in various scenarios, such as finding nearby places, events, or businesses
   based on the user's current location, or filtering data based on geographic criteria.
 </Callout>
@@ -450,16 +450,16 @@ contains the following properties:
 
 ## Vector Search
 
-The "Vector Search" node allows you to perform vector-based searches on a TypeSense collection, enabling you to find
+The "Vector Search" node allows you to perform vector-based searches on a Typesense collection, enabling you to find
 documents that are semantically similar to a given vector representation.
 
-<Image src={typesense10} alt='TypeSense' width={1200} />
+<Image src={typesense10} alt='Typesense' width={1200} />
 
 ### Inputs
 
-- **API Key**: The API key required for authentication with your TypeSense instance.
-- **Host**: The host address of your TypeSense instance or cluster.
-- **Collection Name**: The name of the TypeSense collection on which you want to perform the vector search.
+- **API Key**: The API key required for authentication with your Typesense instance.
+- **Host**: The host address of your Typesense instance or cluster.
+- **Collection Name**: The name of the Typesense collection on which you want to perform the vector search.
 - **Search Query**: The search query string that you want to use for finding matching documents (`*` matches all
   documents).
 - **Vector Field**: The field in the collection's schema that contains the vector data.
@@ -469,7 +469,7 @@ documents that are semantically similar to a given vector representation.
 - **Sort By**: (Optional) The field by which you want to sort the search results.
 
 <Callout>
-  You can use the "Vector Search" node when you need to search for documents in a TypeSense collection based on their
+  You can use the "Vector Search" node when you need to search for documents in a Typesense collection based on their
   semantic similarity to a given vector representation. This can be useful in various scenarios, such as finding similar
   documents based on textual content, recommending related products or content, or clustering data based on semantic
   similarities.
@@ -505,8 +505,8 @@ contains the following properties:
 - `out_of`: The total number of pages available for the search results.
 
 <Callout>
-  TypeSense supports vector-based searches, which allow you to find documents that are semantically similar to a given
+  Typesense supports vector-based searches, which allow you to find documents that are semantically similar to a given
   vector representation. This can be particularly useful for natural language processing and semantic search
-  applications. You can refer to the [TypeSense documentation on vector
+  applications. You can refer to the [Typesense documentation on vector
   search](https://typesense.org/docs/0.25.2/api/vector-search.html#use-cases) for more information and examples.
 </Callout>
