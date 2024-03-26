@@ -72,6 +72,11 @@ export default withNextra({
       destination: '/ai-models/:slug',
       permanent: true,
     },
+    {
+      source: '/ai-models/typesense',
+      destination: '/search/typeseanse',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
