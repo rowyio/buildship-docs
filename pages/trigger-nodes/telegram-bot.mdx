@@ -35,7 +35,12 @@ OpenAI in your workflow to generate meaningful responses to assist users in your
 ### Add the Telegram Bot Trigger
 
 Add the telegram bot's API Key, that you can get from [this step](#how-to-create-a-telegram-bot-workflow). <br/> Also,
-optionally you can add a Verification Code if you want incoming requests to be verified. <br/> <br/>
+optionally you can add a Verification Code if you want incoming requests to be verified.
+
+### Verification Code (optional)
+Telegram Bot API provides a verification code to ensure requests to your bot's webhook are coming from Telegram itself. This code is a random string sent in the `X-Telegram-Bot-Api-Secret-Token` header with each update request. You can use this code to verify that the request is coming from Telegram and not from a third-party source. If you want to use this feature, you can generate a random string and add it to the Verification Code field in the Telegram Bot Trigger node. This code will be sent in the X-Telegram-Bot-Api-Secret-Token header with each update request to your bot's webhook. You can then verify this code in your workflow to ensure the request is coming from Telegram.
+
+To set the verification code, you can add the code in the Verification Code field in the Telegram Bot Trigger node and send it to the headers of te incoming request to your webhook. To know more about Telegram Bot verification code you can refer to this [link](https://core.telegram.org/api/auth#sending-a-verification-code).<br/> <br/>
 
 <Image src={step3} alt='Telegram Bot Trigger' width={600} />
 
