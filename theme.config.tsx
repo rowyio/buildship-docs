@@ -6,6 +6,11 @@ import favicon16 from './public/favicon-16x16.png';
 import favicon32 from './public/favicon-32x32.png';
 import appleTouchIcon from './public/apple-touch-icon.png';
 import Help from '@components/features/help';
+import dynamic from 'next/dynamic';
+
+const ChatWidget = dynamic(() => import('./components/chatWidget/ChatWidget'), {
+  ssr: false,
+});
 
 const logo = (
   <span>
@@ -169,7 +174,7 @@ const config: DocsThemeConfig = {
     );
   },
   navigation: { prev: false, next: false },
-  footer: { component: null },
+  footer: { component: <ChatWidget /> },
   gitTimestamp: null,
 };
 
