@@ -1045,6 +1045,11 @@
   resolved "https://registry.npmjs.org/@braintree/sanitize-url/-/sanitize-url-6.0.4.tgz"
   integrity sha512-s3jaWicZd0pkP0jf5ysyHUI/RE7MHos6qlToFcGWXVp+ykHOy77OUMrfbgJ9it2C5bow7OIQwYYaHjk9XlBQ2A==
 
+"@buildshipapp/chat-widget@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@buildshipapp/chat-widget/-/chat-widget-1.3.0.tgz#8d1b2281ad3f77608f428daeefa0bc67defee444"
+  integrity sha512-rY92oL8N1Zyn9MkxBqFDSF/1/2br7hPKCH6aihiEN+jrEw4jHu3c9ZGZTv34fdjNvgyX4ms5XdQb8xRHp0iZAA==
+
 "@corex/deepmerge@^4.0.43":
   version "4.0.43"
   resolved "https://registry.npmjs.org/@corex/deepmerge/-/deepmerge-4.0.43.tgz"
