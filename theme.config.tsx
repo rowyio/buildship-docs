@@ -39,7 +39,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://buildship.com/discord', // Link to the Rowy Discord server
   },
-  docsRepositoryBase: 'https://github.com/rowyio/buildship-docs/tree/main/docs',
+  docsRepositoryBase: 'https://github.com/rowyio/buildship-docs/blob/main',
   navbar: {
     extraContent: (
       <>
@@ -154,7 +154,9 @@ const config: DocsThemeConfig = {
     labels: 'feedback',
     useLink: () => 'https://buildship.com/discord',
   },
-  // editLink: { component: null },
+  editLink: {
+    text: 'Edit this page on GitHub ↗',
+  },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {

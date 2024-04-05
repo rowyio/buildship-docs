@@ -1,0 +1,14 @@
+{
+  "grammarly.selectors": [
+    {
+      "language": "plaintext",
+      "scheme": "file",
+      "pattern": "pages/ai-models/assistant.mdx"
+    },
+    {
+      "language": "plaintext",
+      "scheme": "file",
+      "pattern": "pages/index.mdx"
+    }
+  ]
+}
