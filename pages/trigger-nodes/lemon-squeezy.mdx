@@ -1,0 +1,122 @@
+---
+title: Lemon Squeezy Trigger
+description:
+  The Lemon Squeezy Trigger allows you to connect your BuildShip workflows with your Lemon Squeezy account, which is a
+  payment management platform for selling digital products, subscriptions, software licenses, and courses.
+---
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import lemonOg from '/public/assets/lemon-og.png';
+import lemon1 from '/public/assets/lemon-1.png';
+import lemon2 from '/public/assets/lemon-2.png';
+import lemon3 from '/public/assets/lemon-3.png';
+
+# Lemon Squeezy Trigger
+
+The Lemon Squeezy Trigger allows you to connect your BuildShip workflows with your Lemon Squeezy account, which is a
+**payment management platform for selling digital products, subscriptions, software licenses, and courses**.
+
+<Image src={lemonOg} alt='Lemon Squeezy' width={1200} />
+
+Using this trigger, you can **activate specific workflows in response to various webhook events that occur within your
+Lemon Squeezy account**, such as new orders, subscription updates, or license key changes.
+
+## Prerequisites ✅
+
+Before configuring the Lemon Squeezy Trigger, you need to have the following:
+
+### API Key
+
+The Lemon Squeezy API Key. You can create an API Key from the Lemon Squeezy Dashboard by navigating to
+[Settings > API](https://app.lemonsqueezy.com/settings/api).
+
+<Image src={lemon2} alt='Lemon Squeezy Store ID' width={1200} />
+
+### Store ID
+
+The ID of the store for which you want to set up the webhook. You can find your Store ID from the
+[Settings > Stores](https://app.lemonsqueezy.com/settings/stores) section in the Lemon Squeezy Dashboard.
+
+<Image src={lemon1} alt='Lemon Squeezy API Key' width={1200} />
+
+### Secret Key
+
+A string used by Lemon Squeezy to sign requests for increased security. This key is required for verifying the
+authenticity of the incoming requests.
+
+<Callout>**NOTE:** The Secret Key needs to have a length greater than or equal to 6 characters.</Callout>
+
+## Trigger Inputs
+
+The Lemon Squeezy Trigger requires the following input parameters to be configured:
+
+### API Key
+
+Your Lemon Squeezy API Key. You can create an API Key from the Lemon Squeezy Dashboard by navigating to
+[Settings > API](https://app.lemonsqueezy.com/settings/api). (Refer to the [prerequisites](#prerequisites-) section for
+more information)
+
+### Events
+
+The specific events that will trigger the associated BuildShip Workflow. You can choose to listen to all events by
+leaving this field empty, or you can specify a list of events to listen to. The available events include:
+
+| Event Name                       | Description                                                                                                                                                                                                                                       |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `order_created`                  | Occurs when a new order is successfully placed.                                                                                                                                                                                                   |
+| `order_refunded`                 | Occurs when a full or partial refund is made on an order.                                                                                                                                                                                         |
+| `subscription_created`           | Occurs when a new subscription is successfully created. An order_created event will always be sent alongside a subscription_created event.                                                                                                        |
+| `subscription_updated`           | Occurs when a subscription's data is changed or updated. This event can be used as a "catch-all" to make sure you always have access to the latest subscription data.                                                                             |
+| `subscription_cancelled`         | Occurs when a subscription is cancelled manually by the customer or store owner. The subscription enters a "grace period" until the next billing date, when it will expire. It is possible for the subscription to be resumed during this period. |
+| `subscription_resumed`           | Occurs when a subscription is resumed after being previously cancelled.                                                                                                                                                                           |
+| `subscription_expired`           | Occurs when a subscription has ended after being previously cancelled, or once dunning has been completed for past_due subscriptions. You can manage how long to wait before the system marks deliquent subscriptions as expired.                 |
+| `subscription_paused`            | Occurs when a subscription's payment collection is paused.                                                                                                                                                                                        |
+| `subscription_unpaused`          | Occurs when a subscription's payment collection is resumed after being previously paused.                                                                                                                                                         |
+| `subscription_payment_success`   | Occurs when a subscription payment is successful.                                                                                                                                                                                                 |
+| `subscription_payment_failed`    | Occurs when a subscription renewal payment fails.                                                                                                                                                                                                 |
+| `subscription_payment_recovered` | Occurs when a subscription has a successful payment after a failed payment. A `subscription_payment_success` event will always be sent alongside a `subscription_payment_recovered` event.                                                        |
+| `subscription_payment_refunded`  | Occurs when a subscription payment is refunded.                                                                                                                                                                                                   |
+| `license_key_created`            | Occurs when a license key is created from a new order. An order_created event will always be sent alongside a `license_key_created` event.                                                                                                        |
+| `license_key_updated`            | Occurs when a license key is updated.                                                                                                                                                                                                             |
+
+### Secret Key
+
+The string used by Lemon Squeezy to sign requests for increased security. This key is required for verifying the
+authenticity of the incoming requests.
+
+### Store ID
+
+The ID of the store for which you want to set up the webhook. This ID should match the Store ID you obtained from the
+Settings > Stores section in the Lemon Squeezy Dashboard. (Refer to the [prerequisites](#prerequisites-) section for
+more information)
+
+## Trigger Outputs
+
+Once the trigger is correctly configured and shipped, users will be able to access the following outputs:
+
+- **Parsed Payload:** The parsed JSON payload of the incoming webhook event.
+- **Raw Payload:** The raw, unparsed payload of the incoming webhook event.
+
+These outputs can be accessed as variables using the Context Menu in the BuildShip Editor.
+
+<Image src={lemon3} alt='Lemon Squeezy Trigger Outputs' width={1200} />
+
+## Webhook Security
+
+The Lemon Squeezy Trigger uses **HMAC-SHA256 signatures** to ensure the authenticity of incoming webhook requests. The
+provided Secret Key is used to validate the signature included in the request headers. This mechanism ensures that only
+legitimate requests from Lemon Squeezy are processed by the trigger, enhancing the overall security of your workflows.
+
+## Example Use Cases
+
+Use Cases The Lemon Squeezy Trigger can be utilized in various scenarios to automate and streamline your workflows. Here
+are some interesting use cases:
+
+- **Order Processing:** Configure the trigger to listen for the `order_created` or `order_refunded` events, and then
+  create a workflow to automatically update your inventory management system, send order confirmation emails, or
+  initiate shipment processes.
+
+- **Subscription Management:** Set up the trigger to respond to `subscription_created`, `subscription_updated`,
+  `subscription_cancelled`, or other subscription-related events, and create workflows to sync subscription data with
+  your billing system, send notifications to customers, or trigger marketing campaigns based on subscription changes.

@@ -13,5 +13,7 @@
   "github-trigger": "GitHub Trigger",
   "file-upload": "Rest API File Upload",
   "firebase-file-upload": "Rest API File Upload (Auth)",
-  "whatsapp-bot": "WhatsApp Bot"
+  "whatsapp-bot": "WhatsApp Bot",
+  "email-trigger": "Email Trigger",
+  "lemon-squeezy": "Lemon Squeezy"
 }
