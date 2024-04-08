@@ -9,7 +9,8 @@ export default function Footer() {
 
   useEffect(() => {
     if (window !== undefined) {
-      window.buildShipChatWidget.config.url = 'https://api.buildship.run/chatbot2';
+      window.buildShipChatWidget.config.url = 'https://api.buildship.run/chatbot3';
+      window.buildShipChatWidget.config.responseIsAStream = true;
       window.buildShipChatWidget.config.greetingMessage = 'Hello! Got a question about BuildShip? Ask away!';
       window.buildShipChatWidget.config.openOnLoad = true;
       window.buildShipChatWidget.config.widgetTitle = 'BuildShip Chatbot';
