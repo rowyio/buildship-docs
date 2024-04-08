@@ -2,6 +2,7 @@
   "copy-paste": "Copy & Paste",
   "api-spec": "Export / Import API Spec",
   "rename": "Rename Workflow",
+  "rename-node": "Rename Node",
   "skip": "Skip Nodes",
   "node-failure": "Handle Node Failure",
   "using-templates": "Using Templates"
