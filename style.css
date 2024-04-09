@@ -28,6 +28,11 @@ body {
   color: hsl(var(--nextra-primary-hue) 100% 50% / var(--tw-text-opacity));
 }
 
+#buildship-chat-widget__body a {
+  color: blue;
+  text-decoration: underline;
+}
+
 figcaption {
   font-size: 0.85rem;
   line-height: 1.5rem;
