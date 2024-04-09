@@ -1045,10 +1045,10 @@
   resolved "https://registry.npmjs.org/@braintree/sanitize-url/-/sanitize-url-6.0.4.tgz"
   integrity sha512-s3jaWicZd0pkP0jf5ysyHUI/RE7MHos6qlToFcGWXVp+ykHOy77OUMrfbgJ9it2C5bow7OIQwYYaHjk9XlBQ2A==
 
-"@buildshipapp/chat-widget@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@buildshipapp/chat-widget/-/chat-widget-1.3.1.tgz#5eb37a5ba24f79e7791aa52fa42003dc5df4b9e4"
-  integrity sha512-astbvmVZaYVBQiBG0vVf4foykQ7g6dnKtdXVG7SnQ7ov4FEQff7ewbn42xWrImaiGcteoTlG8of1sCSbTAockg==
+"@buildshipapp/chat-widget@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@buildshipapp/chat-widget/-/chat-widget-1.3.2.tgz#6de7d4c9e275165cfc911a7363f78933fc288335"
+  integrity sha512-be/WdaoJJUQa4532Zj3jwJxtvizyyzO0/q4l2Q2h5pDcKqGahJHgORFdDxn+hAP/cQCOZ+8t51Yx4J0l8tZ/OA==
 
 "@corex/deepmerge@^4.0.43":
   version "4.0.43"
