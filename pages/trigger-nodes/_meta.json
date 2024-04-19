@@ -3,6 +3,7 @@
   "scheduled-cron": "Scheduled Cron",
   "every-day": "Every Day (Cron)",
   "every-hour": "Every Hour (Cron)",
+  "every-month": "Every Month (Cron)",
   "scheduled-interval": {
     "title": "Scheduled Interval",
     "display": "hidden"
