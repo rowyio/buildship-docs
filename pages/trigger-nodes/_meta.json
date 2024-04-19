@@ -1,6 +1,7 @@
 {
   "rest-api": "Rest API",
   "scheduled-cron": "Scheduled Cron",
+  "every-day": "Every Day (Cron)",
   "scheduled-interval": {
     "title": "Scheduled Interval",
     "display": "hidden"
