@@ -12,7 +12,7 @@ export default function Footer() {
       window.buildShipChatWidget.config.url = 'https://api.buildship.run/chatbot3';
       window.buildShipChatWidget.config.responseIsAStream = true;
       window.buildShipChatWidget.config.greetingMessage = 'Hello! Got a question about BuildShip? Ask away!';
-      window.buildShipChatWidget.config.openOnLoad = true;
+      window.buildShipChatWidget.config.openOnLoad = false;
       window.buildShipChatWidget.config.widgetTitle = 'BuildShip Chatbot';
       window.buildShipChatWidget.init();
     }
