@@ -6,9 +6,12 @@ import loggingPanel from '/public/dev-tools/logging-panel.png';
 import logging1 from '/public/dev-tools/logging1.png';
 import logging2 from '/public/dev-tools/logging2.png';
 import logging3 from '/public/dev-tools/logging3.png';
+import liveLogs from '/public/dev-tools/live-logs.png';
+import mockRequest from '/public/dev-tools/mock-request.png';
 
 Logging plays a vital role in the development and maintenance of workflows. It allows you to **track and understand the
-flow** of your workflow, **monitor variable values**, and **identify potential issues**.
+flow** of your workflow, **monitor variable values**, **monitor total and individual execution time of full workflow and
+individual nodes**,and **identify potential issues**.
 
 <Image src={logging1} alt='Logging' width={1200} />
 
@@ -19,6 +22,13 @@ Logging statements serve as essential tools in your workflow development toolkit
   efficiency.
 - **Data Visualization**: Logging enables you to visualize data, making it easier to understand how data changes as the
   workflow progresses.
+- **Track Execution Time**: Logging enables you to monitor workflow execution time for individual nodes and the entire
+  workflow and optimize workflows.
+- **Organize Group logs by nodes** - Logging enables you to easily perform debugging and testing, allowing you to
+  identify and resolve errors efficiently.
+- **Mock Requests** - Easily test and rerun a request by clicking the test button for each execution (note: headers
+  cannot be accessed for security reasons).
+- **LIVE logs for test execution** - Get real-time insights into your workflows for a faster debugging experience.
 
 You can harness the power of logging in BuildShip through two primary methods:
 
@@ -84,8 +94,14 @@ logging panel in BuildShip.
 <Image src={loggingPanel} alt='Logging Panel' width={1200} />
 
 - The logging panel is **located at the bottom** of your BuildShip Workspace, initially minimized.
-- Users can simply open or close the panel using the **expand button** on the right to **see old logs**, if any.
-- To **enable live logs** while your workflow executes, toggle the "**Live**" switch on. This allows you to monitor logs
-  as your workflow progresses via the trigger.
+- You can simply open or close the panel using the **expand button** on the right to **see old logs**, if any.
 - To **view logs specific to a node** or the entire workflow, switch from the default Workflow view to the Node view. To
   view logs for a particular node, select the node from the Node View.
+- To view **LIVE logs** for test execution, click on the test button from the workflow test panel and get real-time
+  insights into your workflows for a faster debugging experience, you can also view the logs for each node execution.
+  Note that production logs automatically get populated in the logs panel in ~45 seconds, you can click the refresh icon
+  to load production logs instantly.
+  <Image src={liveLogs} alt='Live logs' width={1200} />
+- To send a mock request, click on the test button for each execution (note: headers cannot be accessed for security
+  reasons). This will help you test and rerun a request easily.
+  <Image src={mockRequest} alt='Live logs' width={1200} />
