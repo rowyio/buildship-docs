@@ -77,6 +77,11 @@ export default withNextra({
       destination: '/search/typesense',
       permanent: true,
     },
+    {
+      source: '/trigger-nodes/:slug(every-day|every-hour|every-month|every-week)',
+      destination: '/trigger-nodes/scheduled-cron/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

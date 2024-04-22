@@ -1,14 +1,6 @@
 {
   "rest-api": "Rest API",
   "scheduled-cron": "Scheduled Cron",
-  "every-day": "Every Day (Cron)",
-  "every-hour": "Every Hour (Cron)",
-  "every-month": "Every Month (Cron)",
-  "every-week": "Every Week (Cron)",
-  "scheduled-interval": {
-    "title": "Scheduled Interval",
-    "display": "hidden"
-  },
   "rowy-trigger": "Rowy Trigger",
   "telegram-bot": "Telegram Bot",
   "supabase-trigger": "Supabase Trigger",

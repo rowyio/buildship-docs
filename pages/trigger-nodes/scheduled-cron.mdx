@@ -5,12 +5,54 @@ import { Steps } from 'nextra/components';
 import Image from 'next/image';
 import cron1 from '/public/nodes/cron-1.png';
 import cron2 from '/public/nodes/cron-2.png';
+import { Cards, Card } from 'nextra/components';
 
 The Scheduled Cron Trigger node is a powerful tool within BuildShip that enables you to **automate workflows based on
 scheduled time intervals**. This trigger allows you to **initiate workflows at specific times**, or patterns, ensuring
 timely execution of your automation tasks.
 
 <Image src={cron1} alt='Scheduled Cron Trigger' width={1200} />
+
+## User Friendly Cron Triggers ⏰
+
+BuildShip offers a 4 user-friendly cron triggers which let you **schedule workflows to run at specific intervals**, like
+every day, every hour, every month, and every week. **No need to set up complex cron expressions, just choose the
+desired interval and time zone**. Learn more:
+
+<Cards num={2}>
+  <Card
+    image
+    arrow
+    title='Every Day: Schedule a workflow to run every day at a specified time, like 5 pm every day.'
+    href='/trigger-nodes/scheduled-cron/every-day'
+  >
+    <>![Every Day Cron Trigger](/assets/every-day.png)</>
+  </Card>
+  <Card
+    image
+    arrow
+    title='Every Hour: Schedule a workflow to run every hour for more frequent automation.'
+    href='/trigger-nodes/scheduled-cron/every-hour'
+  >
+    <>![Every Hour Cron Trigger](/assets/every-hour.png)</>
+  </Card>
+  <Card
+    image
+    arrow
+    title='Every Month: Schedule a workflow to run at a specific time on chosen days of the month, such as the 1st and 15th at midnight.'
+    href='/trigger-nodes/scheduled-cron/every-month'
+  >
+    <>![Every Month Cron Trigger](/assets/every-month.png)</>
+  </Card>
+  <Card
+    image
+    arrow
+    title='Every Week: Schedule a workflow to run at a specific time on chosen days of the week, like every Monday, Wednesday, and Friday at noon.'
+    href='/trigger-nodes/scheduled-cron/every-week'
+  >
+    <>![Every Month Cron Trigger](/assets/every-week.png)</>
+  </Card>
+</Cards>
 
 ## How to Use Scheduled Cron Trigger
 
@@ -21,7 +63,6 @@ The Scheduled Cron Trigger node comes with three essential fields that you need 
 
 - **Schedule**: Set the **schedule pattern using the cron syntax**. This field determines the frequency and timing of
   your workflow execution. For example, `*/20 * * * *` specifies an interval of 20 minutes.
-
 
 <Callout emoji='💡'>
   Discover additional information about cron syntax and creating custom cron expressions
@@ -72,7 +113,7 @@ The CRON expression for this scenario would be: `30 15 * * *`
 - **Day of Month (\*)**: The task should run on any day of the month.
 - **Month (\*)**: The task should run in any month.
 - **Day of Week (\*)**: The task should run on any day of the week.
-</Callout>
+  </Callout>
 
 <Callout emoji="✅">
 **EXAMPLE 2:** Suppose you want to schedule a task to run every weekday (Monday to Friday) at 9:00 AM.
@@ -84,7 +125,7 @@ The CRON expression for this scenario would be: `0 9 * * 1-5`
 - **Day of Month (\*)**: The task should run on any day of the month.
 - **Month (\*)**: The task should run in any month.
 - **Day of Week (1-5)**: The task should run on Monday to Friday.
-</Callout>
+  </Callout>
 
 ## Setting up the Scheduled Cron Trigger
 
