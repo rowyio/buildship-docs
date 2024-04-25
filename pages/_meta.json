@@ -47,6 +47,7 @@
     "title": "Dev Tools"
   },
   "features": "Explore Features",
+  "env-var": "Environment Variables",
   "testing": "Testing",
   "logging": "Logging",
   "secrets": "Secrets & API Keys",

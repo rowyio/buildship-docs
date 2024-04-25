@@ -1,0 +1,115 @@
+---
+title: Environment Variables
+description: Environment variables in BuildShip are user-defined key-value pairs that can be accessed by workflow nodes.
+---
+
+import Image from 'next/image';
+import env1 from '/public/dev-tools/env1.png';
+import env2 from '/public/dev-tools/env2.png';
+import env3 from '/public/dev-tools/env3.png';
+
+# Environment Variables
+
+Environment variables in BuildShip are user-defined key-value pairs that can be accessed by workflow nodes. They provide
+a convenient way to store and retrieve data that needs to be shared across different parts of a workflow or project.
+
+- Their values **can be viewed, set, and manipulated** with ease via workflow nodes.
+
+- Variables **can be scoped at the project or workflow level**, allowing better organization and access control.
+
+<Image src={env1} alt='Environment Variables' width={1200} />
+
+## Types of Environment Variables
+
+BuildShip supports two types of environment variables:
+
+### Project-level Variables
+
+The project-level environment variables **can be accessed by any workflow within the project** they are created in.
+Useful for sharing data across multiple workflows.
+
+### Workflow-level Variables
+
+The workflow-level environment variables are **specific to the workflow they are created in**. They are useful for
+storing data that is only relevant to a particular workflow.
+
+## Using Environment Variables
+
+BuildShip offers three ways of setting and managing environment variables:
+
+### 1. Environment Variables Panel
+
+<Image src={env2} alt='Environment Variables' width={1200} />
+
+You can manage environment variables directly from the BuildShip platform using the Environment Variables panel. This
+panel allows you to view, add, edit, and delete environment variables at both the project and workflow levels.
+
+To access the Environment Variables panel, click on any node input to open the quick menu, then click on the
+"Environment Variables" option. At the bottom click the "**Add Environment Variable**" button. This will open the panel
+where you can manage the variables.
+
+The **Project** tab displays project-level variables, while the **Workflow** tab displays workflow-level variables. You
+can **view, add, edit, and delete variables** from these tabs as needed.
+
+### 2. Inside Node Logic
+
+In addition to the pre-built nodes, you can also manipulate environment variables directly within your node logic using
+the `env` object provided by BuildShip. The `env` object provides functions to `get`, `set`, and `delete` environment
+variables.
+
+<Image src={env3} alt='Environment Variables' width={1200} />
+
+#### Getting Environment Variables
+
+We can use the `env.get()` function inside the node logic to retrieve the value of an environment variable. By default,
+the function looks for the variable in the `workflow` environment scope, but you can specify the `project` scope as
+well.
+
+```javascript
+export default function testFunctions({ value }, { env }) {
+  const firstValue = env.get('first'); // workflow
+  const secondValue = env.get('second', 'project'); // project
+  console.log(`firstValue: ${firstValue}`);
+  console.log(`secondValue: ${secondValue}`);
+  // use the values in the node as you like, or return them
+  return true;
+}
+```
+
+In this example, the function first retrieves the value of the `first` variable from the workflow environment, and then
+retrieves the value of the `second` variable from the project environment.
+
+#### Setting Environment Variables
+
+We can use the `env.set()` function to set the value of an environment variable. By default, the function sets the
+variable in the "workflow" environment, but you can specify the "project" environment as well.
+
+```javascript
+export default async function testFunctions({ value }, { env }) {
+  await env.set([
+    { name: 'first', value: 1 },
+    { name: 'second', value: 2 },
+  ]); // workflow
+  await env.set([{ name: 'third', value: 3 }], 'project'); // project
+  return true;
+}
+```
+
+In this example, the function sets the values of the `first` and `second` variables in the workflow environment, and
+then sets the value of the `third` variable in the project environment.
+
+#### Deleting Environment Variables
+
+We can use the `env.delete()` function to delete an environment variable. By default, the function deletes the variable
+from the "workflow" environment, but you can specify the "project" environment as well.
+
+```javascript
+export default async function testFunctions({ values }, { env }) {
+  await env.delete(['first', 'second']); // workflow
+  await env.delete(['third'], 'project'); // project
+  return true;
+}
+```
+
+In this example, the function deletes the `first` and `second` variables from the workflow environment, and then deletes
+the `third` variable from the project environment.
