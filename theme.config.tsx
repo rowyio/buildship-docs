@@ -79,7 +79,7 @@ const config: DocsThemeConfig = {
   logo,
   head: function useHead() {
     const { title } = useConfig();
-    const { asPath, pathname } = useRouter();
+    const { asPath } = useRouter();
     const { frontMatter } = useConfig();
     const { route } = useRouter();
     const socialCard =
@@ -95,6 +95,8 @@ const config: DocsThemeConfig = {
     };
     const favicon = String(ogConfig.favicon);
     const description = String(frontMatter.description || ogConfig.description);
+    const fallbackDescription =
+      'A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.';
     const canonical = new URL(asPath, 'https://docs.buildship.com').toString();
 
     return (
@@ -103,16 +105,7 @@ const config: DocsThemeConfig = {
         <meta name='theme-color' content='#fff' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta httpEquiv='Content-Language' content='en' />
-        <meta property='og:url' content={canonical} />
         <link rel='canonical' href={canonical} />
-
-        <meta name='description' content={description} />
-        <meta property='og:description' content={description} />
-        {/* <meta name='title' content='BuildShip Documentation' />
-        <meta
-          name='description'
-          content='A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.'
-        /> */}
 
         {/* Twitter */}
         <meta name='twitter:card' content='summary_large_image' />
@@ -120,28 +113,22 @@ const config: DocsThemeConfig = {
         <meta name='twitter:site' content='@BuildShipApp' />
         <meta name='twitter:url' content='https://docs.buildship.com' />
         <meta property='twitter:title' content={title} />
-        <meta property='twitter:description' content={description} />
+        <meta property='twitter:description' content={description || fallbackDescription} />
 
         {/* Open Graph */}
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content={description} />
         <meta
           property='og:title'
           content={frontMatter.title ? frontMatter.title + ' – BuildShip Docs' : 'BuildShip Documentation'}
         />
-        <meta
-          property='og:description'
-          content={
-            frontMatter.description ||
-            'A unified resource to start building your backend with low-code. Dive into triggers, nodes, and step-by-step guidance to jumpstart your workflow creation.'
-          }
-        />
+        <meta property='og:url' content={canonical} />
+        <meta property='og:type' content='website' />
+        <meta property='og:description' content={description || fallbackDescription} />
         <meta
           property='og:image'
           content='https://storage.googleapis.com/website-a1s39m.appspot.com/buildship-app-logos/OG.png'
         />
 
-        <meta name='apple-mobile-web-app-title' content={description} />
+        <meta name='apple-mobile-web-app-title' content={description || fallbackDescription} />
         <link rel='apple-touch-icon' sizes='180x180' href={appleTouchIcon.src}></link>
         <link rel='icon' type='image/png' sizes='32x32' href={favicon32.src}></link>
         <link rel='icon' type='image/png' sizes='16x16' href={favicon16.src}></link>
