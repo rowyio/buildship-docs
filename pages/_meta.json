@@ -35,6 +35,7 @@
     "type": "separator",
     "title": "Integrations"
   },
+  "ai-assistant": "AI Assistant",
   "messaging": "Messaging",
   "payment": "Payment",
   "database": "Database",
