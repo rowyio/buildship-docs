@@ -78,6 +78,11 @@ export default withNextra({
       permanent: true,
     },
     {
+      source: '/ai-models/assistant',
+      destination: '/ai-assistant/assistant',
+      permanent: true,
+    },
+    {
       source: '/trigger-nodes/:slug(every-day|every-hour|every-month|every-week)',
       destination: '/trigger-nodes/scheduled-cron/:slug',
       permanent: true,
