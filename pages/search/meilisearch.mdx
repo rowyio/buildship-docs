@@ -1,0 +1,487 @@
+---
+title: Meilisearch
+description:
+  The MeiliSearch Integration in BuildShip allows users to leverage Meilisearch for their searching and indexing needs.
+---
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import meilisearchOG from '/public/assets/meilisearchOg.png';
+import meilisearch1 from '/public/assets/meilisearch1.png';
+import meilisearch2 from '/public/assets/meilisearch2.png';
+import meilisearch3 from '/public/assets/meilisearch3.png';
+import meilisearch4 from '/public/assets/meilisearch4.png';
+import meilisearch5 from '/public/assets/meilisearch5.png';
+import meilisearch6 from '/public/assets/meilisearch6.png';
+import meilisearch7 from '/public/assets/meilisearch7.png';
+import meilisearch8 from '/public/assets/meilisearch8.png';
+import meilisearch9 from '/public/assets/meilisearch9.png';
+
+# Meilisearch Integration
+
+The Meilisearch Integration in BuildShip empowers users to harness Meilisearch for their search and indexing
+requirements through a streamlined, low-code interface. Meilisearch is a **rapid, flexible, and developer-centric
+open-source search engine** optimized for creating instant, highly relevant search experiences within your applications
+and website
+
+<br />
+
+<Image src={meilisearchOG} alt='Meilisearch' width={1200} />
+
+Leveraging BuildShip's Meilisearch Nodes, users can seamlessly connect to their Meilisearch instances, unlocking the
+potential to craft **APIs, Scheduled Jobs, and various backend workflows centered around search and indexing tasks**.
+This integration is specially crafted to reduce the need for extensive coding, facilitating straightforward management
+of search indices, documents, and configurations within the intuitive BuildShip environment.
+
+The Meilisearch Nodes provide a no-code interface for engaging with Meilisearch, ensuring a hassle-free integration of
+advanced search features into your projects. From indexing new documents and tweaking search settings to conducting
+intricate search queries, Meilisearch Nodes are designed to streamline these processes in a user-friendly manner.
+
+## Prerequisites ✅
+
+Before you can start using the Meilisearch Nodes in BuildShip, ensure that you have the following prerequisites in
+place:
+
+### Meilisearch Instance or Meilisearch Cloud Account
+
+You'll need access to a Meilisearch instance or a Meilisearch Cloud account. To begin with Meilisearch Cloud, setting up
+an account is required. For those without an account, a 14-day free trial can be registered at Meilisearch Cloud. Follow
+these steps to prepare your account and initiate your first project:
+
+1. Navigate to [Meilisearch Cloud](https://cloud.meilisearch.com/register) to either sign up for a new account or log in
+   if you are an existing user.
+2. Upon login, initiate a project by selecting the "New project" or "Start free trial" button, contingent on the current
+   status of your account. Projects serve as containers for indexes, tasks, and various critical components.
+3. Assign a name to your project, for instance, "meilisearch-quick-start", and choose the region that is nearest to you
+   to ensure the best performance. Proceed by clicking on "Create project".
+4. For accounts not utilizing a free trial, you will need to select a billing plan that suits the scale of your data and
+   the volume of searches you anticipate.
+5. Post project creation, a brief waiting period may ensue for it to become ready. This process's progress can be
+   monitored in the project list. Once the project is set up, you can begin adding documents and conducting searches.
+
+It's important to note, generating API keys for secure interaction with your Meilisearch instance is an important step
+that follows the establishment of your project.
+
+<Image src={meilisearch1} alt='Meilisearch' width={1200} />
+
+### API Keys
+
+Meilisearch utilizes a master key to authenticate, granting complete operational access. For enhanced security, it is
+recommended to [generate new API keys](https://docs.meilisearch.com/reference/api/keys.html) with restricted scopes
+tailored to specific use cases.
+
+### Host
+
+The URL of your Meilisearch instance serves as the host. This critical piece of information is required for connecting
+BuildShip's Meilisearch nodes to your Meilisearch server. For more details on obtaining your Meilisearch instance's URL,
+refer to the [Meilisearch documentation](https://docs.meilisearch.com/learn/getting_started/quick_start.html).
+
+## Add Document
+
+The "Add Document" node allows you to create or insert a new document into an existing MeiliSearch index.
+
+<Image src={meilisearch2} alt='MeiliSearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your MeiliSearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your MeiliSearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the MeiliSearch index where you want to insert the document.
+- **Document**: The document object that you want to insert into the index. This should be formatted as a JSON object
+  according to the schema defined for the index.
+
+**EXAMPLE INPUT**
+
+```json
+{
+  "id": "1",
+  "title": "Shazam",
+  "release_date": "2019-03-23",
+  "director": "David F. Sandberg"
+}
+```
+
+<Callout>
+  Use the "Add Document" node whenever you need to insert new data into a MeiliSearch index. For example, if you have an
+  index called "movies" with fields like "id", "title", and "release_date", you can use this node to add a new movie
+  document with the provided details.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```json
+{ "success": boolean, "detail": string, "document": { "id": string // Other properties of the inserted document } }
+```
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `document` : An object containing details about the document that was added or updated
+
+## Add Documents
+
+The "Add Documents" node allows you to insert multiple documents into an existing Meilisearch index in a single
+operation.
+
+<Image src={meilisearch3} alt='Meilisearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your MeiliSearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your MeiliSearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the MeiliSearch index where you want to insert the document.
+- **Documents**: An array of document objects that you want to insert into the index. Each document should follow the
+  schema defined for the collection.
+
+**EXAMPLE INPUT**
+
+```json
+[
+  {
+    "id": "2",
+    "title": "Inception",
+    "release_date": "2010-07-16",
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "3",
+    "title": "The Grand Budapest Hotel",
+    "release_date": "2014-03-28",
+    "director": "Wes Anderson"
+  },
+  {
+    "id": "4",
+    "title": "Parasite",
+    "release_date": "2019-05-30",
+    "director": "Bong Joon-ho"
+  }
+]
+```
+
+<Callout>
+  You can use the "Add Documents" node when you need to insert multiple documents into a Meilisearch index in a single
+  operation. This can be useful when you have a batch of data that needs to be indexed or when you want to populate a
+  collection with initial data.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```json
+{
+  "success": boolean,
+  "detail": string,
+  "documents": [
+    {
+      "id": string
+    }
+  ]
+}
+```
+
+The `success` property indicates whether the documents were added successfully or not. The `documents` array contains
+the id of each inserted document.
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `documents` : An array contains the id of each inserted document
+
+## Get Document
+
+The "Get Document" node allows you to retrieve a specific document from a Meilisearch Index by its unique identifier
+(ID).
+
+<Image src={meilisearch4} alt='Meilisearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your Meilisearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your Meilisearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the Meilisearch index where you want to insert the document.
+- **Document ID**: The unique identifier (ID) of the document you want to retrieve.
+
+<Callout>
+  You can use the "Get Document" node when you need to fetch a specific document from a Meilisearch index based on its
+  ID. This can be useful when you want to retrieve and display detailed information about a particular document or
+  perform further operations on it.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```json
+
+{ "success": boolean, "detail": string, "document": object }
+
+```
+
+The `success` property indicates whether the document was retrieved successfully or not. The `document` object contains
+the full document data as retrieved from the Meilisearch index.
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `document` : The full document data as retrieved from the Meilisearch index.
+
+## Update Document
+
+The "Update Document" node allows you to update an existing document in a Meilisearch index by providing the document's
+ID and the updated field values.
+
+<Image src={meilisearch5} alt='Meilisearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your Meilisearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your Meilisearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the Meilisearch index where you want to insert the document.
+- **Document**: A JSON object with the updated fields and the document's unique ID. Only included fields will be
+  updated.
+
+**EXAMPLE INPUT**
+
+```json
+{
+  "id": "1",
+  "release_date": "2019-03-23",
+  "title": "Shazam",
+  "director": "Sandrinna Michelle"
+}
+```
+
+<Callout>
+  You can use the "Update Document" node when you need to modify the data of an existing document in a Meilisearch
+  index. This can be useful when you want to update user information, product details, or any other data stored in the
+  index.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```json
+{ "success": boolean, "document": object }
+```
+
+The `success` property indicates whether the document was updated successfully or not. The `document` object contains
+the updated document data as stored in the Meilisearch index.
+
+## Update Documents
+
+The "Update Documents" node allows you to update existing documents in a Meilisearch index by providing the document's
+IDs and the updated field values.
+
+<Image src={meilisearch6} alt='Meilisearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your Meilisearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your Meilisearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the Meilisearch index where you want to insert the document.
+- **Documents**: An array of objects with the updated fields and the document's unique ID. Only included fields will be
+  updated.
+
+**EXAMPLE INPUT**
+
+```json
+[
+  {
+    "id": "2",
+    "title": "Inception",
+    "release_date": "2010-07-16",
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "3",
+    "title": "The Grand Budapest Hotel",
+    "release_date": "2014-03-28",
+    "director": "Wes Anderson"
+  },
+  {
+    "id": "4",
+    "title": "Parasite",
+    "release_date": "2019-05-30",
+    "director": "Bong Joon-ho"
+  }
+]
+```
+
+<Callout>
+  Use the "Update Documents" node when you need to modify the data of existing documents in a MeiliSearch index. This is
+  useful for updating user information, product details, or any other stored data in bulk.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```json
+{
+  "success": boolean,
+  "detail": string,
+  "documents": [
+    {
+      "id": string
+    }
+  ]
+}
+```
+
+The `success` property indicates whether the documents were added successfully or not. The `documents` array contains
+the id of each updated document.
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `documents` : An array contains the id of each updated document
+
+## Delete Document
+
+The "Delete Document" node allows you to delete a specific document from a Meilisearch index by providing its unique
+identifier (ID).
+
+<Image src={meilisearch7} alt='Meilisearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your Meilisearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your Meilisearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the Meilisearch index where you want to insert the document.
+- **Document ID**: The unique identifier (ID) of the document you want to delete.
+
+<Callout>
+  You can use the "Delete Document" node when you need to remove a specific document from a Meilisearch index. This can
+  be useful when you want to delete outdated or irrelevant data, or when a user requests the deletion of their
+  information from your application.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```
+{
+  "success": boolean,
+  "detail": string,
+  "documentId": string
+}
+```
+
+The `success` property indicates whether the document was deleted successfully or not. If the deletion is successful,
+the document is provided.
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `documentId` : The ID of the document you deleted from the specified index.
+
+## Full Text Search
+
+The "Full Text Search" node allows you to perform full-text searches on a Meilisearch index, enabling you to find
+documents that match a specific search query.
+
+<Image src={meilisearch8} alt='Meilisearch' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your Meilisearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your Meilisearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the Meilisearch index on which you want to perform the search.
+- **Query**: The search query string that you want to use for finding matching documents.
+- **Filter Criteria**: (Optional) The conditions used to filter the search results in the index.
+- **Facets Distribution**: (Optional) The facets for which to calculate distribution across the search results.
+
+<Callout>
+  Use the "Full Text Search" node when you need to search for documents in a MeiliSearch index based on a specific
+  query. This can be useful in various scenarios, such as implementing search functionality in your application, finding
+  relevant data based on user input, or filtering data based on specific criteria.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```json
+{
+  "success": boolean,
+  "detail": string,
+  "results": [
+    {
+      "document": object
+    }
+  ]
+}
+```
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `results` : An array of objects, each representing a document that matched the search query. The document property
+  contains the full document data.
+
+## Hybrid Search
+
+The "Hybrid Search" feature in MeiliSearch combines traditional keyword search with semantic vector search, enabling you
+to find documents that are relevant both textually and semantically.
+
+<Image src={meilisearch9} alt='Typesense' width={1200} />
+
+### Inputs
+
+- **API Key**: The API key required for authentication with your Meilisearch instance. This should be provided as a
+  secret.
+- **Host**: The host address of your Meilisearch instance. This can be provided as a secret.
+- **Index Name**: The unique identifier of the Meilisearch index on which you want to perform the search.
+- **Query**: The search query string that you want to use for finding matching documents.
+- **Limit**: The maximum number of results to return.
+- **Filter**: (Optional) Conditions that filter the search results.
+- **Facets Distribution**: (Optional) Facets to distribute across the search results for categorizing information.
+- **Sort By**: (Optional) Criteria for sorting the search results.
+- **Semantic Ratio**: Balances between semantic and keyword search, determining how much the search results should rely
+  on semantic meanings versus exact keyword matches.
+- **Embedder**: Specifies the vector embedding model used for the semantic search component.
+
+<Callout>
+  Employ the "Hybrid Search" function to enhance search functionality in your applications by delivering results that
+  not only match the keywords but also align semantically with the user's intent. This function is particularly
+  beneficial in providing more relevant and context-aware search results, thereby improving the user experience.
+</Callout>
+
+### Output
+
+The node returns an object with the following properties:
+
+```
+{
+  "success": boolean,
+  "detail": string,
+  "results": [
+    {
+      "document": object,
+      "_semanticScore": number
+    }
+  ]
+}
+```
+
+- `success` : A boolean value indicating the success of the operation.
+- `detail` : A descriptive message about the outcome of the operation.
+- `results`: An array of objects, where each object represents a document that matched the search query:
+  - `document`: Contains the full data of the document. This would include fields like `id`, `title`, and any other
+    relevant data specific to the document.
+  - `_semanticScore`: A numerical value representing the semantic relevance of the document to the search query. This
+    score is derived from the vector search component of the hybrid search, providing a measure of how semantically
+    close the document is to the query.
+
+<Callout>
+  MeiliSearch's hybrid search capability allows a nuanced approach to search tasks, combining the precision of keyword
+  searches with the depth of semantic analysis. For more comprehensive guidance on implementing hybrid searches in your
+  applications, consult the [MeiliSearch documentation on hybrid
+  search](https://docs.meilisearch.com/learn/advanced/hybrid_search.html).
+</Callout>
