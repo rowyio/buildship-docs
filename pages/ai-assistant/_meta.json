@@ -1,3 +1,4 @@
 {
-  "assistant": "OpenAI Assistant"
+  "assistant": "OpenAI Assistant",
+  "claude-assistant": "Claude Assistant"
 }
