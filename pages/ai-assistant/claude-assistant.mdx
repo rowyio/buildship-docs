@@ -2,7 +2,7 @@
 title: Claude Assistant Node
 description:
   The Claude Assistant Node integrates the Claude AI model from Anthropic into your BuildShip Workflows, allowing you to
-  interact with the AI assistant, send prompts, and receive responses.
+  interact with the AI assistant, perfom intelligent tasks with third party tools, and receive responses.
 ---
 
 import Image from 'next/image';
@@ -76,6 +76,8 @@ This optional input **allows you to save and share the context of the conversati
 can be any **unique identifier**, such as a UUID or a custom string. The chat history belonging to a specific thread ID
 is retrieved and continued in subsequent interactions. This feature is useful for maintaining context and continuity in
 multi-turn conversations.
+
+**Sample Thread ID:** `123e4567-e89b-12d3-a456-426614174000`
 
 **If no thread ID is provided, a new conversation thread is started and a new thread ID is generated automatically**.
 This Thread ID is also **returned as an output of the Claude Assistant** node for reference. You can make your client
