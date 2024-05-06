@@ -1,5 +1,6 @@
 {
   "assistant": "AI Assistants",
   "openai-assistant": "OpenAI Assistant",
+  "openai-streaming-assistant": "OpenAI Streaming Assistant",
   "claude-assistant": "Claude Assistant"
 }
