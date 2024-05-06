@@ -153,31 +153,107 @@ the image below.
 
 To query a collection, we can use the **Collection Query** node from the **BuildShip Database** integration.
 
-Add the collection name, same as the one linked to the BuildShip Table. For the Filters field, let’s copy the sample
-input available in the Node Info (ℹ️) and modify it according to our data.
+Add the collection name, same as the one linked to the BuildShip Table.
+
+#### Basic Filter
+
+For the Filters field, let’s copy the sample input available in the Node Info (ℹ️) and modify it according to our data.
 
 ```json
-[
-  {
-    "field": "username",
-    "operator": "==",
-    "value": "CillianMurphy"
-  }
-]
+{
+  "field": "name",
+  "operator": "==",
+  "value": "Marta"
+}
 ```
+
+This will return all the documents where the field name is equal to Marta.
+
+> **Tip:** Click [here](https://cloud.google.com/firestore/docs/query-data/queries#query_operators) for a list of all
+> the operators available for filtering.
+
+#### Multiple Filters
+
+Example 1: Filtering with OR. To add multiple filters, we can use the **logic** field to specify the logic to be applied
+to the filters. For example:
+
+```json
+{
+  "logic": "OR",
+  "filters": [
+    { "field": "active", "operator": "==", "value": false },
+    { "field": "name", "operator": "==", "value": "doe" }
+  ]
+}
+```
+
+This will return all the documents where the field “active” is false OR the field “name” is doe.
+
+Example 2: Filtering with AND. To filter with AND, we can use the same **logic** field to specify the logic to be
+applied to. For example:
+
+```json
+{
+  "logic": "AND",
+  "filters": [
+    { "field": "active", "operator": "==", "value": false },
+    { "field": "name", "operator": "==", "value": "doe" }
+  ]
+}
+```
+
+This will return all the documents where the field “active” is false AND the field “name” is doe.
+
+#### Nested Filters
+
+We can also nest filters to create complex queries. For example:
+
+```json
+{
+  "logic": "AND",
+  "children": [
+    { "field": "technology", "operator": "==", "value": "Firebase" },
+    {
+      "logic": "OR",
+      "filters": [
+        { "field": "admin", "operator": "==", "value": true },
+        { "field": "age", "operator": ">=", "value": 18 }
+      ]
+    }
+  ]
+}
+```
+
+This will return all the documents where the field “technology” is equal to “Firebase” AND the field “admin” is true OR
+the field “age” is greater than or equal to 18.
+
+#### Bonus: Filter by Reference
+
+To filter by reference we can use the convention `collectionName/documentID` for the filter value. For example:
+
+```json
+{
+  "field": "user_ref",
+  "operator": "==",
+  "value": "users/user123"
+}
+```
+
+This will return all the documents where the field “user_ref” is equal to “users/user123”. Values passed in this format
+will be treated as references.
 
 Next, let’s limit the number of responses being returned by specifying a limit and add a condition to order the results.
 For example:
 
 ```js
-[{ username: 'asc' }]; // order in ascending order by the username
+[{ name: 'asc' }]; // order in ascending order by the username
 ```
 
 <Image src={tables12} alt='API Specification' width={1200} />
 
 ### Get Document
 
-To get a document from a collection, lets use the **Get Documen** node from the **BuildShip Database** integration.
+To get a document from a collection, lets use the **Get Document** node from the **BuildShip Database** integration.
 
 Add in the Collection Name and the Document ID to retrieve.
 
