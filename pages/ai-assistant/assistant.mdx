@@ -1,14 +1,15 @@
 ---
 title: OpenAI Assistant integration
-description: Our OpenAI integration allows you to
+description:
+  With BuildShip's OpenAI Assistant Builder Integration, you can now leverage the powerful capabilities of OpenAI
+  Assistant without writing any code visually.
 ---
 
 import Image from 'next/image';
+import { Card, Cards } from 'nextra/components';
 import { Callout } from 'nextra/components';
 
 # OpenAI Assistant API Builder Guide
-
-## Introduction
 
 Since the launch of GPTs, we have seen a lot of custom AI agents help people in their daily life, at specific tasks, at
 work, or home.
@@ -19,6 +20,26 @@ access to these GPTs, at OpenAI Dev Day, the company introduced
 custom AI Assistants.
 
 ![GPTs, your own version of ChatGPT customised to fill a purpose  - from OpenAI [announcement](https://openai.com/blog/introducing-gpts)  ](./assistant-src/Untitled.png)
+
+## Assistant Variants
+
+BuildShip offers a variety of AI Assistant nodes with various models and providers. Click on the links below for
+detailed information on each one:
+
+<Cards num={2}>
+  <Card image arrow title='OpenAI Assistant' href='/ai-assistant/openai-assistant'>
+    <>![OpenAI Assistant](../../public/remix/city-advisor.png)</>
+  </Card>
+  <Card image arrow title='OpenAI Streaming Assistant' href='/ai-assistant/openai-streaming-assistant'>
+    <>![OpenAI Streaming Assistant](../../public/remix/openai-streaming.png)</>
+  </Card>
+  <Card image arrow title='Claude Assistant' href='/ai-assistant/claude-assistant'>
+    <>![Claude Assistant](../../public/remix/claude-assistant.png)</>
+  </Card>
+  <Card image arrow title='Azure Assistant' href='/ai-assistant/azure-assistant'>
+    <>![Azure Assistant](../../public/remix/azure-assistant.png)</>
+  </Card>
+</Cards>
 
 ## Building AI Assistant
 
