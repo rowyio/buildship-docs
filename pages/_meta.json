@@ -43,6 +43,17 @@
   "search": "Search",
   "productivity": "Productivity",
   "storage": "Storage",
+  "-- Connect BuildShip With": {
+    "type": "separator",
+    "title": "Connect BuildShip With"
+  },
+  "flutterflow": "FlutterFlow",
+  "bubble": "Bubble",
+  "toddle": "Toddle",
+  "webflow": "Webflow",
+  "framer": "Framer",
+  "weweb": "WeWeb",
+  "webstudio": "WebStudio",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
