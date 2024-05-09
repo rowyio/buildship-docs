@@ -1,5 +1,7 @@
 {
-  "assistant": "AI Assistants",
+  "assistant": "AI Assistant Builder Guide",
   "openai-assistant": "OpenAI Assistant",
-  "claude-assistant": "Claude Assistant"
+  "openai-streaming-assistant": "OpenAI Streaming Assistant",
+  "claude-assistant": "Claude Assistant",
+  "azure-assistant": "Azure Assistant"
 }
