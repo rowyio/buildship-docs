@@ -211,7 +211,7 @@ We can also nest filters to create complex queries. For example:
 ```json
 {
   "logic": "AND",
-  "children": [
+  "filters": [
     { "field": "technology", "operator": "==", "value": "Firebase" },
     {
       "logic": "OR",
