@@ -1,0 +1,70 @@
+# Crawler 🕷️
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import dynamicScrape from '/public/tutorial/scrape/dynamic-scrape.png';
+import buildshipGoogleSearch from '/public/tutorial/scrape/buildship-google-search.png';
+import crawlerResult from '/public/tutorial/scrape/crawler-result.png';
+import dynamicScrapeResult from '/public/tutorial/scrape/dynamic-scrape-result.png';
+import puppeteerTypeMethodParams from '/public/tutorial/puppeteer-type-method-params.png';
+
+Extract data from an entire website by crawling through and scraping all its pages.
+
+## Using the Crawler Node
+
+The Crawler node performs parallel crawling of web pages using headless Chrome with Puppeteer. Imagine you want to
+scrape `https://www.buildship.com` (or any other website) and all its linked pages. You can use the Crawler node to
+achieve this. The node accepts these parameters:
+
+- **Website URL (required)**: The URL of the website to start crawling.
+
+- **Selector (optional)**: The HTML selector to grab the inner text from.
+
+- **Max Concurrency (optional)**: Number of crawls to run in parallel (max limit: 20).
+
+- **Max Requests Per Crawl (optional)**: Max requests to be executed per crawl (max limit: 50). Useful to limit the
+  number of pages to crawl.
+
+- **Proxy URLs (optional)**: List of proxy urls to be used automatically by crawler for all connections.
+
+- **Crawl ID (optional)**: Use crawlId returned from previous crawling to continue crawling remaining urls. This is
+  useful when you want to continue crawling from where you left off.
+
+**Usage Example:** Suppose you want to scrape all the pages of `https://www.buildship.com`:
+
+{' '}
+
+To begin we can setup the crawler node, set the URL to `https://www.buildship.com` and the selector to `body`. Let's
+also set the `maxConcurrency` to `5` and `maxRequestsPerCrawl` to `10`.
+
+<br />
+
+<Image src={crawlerResult} alt='Buildship crawler result' width={800} />
+
+So after execution, the Crawler node output will look something like below:
+
+```json
+{
+  // Total pages crawled
+  "count": 14,
+  "desc": false,
+  // Crawled pages
+  "items": [
+    {
+      "url": "https://buildship.com/", // URL of the page
+      "title": "BuildShip | Visual Low-code Backend Builder", // Title of the page
+      "description": "",
+      "contents": "AI Assistant Builder is here - Create Chatbots on your own data 👉...", // Scraped content of the page
+      "urls": ["https://buildship.com/assistant-api"] // List of URLs found in the page
+    },
+    ...
+  ]
+}
+```
+
+> **_NOTE:_** See this link for a complete sample output of the Crawler node used to scrape the Buildship website:
+> [Crawler Node Output](/tutorial/scrape/crawler-output.json).
+
+{' '}
+
+{' '}
