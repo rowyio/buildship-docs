@@ -157,6 +157,34 @@ another master of the Renaissance.",
 }
 ```
 
+## Saving Chat History Externally in a Database
+
+To store the chat history via the AI Assistant nodes to any database your could follow the following approach:
+
+- Your OpenAI Assistant node already uses a `threadId` for maintaining the chat history, which is also being returned
+  from the Assistant node for reference. This can be used as the **Document ID** in the collection for storing the chat
+  history externally.
+
+- The OpenAI Assistant also returns an output called `messages` which is an **array of the entire chat history**
+  associated with the `threadId`. This is the data we need to store to our database (or, process as required and then
+  store depending upon your usecase).
+
+- For instance, we need to store the chat history to our [BuildShip Database](/database/buildship-db). All we need to do
+  is simply add a "**Create Document**" node from the BuildShip Database Integration. Give it a **Collection Name**. The
+  **Document ID** needs to be the `threadId` as returned from the AI Assistant node. Pass in the messages output from
+  the OpenAI Assistant node as the Data to be added/updated, as:
+
+```json
+{
+  "fieldName": Messages
+}
+```
+
+Make sure to set the **Merge** field for the Create Document node as `false`. This would entirely update the messages
+field every time, as the items get added to the chat history.
+
+![Store Chat History to Database](./assistant-src/chatHistory.png)
+
 ## Examples
 
 ## Use case (I): Chat with Assistant
