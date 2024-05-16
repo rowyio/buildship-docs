@@ -87,6 +87,11 @@ export default withNextra({
       destination: '/trigger-nodes/scheduled-cron/:slug',
       permanent: true,
     },
+    {
+      source: '/core-nodes/api-call-node',
+      destination: '/utility-nodes/api-call-node',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

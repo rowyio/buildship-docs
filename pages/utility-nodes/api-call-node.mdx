@@ -1,0 +1,122 @@
+# API Call Node
+
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import apicallNode from '/public/nodes/api-call.png';
+import apiCall2 from '/public/nodes/api-call-2.png';
+import logSpecific from '/public/nodes/api-call-logging.png';
+import apicallTesting from '/public/nodes/api-call-testing.png';
+
+The API Call node in BuildShip allows you to make **HTTP requests to external APIs** using the `fetch` library. It
+supports various HTTP methods, content types, and authentication options. You can provide query parameters, request
+body, and choose whether to await the response or not.
+
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/7ehFdORNIaE?si=UVRHtbU9nlJpUY-g'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
+    allowfullscreen'
+  width='80%'
+/>
+
+## Node Inputs
+
+The API Call node accepts the following inputs:
+
+<Image src={apicallNode} alt='API Call Node' width={1200} />
+
+### HTTP Method
+
+The HTTP method to use for the API call. Supported values are:
+
+- `GET`
+- `POST`
+- `PUT`
+- `DELETE`
+- `PATCH`
+
+### URL
+
+The URL endpoint of the API to be called, for example: `https://api.openweathermap.org/data/2.5/weather`.
+
+### Authorization
+
+The authorization header for the API call, if required (e.g., Bearer or Basic token), for example: `Bearer abc123`. This
+`authorization` header will be added to the request headers while sending the API call.
+
+<Image src={apiCall2} alt='API Call Node' width={1200} />
+
+### Query Parameters
+
+The query parameters for the API call. They will be merged with the URL if any are provided.
+
+**For example:** If the URL is `https://api.example.com/data` and the query parameters are
+`{"query1": "value1", "query2": "value2"}`, the final URL will be
+`https://api.example.com/data?query1=value1&query2=value2`.
+
+**Sample Input:**
+
+```json
+{
+  "query1": "value1",
+  "query2": "value2"
+}
+```
+
+### Body
+
+The body of the request. It can be a JSON object or a string. The content type of the body can be specified using the
+`Content Type` field. If the content type is `application/json`, the body will be sent as a JSON object.
+
+**Sample Input:**
+
+```json
+{
+  "key": "value",
+  "data": {
+    "nested": "value"
+  }
+}
+```
+
+### Content Type
+
+The content type of the API call. Available options are:
+
+- `application/json` (default)
+- `application/x-www-form-urlencoded`
+- `multipart/form-data`
+- `text/plain`
+
+### Await?
+
+A boolean value indicating whether the workflow should wait for the API response before proceeding to the next node. If
+set to `false`, the node will return immediately with `null` data.
+
+## Node Outputs
+
+The API Call node returns an object with the following properties:
+
+- `status`: The HTTP status code of the API response.
+- `data`: The response data from the API. If the response is JSON, it will be parsed into an object. Otherwise, it will
+  be returned as a string.
+
+## Testing the API Call Node
+
+Navigate to the 'API Call' node and fill in the fields with the required information. Click on the '▶︎' **Test Button**
+located in the top-right corner of the Node. This will open up the Node testing panel where you can enter the test
+inputs to execute the Node.
+
+Enter the values for the required fields like `HTTP Method`, `URL`, `Content Type`, `Query Parameters`, `Body`, and
+`Authorization`. Click on the 'Run Test' button to execute the Node.
+
+<Image src={apicallTesting} alt='API Call Node Testing' width={800} />
+
+If the execution is **successful**, a green check-mark ✅ will appear on the node. To view the output of the test run,
+click on the check-mark. You can copy the output by clicking '**Copy Value**'.
+
+<Callout emoji='💡'>
+  In case of an unsuccessful execution, an error message will be displayed. For example, an incorrect URL can lead to an
+  error.
+</Callout>
