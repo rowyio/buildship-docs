@@ -9,6 +9,10 @@
     "display": "hidden"
   },
   "supabase": "Supabase",
+  "postgres": {
+    "title": "Postgres",
+    "href": "/tutorials/postgres"
+  },
   "pinecone": "Pinecone",
   "mysql": "MySQL",
   "airtable": "Airtable",

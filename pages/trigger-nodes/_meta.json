@@ -1,6 +1,10 @@
 {
   "rest-api": "Rest API",
   "scheduled-cron": "Scheduled Cron",
+  "scheduled-interval": {
+    "title": "Scheduled Interval",
+    "display": "hidden"
+  },
   "rowy-trigger": "Rowy Trigger",
   "telegram-bot": "Telegram Bot",
   "supabase-trigger": "Supabase Trigger",
@@ -12,5 +16,6 @@
   "whatsapp-bot": "WhatsApp Bot",
   "email-trigger": "Email Trigger",
   "lemon-squeezy": "Lemon Squeezy",
-  "revenue-cat": "RevenueCat Trigger"
+  "revenue-cat": "RevenueCat Trigger",
+  "mongodb-trigger": "MongoDB Trigger"
 }
