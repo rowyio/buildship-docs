@@ -1,0 +1,75 @@
+---
+title: API Call - API Call
+description: Make an API call using fetch with provided url, method, contentType, authorization, and body
+---
+
+import Node from '/components/node';
+import nodeConfig from './node-config.json';
+
+# API Call
+The **API Call** node allows you to make HTTP requests to a specified API endpoint using different HTTP methods (GET, POST, PUT, DELETE, PATCH). This node can be configured to send headers, body content, and query parameters, and can optionally wait for the response before proceeding.
+
+## Inputs
+The node takes the following inputs:
+
+### URL
+- **Description**: The URL of the API endpoint.
+- **Type**: `string`
+- **Required**: Yes
+- **Sample Input**: `"https://api.example.com/data"`
+
+### HTTP Method
+- **Description**: The HTTP method to use for the API call.
+- **Type**: `string`
+- **Required**: Yes
+- **Enum**: `["GET", "POST", "PUT", "DELETE", "PATCH"]`
+- **Sample Input**: `"GET"`
+
+### Authorization
+- **Description**: The authorization header for the API call, if required (e.g., Bearer or Basic token).
+- **Type**: `string`
+- **Sample Input**: `"Bearer your_token_here"`
+
+### Query Parameters
+- **Description**: The query parameters for the API call.
+- **Type**: `object`
+- **Sample Input**:
+    ```json
+    {
+      "query1": "value1",
+      "query2": "value2"
+    }
+    ```
+
+### Body
+- **Description**: The body to send with the API call.
+- **Type**: `object`
+- **Sample Input**:
+    ```json
+    {
+      "key1": "value1",
+      "key2": "value2"
+    }
+    ```
+
+### Content Type
+- **Description**: The content type of the API call.
+- **Type**: `string`
+- **Enum**: `["application/json", "application/x-www-form-urlencoded", "multipart/form-data", "text/plain"]`
+- **Sample Input**: `"application/json"`
+
+### Await?
+- **Description**: Whether to wait for the request to complete or not.
+- **Type**: `boolean`
+- **Sample Input**: `true`
+
+## Output
+The node returns an object containing the following properties:
+
+### Status
+- **Description**: The HTTP status of the API response.
+- **Type**: `number`
+
+### Data
+- **Description**: The data object from the API response.
+- **Type**: `object`
