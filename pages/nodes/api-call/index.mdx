@@ -1,0 +1,80 @@
+---
+title: Integrations - API Call
+description: Documentation on the `API Call` node that allows making HTTP requests using various methods and handling API responses.
+---
+
+import Node from '/components/node';
+import nodeConfig from './node-config.json';
+
+# API Call
+The `API Call` node is designed to make HTTP requests to specified API endpoints using various methods such as GET, POST, PUT, DELETE, and PATCH. It supports setting headers, query parameters, request body, and specifying whether to await the response or not.
+
+## Inputs
+The `API Call` node accepts the following inputs:
+
+- **URL** (string, required): The URL of the API endpoint.
+  - **Sample Input:**
+    ```json
+    "https://api.example.com/data"
+    ```
+
+- **HTTP Method** (string, required): The HTTP method to use for the API call. Supported methods include GET, POST, PUT, DELETE, and PATCH.
+  - **Sample Input:**
+    ```json
+    "GET"
+    ```
+
+- **Authorization** (string, optional): The authorization header for the API call, if required (e.g., Bearer or Basic token).
+  - **Sample Input:**
+    ```json
+    "Bearer your-token-here"
+    ```
+
+- **Query Parameters** (object, optional): The query parameters for the API call.
+  - **Sample Input:**
+    ```json
+    {
+      "query1": "value1",
+      "query2": "value2"
+    }
+    ```
+
+- **Body** (object, optional): The body to send with the API call, applicable for methods like POST, PUT, and PATCH.
+  - **Sample Input:**
+    ```json
+    {
+      "key": "value"
+    }
+    ```
+
+- **Content Type** (string, optional): The content type of the API call. Supported content types include `application/json`, `application/x-www-form-urlencoded`, `multipart/form-data`, and `text/plain`.
+  - **Sample Input:**
+    ```json
+    "application/json"
+    ```
+
+- **Await?** (boolean, required): Whether to wait for the request to complete or not.
+  - **Sample Input:**
+    ```json
+    true
+    ```
+
+## Output
+The `API Call` node returns an object containing the HTTP status code and the data from the API response:
+
+- **Status** (number): The HTTP status of the API response.
+- **Data** (object): The data object from the API response.
+
+The output structure will be as follows:
+
+```json
+{
+  "status": 200,
+  "data": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+}
+```
+
+This allows for flexibility in handling different types of API responses and integrating them into your workflow.
