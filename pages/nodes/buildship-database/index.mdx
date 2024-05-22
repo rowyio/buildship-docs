@@ -1,0 +1,33 @@
+---
+title: Firestore - Add Object to Array
+description: This node adds an object to an existing array in a Firestore document.
+---
+
+import Node from '/components/node';
+import nodeConfig from './node-config.json';
+
+# Add Object to Array
+The "Add Object to Array" node is designed to add a specified object to an existing array field in a Firestore document. This node is particularly useful for applications that need to dynamically update arrays within Firestore documents.
+
+<Node config={nodeConfig} />
+
+## Inputs
+This node requires the following inputs:
+
+- **Collection Name** (`collectionName`): The name of the Firestore collection containing the document.
+  - *Example*: `"users"`
+  
+- **Document ID** (`documentID`): The ID of the Firestore document that contains the array field.
+  - *Example*: `"user123"`
+
+- **Field Key** (`fieldKey`): The key of the array field in the document where the object will be added.
+  - *Example*: `"hobbies"`
+
+- **Object** (`object`): The object to add to the array.
+  - *Example*: `{ "name": "Reading", "priority": 1 }`
+
+## Output
+The node returns an object indicating the success or failure of the operation:
+
+- **Success** (`success`): A boolean value that indicates whether the object was successfully added to the array.
+  - *Example*: `true`
