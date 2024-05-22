@@ -1,0 +1,65 @@
+---
+title: API - API Call
+description: This node makes an API call using fetch with the provided URL, method, contentType, authorization, and body, and returns the response data and status.
+---
+
+import Node from '/components/node';
+import nodeConfig from './node-config.json';
+
+# API Call
+The **API Call** node facilitates making HTTP requests to external APIs. It uses the fetch library to perform an API call with the provided URL, HTTP method, content type, authorization header, request body, and query parameters. The node can optionally wait for the request to complete and return the response data and status.
+
+<Node config={nodeConfig} />
+
+## Inputs
+The node takes the following inputs:
+
+- **url** (string, required): The URL of the API endpoint.
+  - *Example*: `"https://api.example.com/data"`
+
+- **shouldAwait** (boolean, required): Whether to wait for the request to complete or not.
+  - *Example*: `true`
+
+- **method** (string, required): The HTTP method to use for the API call.
+  - *Options*: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`
+  - *Example*: `"GET"`
+
+- **authorization** (string, optional): The authorization header for the API call, if required (e.g., Bearer or Basic token).
+  - *Example*: `"Bearer your-token-here"`
+
+- **queryParams** (object, optional): The query parameters to include in the API call.
+  - *Example*:
+    ```json
+    { 
+      "query1": "value1",
+      "query2": "value2"
+    }
+    ```
+
+- **body** (object, optional): The body to send with the API call (applicable for methods like POST, PUT, PATCH).
+  - *Example*:
+    ```json
+    {
+      "key1": "value1",
+      "key2": "value2"
+    }
+    ```
+
+- **contentType** (string, optional): The content type of the API call.
+  - *Options*: `application/json`, `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`
+  - *Example*: `"application/json"`
+
+## Output
+The node returns an object containing the following properties:
+
+- **status** (number): The HTTP status code of the API response.
+  - *Example*: `200`
+
+- **data** (object): The data object from the API response.
+  - *Example*:
+    ```json
+    {
+      "id": 1,
+      "name": "Sample Data"
+    }
+    ```
