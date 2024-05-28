@@ -1,0 +1,101 @@
+# LLM Extract Node
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import llmExtractIntro from '/public/nodes/llm-extract-intro.png';
+import llmExtractIntroResults from '/public/nodes/llm-extract-intro-results.png';
+import llmExtractOpenAI from '/public/nodes/llm-extract-openai.png';
+import llmExtractAnthropic from '/public/nodes/llm-extract-anthropic.png';
+import llmExtractOutput from '/public/nodes/llm-extract-output.png';
+import llmExtractTest from '/public/nodes/llm-extract-test.png';
+import llmExtractTest2 from '/public/nodes/llm-extract-test-2.png';
+import llmExtractTest3 from '/public/nodes/llm-extract-test-3.png';
+
+The LLM Extract node in BuildShip allows you to easily scrape and extract structured data from any webpage using your
+favorite LLMs such as GPT from OpenAI or claude from Anthropic. The LLM Extract node will take care of all the data
+massaging, such as removing unnecessary content and returning the data in a well-structured and consistent format
+
+<br/>
+<div className='grid grid-cols-2 gap-4'>
+<div>
+  <Image src={llmExtractIntro} alt='LLM extract node' width={1200} />
+</div>
+<div>
+  <Image src={llmExtractIntroResults} alt='LLM extract node results' width={1200} />
+</div>
+
+</div>
+
+## OpenAI - LLM Extract
+
+The OpenAI LLM Extract node uses GPT to extract structured data from any webpage. The node accepts the following inputs:
+
+<br />
+<Image src={llmExtractOpenAI} alt='Open AI LLM Extract Node' width={1200} />
+
+- **API key (required)**: Your OpenAI API Key. (Get your OpenAI API Key
+  [here](https://platform.openai.com/account/api-keys))
+- **URL (required)**: The URL for the AI to extract information from.
+- **Selector (optional)**: The specific HTML selector you want to extract from (by default body will be used).
+- **Fields (required)**: The field names to extract, separated by commas. For example: `title, price, description`. The
+  LLM will try to use the field names you enter to identify and extract the data you're interested in. So, it’s
+  important to be precise and clear when naming these fields to ensure accurate data extraction
+- **Mode (required)**: The extraction mode to use. The `Text` option provides a concise context but omits web page
+  semantics like URLs. Select `HTML` to preserve HTML semantics such as page link and image urls during extraction.
+
+## Anthropic - LLM Extract
+
+The Anthropic LLM Extract node uses Claude to extract structured data from any webpage. The node accepts the following
+inputs:
+
+<br />
+<Image src={llmExtractAnthropic} alt='Anthropic LLM Extract Node' width={1200} />
+
+- **API key (required)**: Your Anthropic API Key. (Get your Anthropic API Key [here](https://console.anthropic.com/))
+- **URL (required)**: The URL for the AI to extract information from.
+- **Selector (optional)**: The specific HTML selector you want to extract from (by default body will be used).
+- **Fields (required)**: The field names to extract, separated by commas. For example: `title, price, description`. The
+  LLM will try to use the field names you enter to identify and extract the data you're interested in. So, it’s
+  important to be precise and clear when naming these fields to ensure accurate data extraction
+- **Mode (required)**: The extraction mode to use. The `Text` option provides a concise context but omits web page
+  semantics like URLs. Select `HTML` to preserve HTML semantics such as page link and image urls during extraction.
+
+## Node Outputs
+
+Both the OpenAI and Anthropic LLM Extract nodes return the extracted data in an array. Each item in the array contains
+the extracted fields as key-value pairs.
+
+<br />
+
+<Image src={llmExtractOutput} alt='LLM Extract Node output' width={800} />
+
+## Testing the LLM Extract Node
+
+Imagine you want to extract the title, price, link, and image url from this ecommerce website. You can find the live
+ecommerce site [here](https://demo.vercel.store/search).
+
+<br />
+
+<Image src={llmExtractTest} alt='LLM Extract Node output' />
+
+For this we'll use the OpenAI LLM Extract node. We'll set the url to `https://demo.vercel.store/search`, the fields to
+`title, price, link, image`, and the mode to `HTML`.
+
+<br />
+<div className='grid grid-cols-2 gap-4'>
+  <div>
+    <Image src={llmExtractTest2} alt='LLM extract node workflow' width={1200} />
+  </div>
+  <div>
+    <Image src={llmExtractTest3} alt='LLM extract node wokflow test results' width={1200} />
+  </div>
+</div>
+
+And after using BuildShip's inbuilt testing feature, we get back the extracted data in a well-structured format from the
+ecommerce website.
+
+<Callout emoji='💡'>
+  Some current limitations of the LLM Extract node include its inability to handle infinite scroll or pagination, and
+  the potential for running into token limits (depending on the LLM you're using) when extracting data from a large
+  number of pages
+</Callout>
