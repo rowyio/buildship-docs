@@ -1,0 +1,88 @@
+# Generate EPUB Node 📖
+
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import generateEpubNode from '/public/nodes/generate-epub.png';
+import generateEpubUpload from '/public/nodes/generate-epub-upload.png';
+import apiCall2 from '/public/nodes/api-call-2.png';
+import logSpecific from '/public/nodes/api-call-logging.png';
+import apicallTesting from '/public/nodes/api-call-testing.png';
+
+The Generate EPUB node in BuildShip allows you to convert text/html to EPUB format. An EPUB file is a digital ebook
+format that can be read on various devices like smartphones, tablets, and e-readers.
+
+<br />
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/bqpBWmSH_j0?si=f6NC2T9fQZEkD8qU'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
+    allowfullscreen'
+  width='80%'
+/>
+
+## Node Inputs
+
+The Generate EPUB node accepts the following inputs:
+
+<br />
+<Image src={generateEpubNode} alt='Generate EPUB Node' width={1200} />
+
+- **Title (required)**: The title of the ebook.
+- **Author (required)**: The author of the ebook.
+- **Publisher (optional)**: The publisher of the ebook.
+- **Cover (optional)**: Image url to use for the book cover.
+- **Styles (optional)**: You can pass css string to add your own styles. For example: `body{background: #fff}`.
+- **Chapters (required)**: An array of objects representing the chapters of the book. See below 👇🏻 for the structure of
+  the chapters input.
+
+### Sample chapters input:
+
+**Text only:**
+
+```json
+[
+  {
+    "title": "Chapter 1",
+    "data": "Hello world"
+  },
+  {
+    "title": "Chapter 2",
+    "data": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+  }
+]
+```
+
+**Or with HTML:**
+
+```json
+[
+  {
+    "title": "Chapter 1",
+    "data": "<p><img src=\"https://i.pinimg.com/originals/9c/50/2c/9c502ca51a038bf0d3c1262ca6f9ae38.png\" alt=\"Image\"/></p><p>Hello world</p>"
+  },
+  {
+    "title": "Chapter 2",
+    "data": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>"
+  },
+  {
+    "title": "Chapter 3",
+    "data": "<p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p><p>For more information, visit <a href=\"https://www.example.com\">this link</a>.</p><p><img src=\"https://www.example.com/image.jpg\" alt=\"Example Image\"/></p>"
+  }
+]
+```
+
+## Node Output
+
+The Generate EPUB node returns a unique file name for the generated EPUB file.
+
+## Bonus: Uploading to BuildShip Storage
+
+You can use the **Generate Public Download URL** node to upload the generated EPUB file to BuildShip storage and get a
+public download URL. This URL can be shared with others to download the EPUB file.
+
+<br />
+<Image src={generateEpubUpload} alt='Uploading epub to BuildShip storage' width={360} />
+
+Simply pass the file name returned from the Generate EPUB node to the Generate Public Download URL node to create a
+public download link. Then, return the download URL from the Generate Public Download URL node in a return node.
