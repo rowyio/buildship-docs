@@ -10,6 +10,7 @@ import supabaseDelete from '/public/tutorial/delete-row.png';
 import supabase2 from '/public/tutorial/supabase2.png';
 import supabase3 from '/public/tutorial/supabase3.png';
 import rls from '/public/tutorial/rls.png';
+import supabaseRls from '/public/tutorial/supabase-rls.png';
 
 BuildShip offers a powerful integration with Supabase allowing you to perform Create, Read, Update, and Delete (CRUD)
 operations on your data with ease. This integration is achieved through the Supabase Realtime API.
@@ -25,8 +26,8 @@ A Supabase Table you want to integrate with BuildShip. If you don't have a Supab
 
 ### API Key and URL
 
-<Image src={supabase2} alt='Supabase API Key and URL' width={1200} />
-<Image src={supabase3} alt='Supabase API Key and URL' width={1200} />
+Supabase provides **two default API keys** when you create a project: an `anon` key and a `service_role` key. These keys
+can be found in the API Settings section of the dashboard.
 
 Before you begin, make sure you have your Supabase API key and Table URL ready. You can obtain these keys from your
 Supabase project dashboard settings:
@@ -35,6 +36,43 @@ Supabase project dashboard settings:
 - Navigate to your project's dashboard.
 - In the dashboard settings, find and copy your API key and Table URL. These keys will be used to connect BuildShip with
   your Supabase project.
+
+<br />
+
+<Image src={supabase2} alt='Supabase API Key and URL' width={1200} />
+<Image src={supabase3} alt='Supabase API Key and URL' width={1200} />
+
+#### The `anon` Key
+
+The `anon` key has **very limited privileges** and is designed to be used in **Row Level Security (RLS)** policies to
+allow unauthenticated access to specific database tables or rows. **For example**: a policy can be created to allow
+public access to the profiles table using the anon key.
+
+#### The `service_role` Key
+
+The `service_role` key has **elevated privileges and can bypass RLS policies**. This key should only be used on a
+private server and never exposed to users or client-side applications.
+
+## Supabase Row-Level Security (RLS)
+
+The BuildShip Supabase nodes use the Supabase Data APIs which are designed to work with **Postgres Row Level Security
+(RLS)**.
+
+### Enabling Row Level Security
+
+<br />
+<Image src={supabaseRls} alt='Supabase RLS' width={800} />
+
+Any table you create in the `public` schema will be accessible via the Supabase Data API.
+
+To restrict access, enable Row Level Security (RLS) on all tables, views, and functions in the `public` schema. You can
+then write RLS policies to grant users access to specific database rows or functions based on their authentication
+token.
+
+<Callout>
+  To learn how to set up the Supabase Row Level Security, read the Supabase Docs
+  [here](https://supabase.com/docs/guides/api/securing-your-api?queryGroups=database-method&database-method=dashboard#enabling-row-level-security).
+</Callout>
 
 ### API Endpoints (Optional - For creating your own custom nodes)
 
@@ -50,6 +88,24 @@ Note: You can also disable the RLS, but its not recommended. You can securely st
 BuildShip's secret manager, learn more [here](/secrets).
 
 </Callout>
+
+## When to use Tokens?
+
+BuildShip offers two sets of Supabase nodes, one with Authorization Token and one without. The `with Token` nodes are a
+slightly adapted version to **support an Authorization token being passed in from your client**. This allows **Supabase
+Row Level Security** to be utilised as a passthrough with Buildship.
+
+What this means is that you can use the `with Token` nodes **when you are using BuildShip along with FlutterFlow or
+other no-code frontend tools**, and **authenticating with Supabase** using their out-of-the-box functionality. This will
+allow you to securely pass the Authorization token from your client to BuildShip.
+
+<Callout>
+  If you're interesting in knowing more about passing the authorization token from your FlutterFlow app to BuildShip,
+  you can read the detailed guide [here](https://docs.flutterflow.io/data-and-backend/custom-authentication).
+</Callout>
+
+If your use case does not require passing the Authorization token from your client to BuildShip, you can **use the nodes
+without the Authorization Token**.
 
 ## Creating Data
 
@@ -140,26 +196,19 @@ To delete records from your Supabase database, use the Delete Node:
 Filters are used to specify which records should be retrieved, updated, or deleted. You can add multiple filters to a
 node. Here's a list of all the filters you can use:
 
-- `eq` (Equal): This operator is used to filter records where a specific field is equal to a given value. For example,
-  `name=eq.siamese` would match records where the name field is equal to "siamese." neq (Not Equal): This operator
-  filters records where a specific field is not equal to a given value. For example, `age=neq.5` would match records
-  where the age field is not equal to 5.
+| Operator | Description                                                                                                  | Example            | Example Explanation                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------ | ------------------ | --------------------------------------------------------------------------- |
+| `eq`     | Filter records where a specific field is equal to a given value                                              | `name=eq.siamese`  | Match records where the `name` field is equal to `siamese`                  |
+| `neq`    | Filters records where a specific field is not equal to a given value                                         | `age=neq.5`        | Match records where the `age` field is not equal to `5`                     |
+| `gt`     | Filter records where a specific field is greater than a given value                                          | `age=gt.30`        | Match records where the `age` field is greater than `30`                    |
+| `lt`     | Filters records where a specific field is less than a given value                                            | `price=lt.10`      | Match records where the `price` field is less than `10`                     |
+| `gte`    | Filters records where a specific field is greater than or equal to a given value                             | `quantity=gte.100` | Match records where the `quantity` field is greater than or equal to `100`  |
+| `lte`    | Filters records where a specific field is less than or equal to a given value                                | `rating=lte.4.5`   | Match records where the `rating` field is less than or equal to `4.5`       |
+| `is`     | Filters records via comparing fields with specific values or conditions, such as checking if a field is null | `email=is.null`    | Match records where the `email` field is `null`                             |
+| `like`   | Filters records via partial string matching                                                                  | `name=like.%John%` | Match records where the `name` field contains `John` anywhere in the string |
 
-- `gt` (Greater Than): Use this operator to filter records where a specific field is greater than a given value. For
-  instance, `age=gt.30` would match records where the age field is greater than 30.
-
-- `lt` (Less Than): This operator filters records where a specific field is less than a given value. For example,
-  `price=lt.10` would match records where the price field is less than 10.
-
-- `gte` (Greater Than or Equal To): This operator filters records where a specific field is greater than or equal to a
-  given value. For example, `quantity=gte.100` would match records where the quantity field is greater than or equal
-  to 100.
-
-- `lte` (Less Than or Equal To): Use this operator to filter records where a specific field is less than or equal to a
-  given value. For instance, `rating=lte.4.5` would match records where the rating field is less than or equal to 4.5.
-
-- `is` (IS): This operator is used for comparing fields with specific values or conditions, such as checking if a field
-  is null. For example, `email=is.null` would match records where the email field is null.
-
-- `like` (LIKE): This operator allows you to perform partial string matching. For example, `name=like.%John%` would
-  match records where the name field contains "John" anywhere in the string.
+<Callout>
+  To use multiple filters, use the `&` operator to separate them. For example, to filter records where the `origin`
+  field equals `Germany` and the `lifespan` field is greater than `15`, you would use the following filter:
+  `origin=eq.Germany&lifespan=gte.15`.
+</Callout>
