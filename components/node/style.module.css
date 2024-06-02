@@ -1,0 +1,128 @@
+.container {
+    width: 318px;
+    border: 1px solid #ffffff1f;
+    margin: 40px auto;
+    border-radius: 6px;
+    background-color: #1b1d20;
+    font-weight: 500;
+    color: #bbbcbd;
+    box-shadow: 0px 0px 12px 4px rgba(54, 54, 54, 0.295);
+}
+
+:global(.light) .container {
+    border-color: #0001151f;
+    background-color: #ffffff;
+    color: #666773;
+    box-shadow: 0px 0px 12px 4px rgba(119, 119, 119, 0.2);
+}
+
+.header {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ffffff1f;
+    display: flex;
+    align-items: center;
+}
+
+:global(.light) .header {
+    border-color: #0001151f;
+
+}
+
+.icon {
+    color: #ffffffb3;
+    cursor: pointer;
+    font-size: 18px!important;
+    margin-right: 8px;
+}
+
+:global(.light) .icon {
+    color: #666773;
+}
+
+
+.svgIcon {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.imgIcon {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.title {
+    font-size: 12.5px;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.label {
+    width: 90px;
+    font-size: 12.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.inputContainer {
+    flex-grow: 1;
+    display: flex;
+    gap: 4px;
+}
+
+.input {
+    flex-grow: 1;
+    background-color: #0f1114;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 12.5px;
+    color: #ffffffb3;
+    border-radius: 4px;
+}
+
+:global(.light) .input {
+    background-color: #f8f9fb;
+    color: #000000b3;
+}
+
+.editIcon {
+    background-color: #0f1114;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+:global(.light) .editIcon {
+    background-color: #f8f9fb;
+}
+
+.editIconColor {
+    color: #ffffffb3;
+    cursor: pointer;
+    font-size: 14px!important;
+}
+
+:global(.light) .editIconColor {
+    color: #000000b3;
+}
