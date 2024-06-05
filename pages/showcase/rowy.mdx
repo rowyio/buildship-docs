@@ -1,0 +1,22 @@
+import nodes from './rowy/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Rowy
+
+BuildShip's integration with Rowy enables you to automate operations and workflows triggered by changes in your
+Firestore database. Utilize pre-configured nodes to seamlessly connect and manage real-time data updates, streamline
+processes, and enhance your application's functionality without extensive coding.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/rowy/${node.meta.id}`}
+    />
+  ))}
+</Cards>

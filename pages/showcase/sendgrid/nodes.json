@@ -1,0 +1,18 @@
+[
+  {
+    "meta": {
+      "name": "Send Dynamic email",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/SendGrid.png" },
+      "description": "Sends a dynamic email using the Sendgrid API with tracking and a specified template (NOTE: The messages sent via SendGrid might end up in spam if you haven't verified your sendgrid account)",
+      "id": "sendgrid-dynamic-email"
+    }
+  },
+  {
+    "meta": {
+      "name": "Send Static email",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/SendGrid.png" },
+      "description": "Sends an email using the Sendgrid API with tracking (NOTE: The messages sent via SendGrid might end up in spam if you haven't verified your sendgrid account)",
+      "id": "sendgrid-static-email"
+    }
+  }
+]

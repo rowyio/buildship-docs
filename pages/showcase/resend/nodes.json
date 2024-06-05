@@ -1,0 +1,115 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "description": "The resend email response",
+      "type": "object",
+      "title": "Resend email response",
+      "properties": {
+        "success": {
+          "buildship": {},
+          "description": "Email success or failure flag",
+          "type": "boolean",
+          "title": "Success"
+        }
+      }
+    },
+    "meta": {
+      "name": "Send Emails via Resend",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fresend.jpg?alt=media&token=019f48d6-d93a-475f-902e-599f93a9de40"
+      },
+      "description": "Sends an email using the Resend API",
+      "id": "resend-email"
+    },
+    "type": "script",
+    "inputs": {
+      "type": "object",
+      "required": ["from", "to", "subject", "html", "apiKey"],
+      "properties": {
+        "subject": {
+          "buildship": { "index": 3 },
+          "description": "The email subject",
+          "title": "Subject",
+          "type": "string"
+        },
+        "from": {
+          "buildship": { "index": 1 },
+          "description": "The sender's email address",
+          "title": "From",
+          "type": "string"
+        },
+        "html": {
+          "buildship": { "index": 4 },
+          "description": "The HTML content of the email",
+          "title": "HTML",
+          "type": "string"
+        },
+        "to": {
+          "buildship": { "index": 2 },
+          "description": "The recipient's email address",
+          "title": "To",
+          "type": "array"
+        },
+        "attachmentUrls": {
+          "buildship": { "index": 5 },
+          "description": "Attachment Urls",
+          "title": "Attachments",
+          "type": "array"
+        },
+        "apiKey": {
+          "description": "The API key for Resend. (Resend Docs: [how to create a new API key](https://resend.com/docs/api-reference/api-keys/create-api-key))",
+          "title": "API Key",
+          "type": "string",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": ""
+        }
+      }
+    },
+    "dependencies": { "resend": "2.0.0", "axios": "1.6.2" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Resend",
+        "description": "Nodes for sending emails via Resend",
+        "id": "0IAjU2tekQHjibkvicpN",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fresend.jpg?alt=media&token=019f48d6-d93a-475f-902e-599f93a9de40"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1704269476, "_nanoseconds": 659000000 }
+    },
+    "t": 175,
+    "syncAllAtOnce": "1080",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 301000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpN",
+    "id": "resend-email",
+    "integrations": [],
+    "integrity": "v3:38762c6129308d31f7cbc165f68d833b",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/resend-email/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:17075313454c18217bb5b415ebdc3e75",
+      "libNodeRefId": "@buildship/resend-email",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/resend-email/1.0.4/build.cjs",
+      "version": "1.0.4"
+    },
+    "version": "1.1.0",
+    "script": "import axios from 'axios';\nimport { Resend } from \"resend\";\n\nexport default async function resendEmail({ apiKey, from, to, subject, html, attachmentUrls = [] }: NodeInputs, { logging }: NodeScriptOptions) : NodeOutput  {\n    const resend = new Resend(apiKey);\n    try {\n        const attachments = [];\n        for (const url of attachmentUrls) {\n            try {\n                const response = await axios({\n                    method: \"GET\",\n                    url,\n                    responseType: \"arraybuffer\",\n                });\n                const fileBuffer = Buffer.from(response.data, \"binary\");\n                attachments.push({\n                    filename: url.split('/').pop(), // extracts file name from URL\n                    content: fileBuffer,\n                });\n            } catch (error) {\n                logging.log(`Failed to get attachment from ${url}`)\n                logging.log({ error })\n            }\n        }\n\n        const res = await resend.emails.send({\n            from,\n            to,\n            subject,\n            html,\n            attachments\n        });\n        return res;\n    } catch (error) {\n        logging.error(error);\n        return { success: false };\n    }\n}\n\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 67000000 },
+    "usageCounter": 787,
+    "failCount": 29
+  }
+]

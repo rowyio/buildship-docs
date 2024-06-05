@@ -1,0 +1,22 @@
+import nodes from './github/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# GitHub
+
+BuildShip provides pre-defined nodes for seamless integration with GitHub, enabling interactions with repositories and
+other services. Users can effortlessly manage repositories, issues, pull requests, and more within their workflows. This
+integration facilitates automation of GitHub operations, enhancing development and collaboration productivity.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/github/${node.meta.id}`}
+    />
+  ))}
+</Cards>

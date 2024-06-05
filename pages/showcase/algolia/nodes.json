@@ -1,0 +1,13 @@
+[
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Falgolia.jpeg?alt=media&token=c477c670-458c-4239-8c0a-a34322d07724&_gl=1*4cd8bj*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NTkzMDU1OS4yMS4xLjE2OTU5MzA1NzguNDEuMC4w"
+      },
+      "name": "Algolia Full Text Search",
+      "description": "Performs a full text search on an Algolia index and returns a JSON object or an array of JSON objects",
+      "id": "algolia-full-text-search"
+    }
+  }
+]

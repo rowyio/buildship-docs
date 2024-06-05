@@ -1,0 +1,57 @@
+[
+  {
+    "meta": {
+      "name": "Generate Animation",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FfalAI.png?alt=media&token=69feee89-20af-4635-a298-b6c4d24610ab"
+      },
+      "description": "Generates animations based on a prompt using AnimateDiff Fal AI Model",
+      "id": "fal-generate-animation"
+    }
+  },
+  {
+    "meta": {
+      "name": "Text to Image Generator",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FfalAI.png?alt=media&token=69feee89-20af-4635-a298-b6c4d24610ab"
+      },
+      "description": "Generates images from text using Fooocus model by Fal AI",
+      "id": "fal-image-generator"
+    }
+  },
+  {
+    "meta": {
+      "name": "Stable Diffusion XL Image Generator",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FfalAI.png?alt=media&token=69feee89-20af-4635-a298-b6c4d24610ab"
+      },
+      "description": "Generates an image based on given prompt using Stable Diffusion XL Image Generator",
+      "id": "fal-stable-diffusion-xl"
+    }
+  },
+  {
+    "meta": {
+      "name": "Stable Video Diffusion",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FfalAI.png?alt=media&token=69feee89-20af-4635-a298-b6c4d24610ab"
+      },
+      "description": "Generates a stable diffusion video using FAL API.",
+      "id": "fal-stable-video-diffusion"
+    }
+  },
+  {
+    "meta": {
+      "name": "Whisper Speech to Text",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FfalAI.png?alt=media&token=69feee89-20af-4635-a298-b6c4d24610ab"
+      },
+      "description": "Converts speech to text using Fal AI's Whisper model",
+      "id": "fal-whisper"
+    }
+  }
+]

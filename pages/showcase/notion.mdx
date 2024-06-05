@@ -1,0 +1,22 @@
+import nodes from './notion/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Notion
+
+Streamline your workflow with BuildShip's pre-defined nodes for Notion integration. Effortlessly connect and interact
+with your Notion workspace, enabling you to perform actions such as creating, updating, and retrieving database entries,
+managing pages, and coordinating tasks, all within your automated processes.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/notion/${node.meta.id}`}
+    />
+  ))}
+</Cards>

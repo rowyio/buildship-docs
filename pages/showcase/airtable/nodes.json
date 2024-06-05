@@ -1,0 +1,415 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Airtable API",
+      "title": "Airtable Response",
+      "type": "object"
+    },
+    "meta": {
+      "name": "Create Records",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      },
+      "description": "Creates multiple records in a specified Airtable base.",
+      "id": "airtable-create-record"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "node-fetch": "2.7.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "airtable",
+        "name": "Airtable",
+        "description": "Nodes for interacting with your Airtable Databases.",
+        "id": "airtable",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      }
+    ],
+    "live": true,
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "default": [{ "fields": {} }, { "fields": {} }],
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The array of records to be created in JSON. \n\nSAMPLE INPUT:\n```\n[\n      {\n        \"fields\": {\n          \"Name\": \"Rick and Morty\",\n          \"Notes\": \"Absurd intergalactic adventures.\",\n          \"Status\": \"In progress\"\n        }\n      },\n      {\n        \"fields\": {\n          \"Name\": \"Death Note\",\n          \"Notes\": \"A supernatural notebook that grants its user the ability to kill.\",\n          \"Status\": \"Todo\"\n        }\n      }\n    ]\n```",
+          "title": "Data",
+          "type": "array"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Your Airtable Personal Access Token. You can get your tokens [here](https://airtable.com/create/tokens).",
+          "title": "Access Token",
+          "type": "string"
+        },
+        "tableId": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The Table ID of the base to get the record.\n\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Table ID",
+          "type": "string"
+        },
+        "baseId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The Base ID of the base to get the record.\n\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Base ID",
+          "type": "string"
+        }
+      },
+      "required": ["tableId", "baseId", "data", "apiKey"]
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1711924236, "_nanoseconds": 914000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 467000000 }
+    },
+    "groupInfo": "airtable",
+    "integrity": "v3:2834db3511708550bec9a6252deabb47",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-create-record/1.1.0/build.cjs",
+    "id": "airtable-create-record",
+    "_libRef": {
+      "integrity": "v3:a832b03ad575fa1a658a552efd472b87",
+      "libNodeRefId": "@buildship/airtable-create-record",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-create-record/1.0.2/build.cjs",
+      "version": "1.0.2"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nexport default async function createMultipleRecordsAirtable({\n    apiKey,\n    baseId,\n    tableId,\n    data\n}: NodeInputs) : NodeOutput  {\n    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}`, {\n        method: 'POST',\n        headers: {\n            'Authorization': `Bearer ${apiKey}`,\n            'Content-Type': 'application/json'\n        },\n        body: JSON.stringify({\n            records: data\n        })\n    });\n    return response.json();\n}",
+    "failCount": 16,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 37000000 },
+    "usageCounter": 504
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from Airtable",
+      "title": "Airtable Response",
+      "type": "object"
+    },
+    "meta": {
+      "name": "Get Record",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      },
+      "description": "Retrieves a single record from Airtable.",
+      "id": "airtable-get-record"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": {},
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "airtable",
+        "name": "Airtable",
+        "description": "Nodes for interacting with your Airtable Databases.",
+        "id": "airtable",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1706503499, "_nanoseconds": 13000000 }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "recordId": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of the Airtable record to get. On your Airtable base, select and expand a record, and review your address bar for a similar address:\n\n```\nairtable.com/appxxxxxxxxx/tblxxxxxxxxx/viwxxxxxxxx/recxxxxxxxx\n```\nThe `recxxxxxxxx` part is the Record ID.",
+          "title": "Record ID",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Your Airtable Personal Access Token. You can get your tokens [here](https://airtable.com/create/tokens).",
+          "title": "Access Token",
+          "type": "string"
+        },
+        "tableId": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The Table ID of the base to get the record.\n\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Table ID",
+          "type": "string"
+        },
+        "baseId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The Base ID of the base to get the record.\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Base ID",
+          "type": "string"
+        }
+      },
+      "required": ["tableId", "baseId", "recordId", "apiKey"]
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1711924250, "_nanoseconds": 124000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 467000000 }
+    },
+    "groupInfo": "airtable",
+    "integrity": "v3:9a38f7cbc072bb4bd634ee791a556b32",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-get-record/1.1.0/build.cjs",
+    "id": "airtable-get-record",
+    "_libRef": {
+      "integrity": "v3:69d49ab8ee1fc8056c997e1424034cce",
+      "libNodeRefId": "@buildship/airtable-get-record",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-get-record/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "export default async function retrieveAirtableRecord({\n    apiKey,\n    baseId,\n    tableId,\n    recordId\n}: NodeInputs) : NodeOutput  {\n    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}/${recordId}`, {\n        headers: {\n            'Authorization': `Bearer ${apiKey}`\n        }\n    });\n    return await response.json();\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 37000000 },
+    "failCount": 2,
+    "usageCounter": 261
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The records fetched from the Airtable table",
+      "title": "Records",
+      "type": "array"
+    },
+    "meta": {
+      "name": "List Records",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      },
+      "description": "Fetches records from an Airtable table",
+      "id": "airtable-list-records"
+    },
+    "type": "script",
+    "integrations": [],
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "airtable",
+        "name": "Airtable",
+        "description": "Nodes for interacting with your Airtable Databases.",
+        "id": "airtable",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      }
+    ],
+    "dependencies": {},
+    "live": true,
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "apiUrl": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "To filter, sort, and format the results use this input. These parameters need to be URI encoded. To do that, click [here](https://codepen.io/airtable/pen/MeXqOg) to use Airtable's URI Encoder tool.\n\n**WARNING:** *Adding this field will override Base ID and Table ID fields.*",
+          "title": "API URL",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Your Airtable Personal Access Token. You can get your tokens [here](https://airtable.com/create/tokens).",
+          "title": "Access Token",
+          "type": "string"
+        },
+        "tableId": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The Table ID of the base to fetch records. *(Skip this field if you wish to apply filters and sort, and use API URL instead.)*\n\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Table ID",
+          "type": "string"
+        },
+        "baseId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The Base ID of the base to fetch records. *(Skip this field if you wish to apply filters and sort, and use API URL instead.)*\n\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Base ID",
+          "type": "string"
+        }
+      },
+      "required": ["apiKey"]
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1711924265, "_nanoseconds": 252000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 467000000 }
+    },
+    "groupInfo": "airtable",
+    "integrity": "v3:416cffd34adbfc226036f7a2a3630c48",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-list-records/1.1.0/build.cjs",
+    "id": "airtable-list-records",
+    "_libRef": {
+      "integrity": "v3:3d178d13566be45c99144d19b8b16801",
+      "libNodeRefId": "@buildship/airtable-list-records",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-list-records/1.0.2/build.cjs",
+      "version": "1.0.2"
+    },
+    "version": "1.1.0",
+    "script": "export default async function fetchAirtableRecords({\n    baseId,\n    tableId,\n    apiKey,\n    apiUrl\n}: NodeInputs) : NodeOutput  {\n    const url = apiUrl ? apiUrl : `https://api.airtable.com/v0/${baseId}/${tableId}`;\n    const response = await fetch(url, {\n        headers: {\n            'Authorization': `Bearer ${apiKey}`\n        }\n    });\n    const data = await response.json();\n    return data.records;\n}",
+    "failCount": 19,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 37000000 },
+    "usageCounter": 447
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Airtable API",
+      "title": "Airtable Response",
+      "type": "object"
+    },
+    "meta": {
+      "name": "Update Record",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      },
+      "description": "Update a record in Airtable.",
+      "id": "airtable-update-record"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": {},
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "airtable",
+        "name": "Airtable",
+        "description": "Nodes for interacting with your Airtable Databases.",
+        "id": "airtable",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fairtable.png?alt=media&token=cce6ddbf-893e-44c2-b46e-18adc7e1d317"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "recordId": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of the Airtable record to update. On your Airtable base, select and expand a record, and review your address bar for a similar address:\n\n```\nairtable.com/appxxxxxxxxx/tblxxxxxxxxx/viwxxxxxxxx/recxxxxxxxx\n```\nThe `recxxxxxxxx` part is the Record ID.",
+          "title": "Record ID",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Your Airtable Personal Access Token. You can get your tokens [here](https://airtable.com/create/tokens).",
+          "title": "Access Token",
+          "type": "string"
+        },
+        "tableId": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The Table ID of the base to update the record.\n\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Table ID",
+          "type": "string"
+        },
+        "baseId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The Base ID of the base to update the record.\nEXAMPLE:\n`https://airtable.com/BASE_ID/TABLE_ID/VIEW`",
+          "title": "Base ID",
+          "type": "string"
+        },
+        "fields": {
+          "default": {},
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The fields to be updated in the specified record.\n\nSAMPLE INPUT:\n```\n{\n    \"Notes\": \"Absurd intergalactic adventures.\",\n    \"Status\": \"In progress\"\n}\n```\n",
+          "title": "Fields",
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "required": ["baseId", "tableId", "recordId", "fields", "apiKey"]
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1711924282, "_nanoseconds": 863000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 467000000 }
+    },
+    "groupInfo": "airtable",
+    "integrity": "v3:623e7aa7ea950b1684ea18d141064f64",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-update-record/1.1.0/build.cjs",
+    "id": "airtable-update-record",
+    "_libRef": {
+      "integrity": "v3:2e07cae27a73c332771501dbcc900708",
+      "libNodeRefId": "@buildship/airtable-update-record",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/airtable-update-record/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "export default async function updateAirtableRecord({\n    apiKey,\n    baseId,\n    tableId,\n    recordId,\n    fields\n}: NodeInputs) : NodeOutput  {\n    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}/${recordId}`, {\n        method: 'PATCH',\n        headers: {\n            'Authorization': `Bearer ${apiKey}`,\n            'Content-Type': 'application/json'\n        },\n        body: JSON.stringify({\n            fields\n        })\n    });\n    return response.json();\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 37000000 },
+    "failCount": 3,
+    "usageCounter": 139
+  }
+]

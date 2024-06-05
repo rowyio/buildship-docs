@@ -1,0 +1,22 @@
+import nodes from './airtable/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Airtable
+
+BuildShip offers pre-configured nodes to streamline interactions with Airtable databases, allowing effortless
+integration within your workflows. Easily manage tables, records, and fields, facilitating seamless CRUD operations, API
+automation, and data synchronization across your Airtable projects.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/airtable/${node.meta.id}`}
+    />
+  ))}
+</Cards>

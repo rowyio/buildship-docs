@@ -1,0 +1,487 @@
+[
+  {
+    "output": {
+      "buildship": { "index": 0 },
+      "description": "",
+      "title": "Assistant Response",
+      "type": "object",
+      "properties": {
+        "threadId": {
+          "buildship": { "index": 0 },
+          "description": "The thread ID of the active Assistant thread.",
+          "title": "Thread ID",
+          "type": "string"
+        }
+      }
+    },
+    "subType": "assistant",
+    "_createdBy": {
+      "displayName": "Save to Library",
+      "timestamp": { "_seconds": 1715109881, "_nanoseconds": 838000000 }
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "openai": "4.38.5", "@google-cloud/firestore": "7.6.0" },
+    "live": true,
+    "group": [
+      {
+        "uid": "flutterflow",
+        "name": "FlutterFlow",
+        "description": "Nodes for performing actions in your FlutterFlow frontend application.",
+        "id": "flutterflow",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fflutterflow.png?alt=media&token=c2c9b269-5ff2-45fe-a117-1366b63b4a90"
+      }
+    ],
+    "groupInfo": "flutterflow",
+    "category": ["Integrations"],
+    "inputs": {
+      "type": "object",
+      "required": ["prompt", "collectionName", "apiKey", "writeInterval", "projectId", "assistantId"],
+      "properties": {
+        "threadId": {
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of the conversation thread. If not specified, a new thread will be created. This thread ID will be used as the document ID of the document to store the chat history in.",
+          "title": "Thread ID",
+          "type": "string"
+        },
+        "instructions": {
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Add the instruction for your Assistant. Override what you set on OpenAI console.",
+          "title": "Instructions",
+          "type": "string"
+        },
+        "assistantId": {
+          "buildship": { "index": 1, "sensitive": true },
+          "pattern": "",
+          "description": "Add your [OpenAI Assistant ID](https://platform.openai.com/assistants)",
+          "title": "Assistant ID",
+          "type": "string"
+        },
+        "apiKey": {
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Add your OpenAI [API key](https://platform.openai.com/api-keys)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "builtInTools": {
+          "buildship": {
+            "options": [
+              { "label": "File Search", "value": "file_search" },
+              { "label": "Code Interpreter", "value": "code_interpreter" }
+            ],
+            "index": 5,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Select the OpenAI assistant built-in tools to use.",
+          "type": "array",
+          "title": "Built-in Tools",
+          "enum": ["file_search", "code_interpreter"]
+        },
+        "writeInterval": {
+          "default": 2000,
+          "buildship": { "index": 8, "sensitive": false },
+          "pattern": "",
+          "description": "Number of milliseconds between subsequent Firestore writes. Lower intervals will result in higher quota usage. Min interval: 500 ms, Max interval: 4000 ms. Below this minimum interval could also result in failure of writes.",
+          "title": "Write Interval",
+          "type": "number"
+        },
+        "prompt": {
+          "buildship": { "index": 3 },
+          "description": "The prompt to send to the assistant as user message.",
+          "title": "User Prompt",
+          "type": "string"
+        },
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 6, "sensitive": false },
+          "pattern": "",
+          "description": "Firestore project ID for streaming chat history.\n\n🚨 NOTE: Ensure you are connected to your Firebase project using this [detailed guide](https://docs.buildship.com/tutorials/firebase-project).",
+          "title": "Project ID",
+          "type": "string"
+        },
+        "collectionName": {
+          "default": "",
+          "buildship": { "index": 7, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Firestore collection to stream the history to.",
+          "type": "string",
+          "title": "Collection Name"
+        }
+      }
+    },
+    "meta": {
+      "name": "OpenAI Assistant (Stream Response to Firestore)",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fflutterflow.png?alt=media&token=c2c9b269-5ff2-45fe-a117-1366b63b4a90"
+      },
+      "description": "Build AI Assistant for FlutterFlow apps with Firestore for streaming responses realtime. Add tools and data sources and start chatting with your Assistant.",
+      "id": "ff-openai-assistant-stream-to-firestore"
+    },
+    "deployToBucket": {
+      "ranBy": "harini@rowy.io.rowy",
+      "completedAt": { "_seconds": 1715881104, "_nanoseconds": 502000000 }
+    },
+    "_updatedBy": {
+      "uid": "paQsO5OGfaZPhq3mwZMLcKCumon2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AOh14GjPtG-sIpjTwM2LT2_B997-hsGe2hu8PA-Ncz1d=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Harini Janakiraman",
+      "email": "harini@rowy.io.rowy",
+      "timestamp": { "_seconds": 1715881107, "_nanoseconds": 704000000 }
+    },
+    "syncIndex": {
+      "ranBy": "harini@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1715881107, "_nanoseconds": 707000000 }
+    },
+    "integrity": "v3:e1983d4b2f77e9fd8df594ac60d2c9c9",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/ff-openai-assistant-stream-to-firestore/3.1.0/build.cjs",
+    "id": "ff-openai-assistant-stream-to-firestore",
+    "version": "3.1.0",
+    "_libRef": {
+      "integrity": "v3:3a6d3899d965822746bdf54f6e14c03b",
+      "libNodeRefId": "@buildship/ff-openai-assistant-stream-to-firestore",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/ff-openai-assistant-stream-to-firestore/3.0.5/build.cjs",
+      "version": "3.0.5"
+    },
+    "script": "import OpenAI from \"openai\";\nimport { Firestore } from \"@google-cloud/firestore\";\n\nfunction nodeToOpenAiFunction(node) {\n  return {\n    name: node.label,\n    description: node.meta.description ?? \"\",\n    parameters: sanitiseSchema(node.inputs),\n  };\n}\n\nfunction sanitiseSchema(schema) {\n  const sanitizedSchema = { ...schema };\n  for (const key of Object.keys(sanitizedSchema)) {\n    if (\n      sanitizedSchema[key].buildship &&\n      !sanitizedSchema[key].buildship.toBeAutoFilled\n    ) {\n      sanitizedSchema[key].description =\n        \"This value is prefilled, you can't change it, so you should skip it.\";\n    }\n    delete sanitizedSchema[key].buildship;\n  }\n  return sanitizedSchema;\n}\n\nexport default async function assistant(\n  {\n    assistantId,\n    threadId,\n    apiKey,\n    prompt,\n    builtInTools,\n    instructions,\n    projectId,\n    collectionName,\n    writeInterval\n  }: NodeInputs,\n  { req, logging, execute, nodes }\n: NodeScriptOptions) : NodeOutput  {\n  req.type = \"text/plain\";\n\n  // Supplementary functions\n  const executeToolCall = async (toolCall) => {\n    let args;\n    try {\n      args = JSON.parse(toolCall.function.arguments);\n    } catch (err) {\n      logging.log(\n        `Couldn't parse function arguments. Received: ${toolCall.function.arguments}`\n      );\n      throw new Error(\n        `Couldn't parse function arguments. Received: ${toolCall.function.arguments}`\n      );\n    }\n    logging.log(args);\n    const output = await execute(toolCall.function.name, args);\n\n    logging.log(`Executed ${toolCall.function.name} with output:`, output);\n\n    return {\n      tool_call_id: toolCall.id,\n      output: output ? JSON.stringify(output) : \"\",\n    };\n  };\n\n  const tools =\n    nodes?.map((n) => {\n      return {\n        type: \"function\",\n        function: nodeToOpenAiFunction(n),\n      };\n    }) ?? [];\n  if ((builtInTools ?? []).includes(\"file_search\")) {\n    tools.push({ type: \"file_search\" });\n  }\n  if ((builtInTools ?? []).includes(\"code_interpreter\")) {\n    tools.push({ type: \"code_interpreter\" });\n  }\n\n  const openai = new OpenAI({ apiKey });\n\n  if (prompt === undefined) {\n    logging.log(\"User Prompt is undefined.\");\n    throw new Error(\"User Prompt is undefined.\");\n  }\n\n  const handleStream = (runStream, accRes) => {\n    const checkForToolCall = async () => {\n      const run = runStream.currentRun();\n      if (run?.status !== \"requires_action\") {\n        accRes.done = true;\n        return;\n      }\n\n      const toolOutputs = await Promise.all(\n        run.required_action?.submit_tool_outputs.tool_calls.map(\n          executeToolCall\n        ) ?? []\n      );\n\n      const newToolStream = openai.beta.threads.runs.submitToolOutputsStream(\n        run.thread_id,\n        run.id,\n        { tool_outputs: toolOutputs }\n      );\n      logging.log(\"New stream has begun: \", newToolStream.currentRun()?.id);\n      handleStream(newToolStream, accRes);\n    };\n\n    runStream\n      .on(\"textDelta\", (delta, acc) => {\n        const len = accRes.messages.length;\n\n        accRes.messages[len - 1].message =\n          accRes.messages[len - 1].message + delta.value;\n      })\n      .on(\"end\", () => {\n        logging.log(runStream.currentRun()?.id + \"'s stream has ended.\");\n        checkForToolCall();\n      })\n      .on(\"error\", (err) => {\n        const len = accRes.messages.length;\n\n        logging.log(\n          runStream.currentRun()?.id +\n            \"'s stream has errored out:\" +\n            JSON.stringify(err)\n        );\n        accRes.messages[len - 1].message =\n          accRes.messages[len - 1].message + `ERROR: ${JSON.stringify(err)}`;\n      });\n  };\n\n  // Add the user prompt first\n  if (!threadId) {\n    threadId = (\n      await openai.beta.threads.create({\n        messages: [{ role: \"user\", content: prompt }],\n      })\n    ).id;\n    logging.log(\"New thread:\", threadId);\n  } else {\n    await openai.beta.threads.messages.create(threadId, {\n      role: \"user\",\n      content: prompt,\n    });\n  }\n\n  const assistantStream = openai.beta.threads.runs.stream(threadId, {\n    assistant_id: assistantId,\n    instructions,\n    tools,\n  });\n\n  const firestore = new Firestore(\n    projectId && projectId.length > 1\n      ? { projectId: projectId.trim() }\n      : undefined\n  );\n\n  const doc = await firestore.collection(collectionName).doc(threadId);\n  const docData = (await doc.get()).data();\n  logging.log(docData);\n  const pastMessages = docData?.messages ?? [];\n  pastMessages.push({ role: \"user\", message: prompt });\n\n  let accRes = {\n    messages: [\n      ...pastMessages,\n      {\n        role: \"assistant\",\n        message: \"\",\n      },\n    ],\n    done: false,\n  };\n\n  const adjustedInterval = Math.min(4000, Math.max(500, writeInterval));\n\n  const intervalId = setInterval(async () => {\n    if (accRes.done) {\n      await doc.set({ messages: accRes.messages }, { merge: true });\n      logging.log(accRes.messages);\n      clearInterval(intervalId);\n    }\n    await doc.set({ messages: accRes.messages }, { merge: true });\n  }, adjustedInterval);\n\n  handleStream(assistantStream, accRes);\n  return { threadId: threadId };\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 46000000 },
+    "usageCounter": 507,
+    "failCount": 287
+  },
+  {
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/ff-openai-assistant-stream-to-supabase/1.0.1/build.cjs",
+    "inputs": {
+      "type": "object",
+      "required": ["apiKey", "assistantId", "prompt", "supabaseUrl", "supabaseKey", "tableName"],
+      "properties": {
+        "supabaseKey": {
+          "buildship": { "index": 7, "sensitive": true },
+          "pattern": "",
+          "description": "Add your Supabase database key",
+          "title": "Supabase Key",
+          "type": "string"
+        },
+        "threadId": {
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of the conversation thread. If not specified, a new thread will be created. This thread ID will be used as the document ID of the document to store the chat history in.",
+          "title": "Thread ID",
+          "type": "string"
+        },
+        "assistantId": {
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Add your [OpenAI Assistant ID](https://platform.openai.com/assistants)",
+          "title": "Assistant ID",
+          "type": "string"
+        },
+        "instructions": {
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Add the instruction for your Assistant. Override what you set on OpenAI console.",
+          "title": "Instructions",
+          "type": "string"
+        },
+        "apiKey": {
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Add your OpenAI [API key](https://platform.openai.com/api-keys)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "builtInTools": {
+          "buildship": {
+            "options": [
+              { "label": "File Search", "value": "file_search" },
+              { "label": "Code Interpreter", "value": "code_interpreter" }
+            ],
+            "index": 5,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Select the OpenAI assistant built-in tools to use.",
+          "title": "Built-in Tools",
+          "type": "array",
+          "enum": ["file_search", "code_interpreter"]
+        },
+        "writeInterval": {
+          "default": 1000,
+          "buildship": { "index": 9, "sensitive": false },
+          "pattern": "",
+          "description": "Number of milliseconds between subsequent Firestore writes. Lower intervals will result in higher quota usage. Min interval: 500 ms, Max interval: 4000 ms. Below this minimum interval could also result in failure of writes.",
+          "title": "Write Interval (ms)",
+          "type": "number"
+        },
+        "supabaseUrl": {
+          "buildship": { "index": 6, "sensitive": false },
+          "pattern": "",
+          "description": "Add your Supabase database URL",
+          "title": "Supabase URL",
+          "type": "string"
+        },
+        "prompt": {
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The prompt to send to the assistant as user message.",
+          "title": "User Prompt",
+          "type": "string"
+        },
+        "tableName": {
+          "buildship": { "index": 8, "sensitive": false },
+          "pattern": "",
+          "description": "Add your Supabase database table",
+          "title": "Table Name",
+          "type": "string"
+        }
+      }
+    },
+    "_createdBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTtdYwaOf0UMu_gwTFxlbuJ6lHEz-aigVBg0Axr4_BLqS0w=s96-c",
+      "uid": "VAuJF60c3sfJ8JWupIGoQOh4Q7m2",
+      "displayName": "Harini Janakiraman",
+      "email": "harini@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716764997, "_nanoseconds": 372000000 }
+    },
+    "type": "script",
+    "version": "1.0.1",
+    "script": "import OpenAI from \"openai\";\nimport { createClient } from \"@supabase/supabase-js\";\n\nfunction nodeToOpenAiFunction(node) {\n  return {\n    name: node.label,\n    description: node.meta.description ?? \"\",\n    parameters: sanitiseSchema(node.inputs),\n  };\n}\n\nfunction sanitiseSchema(schema) {\n  const sanitizedSchema = { ...schema };\n  for (const key of Object.keys(sanitizedSchema)) {\n    if (\n      sanitizedSchema[key].buildship &&\n      !sanitizedSchema[key].buildship.toBeAutoFilled\n    ) {\n      sanitizedSchema[key].description =\n        \"This value is prefilled, you can't change it, so you should skip it.\";\n    }\n    delete sanitizedSchema[key].buildship;\n  }\n  return sanitizedSchema;\n}\n\nexport default async function assistant(\n  {\n    assistantId,\n    threadId,\n    apiKey,\n    prompt,\n    builtInTools,\n    instructions,\n    supabaseUrl,\n    supabaseKey,\n    tableName,\n    writeInterval\n  }: NodeInputs,\n  { req, logging, execute, nodes }\n: NodeScriptOptions) : NodeOutput  {\n  req.type = \"text/plain\";\n\n  // Supplementary functions\n  const executeToolCall = async (toolCall) => {\n    let args;\n    try {\n      args = JSON.parse(toolCall.function.arguments);\n    } catch (err) {\n      logging.log(\n        `Couldn't parse function arguments. Received: ${toolCall.function.arguments}`\n      );\n      throw new Error(\n        `Couldn't parse function arguments. Received: ${toolCall.function.arguments}`\n      );\n    }\n    logging.log(args);\n    const output = await execute(toolCall.function.name, args);\n\n    logging.log(`Executed ${toolCall.function.name} with output:`, output);\n\n    return {\n      tool_call_id: toolCall.id,\n      output: output ? JSON.stringify(output) : \"\",\n    };\n  };\n\n  const tools =\n    nodes?.map((n) => {\n      return {\n        type: \"function\",\n        function: nodeToOpenAiFunction(n),\n      };\n    }) ?? [];\n  if ((builtInTools ?? []).includes(\"file_search\")) {\n    tools.push({ type: \"file_search\" });\n  }\n  if ((builtInTools ?? []).includes(\"code_interpreter\")) {\n    tools.push({ type: \"code_interpreter\" });\n  }\n\n  const openai = new OpenAI({ apiKey });\n\n  if (prompt === undefined) {\n    logging.log(\"User Prompt is undefined.\");\n    throw new Error(\"User Prompt is undefined.\");\n  }\n\n  const handleStream = (runStream, accRes) => {\n    const checkForToolCall = async () => {\n      const run = runStream.currentRun();\n      if (run?.status !== \"requires_action\") {\n        accRes.done = true;\n        return;\n      }\n\n      const toolOutputs = await Promise.all(\n        run.required_action?.submit_tool_outputs.tool_calls.map(\n          executeToolCall\n        ) ?? []\n      );\n\n      const newToolStream = openai.beta.threads.runs.submitToolOutputsStream(\n        run.thread_id,\n        run.id,\n        { tool_outputs: toolOutputs }\n      );\n      logging.log(\"New stream has begun: \", newToolStream.currentRun()?.id);\n      handleStream(newToolStream, accRes);\n    };\n\n    runStream\n      .on(\"textDelta\", (delta, acc) => {\n        const len = accRes.messages.length;\n\n        accRes.messages[len - 1].message =\n          accRes.messages[len - 1].message + delta.value;\n      })\n      .on(\"end\", () => {\n        logging.log(runStream.currentRun()?.id + \"'s stream has ended.\");\n        checkForToolCall();\n      })\n      .on(\"error\", (err) => {\n        const len = accRes.messages.length;\n\n        logging.log(\n          runStream.currentRun()?.id +\n            \"'s stream has errored out:\" +\n            JSON.stringify(err)\n        );\n        accRes.messages[len - 1].message =\n          accRes.messages[len - 1].message + `ERROR: ${JSON.stringify(err)}`;\n      });\n  };\n\n  // Add the user prompt first\n  if (!threadId) {\n    threadId = (\n      await openai.beta.threads.create({\n        messages: [{ role: \"user\", content: prompt }],\n      })\n    ).id;\n    logging.log(\"New thread:\", threadId);\n  } else {\n    await openai.beta.threads.messages.create(threadId, {\n      role: \"user\",\n      content: prompt,\n    });\n  }\n\n  const assistantStream = openai.beta.threads.runs.stream(threadId, {\n    assistant_id: assistantId,\n    instructions,\n    tools,\n  });\n\n  const supabase = createClient(supabaseUrl, supabaseKey);\n\n  const { data, error } = await supabase\n    .from(tableName)\n    .select(\"messages\")\n    .eq(\"id\", threadId)\n    .single();\n\n  if (error && error.code !== \"PGRST116\") {\n    logging.log(error);\n    throw new Error(\"Error fetching messages from Supabase.\");\n  }\n\n  const pastMessages = data?.messages ?? [];\n  pastMessages.push({ role: \"user\", message: prompt });\n\n  let accRes = {\n    messages: [\n      ...pastMessages,\n      {\n        role: \"assistant\",\n        message: \"\",\n      },\n    ],\n    done: false,\n  };\n\n  const adjustedInterval = Math.min(4000, Math.max(500, writeInterval));\n\n  const intervalId = setInterval(async () => {\n    if (accRes.done) {\n      const { error } = await supabase\n        .from(tableName)\n        .upsert({ id: threadId, messages: accRes.messages });\n\n      if (error) {\n        logging.log(error);\n        throw new Error(\"Error writing messages to Supabase.\");\n      }\n\n      logging.log(accRes.messages);\n      clearInterval(intervalId);\n    } else {\n      const { error } = await supabase\n        .from(tableName)\n        .upsert({ id: threadId, messages: accRes.messages });\n\n      if (error) {\n        logging.log(error);\n        throw new Error(\"Error writing messages to Supabase.\");\n      }\n    }\n  }, adjustedInterval);\n\n  handleStream(assistantStream, accRes);\n  return { threadId: threadId };\n}\n",
+    "dependencies": { "openai": "4.47.1", "@supabase/supabase-js": "2.43.4" },
+    "output": {
+      "buildship": { "index": 0 },
+      "description": "",
+      "title": "Assistant Response",
+      "type": "object",
+      "properties": {
+        "threadId": {
+          "buildship": { "index": 0 },
+          "description": "The thread ID of the active Assistant thread.",
+          "title": "Thread ID",
+          "type": "string"
+        }
+      }
+    },
+    "integrity": "v3:cf968c8e308d48560091f871e1d466a7",
+    "meta": {
+      "name": "OpenAI Assistant (Stream Response to Supabase)",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fflutterflow.png?alt=media&token=c2c9b269-5ff2-45fe-a117-1366b63b4a90"
+      },
+      "description": "Build AI Assistant for FlutterFlow apps with Supabase for streaming responses realtime. Add tools and data sources and start chatting with your Assistant.",
+      "id": "ff-openai-assistant-stream-to-supabase"
+    },
+    "subType": "assistant",
+    "integrations": [],
+    "group": [
+      {
+        "uid": "flutterflow",
+        "name": "FlutterFlow",
+        "description": "Nodes for performing actions in your FlutterFlow frontend application.",
+        "id": "flutterflow",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fflutterflow.png?alt=media&token=c2c9b269-5ff2-45fe-a117-1366b63b4a90"
+      }
+    ],
+    "groupInfo": "flutterflow",
+    "category": ["Integrations"],
+    "live": true,
+    "_updatedBy": {
+      "uid": "paQsO5OGfaZPhq3mwZMLcKCumon2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AOh14GjPtG-sIpjTwM2LT2_B997-hsGe2hu8PA-Ncz1d=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Harini Janakiraman",
+      "email": "harini@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716765588, "_nanoseconds": 758000000 }
+    },
+    "syncIndex": {
+      "ranBy": "harini@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1716765588, "_nanoseconds": 782000000 }
+    },
+    "failCount": 1,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 46000000 },
+    "usageCounter": 55
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Firestore set operation",
+      "title": "Firestore Response",
+      "type": "object",
+      "properties": { "status": { "buildship": {}, "title": "Status", "type": "string" } }
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "@google-cloud/firestore": "7.1.0" },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "flutterflow",
+        "name": "FlutterFlow",
+        "description": "Nodes for performing actions in your FlutterFlow frontend application.",
+        "id": "flutterflow",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fflutterflow.png?alt=media&token=c2c9b269-5ff2-45fe-a117-1366b63b4a90"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "required": [
+        "collectionName",
+        "merge",
+        "data",
+        "projectId",
+        "notification_title",
+        "notification_text",
+        "target_audience",
+        "notification_sound",
+        "initial_page_name"
+      ],
+      "properties": {
+        "parameter_data": {
+          "default": "{}",
+          "buildship": { "index": 8, "sensitive": false },
+          "pattern": "",
+          "description": "Additional data related to the notification.",
+          "title": "Parameter Data",
+          "type": "string"
+        },
+        "target_audience": {
+          "default": "all",
+          "buildship": {
+            "options": [
+              { "label": "iOS", "value": "ios" },
+              { "label": "Android", "value": "android" },
+              { "label": "All", "value": "all" }
+            ],
+            "index": 5,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Select the target audience for the push notification.",
+          "type": "string",
+          "title": "Target Audience",
+          "enum": ["ios", "android", "all"]
+        },
+        "notification_image_url": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Add an optional image to display alongside the notification (must be <300KB).",
+          "type": "string",
+          "title": "Image URL"
+        },
+        "notification_title": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The title for the push notification.",
+          "title": "Title",
+          "type": "string"
+        },
+        "notification_sound": {
+          "default": "default",
+          "buildship": {
+            "options": [
+              { "label": "None", "value": "null" },
+              { "label": "User Default", "value": "default" }
+            ],
+            "index": 4,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "If set, the notification will be delivered with the user's default sound / vibration.",
+          "title": "Notification Sound",
+          "type": "string",
+          "enum": ["null", "default"]
+        },
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of your own Firebase project.\n\nNOTE: This requires additional steps for granting Service Account permissions. Learn how to get your own Firestore Project ID and add Service Account Permissions from our [detailed setup blog](https://docs.buildship.com/tutorials/firebase-project).",
+          "type": "string",
+          "title": "Project ID"
+        },
+        "initial_page_name": {
+          "default": "",
+          "buildship": { "index": 6, "sensitive": false },
+          "pattern": "",
+          "description": "Specify the page in the app users will land on by tapping this notification. By default, it's the specified Home Page. Ensure it matches the ```Route``` parameter in FlutterFlow. Eg: In FlutterFlow the Route is ```Route:/loginPage```, then the initial page name will be loginPage. ",
+          "title": "Initial Page Name",
+          "type": "string"
+        },
+        "notification_text": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The message body for the push notification.",
+          "title": "Message",
+          "type": "string"
+        },
+        "user_refs": {
+          "default": "",
+          "buildship": { "index": 7, "sensitive": false },
+          "pattern": "",
+          "description": "Specify a comma-separated list of user reference paths (e.g. `/users/uid1,/users/uid2`) to target only specific users. Will skip users who don't have notifications enabled.",
+          "title": "User References",
+          "type": "string"
+        }
+      }
+    },
+    "deployToBucket": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707995419, "_nanoseconds": 210000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1708072053, "_nanoseconds": 417000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 479000000 }
+    },
+    "groupInfo": "flutterflow",
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fflutterflow.png?alt=media&token=c2c9b269-5ff2-45fe-a117-1366b63b4a90"
+      },
+      "name": "Push Notification",
+      "description": "Creates a document in the ff_push_notifications collection of your project which sends a push notification to the specified user",
+      "id": "ff-push-notification"
+    },
+    "integrity": "v3:2388fd4d6615a9bd95c4509539e35873",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/ff-push-notification/1.2.0/build.cjs",
+    "id": "ff-push-notification",
+    "_libRef": {
+      "integrity": "v3:35a8ed75313722dd4343499d74ffe186",
+      "libNodeRefId": "@buildship/ff-push-notification",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/ff-push-notification/1.1.3/build.cjs",
+      "version": "1.1.3"
+    },
+    "version": "1.2.0",
+    "script": "import { Firestore } from '@google-cloud/firestore';\n\nexport default async function createFfNotification({\n id,\n projectId,\n notification_title,\n notification_text,\n notification_image_url,\n notification_sound,\n parameter_data,\n target_audience,\n initial_page_name,\n user_refs\n}: NodeInputs) : NodeOutput  {\n // Create the data object using only the specified notification-related parameters\n const data = {\n notification_title: notification_title || \"\",\n notification_text: notification_text || \"\",\n notification_image_url: notification_image_url || \"\",\n notification_sound: notification_sound || \"\",\n parameter_data: parameter_data || \"\",\n target_audience: target_audience || \"\",\n initial_page_name: initial_page_name || \"\",\n user_refs: user_refs || \"\"\n };\n\n // Hardcoded collection name\n const collectionName = 'ff_push_notifications';\n\n const firestore = new Firestore(projectId && projectId.length > 1 ? {\n projectId: projectId.trim()\n } : undefined);\n\n if (id) {\n await firestore.collection(collectionName).doc(id).set(data, false );\n return {\n id,\n path: `${collectionName}/${id}`,\n status: 'success!'\n };\n } else {\n const ref = await firestore.collection(collectionName).add(data);\n return {\n id: ref.id,\n path: ref.path,\n status: 'success!'\n };\n }\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 46000000 },
+    "failCount": 18,
+    "usageCounter": 1247
+  }
+]

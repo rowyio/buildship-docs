@@ -1,0 +1,379 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "type": "object",
+      "properties": {
+        "secretValue": {
+          "buildship": {},
+          "description": "The value of the secret",
+          "type": "string",
+          "title": "Secret Value"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "buildship": { "index": 0 },
+          "description": "The name of the secret to retrieve",
+          "title": "Secret Name",
+          "type": "string"
+        },
+        "version": {
+          "buildship": { "index": 1 },
+          "description": "The version of the secret to retrieve (default: 'latest')",
+          "title": "Secret Version",
+          "type": "string"
+        }
+      },
+      "required": ["name"]
+    },
+    "meta": {
+      "name": "Get Secret",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252"
+      },
+      "description": "Retrieve a secret from Google Cloud Secret Manager",
+      "id": "gcp-get-secret"
+    },
+    "type": "script",
+    "live": true,
+    "group": [
+      {
+        "name": "Google Cloud",
+        "description": "Nodes for interacting with the Google Cloud Platform",
+        "id": "0IAjU2tekQHjibkvicpT",
+        "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+      }
+    ],
+    "dependencies": { "@google-cloud/secret-manager": "5.0.1" },
+    "t": 299,
+    "syncAllAtOnce": "923",
+    "category": ["Integrations"],
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1708373769, "_nanoseconds": 46000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1708373772, "_nanoseconds": 945000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpT",
+    "id": "gcp-get-secret",
+    "integrations": [],
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTtfPe0yH9QzE2iqPg4aVB_xklqimDxaI5WOsRM9XqSvD=s96-c",
+      "uid": "lGcdiftmK4QNZ2XuMUVqrm6B21c2",
+      "displayName": "Aaditya Bhusal",
+      "email": "aaditya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716279307, "_nanoseconds": 240000000 }
+    },
+    "integrity": "v3:0ac380b775a28ffc3f691455689ac7ae",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/gcp-get-secret/1.1.0/build.cjs",
+    "version": "1.1.0",
+    "_libRef": {
+      "integrity": "v3:1a0bfd34523e2b52af78deef10733b7b",
+      "libNodeRefId": "@buildship/gcp-get-secret",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/gcp-get-secret/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import  { SecretManagerServiceClient } from \"@google-cloud/secret-manager\"\nexport default async function getSecret({ name, version }: NodeInputs, { logging }: NodeScriptOptions) : NodeOutput  {\n  logging.log(\"Executing getSecret\", { name, version })\n  const secrets = new SecretManagerServiceClient();\n  const [secretVersion] = await secrets.accessSecretVersion({\n    name: `projects/${process.env.GCLOUD_PROJECT}/secrets/${name}/versions/${version || \"latest\"}`,\n  });\n  const payload = secretVersion.payload?.data?.toString();\n  // if (payload && payload[0] === \"{\") {\n  //   return JSON.parse(payload);\n  // } else {\n    return {secretValue: payload}\n  //}\n}\n",
+    "usageCounter": 182,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 48000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The generated text from Google's Generative Language AI",
+      "type": "object",
+      "title": "Generated Text",
+      "properties": {}
+    },
+    "featured": true,
+    "deployToBucket": {
+      "ranBy": "harini@rowy.io.rowy",
+      "completedAt": { "_seconds": 1694566064, "_nanoseconds": 424000000 }
+    },
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252"
+      },
+      "name": "PaLM API - Chat",
+      "description": "Generates text in a conversational format using Google's Generative Language AI",
+      "id": "google-generative-language-node"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "topK": {
+          "default": 40,
+          "buildship": { "index": 4 },
+          "description": "The top K value for text generation",
+          "title": "Top K",
+          "type": "number"
+        },
+        "systemPrompt": {
+          "buildship": { "index": 0 },
+          "description": "Preamble context to prime responses",
+          "title": "System Prompt",
+          "type": "string"
+        },
+        "temperature": {
+          "default": 0.2,
+          "buildship": { "index": 5 },
+          "description": "The temperature value for text generation",
+          "title": "Temperature",
+          "type": "number"
+        },
+        "model": {
+          "default": "models/chat-bison-001",
+          "buildship": { "index": 2 },
+          "description": "The model to use for text generation",
+          "title": "Model",
+          "type": "string"
+        },
+        "prompt": {
+          "buildship": { "index": 1 },
+          "description": "The prompt to generate text from",
+          "title": "Prompt",
+          "type": "string"
+        },
+        "topP": {
+          "default": 0.8,
+          "buildship": { "index": 3 },
+          "description": "The top P value for text generation",
+          "title": "Top P",
+          "type": "number"
+        },
+        "maxOutputTokens": {
+          "default": 256,
+          "buildship": { "index": 7 },
+          "description": "The maximum output tokens for text generation",
+          "title": "Max Output Tokens",
+          "type": "number"
+        },
+        "candidateCount": {
+          "default": 1,
+          "buildship": { "index": 6 },
+          "description": "The candidate count for text generation",
+          "title": "Candidate Count",
+          "type": "number"
+        }
+      },
+      "required": ["systemPrompt", "prompt"]
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "live": true,
+    "group": [
+      {
+        "name": "Google Cloud",
+        "description": "Nodes for interacting with the Google Cloud Platform",
+        "id": "0IAjU2tekQHjibkvicpT",
+        "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+      }
+    ],
+    "dependencies": { "@google-ai/generativelanguage": "1.1.0", "google-auth-library": "9.2.0" },
+    "t": 283,
+    "syncAllAtOnce": "1004",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 484000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpT",
+    "failCount": 2,
+    "id": "google-generative-language-node",
+    "integrations": [],
+    "integrity": "v3:241b10c645a1b24f5e1a2cbce83f6234",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/google-generative-language-node/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:6a6a95d21958fb96904446c909621fd0",
+      "libNodeRefId": "@buildship/google-generative-language-node",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/google-generative-language-node/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import {\n    DiscussServiceClient\n} from '@google-ai/generativelanguage';\nimport {\n    GoogleAuth\n} from 'google-auth-library';\n\nexport default async function palmChat({\n    systemPrompt,\n    prompt,\n    model,\n    topP,\n    topK,\n    temperature,\n    candidateCount,\n    maxOutputTokens\n}: NodeInputs) : NodeOutput  {\n    const auth = new GoogleAuth({\n        scopes: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/generative-language'],\n    });\n    const client = new DiscussServiceClient({\n        auth,\n    });\n    const request = {\n        prompt: {\n            context: systemPrompt,\n            messages: [{ content: prompt }]\n        },\n        model: model || 'models/chat-bison-001',\n        topP: topP || 0.8,\n        topK: topK || 40,\n        temperature: temperature || 0.2,\n        candidateCount: candidateCount || 1,\n        maxOutputTokens: maxOutputTokens || 256,\n    };\n    const [result] = await client.generateMessage(request);\n    return result;\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 51000000 },
+    "usageCounter": 185
+  },
+  {
+    "output": {
+      "buildship": { "index": 0 },
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "score": { "type": "number" },
+          "color": {
+            "type": "object",
+            "properties": {
+              "red": { "type": "integer" },
+              "green": { "type": "integer" },
+              "blue": { "type": "integer" },
+              "alpha": { "type": "null" }
+            }
+          },
+          "pixelFraction": { "type": "number" }
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["imageUrl"],
+      "properties": {
+        "imageUrl": {
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The URL of the image to detect the dominant colors.",
+          "title": "Image URL",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "name": "Google Vision Dominant Colors",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252"
+      },
+      "description": "Use Google Vision to detect the dominant colors in the given image.",
+      "id": "google-vision-dominant-colors"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "@google-cloud/vision": "4.2.0" },
+    "group": [
+      {
+        "uid": "google-cloud",
+        "name": "Google Cloud",
+        "description": "Nodes for interacting with the Google Cloud Platform",
+        "id": "0IAjU2tekQHjibkvicpT",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252"
+      }
+    ],
+    "groupInfo": "0IAjU2tekQHjibkvicpT",
+    "category": ["Integrations"],
+    "live": true,
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1713205799, "_nanoseconds": 231000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1713205799, "_nanoseconds": 372000000 }
+    },
+    "integrity": "v3:95928066c388ed49a8bb29446d6eaeda",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/google-vision-dominant-colors/1.1.0/build.cjs",
+    "id": "google-vision-dominant-colors",
+    "_libRef": {
+      "integrity": "v3:06890e7bca52478d004543680c356c6d",
+      "libNodeRefId": "@buildship/google-vision-dominant-colors",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/google-vision-dominant-colors/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import { ImageAnnotatorClient } from '@google-cloud/vision';\n\nexport default async function getDominantColors({\n    imageUrl\n}: NodeInputs, {logging}: NodeScriptOptions) : NodeOutput  {\n    try {\n      const client = new ImageAnnotatorClient();\n      const [result] = await client.imageProperties(imageUrl);\n      logging.log(result)\n      const colors = result.imagePropertiesAnnotation.dominantColors.colors;\n      return colors;\n    } catch (error) {\n      return error;\n    }\n}",
+    "usageCounter": 31,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 52000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The text detected in the image",
+      "type": "object",
+      "title": "Detected Text",
+      "properties": {}
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1695027382, "_nanoseconds": 132000000 }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "buildship": { "index": 0 },
+          "description": "The URL of the image to detect text from",
+          "title": "Image URL",
+          "type": "string"
+        }
+      },
+      "required": ["url"]
+    },
+    "meta": {
+      "name": "Google Vision Text Detection",
+      "icon": {
+        "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\"><defs><style>.cls-1{fill:none;}.cls-2{fill:#669df6;}.cls-3{fill:#aecbfa;}.cls-4{fill:#4285f4;}</style></defs><title>Icon_24px_VisionAPI_Color</title><g data-name=\"Product Icons\"><g data-name=\"colored-32/vision\"><rect class=\"cls-1\" width=\"24\" height=\"24\"/><g ><polygon class=\"cls-2\" points=\"6 12 12 16.99 12 20 2 12 6 12\"/><polygon id=\"Shape-2\" data-name=\"Shape\" class=\"cls-2\" points=\"12 16.99 18 12 22 12 12 20 12 16.99\"/><polygon id=\"Shape-3\" data-name=\"Shape\" class=\"cls-3\" points=\"2 12 12 4 12 7.01 6 12 2 12\"/><polygon id=\"Shape-4\" data-name=\"Shape\" class=\"cls-3\" points=\"12 7.01 18 12 22 12 12 4 12 7.01\"/><circle id=\"Oval\" class=\"cls-4\" cx=\"12\" cy=\"12\" r=\"2\"/></g></g></g></svg>",
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252"
+      },
+      "description": "Detects text in an image using Google Cloud Vision API",
+      "id": "google-vision-text-detection"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "live": true,
+    "group": [
+      {
+        "name": "Google Cloud",
+        "description": "Nodes for interacting with the Google Cloud Platform",
+        "id": "0IAjU2tekQHjibkvicpT",
+        "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+      }
+    ],
+    "dependencies": { "@google-cloud/vision": "4.0.2" },
+    "t": 281,
+    "syncAllAtOnce": "1018",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 484000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpT",
+    "id": "google-vision-text-detection",
+    "integrations": [],
+    "integrity": "v3:d816850629a800babfb6b0c67266923f",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/google-vision-text-detection/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:b7f23c29e6319950cba3a05e3355ccff",
+      "libNodeRefId": "@buildship/google-vision-text-detection",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/google-vision-text-detection/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import {\n    ImageAnnotatorClient\n} from '@google-cloud/vision';\nexport default async function googleVisionTextDetection({\n    url\n}: NodeInputs) : NodeOutput  {\n    const client = new ImageAnnotatorClient();\n    const response = await fetch(url);\n    const arrayBuffer = await response.arrayBuffer();\n    const dataBuffer = Buffer.from(arrayBuffer);\n    const [result] = await client.textDetection(dataBuffer);\n    return result.textAnnotations[0].description;\n}",
+    "failCount": 27,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 52000000 },
+    "usageCounter": 274
+  }
+]

@@ -1,0 +1,22 @@
+import nodes from './audio/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Audio
+
+BuildShip provides pre-defined nodes for generating, processing, and extracting data from audio files. Effortlessly
+integrate audio capabilities into your workflows to create, analyze, or transform audio data. This can be particularly
+useful for developing applications involving speech recognition, audio effects, or automated transcription services.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/audio/${node.meta.id}`}
+    />
+  ))}
+</Cards>

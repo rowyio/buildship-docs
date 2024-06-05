@@ -1,0 +1,356 @@
+[
+  {
+    "type": "script",
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Cohere",
+        "description": "Leverage LLM models via Cohere API",
+        "id": "OEUZgrwrgjhqdAX296Ku",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fcohere.png?alt=media&token=7ef2898a-8604-457d-87b5-84e1d35c507f"
+      }
+    ],
+    "output": {
+      "buildship": {},
+      "properties": {},
+      "description": "The classification response from the Cohere Classify API",
+      "title": "Classifications",
+      "type": "array"
+    },
+    "dependencies": { "cohere-ai": "7.2.0" },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701692059, "_nanoseconds": 311000000 }
+    },
+    "t": 156,
+    "syncIndex": {
+      "ranBy": "anish@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1705895661, "_nanoseconds": 558000000 }
+    },
+    "syncAllAtOnce": "856",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 474000000 }
+    },
+    "groupInfo": "OEUZgrwrgjhqdAX296Ku",
+    "failCount": 1,
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "examples": {
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Examples of texts with their classifications. Must include at least two unique labels, with at least two examples for each. Learn more and get a sample set of examples from [Cohere Classify API Reference](https://docs.cohere.com/reference/classify).\n\nEg:\n```js\n[{ \n\"text\": \"Dermatologists don't like her!\", \n\"label\": \"Spam\"\n}]",
+          "title": "Examples",
+          "type": "array"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "The Bearer token for the Cohere API (get your Cohere API key [here](https://dashboard.cohere.com/api-keys)).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "inputs": {
+          "buildship": { "index": 1 },
+          "description": "Texts to be classified\n\nEg: `[\"Confirm your email address\"]`",
+          "title": "Inputs",
+          "type": "array"
+        }
+      },
+      "required": ["inputs", "examples", "apiKey"]
+    },
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fcohere.png?alt=media&token=7ef2898a-8604-457d-87b5-84e1d35c507f"
+      },
+      "name": "Cohere Classify",
+      "description": "Uses Cohere Classify endpoint to classify given text based on provided examples",
+      "id": "cohere-classify"
+    },
+    "id": "cohere-classify",
+    "integrations": [],
+    "integrity": "v3:cfdf96e16b43f54b60126971553ea6af",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/cohere-classify/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:08637d520f7e20a7dd0a1fffc01705c6",
+      "libNodeRefId": "@buildship/cohere-classify",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/cohere-classify/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "import { CohereClient } from \"cohere-ai\";\nexport default async function cohereClassifyAPI({\n    inputs,\n    examples,\n    apiKey\n}: NodeInputs) : NodeOutput  {\n  const cohere = new CohereClient({\n    token: apiKey,\n  });\n  const response = await cohere.classify({\n    inputs,\n    examples,\n  });\n  return response.classifications;\n}",
+    "usageCounter": 163,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 43000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The generated text from the Cohere API",
+      "type": "object",
+      "title": "Generated Text",
+      "properties": {
+        "generated": { "buildship": {}, "type": "string", "title": "Generated" },
+        "model": { "buildship": {}, "type": "string", "title": "Model" },
+        "prompt": { "buildship": {}, "type": "string", "title": "Prompt" }
+      }
+    },
+    "type": "script",
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Cohere",
+        "description": "Leverage LLM models via Cohere API",
+        "id": "OEUZgrwrgjhqdAX296Ku",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fcohere.png?alt=media&token=7ef2898a-8604-457d-87b5-84e1d35c507f"
+      }
+    ],
+    "dependencies": { "node-fetch": "3.3.2" },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "The Bearer token for the Cohere API. (Get your Cohere API key [here](https://dashboard.cohere.com/api-keys).)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "truncate": {
+          "default": "END",
+          "buildship": {
+            "options": [
+              { "label": "NONE", "value": "NONE" },
+              { "label": "START", "value": "START" },
+              { "label": "END", "value": "END" }
+            ],
+            "index": 3
+          },
+          "description": "A flag or setting that controls whether the generated text should be truncated to fit within the specified `max_tokens` limit.",
+          "type": "string",
+          "title": "Truncate",
+          "enum": ["NONE", "START", "END"]
+        },
+        "max_tokens": {
+          "default": 20,
+          "buildship": { "index": 2 },
+          "description": "The maximum number of tokens (words or characters) in the generated text.",
+          "title": "Max Tokens",
+          "type": "number"
+        },
+        "return_likelihoods": {
+          "default": "NONE",
+          "buildship": {
+            "options": [
+              { "label": "GENERATION", "value": "GENERATION" },
+              { "label": "ALL", "value": "ALL" },
+              { "label": "NONE", "value": "NONE" }
+            ],
+            "index": 4
+          },
+          "description": "A flag or setting that determines whether to return likelihood scores along with the generated text.",
+          "type": "string",
+          "title": "Return Likelihoods",
+          "enum": ["GENERATION", "ALL", "NONE"]
+        },
+        "prompt": {
+          "buildship": { "index": 1 },
+          "description": "The prompt to generate text from. Refer to [Cohere API Reference guide](https://docs.cohere.com/reference/generate)\n\nEg: `\"Please explain to me how LLMs work\"`",
+          "type": "string",
+          "title": "Prompt"
+        }
+      },
+      "required": ["prompt", "max_tokens", "truncate", "return_likelihoods", "apiKey"]
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701694134, "_nanoseconds": 866000000 }
+    },
+    "t": 158,
+    "syncIndex": {
+      "ranBy": "harini@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1705881673, "_nanoseconds": 312000000 }
+    },
+    "syncAllAtOnce": "858",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 474000000 }
+    },
+    "groupInfo": "OEUZgrwrgjhqdAX296Ku",
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fcohere.png?alt=media&token=7ef2898a-8604-457d-87b5-84e1d35c507f"
+      },
+      "name": "Cohere Text Generator",
+      "description": "Generates realistic text conditioned on a given input using Cohere API",
+      "id": "cohere-text-generator"
+    },
+    "id": "cohere-text-generator",
+    "integrations": [],
+    "integrity": "v3:d881f125803843403e1d0bce92d173a5",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/cohere-text-generator/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:739c5fe11dcaceef31a08fa299d1aed7",
+      "libNodeRefId": "@buildship/cohere-text-generator",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/cohere-text-generator/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nexport default async function cohereTextGenerator({\n    prompt,\n    max_tokens,\n    truncate,\n    return_likelihoods,\n    apiKey\n}: NodeInputs) : NodeOutput  {\n    const response = await fetch('https://api.cohere.ai/v1/generate', {\n        method: 'POST',\n        headers: {\n            'Accept': 'application/json',\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${apiKey}`\n        },\n        body: JSON.stringify({\n            max_tokens,\n            truncate,\n            return_likelihoods,\n            prompt\n        })\n    });\n    const data = await response.json();\n    return data;\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 43000000 },
+    "usageCounter": 178
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The summarized text from Cohere API",
+      "type": "object",
+      "title": "Summarized Text",
+      "properties": { "summary": { "buildship": {}, "title": "Summary", "type": "string" } }
+    },
+    "type": "script",
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Cohere",
+        "description": "Leverage LLM models via Cohere API",
+        "id": "OEUZgrwrgjhqdAX296Ku",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fcohere.png?alt=media&token=7ef2898a-8604-457d-87b5-84e1d35c507f"
+      }
+    ],
+    "dependencies": { "cohere-ai": "7.2.0" },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "The Bearer token for the Cohere API. (Get your Cohere API key [here](https://dashboard.cohere.com/api-keys).)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "temperature": {
+          "default": "0.75",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "Ranges from 0 to 1. Controls the randomness of the output. ",
+          "title": "Temperature",
+          "type": "number"
+        },
+        "format": {
+          "default": "paragraph",
+          "buildship": {
+            "options": [
+              { "label": "paragraph", "value": "paragraph" },
+              { "label": "bullets", "value": "bullets" },
+              { "label": "auto", "value": "auto" }
+            ],
+            "index": 3,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Indicates the style in which the summary will be delivered - in a free form paragraph or in bullet points.",
+          "title": "Format",
+          "type": "string",
+          "enum": ["paragraph", "bullets", "auto"]
+        },
+        "length": {
+          "default": "medium",
+          "buildship": {
+            "options": [
+              { "label": "short", "value": "short" },
+              { "label": "medium", "value": "medium" },
+              { "label": "long", "value": "long" },
+              { "label": "auto", "value": "auto" }
+            ],
+            "index": 2,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Indicates the approximate length of the summary.",
+          "title": "Length",
+          "type": "string",
+          "enum": ["short", "medium", "long", "auto"]
+        },
+        "text": {
+          "buildship": { "index": 1 },
+          "description": "The text to be summarized. Refer to the [Cohere API Reference guide](https://docs.cohere.com/reference/summarize-2)",
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": ["text", "apiKey", "temperature", "format", "length"]
+    },
+    "t": 231,
+    "deployToBucket": {
+      "ranBy": "harini@rowy.io.rowy",
+      "completedAt": { "_seconds": 1705881655, "_nanoseconds": 425000000 }
+    },
+    "syncIndex": {
+      "ranBy": "harini@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1705881665, "_nanoseconds": 743000000 }
+    },
+    "syncAllAtOnce": "891",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 474000000 }
+    },
+    "groupInfo": "OEUZgrwrgjhqdAX296Ku",
+    "meta": {
+      "name": "Cohere Text Summarizer",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fcohere.png?alt=media&token=7ef2898a-8604-457d-87b5-84e1d35c507f"
+      },
+      "description": "Generates a summary of the input text using Cohere Summarize API",
+      "id": "cohere-text-summarizer"
+    },
+    "id": "cohere-text-summarizer",
+    "integrations": [],
+    "failCount": 1,
+    "integrity": "v3:33200d924df52a1d28a254c12e2c0d78",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/cohere-text-summarizer/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:c83f809a0af4f112beb7b73dbec73395",
+      "libNodeRefId": "@buildship/cohere-text-summarizer",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/cohere-text-summarizer/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "import { CohereClient } from \"cohere-ai\";\nexport default async function cohereTextSummarizer({\n    text,\n    apiKey,\n    length,\n    format,\n    temperature\n}: NodeInputs) : NodeOutput  {\n    const cohere = new CohereClient({\n      token: apiKey,\n    });\n    const response = await cohere.summarize({\n        text: text,\n        length: length,\n        format: format,\n        temperature: temperature\n    });\n    return response;\n}",
+    "usageCounter": 161,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 43000000 }
+  }
+]

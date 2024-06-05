@@ -1,0 +1,22 @@
+import nodes from './gmail/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Gmail
+
+Utilize BuildShip's OAuth nodes to seamlessly connect with the Gmail API, enabling you to perform a variety of
+operations such as retrieving emails, sending messages, managing drafts, and organizing labels. This integration ensures
+secure and efficient access to your Gmail account for enhanced email management automation.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/gmail/${node.meta.id}`}
+    />
+  ))}
+</Cards>

@@ -1,0 +1,212 @@
+[
+  {
+    "output": {
+      "buildship": { "index": 0 },
+      "description": "",
+      "title": "",
+      "type": "object",
+      "properties": { "job_id": { "buildship": { "index": 0 }, "title": "job_id", "type": "string" } }
+    },
+    "integrity": "v3:4f2a6ae302a79f20f4d6598acedf94f3",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/hume-ai-expression-measurement/1.0.3/build.cjs",
+    "inputs": {
+      "type": "object",
+      "required": ["urls", "apiKey"],
+      "properties": {
+        "callback_url": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "This URL will come from a workflow containing the Retrieving Predictions Node. You can find this node in our node templates library.",
+          "title": "Call Back URL",
+          "type": "string"
+        },
+        "urls": {
+          "default": [],
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The list of URLs to start a Hume AI Inference Job.URLs to the media files to be processed. Each must be a valid public URL to a media file (see recommended input filetypes) or an archive (`.zip`, .`tar.gz`, .tar.bz2, .tar.xz) of media files.\n\nIf you wish to supply more than 100 URLs, consider providing them as an archive (.zip, .tar.gz, .tar.bz2, .tar.xz).\n\n**SAMPLE INPUT:**\n```\n[\n  \"https://hume-tutorials.s3.amazonaws.com/faces.zip\",\n  \"https://hume-tutorials.s3.amazonaws.com/faces.zip\"\n]\n```",
+          "title": "URLs",
+          "type": "array"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Your Hume AI API Key. [Get your API Key for Hume AI](https://beta.hume.ai/settings/keys).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "notify": {
+          "default": "true",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Whether to send an email notification to the user upon job completion/failure.",
+          "title": "Notify?",
+          "type": "boolean"
+        }
+      }
+    },
+    "meta": {
+      "name": "Expression-Measurement",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fhume-ai.png?alt=media&token=10182f35-6f91-4853-9d63-e2bd54283dbc"
+      },
+      "description": "Start a new job with the Expression Measurement API.",
+      "id": "hume-ai-expression-measurement"
+    },
+    "_createdBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocKMu1FBjJ87fq_qF9B_DomtbCbbBKtKJ2-o0w8TlaMGUXI5_A=s96-c",
+      "uid": "GgAqBNVokafuftSFPJeUQYFhdax1",
+      "displayName": "Henry Moses",
+      "email": "moses@rowy.io.rowy",
+      "timestamp": { "_seconds": 1717008114, "_nanoseconds": 351000000 }
+    },
+    "type": "script",
+    "integrations": [],
+    "version": "1.0.3",
+    "script": "export default async function improvePrompt({\n    apiKey,\n    urls,\n    notify,\n    callback_url\n}) {\n    const response = await fetch('https://api.hume.ai/v0/batch/jobs', {\n        method: 'POST',\n        headers: {\n            'X-Hume-Api-Key': apiKey,\n            'Content-Type': 'application/json'\n        },\n        body: JSON.stringify({\n          \"urls\": urls,\n          \"notify\": notify,\n          \"callback_url\": callback_url\n        })\n    });\n\n    const responseData = await response.json();\n    return responseData;\n}",
+    "dependencies": {},
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "hume-ai",
+        "name": "Hume AI",
+        "description": "Nodes for interacting with the Hume AI APIs",
+        "id": "hume-ai",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fhume-ai.png?alt=media&token=10182f35-6f91-4853-9d63-e2bd54283dbc"
+      }
+    ],
+    "groupInfo": "hume-ai",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1717074253, "_nanoseconds": 763000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1717074253, "_nanoseconds": 779000000 }
+    },
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 53000000 },
+    "usageCounter": 10
+  },
+  {
+    "output": {
+      "buildship": { "index": 0 },
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": { "type": "object", "properties": { "type": { "type": "string" }, "url": { "type": "string" } } },
+          "results": {
+            "type": "object",
+            "properties": {
+              "errors": { "type": "array" },
+              "predictions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "models": {
+                      "type": "object",
+                      "properties": {
+                        "face": {
+                          "type": "object",
+                          "properties": { "metadata": { "type": "null" }, "grouped_predictions": { "type": "array" } }
+                        }
+                      }
+                    },
+                    "file": { "type": "string" },
+                    "file_type": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/hume-ai-retrieving-prediction/1.0.3/build.cjs",
+    "inputs": {
+      "type": "object",
+      "required": ["urls", "apiKey"],
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Your Hume AI API Key. [Get your API Key for Hume AI](https://beta.hume.ai/settings/keys).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "job_id": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "This will be sent via the Expression Measurement API. [Check the docs here](https://dev.hume.ai/reference/expression-measurement-api/batch/get-job-predictions)",
+          "title": "Job Id",
+          "type": "string"
+        }
+      }
+    },
+    "_createdBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocKMu1FBjJ87fq_qF9B_DomtbCbbBKtKJ2-o0w8TlaMGUXI5_A=s96-c",
+      "uid": "GgAqBNVokafuftSFPJeUQYFhdax1",
+      "displayName": "Henry Moses",
+      "email": "moses@rowy.io.rowy",
+      "timestamp": { "_seconds": 1717008097, "_nanoseconds": 296000000 }
+    },
+    "type": "script",
+    "integrations": [],
+    "version": "1.0.3",
+    "script": "export default async function RetrievingPredictions({\n    apiKey,\n    job_id,\n}) {\n    const response = await fetch(`https://api.hume.ai/v0/batch/jobs/${job_id}/predictions`, {\n        method: 'GET',\n        headers: {\n            'X-Hume-Api-Key': apiKey,\n            'Content-Type': 'application/json'\n        }\n    });\n\n    const responseData = await response.json();\n    return responseData;\n}",
+    "dependencies": {},
+    "integrity": "v3:9a6eba88e930eab12862e0f8de648ff6",
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fhume-ai.png?alt=media&token=10182f35-6f91-4853-9d63-e2bd54283dbc"
+      },
+      "name": "Retrieving Predictions",
+      "description": "Get the JSON predictions of a completed measurement",
+      "id": "hume-ai-retrieving-prediction"
+    },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "hume-ai",
+        "name": "Hume AI",
+        "description": "Nodes for interacting with the Hume AI APIs",
+        "id": "hume-ai",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fhume-ai.png?alt=media&token=10182f35-6f91-4853-9d63-e2bd54283dbc"
+      }
+    ],
+    "groupInfo": "hume-ai",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1717074252, "_nanoseconds": 142000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1717074252, "_nanoseconds": 167000000 }
+    },
+    "usageCounter": 12,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 53000000 }
+  }
+]

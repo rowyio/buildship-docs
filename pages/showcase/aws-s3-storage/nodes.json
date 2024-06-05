@@ -1,0 +1,807 @@
+[
+  {
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "@aws-sdk/client-s3": "3.490.0" },
+    "output": {
+      "buildship": {},
+      "description": "Metadata related to the created file in the bucket.",
+      "title": "output",
+      "type": "object",
+      "properties": {}
+    },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "required": ["filePath", "fileContent", "accessKeyId", "secretAccessKey", "bucket", "key", "region"],
+      "properties": {
+        "bucket": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "type": "string",
+          "title": "Bucket Name"
+        },
+        "accessKeyId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "type": "string",
+          "title": "Access ID"
+        },
+        "secretAccessKey": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "type": "string",
+          "title": "Access Secret"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "title": "Region",
+          "type": "string"
+        },
+        "fileContent": {
+          "default": "",
+          "buildship": { "index": 5, "sensitive": false },
+          "pattern": "",
+          "description": "The content to be written in the file.",
+          "title": "File Content",
+          "type": "string"
+        },
+        "key": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the file.\n\n**EXAMPLE**\nSuppose you have a folder `assets` with a file `config.json` in your S3 bucket `bucketName`, then the Key would be: \n```\nassets/config.json\n```",
+          "title": "File Path",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "name": "Create File",
+      "description": "Create a file with the given content in AWS S3 bucket.",
+      "id": "aws-s3-create-file"
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707052933, "_nanoseconds": 70000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707052966, "_nanoseconds": 515000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 468000000 }
+    },
+    "groupInfo": "aws-s3",
+    "integrity": "v3:b65f878ad9106e891457b13753142011",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-create-file/1.1.0/build.cjs",
+    "id": "aws-s3-create-file",
+    "_libRef": {
+      "integrity": "v3:799d13c577465b0737b53df05a83259f",
+      "libNodeRefId": "@buildship/aws-s3-create-file",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-create-file/1.0.3/build.cjs",
+      "version": "1.0.3"
+    },
+    "version": "1.1.0",
+    "script": "import { S3Client, PutObjectCommand } from \"@aws-sdk/client-s3\";\n\nexport default async ({ region, accessKeyId, secretAccessKey, bucket, key, fileContent }: NodeInputs,{ logging }: NodeScriptOptions) : NodeOutput  => {\n  const s3Client = new S3Client({ \n    region,\n    credentials: { accessKeyId, secretAccessKey }\n  });\n\n  logging.log(`Creating file: ${bucket}/${key}`);\n\n  const body = Buffer.from(fileContent);\n    \n  const putObjectCmd = new PutObjectCommand({ Bucket: bucket, Key: key, Body: body });\n\n  const response = await s3Client.send(putObjectCmd);\n\n  logging.log(`Created file: ${bucket}/${key}`);\n  \n  return response.$metadata;\n}",
+    "failCount": 1,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 38000000 },
+    "usageCounter": 89
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "Object containing file content in base64 format.",
+      "title": "output",
+      "type": "object",
+      "properties": {
+        "fileContentBase64": {
+          "buildship": { "index": 0 },
+          "description": "Base64 content of the fetched file from AWS S3 bucket.",
+          "title": "File Content Base64",
+          "type": "string"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["region", "secretAccessKey", "bucket", "key", "accessKeyId"],
+      "properties": {
+        "accessKeyId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": true },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access ID",
+          "type": "string"
+        },
+        "bucket": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": true },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "title": "Bucket Name",
+          "type": "string"
+        },
+        "secretAccessKey": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access Secret",
+          "type": "string"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "title": "Region",
+          "type": "string"
+        },
+        "key": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": true },
+          "pattern": "",
+          "description": "The path of the file.\n\n**EXAMPLE**\nSuppose you have a folder `assets` with a file `og-image.jpg` in your S3 bucket `bucketName`, then the Key would be: \n```\nassets/og-image.jpg\n```",
+          "title": "File Path",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "name": "Base64 File Loader",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "description": "Fetch file from AWS S3 bucket in Base64 format.",
+      "id": "aws-s3-load-base64"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "stream": "0.0.2", "@aws-sdk/client-s3": "3.490.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707052925, "_nanoseconds": 435000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707052964, "_nanoseconds": 398000000 }
+    },
+    "groupInfo": "aws-s3",
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTtfPe0yH9QzE2iqPg4aVB_xklqimDxaI5WOsRM9XqSvD=s96-c",
+      "uid": "lGcdiftmK4QNZ2XuMUVqrm6B21c2",
+      "displayName": "Aaditya Bhusal",
+      "email": "aaditya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716537665, "_nanoseconds": 777000000 }
+    },
+    "integrity": "v3:ac9572f12c2392f5184e20c43767a3f6",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-load-base64/1.1.0/build.cjs",
+    "id": "aws-s3-load-base64",
+    "version": "1.1.0",
+    "_libRef": {
+      "integrity": "v3:58a5b798543ce231930181bcd2262975",
+      "libNodeRefId": "@buildship/aws-s3-load-base64",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-load-base64/1.0.2/build.cjs",
+      "version": "1.0.2"
+    },
+    "script": "import { S3Client, GetObjectCommand } from \"@aws-sdk/client-s3\";\nimport { Readable } from \"stream\";\n\nasync function streamToBuffer(stream) {\n    const chunks = [];\n    for await (const chunk of stream) {\n        chunks.push(chunk);\n    }\n    return Buffer.concat(chunks);\n}\n\nexport default async ({ region, accessKeyId, secretAccessKey, bucket, key }: NodeInputs,{ logging }: NodeScriptOptions) : NodeOutput  => {\n  const s3Client = new S3Client({ \n    region,\n    credentials: { accessKeyId, secretAccessKey }\n  });\n\n  logging.log(`Fetching file: ${bucket}/${key}`);\n\n  const getObjectCmd = new GetObjectCommand({ Bucket: bucket, Key: key });\n\n  const response = await s3Client.send(getObjectCmd);\n\n  const fileBuffer = await streamToBuffer(Readable.from(response.Body));\n\n  const fileContentBase64 = fileBuffer.toString('base64');\n\n  logging.log(`Fetched file: ${bucket}/${key}`);\n  \n  return { fileContentBase64 };\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 38000000 },
+    "usageCounter": 72
+  },
+  {
+    "output": { "buildship": {}, "description": "The public URL of the file", "title": "Public URL", "type": "string" },
+    "inputs": {
+      "type": "object",
+      "required": ["region", "accessId", "bucketName", "accessSecret", "filePath"],
+      "properties": {
+        "accessId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access ID",
+          "type": "string"
+        },
+        "bucketName": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "title": "Bucket Name",
+          "type": "string"
+        },
+        "filePath": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the file.\n\n**EXAMPLE**\nSuppose you have a folder `assets` with a file `og-image.jpg` in your S3 bucket `bucketName`, then the Key would be: \n```\nassets/og-image.jpg\n```",
+          "title": "File Path",
+          "type": "string"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "title": "Region",
+          "type": "string"
+        },
+        "accessSecret": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access Secret",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "name": "Generate Public URL",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "description": "Make a file in S3 bucket publically accessible and return its public URL",
+      "id": "aws-s3-public-url"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "aws-sdk": "2.1550.0" },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707067271, "_nanoseconds": 810000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707067275, "_nanoseconds": 544000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 468000000 }
+    },
+    "groupInfo": "aws-s3",
+    "failCount": 1,
+    "integrity": "v3:aaef0502423bc5fd6ef7565ed63fb89a",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-public-url/1.1.0/build.cjs",
+    "id": "aws-s3-public-url",
+    "_libRef": {
+      "integrity": "v3:1cb9a3bec66f4c3a136683af12a0d8a1",
+      "libNodeRefId": "@buildship/aws-s3-public-url",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-public-url/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import AWS from 'aws-sdk';\nexport default async function generateS3PublicUrl({\n    region,\n    accessId,\n    accessSecret,\n    bucketName,\n    filePath\n}: NodeInputs) : NodeOutput  {\n    const s3 = new AWS.S3({\n        region,\n        accessKeyId: accessId,\n        secretAccessKey: accessSecret\n    });\n    await s3.putObjectAcl({\n        Bucket: bucketName,\n        Key: filePath,\n        ACL: 'public-read'\n    }).promise();\n    const url = `https://${bucketName}.s3.${region}.amazonaws.com/${filePath}`;\n    return url;\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 38000000 },
+    "usageCounter": 51
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The public download URL for the specified file in the AWS S3 bucket",
+      "title": "Download URL",
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["region", "accessId", "accessSecret", "bucketName", "filePath"],
+      "properties": {
+        "accessId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access ID",
+          "type": "string"
+        },
+        "bucketName": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "title": "Bucket Name",
+          "type": "string"
+        },
+        "filePath": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the file.\n\n**EXAMPLE**\nSuppose you have a folder `assets` with a file `og-image.jpg` in your S3 bucket `bucketName`, then the Key would be: \n```\nassets/og-image.jpg\n```",
+          "title": "File Path",
+          "type": "string"
+        },
+        "validity": {
+          "default": "604800",
+          "buildship": { "index": 5, "sensitive": false },
+          "pattern": "",
+          "description": "The validity of the public signed url in seconds. (Default Validity - 7 Days)\n\n**EXAMPLE:**\n- `3600` - for 1 Hour\n- `315360000` - for 10 Years",
+          "title": "Validity",
+          "type": "string"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "title": "Region",
+          "type": "string"
+        },
+        "accessSecret": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access Secret",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "name": "Generate Signed URL",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "description": "Generate a public signed URL for a specific file in an AWS S3 bucket",
+      "id": "aws-s3-signed-url"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "aws-sdk": "2.1550.0" },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707066906, "_nanoseconds": 899000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707066910, "_nanoseconds": 937000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 468000000 }
+    },
+    "groupInfo": "aws-s3",
+    "integrity": "v3:c2822fe094f2a1bd0213fde21bde3e63",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-signed-url/1.1.0/build.cjs",
+    "id": "aws-s3-signed-url",
+    "_libRef": {
+      "integrity": "v3:8d792aa11650afee1d7fef6d901273ec",
+      "libNodeRefId": "@buildship/aws-s3-signed-url",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-signed-url/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "import AWS from 'aws-sdk';\nexport default async function generateS3PublicUrl({\n    region,\n    accessId,\n    accessSecret,\n    bucketName,\n    filePath,\n    validity\n}: NodeInputs) : NodeOutput  {\n    const s3 = new AWS.S3({\n        region,\n        accessKeyId: accessId,\n        secretAccessKey: accessSecret\n    });\n    const url = await s3.getSignedUrl('getObject', {\n        Bucket: bucketName,\n        Key: filePath,\n        Expires: validity\n    });\n    return url;\n}",
+    "usageCounter": 44,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 39000000 }
+  },
+  {
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "@aws-sdk/client-s3": "3.490.0" },
+    "output": { "buildship": {}, "description": "", "title": "output" },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "accessKeyId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "type": "string",
+          "title": "Access ID"
+        },
+        "secretAccessKey": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access Secret",
+          "type": "string"
+        },
+        "bucket": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "type": "string",
+          "title": "Bucket Name"
+        },
+        "base64": {
+          "default": "",
+          "buildship": { "index": 5, "sensitive": false },
+          "pattern": "",
+          "description": "The Base64 string of the file to upload.",
+          "type": "string",
+          "title": "Base64 File"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "type": "string",
+          "title": "Region"
+        },
+        "key": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the file.\n\n**EXAMPLE**\nSuppose you have a folder `assets` with a file `og-image.jpg` in your S3 bucket `bucketName`, then the Key would be: \n```\nassets/og-image.jpg\n```",
+          "title": "File Path",
+          "type": "string"
+        }
+      },
+      "required": ["filePath", "region", "accessKeyId", "secretAccessKey", "bucket", "key", "base64"]
+    },
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "name": "Upload Base64 File",
+      "description": "Uploads a Base64 file to AWS S3 bucket.",
+      "id": "aws-s3-upload-file-base64"
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707052939, "_nanoseconds": 229000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707052961, "_nanoseconds": 683000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 468000000 }
+    },
+    "groupInfo": "aws-s3",
+    "integrity": "v3:b8fba2600b03106ff932399051813bc8",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-upload-file-base64/2.1.0/build.cjs",
+    "id": "aws-s3-upload-file-base64",
+    "_libRef": {
+      "integrity": "v3:b5023de757670e2542a3b3993377e473",
+      "libNodeRefId": "@buildship/aws-s3-upload-file-base64",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-upload-file-base64/2.0.3/build.cjs",
+      "version": "2.0.3"
+    },
+    "version": "2.1.0",
+    "script": "import { S3Client, PutObjectCommand } from \"@aws-sdk/client-s3\";\n\nexport default async ({ region, accessKeyId, secretAccessKey, bucket, key, base64 }: NodeInputs,{ logging }: NodeScriptOptions) : NodeOutput  => {\n  const s3Client = new S3Client({ \n    region,\n    credentials: { accessKeyId, secretAccessKey }\n  });\n\n  const body = Buffer.from(base64, \"base64\");\n\n  logging.log(`Creating file: ${bucket}/${key}`);\n    \n  const putObjectCmd = new PutObjectCommand({ Bucket: bucket, Key: key, Body: body });\n\n  const response = await s3Client.send(putObjectCmd);\n\n  logging.log(`Created file: ${bucket}/${key}`);\n  \n  return response.$metadata;\n}",
+    "failCount": 9,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 39000000 },
+    "usageCounter": 88
+  },
+  {
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "@aws-sdk/client-s3": "3.490.0" },
+    "output": { "buildship": {}, "description": "", "title": "output" },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "bucket": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "type": "string",
+          "title": "Bucket Name"
+        },
+        "accessKeyId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "type": "string",
+          "title": "Access ID"
+        },
+        "secretAccessKey": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access Secret",
+          "type": "string"
+        },
+        "externalURL": {
+          "default": "",
+          "buildship": { "index": 5, "sensitive": true },
+          "pattern": "",
+          "description": "The URL of the file to be uploaded.",
+          "title": "External URL",
+          "type": "string"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "title": "Region",
+          "type": "string"
+        },
+        "key": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the file.\n\n**EXAMPLE**\nSuppose you have a folder `assets` with a file `og-image.jpg` in your S3 bucket `bucketName`, then the Key would be: \n```\nassets/og-image.jpg\n```",
+          "type": "string",
+          "title": "File Path"
+        }
+      },
+      "required": ["filePath", "externalURL", "region", "accessKeyId", "secretAccessKey", "bucket", "key"]
+    },
+    "meta": {
+      "name": "Upload File from External URL",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "description": "Uploads a file from an external URL to AWS S3.",
+      "id": "aws-s3-upload-file-external-url"
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707073892, "_nanoseconds": 350000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707073899, "_nanoseconds": 201000000 }
+    },
+    "groupInfo": "aws-s3",
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTtfPe0yH9QzE2iqPg4aVB_xklqimDxaI5WOsRM9XqSvD=s96-c",
+      "uid": "lGcdiftmK4QNZ2XuMUVqrm6B21c2",
+      "displayName": "Aaditya Bhusal",
+      "email": "aaditya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716537633, "_nanoseconds": 773000000 }
+    },
+    "integrity": "v3:f25a78b8e11274db4e770ac85ecd8cca",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-upload-file-external-url/1.1.0/build.cjs",
+    "id": "aws-s3-upload-file-external-url",
+    "version": "1.1.0",
+    "_libRef": {
+      "integrity": "v3:b880e1d2b4b9ee7e377d0353dce79f4c",
+      "libNodeRefId": "@buildship/aws-s3-upload-file-external-url",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-upload-file-external-url/1.0.3/build.cjs",
+      "version": "1.0.3"
+    },
+    "script": "import { S3Client, PutObjectCommand } from \"@aws-sdk/client-s3\";\n\nasync function streamToBuffer(stream) {\n    const chunks = [];\n    for await (const chunk of stream) {\n        chunks.push(chunk);\n    }\n    return Buffer.concat(chunks);\n}\n\nexport default async ({ region, accessKeyId, secretAccessKey, bucket, key, externalURL }: NodeInputs,{ logging }: NodeScriptOptions) : NodeOutput  => {\n  const s3Client = new S3Client({ \n    region,\n    credentials: { accessKeyId, secretAccessKey }\n  });\n\n  logging.log(`Reading file from external url: ${externalURL}`)\n\n  const fileStream = (await fetch(externalURL)).body;\n\n  const body = await streamToBuffer(fileStream);\n\n  logging.log(`Creating file: ${bucket}/${key}`);\n    \n  const putObjectCmd = new PutObjectCommand({ Bucket: bucket, Key: key, Body: body });\n\n  const response = await s3Client.send(putObjectCmd);\n\n  logging.log(`Created file: ${bucket}/${key}`);\n\n  return {\n    \"success\": true\n  }\n}",
+    "usageCounter": 62,
+    "failCount": 6,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 39000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The download URL of the zipped folder.",
+      "title": "Download URL",
+      "type": "string"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "archiver": "6.0.1", "@aws-sdk/client-s3": "3.490.0", "@google-cloud/storage": "7.7.0" },
+    "live": true,
+    "category": ["Integrations"],
+    "group": [
+      {
+        "uid": "aws-s3-storage",
+        "name": "AWS S3 Storage",
+        "description": "Nodes for managing your AWS S3 Bucket storage.",
+        "id": "aws-s3",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "required": ["filePath", "base64", "key", "region", "accessKeyId", "secretAccessKey", "folderPath", "bucket"],
+      "properties": {
+        "accessKeyId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Your AWS Access Key ID. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access ID",
+          "type": "string"
+        },
+        "secretAccessKey": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": true },
+          "pattern": "",
+          "description": "AWS Secret Access Key. Get it from your [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials).",
+          "title": "Access Secret",
+          "type": "string"
+        },
+        "folderPath": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the folder.\n\n**EXAMPLE**\nSuppose you have a folder `assets` you wish to zip in your S3 bucket `bucketName`, then the path would be: \n```\nassets\n```",
+          "title": "Folder Path",
+          "type": "string"
+        },
+        "bucket": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the Bucket to fetch the file from.",
+          "title": "Bucket Name",
+          "type": "string"
+        },
+        "region": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The AWS region to which this client will send requests. [Learn more](https://docs.buildship.com/storage/aws-s3).",
+          "title": "Region",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "name": "Zip Folder",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faws.png?alt=media&token=12d3768f-61df-47f5-adc2-00ada6d0c0aa"
+      },
+      "description": "Zips an existing folder in S3 bucket folder and returns a download url.",
+      "id": "aws-s3-zip-folder"
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707052947, "_nanoseconds": 312000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707052955, "_nanoseconds": 388000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 468000000 }
+    },
+    "groupInfo": "aws-s3",
+    "integrity": "v3:6683d03edab2514dba4746e223601db9",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-zip-folder/3.1.0/build.cjs",
+    "id": "aws-s3-zip-folder",
+    "_libRef": {
+      "integrity": "v3:b961f96c48b84bfafc92acb6485efed0",
+      "libNodeRefId": "@buildship/aws-s3-zip-folder",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/aws-s3-zip-folder/3.0.1/build.cjs",
+      "version": "3.0.1"
+    },
+    "version": "3.1.0",
+    "script": "import { S3Client, PutObjectCommand, ListObjectsV2Command, GetObjectCommand } from \"@aws-sdk/client-s3\";\nimport { Storage } from \"@google-cloud/storage\";\nimport archiver from \"archiver\";\n\nexport default async ({ region, accessKeyId, secretAccessKey, bucket, folderPath }: NodeInputs,{ logging }: NodeScriptOptions) : NodeOutput  => {\n  const s3Client = new S3Client({ \n    region,\n    credentials: { accessKeyId, secretAccessKey }\n  });\n  const zipStream = archiver(\"zip\");\n  const storage = new Storage();\n  const gcpBucket = storage.bucket(process.env.BUCKET);\n\n  const listObjectsV2Cmd = new ListObjectsV2Command({\n      Bucket: bucket,\n      Prefix: folderPath,\n  });\n\n  // fetch the contents of the folderPath in bucket \n  const { Contents } = await s3Client.send(listObjectsV2Cmd);\n  for (const { Key } of Contents) {\n      const getObjectCmd = new GetObjectCommand({ Bucket: bucket, Key })\n\n      const { Body } = await s3Client.send(getObjectCmd)\n      zipStream.append(Body, { name: Key })\n  }\n\n  // creating zip write stream to save the zip contents\n  const zipFileName = `${folderPath}.zip`;\n  const zipFile = gcpBucket.file(zipFileName);\n  const zipFileWriteStream = zipFile.createWriteStream({\n      resumable: false,\n      validation: false,\n      public: true,\n      metadata: { 'Cache-Control': 'public, max-age=31536000' }\n  });\n  \n  zipStream.pipe(zipFileWriteStream);\n  zipStream.finalize();\n\n  return `https://storage.cloud.google.com/${gcpBucket.name}/${zipFileName}`;\n}",
+    "usageCounter": 17,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 39000000 }
+  }
+]

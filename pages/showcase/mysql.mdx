@@ -1,0 +1,23 @@
+import nodes from './mysql/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# MySQL
+
+BuildShip offers pre-defined nodes for seamless integration with MySQL databases, enabling you to execute queries,
+manage tables, and perform a range of database operations within your workflows. This integration supports CRUD
+operations, allowing you to build data-driven applications, automate tasks, and manage database interactions
+efficiently.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/mysql/${node.meta.id}`}
+    />
+  ))}
+</Cards>

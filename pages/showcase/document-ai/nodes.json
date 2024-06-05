@@ -1,0 +1,452 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "description": "",
+      "title": "output",
+      "type": "object",
+      "properties": {
+        "document": {
+          "buildship": { "index": 0 },
+          "description": "The full document response",
+          "title": "Document",
+          "type": "object",
+          "properties": {}
+        },
+        "formFields": {
+          "buildship": { "index": 2 },
+          "description": "The detected form fields and field values.",
+          "title": "Form Fields",
+          "type": "array"
+        },
+        "text": { "buildship": { "index": 1 }, "description": "The document text", "title": "Text", "type": "string" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["location", "documentPath"],
+      "properties": {
+        "location": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "us", "value": "us" },
+              { "label": "eu", "value": "eu" }
+            ],
+            "index": 0,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "The processor location",
+          "title": "Location",
+          "type": "string",
+          "enum": ["us", "eu"]
+        },
+        "documentPath": {
+          "default": [],
+          "buildship": { "index": 1, "disableExpression": true, "sensitive": false, "multipleFiles": true },
+          "pattern": "",
+          "description": "The document to extract data from",
+          "title": "Document",
+          "type": "array"
+        }
+      }
+    },
+    "meta": {
+      "name": "Document AI Form Parser",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      },
+      "description": "Form Parser allows you to automatically extract fields, values, and generic entities like names, addresses, and prices from standard forms, structuring data in tables. It's ready to use without the need for training or customization, suitable for various document types.\n**To use this node you must first enable the \n[Document AI API](https://console.cloud.google.com/apis/library/documentai.googleapis.com?project=_)**",
+      "id": "document-ai-form-parser"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "path": "0.12.7", "@google-cloud/documentai": "8.2.0", "@google-cloud/storage": "7.8.0" },
+    "live": true,
+    "group": [
+      {
+        "uid": "document-ai",
+        "name": "Document AI",
+        "description": "Document processing with Document AI",
+        "id": "0IAjU2tekQHjibkvicor",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      }
+    ],
+    "category": ["Integrations"],
+    "syncIndex": {
+      "ranBy": "luis@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710780204, "_nanoseconds": 106000000 }
+    },
+    "deployToBucket": {
+      "ranBy": "luis@rowy.io.rowy",
+      "completedAt": { "_seconds": 1710780210, "_nanoseconds": 285000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 476000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicor",
+    "failCount": 14,
+    "integrity": "v3:fc0cd8b5f07cdc5048843934a6f106c0",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-form-parser/2.1.0/build.cjs",
+    "id": "document-ai-form-parser",
+    "_libRef": {
+      "integrity": "v3:3cdd9f9fbd9f8bb0d0df24614d6094f8",
+      "libNodeRefId": "@buildship/document-ai-form-parser",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-form-parser/2.0.0/build.cjs",
+      "version": "2.0.0"
+    },
+    "version": "2.1.0",
+    "script": "import { DocumentProcessorServiceClient } from \"@google-cloud/documentai\";\nimport { Storage } from \"@google-cloud/storage\";\nimport path from \"path\";\n\nfunction getMimeType(fileName) {\n  const ext = path.extname(fileName).substring(1).toLowerCase();\n  const supportedMimeTypes = {\n    pdf: \"application/pdf\",\n    gif: \"image/gif\",\n    tiff: \"image/tiff\",\n    jpg: \"image/jpeg\",\n    jpeg: \"image/jpeg\",\n    png: \"image/png\",\n    bmp: \"image/bmp\",\n    webp: \"image/webp\",\n  };\n\n  const mimeType = supportedMimeTypes[ext];\n\n  if (!mimeType) {\n    throw new Error(`Unsupported file type: ${ext}`);\n  }\n\n  return mimeType;\n}\n\nfunction getText(textAnchor, text) {\n  if (!textAnchor.textSegments || textAnchor.textSegments.length === 0) {\n    return '';\n  }\n\n  // First shard in document doesn't have startIndex property\n  const startIndex = textAnchor.textSegments[0].startIndex || 0;\n  const endIndex = textAnchor.textSegments[0].endIndex;\n\n  return text.substring(startIndex, endIndex);\n}\n\nexport default async function documentAI(\n  {  location, documentPath }: NodeInputs,\n  { logging }\n: NodeScriptOptions) : NodeOutput  {\n  const type = \"FORM_PARSER_PROCESSOR\"\n  const processorName = `bs_${location}_form_parser_processor`\n  const client = new DocumentProcessorServiceClient();\n  const parent = `projects/${process.env.GCLOUD_PROJECT}/locations/${location}`;\n\n  // Check if the processor exists\n  const [processorList] = await client.listProcessors({\n    parent,\n    pageSize: 100,\n  });\n\n  const existing = processorList.find((p) => p.displayName === processorName);\n\n  let processorId;\n\n  if (!existing) {\n    // Create a new processor\n    const createRequest = {\n      parent,\n      processor: {\n        displayName: processorName,\n        type,\n      },\n    };\n\n    // Send the request to create the processor\n    const [response] = await client.createProcessor(createRequest);\n    processorId = response.name.split(\"/\").pop();\n  } else {\n    // Use the existing processor\n    processorId = existing.name.split(\"/\").pop();\n  }\n\n  const storage = new Storage();\n  const bucket = storage.bucket(process.env.BUCKET);\n  const file = bucket.file(documentPath);\n  const [exists] = await file.exists();\n\n  if (exists) {\n    const [buffer] = await file.download();\n    const data = buffer.toString(\"base64\");\n\n    try {\n      const mimeType = getMimeType(documentPath[0]); // Get the MIME type based on the file extension\n      const request = {\n        name: `${parent}/processors/${processorId}`,\n        rawDocument: {\n          content: data,\n          mimeType, \n        },\n      };\n\n      // Send the request and get the response\n      const [result] = await client.processDocument(request);\n\n       const { document } = result;\n        const { text } = document;\n\n        const formFields = [];\n        for (const page of result.document.pages) {\n          for (const field of page.formFields) {\n            const fieldName = getText(field.fieldName.textAnchor, text);\n            const fieldValue = getText(field.fieldValue.textAnchor, text);\n            formFields.push({ fieldName, fieldValue });\n          }\n        }\n      \n      return { document, text, formFields };\n    } catch (err) {\n      throw err; \n    }\n  } else {\n    throw new Error(`File not found: ${documentPath}`);\n  }\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 44000000 },
+    "usageCounter": 158
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "",
+      "title": "output",
+      "type": "object",
+      "properties": {
+        "lineItems": {
+          "buildship": { "index": 2 },
+          "description": "The detected invoice line items",
+          "title": "Line Items",
+          "type": "array"
+        },
+        "headers": {
+          "buildship": { "index": 3 },
+          "description": "The detected invoice headers",
+          "title": "Headers",
+          "type": "object",
+          "properties": {}
+        },
+        "document": {
+          "buildship": { "index": 0 },
+          "description": "The full document response",
+          "title": "Document",
+          "type": "object",
+          "properties": {}
+        },
+        "text": { "buildship": { "index": 1 }, "description": "The document text", "title": "Text", "type": "string" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["location", "documentPath"],
+      "properties": {
+        "location": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "us", "value": "us" },
+              { "label": "eu", "value": "eu" }
+            ],
+            "index": 0,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "The processor location",
+          "title": "Location",
+          "type": "string",
+          "enum": ["us", "eu"]
+        },
+        "documentPath": {
+          "default": [],
+          "buildship": { "index": 1, "disableExpression": true, "sensitive": false, "multipleFiles": true },
+          "pattern": "",
+          "description": "The document to extract data from",
+          "title": "Document",
+          "type": "array"
+        }
+      }
+    },
+    "meta": {
+      "name": "Document AI Invoice Parser",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      },
+      "description": "Extract text and values from invoices such as invoice number, supplier name, invoice amount, tax amount, invoice date, due date.\n**To use this node you must first enable the \n[Document AI API](https://console.cloud.google.com/apis/library/documentai.googleapis.com?project=_)**",
+      "id": "document-ai-invoice-parser"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "path": "0.12.7", "@google-cloud/documentai": "8.2.0", "@google-cloud/storage": "7.8.0" },
+    "group": [
+      {
+        "uid": "document-ai",
+        "name": "Document AI",
+        "description": "Document processing with Document AI",
+        "id": "0IAjU2tekQHjibkvicor",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      }
+    ],
+    "live": true,
+    "category": ["Integrations"],
+    "syncIndex": {
+      "ranBy": "luis@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710782264, "_nanoseconds": 791000000 }
+    },
+    "deployToBucket": {
+      "ranBy": "luis@rowy.io.rowy",
+      "completedAt": { "_seconds": 1710782268, "_nanoseconds": 402000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 476000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicor",
+    "integrity": "v3:15dce863d4db0afcd66952af21b0d958",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-invoice-parser/3.1.0/build.cjs",
+    "id": "document-ai-invoice-parser",
+    "_libRef": {
+      "integrity": "v3:dfb9bbd741f7b4c212f4c5b50e838099",
+      "libNodeRefId": "@buildship/document-ai-invoice-parser",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-invoice-parser/3.0.0/build.cjs",
+      "version": "3.0.0"
+    },
+    "version": "3.1.0",
+    "script": "import { DocumentProcessorServiceClient } from \"@google-cloud/documentai\";\nimport { Storage } from \"@google-cloud/storage\";\nimport path from \"path\";\n\nfunction getMimeType(fileName) {\n  const ext = path.extname(fileName).substring(1).toLowerCase();\n  const supportedMimeTypes = {\n    pdf: \"application/pdf\",\n    gif: \"image/gif\",\n    tiff: \"image/tiff\",\n    jpg: \"image/jpeg\",\n    jpeg: \"image/jpeg\",\n    png: \"image/png\",\n    bmp: \"image/bmp\",\n    webp: \"image/webp\",\n  };\n\n  const mimeType = supportedMimeTypes[ext];\n\n  if (!mimeType) {\n    throw new Error(`Unsupported file type: ${ext}`);\n  }\n\n  return mimeType;\n}\n\nfunction getText(textAnchor, text) {\n  if (!textAnchor.textSegments || textAnchor.textSegments.length === 0) {\n    return '';\n  }\n\n  // First shard in document doesn't have startIndex property\n  const startIndex = textAnchor.textSegments[0].startIndex || 0;\n  const endIndex = textAnchor.textSegments[0].endIndex;\n\n  return text.substring(startIndex, endIndex);\n}\n\nexport default async function documentAI(\n  {  location, documentPath }: NodeInputs,\n  { logging }\n: NodeScriptOptions) : NodeOutput  {\n  const type = \"INVOICE_PROCESSOR\"\n  const processorName = `bs_${location}_invoice_parser_processor`\n  const client = new DocumentProcessorServiceClient();\n  const parent = `projects/${process.env.GCLOUD_PROJECT}/locations/${location}`;\n\n  // Check if the processor exists\n  const [processorList] = await client.listProcessors({\n    parent,\n    pageSize: 100,\n  });\n\n  const existing = processorList.find((p) => p.displayName === processorName);\n\n  let processorId;\n\n  if (!existing) {\n    // Create a new processor\n    const createRequest = {\n      parent,\n      processor: {\n        displayName: processorName,\n        type,\n      },\n    };\n\n    // Send the request to create the processor\n    const [response] = await client.createProcessor(createRequest);\n    processorId = response.name.split(\"/\").pop();\n  } else {\n    // Use the existing processor\n    processorId = existing.name.split(\"/\").pop();\n  }\n\n  const storage = new Storage();\n  const bucket = storage.bucket(process.env.BUCKET);\n  const file = bucket.file(documentPath);\n  const [exists] = await file.exists();\n\n  if (exists) {\n    const [buffer] = await file.download();\n    const data = buffer.toString(\"base64\");\n\n    try {\n      const mimeType = getMimeType(documentPath[0]); // Get the MIME type based on the file extension\n      const request = {\n        name: `${parent}/processors/${processorId}`,\n        rawDocument: {\n          content: data,\n          mimeType, \n        },\n      };\n\n      // Send the request and get the response\n      const [result] = await client.processDocument(request);\n\n       const { document } = result;\n        const { text } = document;\n\n     const invoiceDetails = {\n        lineItems: [],\n        headers: {}\n      };\n\n       document.entities.forEach(entity => {\n        if (entity.type === 'line_item') {\n          const lineItemData = {};\n          entity.properties.forEach(property => {\n            lineItemData[property.type] = property.mentionText;\n          });\n          invoiceDetails.lineItems.push(lineItemData);\n        } else {\n          switch(entity.type) {\n            case 'invoice_number':\n            case 'supplier_name':\n            case 'invoice_date':\n            case 'due_date':\n            case 'total_amount':\n            case 'tax_amount':\n              invoiceDetails.headers[entity.type] = entity.mentionText;\n              break;\n          }\n        }\n      });\n      \n     return { document, text, lineItems: invoiceDetails.lineItems, headers: invoiceDetails.headers };\n    } catch (err) {\n      throw err; \n    }\n  } else {\n    throw new Error(`File not found: ${documentPath}`);\n  }\n}\n",
+    "failCount": 7,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 44000000 },
+    "usageCounter": 49
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "",
+      "title": "output",
+      "type": "object",
+      "properties": {
+        "document": {
+          "buildship": { "index": 0 },
+          "description": "The full document response",
+          "title": "Document",
+          "type": "object",
+          "properties": {}
+        },
+        "text": { "buildship": { "index": 1 }, "description": "The document text", "title": "Text", "type": "string" }
+      }
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "path": "0.12.7", "@google-cloud/documentai": "8.2.0", "@google-cloud/storage": "7.8.0" },
+    "live": true,
+    "group": [
+      {
+        "uid": "document-ai",
+        "name": "Document AI",
+        "description": "Document processing with Document AI",
+        "id": "0IAjU2tekQHjibkvicor",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      }
+    ],
+    "category": ["Integrations"],
+    "inputs": {
+      "type": "object",
+      "required": ["document", "location", "processorName"],
+      "properties": {
+        "document": {
+          "default": [],
+          "buildship": { "index": 1, "disableExpression": true, "sensitive": false, "multipleFiles": true },
+          "pattern": "",
+          "description": "The document to extract data from",
+          "type": "array",
+          "title": "Document"
+        },
+        "location": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "us", "value": "us" },
+              { "label": "eu", "value": "eu" }
+            ],
+            "index": 0,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "The processor location",
+          "title": "Location",
+          "type": "string",
+          "enum": ["us", "eu"]
+        }
+      }
+    },
+    "meta": {
+      "name": "Document AI OCR",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      },
+      "description": "Identify and extract text in different types of documents. This processor allows you to identify and extract text, including handwritten text, from documents in over 200 language.\n**To use this node you must first enable the \n[Document AI API](https://console.cloud.google.com/apis/library/documentai.googleapis.com?project=_)**",
+      "id": "document-ai-ocr"
+    },
+    "syncIndex": {
+      "ranBy": "luis@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710792260, "_nanoseconds": 357000000 }
+    },
+    "deployToBucket": {
+      "ranBy": "luis@rowy.io.rowy",
+      "completedAt": { "_seconds": 1710792263, "_nanoseconds": 803000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 476000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicor",
+    "integrity": "v3:31f650a00fc9351fadf91ad288537f22",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-ocr/1.2.0/build.cjs",
+    "id": "document-ai-ocr",
+    "_libRef": {
+      "integrity": "v3:15a3821ee6bdb3eea702e555a4a7a58f",
+      "libNodeRefId": "@buildship/document-ai-ocr",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-ocr/1.1.0/build.cjs",
+      "version": "1.1.0"
+    },
+    "version": "1.2.0",
+    "script": "import { DocumentProcessorServiceClient } from \"@google-cloud/documentai\";\nimport { Storage } from \"@google-cloud/storage\";\nimport path from \"path\";\n\nfunction getMimeType(fileName) {\n  const ext = path.extname(fileName).substring(1).toLowerCase();\n  const supportedMimeTypes = {\n    pdf: \"application/pdf\",\n    gif: \"image/gif\",\n    tiff: \"image/tiff\",\n    jpg: \"image/jpeg\",\n    jpeg: \"image/jpeg\",\n    png: \"image/png\",\n    bmp: \"image/bmp\",\n    webp: \"image/webp\",\n  };\n\n  const mimeType = supportedMimeTypes[ext];\n\n  if (!mimeType) {\n    throw new Error(`Unsupported file type: ${ext}`);\n  }\n\n  return mimeType;\n}\n\nexport default async function documentAI(\n  {  location, document }: NodeInputs,\n  { logging }\n: NodeScriptOptions) : NodeOutput  {\n  const type = \"OCR_PROCESSOR\"\n  const processorName = `bs_${location}_ocr_processor`\n  const client = new DocumentProcessorServiceClient();\n  const parent = `projects/${process.env.GCLOUD_PROJECT}/locations/${location}`;\n\n  // Check if the processor exists\n  const [processorList] = await client.listProcessors({\n    parent,\n    pageSize: 100,\n  });\n\n  const existing = processorList.find((p) => p.displayName === processorName);\n\n  let processorId;\n\n  if (!existing) {\n    // Create a new processor\n    const createRequest = {\n      parent,\n      processor: {\n        displayName: processorName,\n        type,\n      },\n    };\n\n    // Send the request to create the processor\n    const [response] = await client.createProcessor(createRequest);\n    processorId = response.name.split(\"/\").pop();\n  } else {\n    // Use the existing processor\n    processorId = existing.name.split(\"/\").pop();\n  }\n\n  const storage = new Storage();\n  const bucket = storage.bucket(process.env.BUCKET);\n  const file = bucket.file(document);\n  const [exists] = await file.exists();\n\n  if (exists) {\n    const [buffer] = await file.download();\n    const data = buffer.toString(\"base64\");\n\n    logging.log({document})\n\n    try {\n      const mimeType = getMimeType(document[0]); // Get the MIME type based on the file extension\n      const request = {\n        name: `${parent}/processors/${processorId}`,\n        rawDocument: {\n          content: data,\n          mimeType, \n        },\n      };\n\n      // Send the request and get the response\n      const [result] = await client.processDocument(request);\n      return { document: result.document, text: result.document.text };\n    } catch (err) {\n      throw err; \n    }\n  } else {\n    throw new Error(`File not found: ${document}`);\n  }\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 45000000 },
+    "failCount": 49,
+    "usageCounter": 252
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "",
+      "title": "output",
+      "type": "object",
+      "properties": {
+        "licenseDetails": {
+          "buildship": { "index": 2 },
+          "description": "The detected license details",
+          "title": "License Details",
+          "type": "object",
+          "properties": {}
+        },
+        "document": {
+          "buildship": { "index": 0 },
+          "description": "The full document response",
+          "title": "Document",
+          "type": "object",
+          "properties": {}
+        },
+        "text": { "buildship": { "index": 1 }, "description": "The document text", "title": "Text", "type": "string" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["location", "documentPath"],
+      "properties": {
+        "location": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "us", "value": "us" },
+              { "label": "eu", "value": "eu" }
+            ],
+            "index": 0,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "The processor location",
+          "title": "Location",
+          "type": "string",
+          "enum": ["us", "eu"]
+        },
+        "documentPath": {
+          "default": [],
+          "buildship": { "index": 1, "disableExpression": true, "sensitive": false, "multipleFiles": true },
+          "pattern": "",
+          "description": "The document to extract data from",
+          "title": "Document",
+          "type": "array"
+        }
+      }
+    },
+    "meta": {
+      "name": "Document AI US License Parser",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      },
+      "description": "Extract fields from US Driver License, including names, dates, etc.\n**To use this node you must first enable the \n[Document AI API](https://console.cloud.google.com/apis/library/documentai.googleapis.com?project=_)**",
+      "id": "document-ai-us-license-parser"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "path": "0.12.7", "@google-cloud/documentai": "8.2.0", "@google-cloud/storage": "7.8.0" },
+    "live": true,
+    "group": [
+      {
+        "uid": "document-ai",
+        "name": "Document AI",
+        "description": "Document processing with Document AI",
+        "id": "0IAjU2tekQHjibkvicor",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgooglecloud.svg?alt=media&token=743cb460-558f-4b77-a536-9379c738b252&_gl=1*ugfgvc*_ga*NzgyMDk5NjMxLjE2OTY4NzE3ODU.*_ga_CW55HF8NVT*MTY5NjkzNjk2OC40LjEuMTY5NjkzNjk5OC4zMC4wLjA."
+      }
+    ],
+    "category": ["Integrations"],
+    "syncIndex": {
+      "ranBy": "luis@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710789274, "_nanoseconds": 698000000 }
+    },
+    "deployToBucket": {
+      "ranBy": "luis@rowy.io.rowy",
+      "completedAt": { "_seconds": 1710789278, "_nanoseconds": 725000000 }
+    },
+    "failCount": 2,
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 476000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicor",
+    "integrity": "v3:2c3a29d58e09c9a2677cbb8795802c90",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-us-license-parser/4.1.0/build.cjs",
+    "id": "document-ai-us-license-parser",
+    "_libRef": {
+      "integrity": "v3:55264e54df478210ab47f33058eeb0c8",
+      "libNodeRefId": "@buildship/document-ai-us-license-parser",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/document-ai-us-license-parser/4.0.0/build.cjs",
+      "version": "4.0.0"
+    },
+    "version": "4.1.0",
+    "script": "import { DocumentProcessorServiceClient } from \"@google-cloud/documentai\";\nimport { Storage } from \"@google-cloud/storage\";\nimport path from \"path\";\n\nfunction getMimeType(fileName) {\n  const ext = path.extname(fileName).substring(1).toLowerCase();\n  const supportedMimeTypes = {\n    pdf: \"application/pdf\",\n    gif: \"image/gif\",\n    tiff: \"image/tiff\",\n    jpg: \"image/jpeg\",\n    jpeg: \"image/jpeg\",\n    png: \"image/png\",\n    bmp: \"image/bmp\",\n    webp: \"image/webp\",\n  };\n\n  const mimeType = supportedMimeTypes[ext];\n\n  if (!mimeType) {\n    throw new Error(`Unsupported file type: ${ext}`);\n  }\n\n  return mimeType;\n}\n\nfunction getText(textAnchor, text) {\n  if (!textAnchor.textSegments || textAnchor.textSegments.length === 0) {\n    return '';\n  }\n\n  // First shard in document doesn't have startIndex property\n  const startIndex = textAnchor.textSegments[0].startIndex || 0;\n  const endIndex = textAnchor.textSegments[0].endIndex;\n\n  return text.substring(startIndex, endIndex);\n}\n\nexport default async function documentAI(\n  {  location, documentPath }: NodeInputs,\n  { logging }\n: NodeScriptOptions) : NodeOutput  {\n  const type = \"US_DRIVER_LICENSE_PROCESSOR\"\n  const processorName = `bs_${location}_us_license_parser_processor`\n  const client = new DocumentProcessorServiceClient();\n  const parent = `projects/${process.env.GCLOUD_PROJECT}/locations/${location}`;\n\n  // Check if the processor exists\n  const [processorList] = await client.listProcessors({\n    parent,\n    pageSize: 100,\n  });\n\n  const existing = processorList.find((p) => p.displayName === processorName);\n\n  let processorId;\n\n  if (!existing) {\n    // Create a new processor\n    const createRequest = {\n      parent,\n      processor: {\n        displayName: processorName,\n        type,\n      },\n    };\n\n    // Send the request to create the processor\n    const [response] = await client.createProcessor(createRequest);\n    processorId = response.name.split(\"/\").pop();\n  } else {\n    // Use the existing processor\n    processorId = existing.name.split(\"/\").pop();\n  }\n\n  const storage = new Storage();\n  const bucket = storage.bucket(process.env.BUCKET);\n  const file = bucket.file(documentPath);\n  const [exists] = await file.exists();\n\n  if (exists) {\n    const [buffer] = await file.download();\n    const data = buffer.toString(\"base64\");\n\n    try {\n      const mimeType = getMimeType(documentPath[0]); // Get the MIME type based on the file extension\n      const request = {\n        name: `${parent}/processors/${processorId}`,\n        rawDocument: {\n          content: data,\n          mimeType, \n        },\n      };\n\n      // Send the request and get the response\n      const [result] = await client.processDocument(request);\n\n       const { document } = result;\n        const { text } = document;\n\n      const licenseDetails = {};\n  \n      // Iterate through document entities and extract the relevant details\n      document.entities.forEach(entity => {\n        licenseDetails[entity.type] = entity.mentionText;\n      });\n\n   \n     return { document, text, licenseDetails };\n    } catch (err) {\n      throw err; \n    }\n  } else {\n    throw new Error(`File not found: ${documentPath}`);\n  }\n}\n",
+    "usageCounter": 34,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 45000000 }
+  }
+]
