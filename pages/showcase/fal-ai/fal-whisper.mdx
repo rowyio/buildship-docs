@@ -1,0 +1,43 @@
+---
+title: Speech - Whisper Speech to Text
+description: Converts speech to text using Fal AI's Whisper model
+---
+
+import Node from '/components/node';
+
+# Whisper Speech to Text
+The Whisper Speech to Text node leverages Fal AI's Whisper model to convert spoken language in audio files into written text. This is particularly useful for applications requiring transcription services, automated note-taking, or any scenario where audio content needs to be converted into a textual format.
+
+<Node id="@buildship/fal-whisper" version="1.1.0" />
+
+## Inputs
+The Whisper Speech to Text node requires the following inputs:
+
+1. **API Key**: This is a string input that represents your unique FAL API key. You can obtain your API key from the [Fal AI dashboard](https://www.fal.ai/dashboard/keys). This key is sensitive and should be kept secure.
+
+    ```json
+    {
+      "apiKey": "your_fal_api_key"
+    }
+    ```
+
+2. **Audio URL**: This is a string input that specifies the URL of the audio file that you want to transcribe. You can upload your audio file to the BuildShip Storage Manager and use the "Generate Public Download URL" feature to obtain this URL.
+
+    ```json
+    {
+      "audio_url": "https://example.com/path/to/your/audiofile.mp3"
+    }
+    ```
+
+## Output
+The output of the Whisper Speech to Text node is a string containing the transcribed text from the provided audio file. This output allows you to easily integrate the transcribed content into your applications or further processing workflows.
+
+```json
+{
+  "description": "The text transcribed from the audio file",
+  "title": "Transcribed Text",
+  "type": "string"
+}
+```
+
+By using the Whisper Speech to Text node, you can efficiently and accurately transform audio data into readable text, enhancing accessibility and enabling new functionalities in your projects.
