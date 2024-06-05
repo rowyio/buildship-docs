@@ -1,0 +1,55 @@
+---
+title: Workflow - Fetch Linear Issues
+description: Fetch all issues from Linear that match a given project name.
+---
+
+import Node from '/components/node';
+
+# Fetch Linear Issues
+The **Fetch Linear Issues** node retrieves a list of issues from Linear based on specified criteria, such as project name, assignee email, and issue status. This is particularly useful for project management, allowing you to filter and fetch relevant issues for streamlined tracking and reporting.
+
+<Node id="@buildship/fetch-linear-issues" version="1.1.0" />
+
+## Inputs
+This node accepts the following inputs to filter and fetch issues from Linear:
+
+- **API Key** (`string`): Your Linear API key. You can obtain it from the [Linear Dashboard](https://linear.app) under Settings > API.
+  - **Sample Input:** `"your_linear_api_key"`
+
+- **Project Name** (`string`): The name of the project for which to fetch issues.
+  - **Sample Input:** `"Project Alpha"`
+
+- **Assignee Email** (`string`, optional): The email of the person to whom the issues are assigned.
+  - **Sample Input:** `"assignee@example.com"`
+
+- **Status** (`string`, optional): The status of the issue on Linear.
+  - **Sample Input:** `"In Progress"`
+
+## Output
+The output of this node is an array of issues matching the specified filters. Each issue object includes:
+
+- **id** (`string`): The unique identifier of the issue.
+- **title** (`string`): The title of the issue.
+- **lastActivity** (`string`): The timestamp of the last activity on the issue.
+- **status** (`string`): The current status of the issue.
+
+The output format is as follows:
+
+```json
+[
+  {
+    "id": "issue_1_id",
+    "title": "Issue 1 Title",
+    "lastActivity": "2023-10-01T12:00:00Z",
+    "status": "In Progress"
+  },
+  {
+    "id": "issue_2_id",
+    "title": "Issue 2 Title",
+    "lastActivity": "2023-10-02T12:00:00Z",
+    "status": "Completed"
+  }
+]
+```
+
+This comprehensive output allows for efficient issue tracking and management based on the specified project, assignee, and status criteria.
