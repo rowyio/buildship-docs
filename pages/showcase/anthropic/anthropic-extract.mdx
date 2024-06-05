@@ -1,0 +1,56 @@
+---
+title: Integrations - LLM Extract
+description: Extract structured data from any web page using the LLM Extract node.
+---
+
+import Node from '/components/node';
+
+# LLM Extract
+The **LLM Extract** node is designed to extract structured data from any web page. Leveraging Anthropic's AI capabilities, this node can pull out specific fields from the content of a given URL, making it incredibly useful for web scraping and data extraction tasks.
+
+<Node id="@buildship/anthropic-extract" version="2.1.0" />
+
+## Inputs
+To use the **LLM Extract** node, you need to provide several inputs:
+
+1. **Mode**: This determines the extraction method. You can choose between `text` and `html`. The `Text` mode provides a concise context but omits web page semantics like URLs, while the `HTML` mode preserves HTML semantics.
+   - **Example**: `"mode": "html"`
+
+2. **API Key**: Your Anthropic API key, which you can obtain from the [Anthropic Dashboard](https://console.anthropic.com/).
+   - **Example**: `"apiKey": "your-anthropic-api-key"`
+
+3. **Selector**: An optional HTML selector to specify which part of the page to extract. If left empty, the entire body will be used.
+   - **Example**: `"selector": "div.content"`
+
+4. **Fields**: A comma-separated list of field names you want to extract.
+   - **Example**: `"fields": "title, price, description"`
+
+5. **URL**: The URL of the web page from which you want to extract information.
+   - **Example**: `"url": "https://example.com/product-page"`
+
+### Sample Input
+```json
+{
+  "mode": "html",
+  "apiKey": "your-anthropic-api-key",
+  "selector": "div.content",
+  "fields": "title, price, description",
+  "url": "https://example.com/product-page"
+}
+```
+
+## Output
+The **LLM Extract** node returns an array of objects containing the extracted fields. Each object corresponds to a specific entity found on the web page, with the fields populated as specified in the input.
+
+### Example Output
+```json
+[
+  {
+    "title": "Example Product",
+    "price": "$19.99",
+    "description": "This is an example product description."
+  }
+]
+```
+
+Using the **LLM Extract** node, you can effectively automate the process of extracting structured data from web pages, making your data collection tasks more efficient and accurate.
