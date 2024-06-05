@@ -1,0 +1,62 @@
+---
+title: Maps - Calculate Distance
+description: Document detailing the configuration and usage of the "Calculate Distance" workflow node.
+---
+
+import Node from '/components/node';
+
+# Calculate Distance
+The "Calculate Distance" node computes the distance between two addresses using Google's Directions API. This node is ideal for applications requiring route information and distance calculations based on different transportation modes.
+
+<Node id="@buildship/gmaps-calculate-distance" version="1.1.0" />
+
+## Inputs
+The node takes the following inputs:
+
+1. **API Key**:
+   - **Description**: This is your API Key for the Google Directions API. You can acquire an API key through the [Google Cloud Console](https://developers.google.com/maps/documentation/places/web-service/get-api-key).
+   - **Sample Input**: `"YOUR_GOOGLE_API_KEY"`
+   - **Type**: String
+
+2. **Origin**:
+   - **Description**: The starting address for the distance calculation.
+   - **Sample Input**: `"1600 Amphitheatre Parkway, Mountain View, CA"`
+   - **Type**: String
+
+3. **Destination**:
+   - **Description**: The ending address for the distance calculation.
+   - **Sample Input**: `"1 Infinite Loop, Cupertino, CA"`
+   - **Type**: String
+
+4. **Mode**:
+   - **Description**: The mode of transportation to use for the route calculation. Options include Driving, Walking, Bicycling, and Transit.
+   - **Sample Input**: `"driving"`
+   - **Type**: String
+   - **Enums**: ["driving", "walking", "bicycling", "transit"]
+
+## Output
+The node returns an object containing the calculated distance and duration:
+
+- **Distance**:
+  - **Distance Meters**:
+    - **Description**: The calculated distance in meters.
+    - **Type**: Number
+
+  - **Distance Readable**:
+    - **Description**: The human-readable distance, such as "1.2 km" or "0.7 miles".
+    - **Type**: String
+
+  - **Duration**:
+    - **Description**: The total duration of the trip.
+    - **Type**: String
+
+Example output:
+```json
+{
+  "distanceMeters": 12345,
+  "distanceReadable": "12.3 km",
+  "duration": "15 mins"
+}
+```
+
+This node utilizes Google's API to fetch route details, which are parsed and returned in a structured format, making it easy to integrate with various applications requiring distance computations.
