@@ -1,0 +1,57 @@
+---
+title: Supabase - Get Row
+description: Fetch a row from a Supabase table using the API URL, Key, table name, filter, and Authorization token.
+---
+
+import Node from '/components/node';
+
+# Get Row
+The **Get Row** node allows you to fetch a specific row from a Supabase table. By providing the necessary parameters, such as the API URL, API Key, the table name, and an optional filter, you can retrieve data directly from your Supabase instance in a seamless manner.
+
+<Node id="@buildship/get-supabase-table-row" version="1.1.1" />
+
+## Inputs
+Here’s a detailed list of inputs required for this node. Make sure you provide the correct values to fetch the desired data effectively:
+
+### table (string)
+The name of the table in your Supabase instance from which you wish to retrieve data.
+
+* **Sample Input**: `"users"`
+
+### supabaseUrl (string)
+Your Supabase project URL. You can get this from your Supabase Project API Reference [here](https://supabase.com/dashboard/projects).
+
+* **Sample Input**: `"https://xyzcompany.supabase.co"`
+
+### token (string)
+(Deprecated) This field is no longer needed or should be left empty.
+
+* **Sample Input**: `""` (just use an empty string)
+
+### supabaseKey (string)
+The API Key of your Supabase instance. Retrieve this from the Supabase Dashboard under Settings > API.
+
+* **Sample Input**: `"your-supabase-api-key"`
+
+### filter (string)
+The filter to select specific rows. You can use various filters like `eq`, `lt`, and `is` to narrow down the results. Leave this empty to fetch all rows.
+
+* **Sample Input**: 
+    - To get a row where `id` equals `1`: `"id=eq.1"`
+    - To get a row where `breed` equals `Beagle`: `"breed=eq.Beagle"`
+    - To use multiple filters: `"origin=eq.Germany&lifespan=gt.15"`
+
+## Output
+Upon successful execution, this node returns data from the specified row in the Supabase table. The output is an object containing the fetched row data.
+
+* **Sample Output**: 
+```json
+{
+    "id": 1,
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "created_at": "2023-10-02T00:00:00.000Z"
+}
+```
+
+This way, the **Get Row** node facilitates direct interaction with your Supabase data, enabling efficient and dynamic data retrieval through specified queries and filters.
