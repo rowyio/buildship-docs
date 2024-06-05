@@ -1,0 +1,41 @@
+---
+title: Maps - Calculate Distance
+description: Calculate the distance between two addresses using Google's Directions API.
+---
+
+import Node from '/components/node';
+
+# Calculate Distance
+The "Calculate Distance" node is used to determine the distance between two addresses using Google's Directions API. This node not only calculates the distance in meters but also provides a human-readable distance and the expected travel duration. **To use this node, you must first enable the [Directions API](https://console.cloud.google.com/apis/library/directions-backend.googleapis.com?project=_)**.
+
+<Node id="@buildship/gmaps-calculate-distance" version="1.1.0" />
+
+## Inputs
+The node takes the following inputs to perform the distance calculation:
+
+- **API Key** (string): Your Google API key, which you can obtain by following [these instructions](https://developers.google.com/maps/documentation/places/web-service/get-api-key).
+  - **Sample Input**: `"YOUR_GOOGLE_API_KEY"`
+- **Origin** (string): The starting address for the distance calculation.
+  - **Sample Input**: `"1600 Amphitheatre Parkway, Mountain View, CA"`
+- **Destination** (string): The ending address for the distance calculation.
+  - **Sample Input**: `"1 Infinite Loop, Cupertino, CA"`
+- **Mode** (string): The mode of transportation to be used. The possible values are:
+  - `driving`
+  - `walking`
+  - `bicycling`
+  - `transit`
+  - **Sample Input**: `"driving"`
+
+## Output
+The node returns a detailed result object comprising the following:
+
+- **Distance Meters** (number): The calculated distance in meters.
+  - **Example**: `123456`
+- **Distance Readable** (string): A human-readable distance such as "1.2 km" or "0.7 miles".
+  - **Example**: `"123 km"`
+- **Duration** (string): The expected duration to cover the distance.
+  - **Example**: `"1 hour 23 mins"`
+
+This comprehensive information allows users to understand not only the exact distance but also gives context to Travel duration and mode of transport.
+
+This node is integrated efficiently with Google's Directions API to bring accurate and real-time distance calculation which can be immensely useful for various applications ranging from logistics to travel planning.
