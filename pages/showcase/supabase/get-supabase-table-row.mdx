@@ -1,0 +1,43 @@
+---
+title: Supabase - Get Row
+description: Fetch a row from a Supabase table using the API URL, Key, table name, filter, and Authorization token.
+---
+
+import Node from '/components/node';
+
+# Get Row
+The "Get Row" node allows you to fetch specific rows from a Supabase table. This is particularly useful when you need to retrieve data based on certain criteria or filters from your Supabase instance. By providing the necessary Supabase credentials and filter parameters, you can easily query and obtain the desired row(s) from your database.
+
+<Node id="@buildship/get-supabase-table-row" version="1.1.1" />
+
+## Inputs
+To use the "Get Row" node, the following inputs are required:
+
+- **API Key (`supabaseKey`)**: The API Key of the Supabase instance. You can obtain it from your [Supabase Dashboard](https://supabase.com/dashboard/projects) under Settings > API. (e.g., `your-api-key`)
+- **API URL (`supabaseUrl`)**: The URL of your Supabase project. This can be found in your Supabase project's API Reference. (e.g., `https://your-supabase-project-url.supabase.co`)
+- **Table Name (`table`)**: The name of the table in the Supabase instance from which you want to fetch the row. (e.g., `users`)
+- **Filter (`filter`)**: The filter to select specific rows. You can use horizontal filters like `eq`, `lt`, and `is`. If you leave this empty, all rows will be retrieved. (e.g., `id=eq.1` to get a row with an `id` equal to `1`)
+
+### Sample Input
+```json
+{
+    "supabaseKey": "your-api-key",
+    "supabaseUrl": "https://your-supabase-project-url.supabase.co",
+    "table": "users",
+    "filter": "id=eq.1"
+}
+```
+
+## Output
+The output of the "Get Row" node is an object containing the data from the specified row in the Supabase table. This will include all the columns and their corresponding values for the fetched row(s).
+
+### Example Output
+```json
+{
+   "id": 1,
+   "name": "John Doe",
+   "email": "john.doe@example.com",
+   "age": 30
+}
+```
+The output data structure will vary depending on the table schema and the filter used to retrieve the row.
