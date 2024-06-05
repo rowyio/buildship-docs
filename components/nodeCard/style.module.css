@@ -1,0 +1,25 @@
+.nodeCard {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding: 6px;
+    background: #222425;
+}
+
+:global(.light) .nodeCard {
+    background-color: #eae9e9;
+}
+
+.image {
+    height: 28px;
+    width: 28px;
+    margin-right: 12px;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
