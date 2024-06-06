@@ -1,0 +1,27 @@
+---
+title: Translate Text - google-translate-text
+description: Learn how to use the Translate Text node to translate text to a specified language using the Google Translate API.
+---
+
+import Node from '/components/node';
+
+# Translate Text
+The **Translate Text** node allows you to translate text from one language to another using the Google Translate API. This node is particularly useful for applications that require multi-language support or instant translations.
+
+<Node id="@buildship/google-translate-text" version="1.2.0" />
+
+## Inputs
+The node requires two main inputs:
+1. **Text**: The text you want to translate.
+2. **Target Language**: The target language code into which the text should be translated ([ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)).
+
+### Sample Inputs
+- **Text**: `"Hello, world!"`
+- **Target Language**: `"es"` (for Spanish)
+
+## Output
+The node returns a single output:
+- **Translated Text**: The translated text in the specified language.
+
+### Example Output
+- **Translated Text**: `"¡Hola, mundo!"`
