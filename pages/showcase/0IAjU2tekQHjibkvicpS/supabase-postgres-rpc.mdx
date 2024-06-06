@@ -1,0 +1,49 @@
+---
+title: Database - Postgres RPC
+description: Initializes a Supabase client and calls a Postgres function as Remote Procedure Call.
+---
+
+import Node from '/components/node';
+
+# Postgres RPC
+The **Postgres RPC** node initializes a Supabase client and makes a remote procedure call (RPC) to a specified Postgres function. This node is ideal for executing custom PostgreSQL functions stored within a Supabase project, facilitating advanced data operations and logic encapsulated within your database.
+
+<Node id="@buildship/supabase-postgres-rpc" version="1.2.0" />
+
+## Inputs
+The node takes the following inputs:
+
+- **API URL**: This is your Supabase project URL. You can obtain it from your Supabase project dashboard API reference. 
+
+  **Sample Input**: `https://xyzcompany.supabase.co`
+
+- **API Key**: This is your Supabase service role key. These keys provide access to your Supabase project services and can be obtained from your Supabase project API reference.
+
+  **Sample Input**: `your-supabase-service-role-key`
+
+- **Function Name**: The name of the Postgres function you wish to call. Functions can be set up via your Supabase Dashboard under Database -> Functions.
+
+  **Sample Input**: `get_user_data`
+
+- **Arguments** (optional): JSON object containing the arguments to be passed to the function. Use this input if your function requires arguments.
+
+  **Sample Input**:
+  ```json
+  {
+    "row_id": 2
+  }
+  ```
+
+## Output
+The output of this node will be the response returned from the Postgres function. The response from the function can vary based on its implementation but is generally returned as an object.
+
+**Output Example**:
+```json
+{
+  "id": 2,
+  "name": "John Doe",
+  "created_at": "2023-10-06T12:00:00Z"
+}
+```
+
+This node efficiently integrates custom SQL logic and operations using remote procedure calls, augmenting the capabilities of your Supabase-managed database.
