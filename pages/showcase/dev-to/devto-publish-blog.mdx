@@ -1,0 +1,56 @@
+---
+title: Dev.to - Publish Blog
+description: Publish a blog post to Dev.to using this workflow node
+---
+
+import Node from '/components/node';
+
+# Publish Blog
+The **Publish Blog** node allows you to programmatically publish a blog post to Dev.to. You can specify the title, body, OG image, canonical URL, and other attributes of your blog post, making it easy to automate your content publishing workflow.
+
+<Node id="@buildship/devto-publish-blog" version="1.3.0" />
+
+## Inputs
+This node accepts several inputs to define the details of the blog post:
+
+- **Title**: The title of the blog post. *(Type: string)*
+- **Converted Richtext**: Not specifically described in the JSON or required by the code. *(Type: string)*
+- **OG Image**: The OG (Open Graph) image URL for the blog post. *(Type: string)*
+- **API Key**: Your Dev.to API Key, which you can obtain from the [Dev.to settings page](https://dev.to/settings/extensions). *(Type: string)*
+- **Body**: The main content of the blog post in markdown format.
+  ```markdown
+  ## Hello World  
+  ### This is my first post published through Forem API!
+  ```
+  *(Type: string)*
+- **Summary**: A short summary of the blog post. *(Type: string)*
+- **Canonical URL**: The URL if the original blog post was published elsewhere. *(Type: string)*
+- **Tags**: Tags for the blog post as a comma-separated string.
+  ```plaintext
+  ['javascript', 'typescript', 'react', 'node']
+  ```
+  *(Type: string)*
+
+## Output
+Upon a successful operation, the node outputs an object containing the following:
+
+- **Success**: A boolean indicating the success status of the publish operation.
+- **Message**: A string providing a message about the result of the publish operation.
+
+Example success output:
+```json
+{
+  "success": true,
+  "message": "Successfully published to Dev.to: Your Blog Title"
+}
+```
+
+Example error output:
+```json
+{
+  "success": false,
+  "message": "Error in publishing: [Error Details]"
+}
+```
+
+This output provides clear and concise information about the status of your blog post's publication to Dev.to.
