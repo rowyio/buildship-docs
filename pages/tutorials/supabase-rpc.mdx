@@ -1,0 +1,81 @@
+---
+title: Supabase Postgres RPC
+description:
+  The Supabase Postgres RPC node allows you to call Postgres functions in your Supabase database as Remote Procedure
+  Calls (RPCs).
+---
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import supabaseRpcOg from 'public/tutorial/supabase-rpc-og.png';
+import supabaseRpc1 from 'public/tutorial/supabase-rpc-1.png';
+import supabaseRpc2 from 'public/tutorial/supabase-rpc-2.png';
+
+# Supabase Postgres RPC
+
+The Supabase Postgres RPC node **allows you to call Postgres functions in your Supabase database as Remote Procedure
+Calls (RPCs)**. This enables you to execute logic stored in your database from anywhere, making it useful for scenarios
+where the logic rarely changes, such as password resets or data updates.
+
+<Image src={supabaseRpcOg} alt='Supabase Postgres RPC' width={1200} />
+
+## Setting up a Supabase Postgres Function
+
+Before you can call a Postgres function using the Supabase Postgres RPC node, you need to set up the function in your
+Supabase project. Follow these steps:
+
+- **STEP 1:** Open the SQL editor in your Supabase project.
+- **STEP 2:** Use the `CREATE OR REPLACE FUNCTION` statement to define your function.
+- **STEP 3:** Specify the function name, parameters, return type, and language (e.g., SQL or plpgsql).
+- **STEP 4:** Write the function body between the `$$` delimiters.
+- **STEP 5:** Execute the SQL statement to create the function.
+
+<Image src={supabaseRpc1} alt='Supabase Postgres RPC' width={1200} />
+
+### Sample Function
+
+Here's an example of a simple function that takes in the `row_id` as an argument and increments the `lifespan` field by
+`1` in the "`Dog Breeds`" table:
+
+```sql
+create or replace function getBreed (row_id int)
+returns void as
+$$
+    update "Dog Breeds"
+    set lifespan = lifespan + 1
+    where id = row_id;
+$$
+language sql volatile;
+```
+
+<Callout>
+  For more detailed instructions on setting up database functions in Supabase, refer to the dedicated documentation
+  [here](https://supabase.com/docs/guides/database/functions).
+</Callout>
+
+## Invoking the Supabase Postgres Function
+
+Once you have set up the Postgres function in your Supabase project, you can invoke it using the Supabase Postgres RPC
+node in your BuildShip workflow. Here are the inputs required by the node:
+
+- **API Key**: Your Supabase API Key. You can obtain this from the API Reference section in your Supabase Project
+  Dashboard. [Learn more here](/tutorials/supabase-crud#api-key-and-url).
+
+- **API URL**: The URL of your Supabase project. You can find this in the API Reference section of your Supabase Project
+  Dashboard. [Learn more here](/tutorials/supabase-crud#api-key-and-url).
+
+- **Function Name**: The name of the Postgres function you want to call. For example: `getBreed`.
+
+- **Arguments (optional)**: The arguments to pass to the function, if required. For example, if your function expects a
+  `row_id` argument, you can provide it as an object:
+
+```json
+{
+  "row_id": 2
+}
+```
+
+<Image src={supabaseRpc2} alt='Supabase Postgres RPC' width={1200} />
+
+So, in this example, the Supabase Postgres RPC node will call the `getBreed` function in your Supabase database, passing
+in `2` as the `row_id` argument. **The response from the function will be returned as the output of the node.**
