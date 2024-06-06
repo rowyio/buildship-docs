@@ -1,0 +1,34 @@
+---
+title: Mailchimp - Add Email to Mailing List
+description: Add a subscriber email to a Mailchimp List.
+---
+
+import Node from '/components/node';
+
+# Add Email to Mailing List
+The **Add Email to Mailing List** node enables you to add a subscriber's email to a specific Mailchimp list programmatically. This node connects to the Mailchimp API and facilitates the addition of new subscribers to your mailing list, ensuring a streamlined process for managing your audience.
+
+<Node id="@buildship/mailchimp-add-subscriber" version="1.2.0" />
+
+## Inputs
+The node accepts the following inputs:
+
+- **API Key**: The Mailchimp API Key. You can obtain this from your Mailchimp account under [Profile > Extras > API Keys](https://us9.admin.mailchimp.com/account/api/). This key is required to authenticate requests to the Mailchimp API. 
+  - **Sample Input**: `abcd1234apikey`
+
+- **List ID**: The unique identifier of the Mailchimp list to which you want to add the subscriber. You can find this ID in your MailChimp Dashboard under Audience > Manage Audience > Settings.
+  - **Sample Input**: `1a2b3c4d5e`
+
+- **Data Center**: The data center for your Mailchimp account. This is part of the URL in your Mailchimp API endpoint. For example, if your URL is `https://us6.mailchimp.com/account/api/`, then your data center is `us6`.
+  - **Sample Input**: `us6`
+
+- **Email**: The email address of the subscriber you want to add to the list.
+  - **Sample Input**: `newsubscriber@example.com`
+
+## Output
+Upon successful execution, the node returns a confirmation message indicating that the email was added to the Mailchimp list. If there is an error in adding the email, it logs the error message.
+
+- **Successful Output**: `Email added to your Mailchimp list: newsubscriber@example.com`
+- **Error Output**: `Error adding this email to the Mailchimp list: newsubscriber@example.com`
+
+This node ensures that your email list in Mailchimp is up-to-date with new subscribers, enhancing your audience management workflows.
