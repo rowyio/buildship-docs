@@ -1,0 +1,67 @@
+---
+title: Posthog - Capture Events
+description: Documentation for the "Capture Events" workflow node which sends an event to Posthog along with user details and custom attributes.
+---
+
+import Node from '/components/node';
+
+# Capture Events
+The "Capture Events" node is used to send event data to Posthog, a product analytics tool. This node captures specified events, along with details of the user who triggered the event and any custom attributes, and sends this data to Posthog for analytics purposes.
+
+<Node id="@buildship/posthog-capture-events" version="1.2.0" />
+
+## Inputs
+
+The node requires several inputs to function correctly:
+
+### API Key
+- **Description:** Your Posthog API Key, necessary for authenticating requests to the Posthog API. 
+- **Type:** `string`
+- **Sample Input:** `your_posthog_api_key`
+- **Important:** You can obtain your API Key from the [Posthog Account Settings](https://app.posthog.com/me/settings). [Learn more](https://posthog.com/docs/api#how-to-obtain-a-personal-api-key).
+
+### Host
+- **Description:** Your PostHog host URL. If not specified, it defaults to `https://app.posthog.com`.
+- **Type:** `string`
+- **Sample Input:** `https://app.posthog.com`
+
+### Event
+- **Description:** The event name that you wish to send to Posthog.
+- **Type:** `string`
+- **Sample Input:** `backend_deploy_fail`
+
+### User
+- **Description:** An object containing user information, specifically the unique User ID (`uid`). This is crucial for associating events with the correct user.
+- **Type:** `object`
+- **Sample Input:**
+  ```json
+  {
+      "uid": "unique-user-id",
+      "email": "user@gmail.com",
+      "name": "User Name"
+  }
+  ```
+
+### Custom Attributes
+- **Description:** Any additional attributes you'd like to associate with the event. This can include extra metadata or contextual information.
+- **Type:** `object`
+- **Sample Input:**
+  ```json
+  {
+    "login_type": "email",
+    "is_free_trial": true
+  }
+  ```
+
+## Output
+
+The node returns a simple success status indicating whether the event was sent successfully to Posthog.
+
+- **Output:**
+  ```json
+  {
+    "success": true
+  }
+  ```
+
+If the user identifier (`uid`) is missing or invalid, the event will not be sent, and an error will be logged. Ensure that the `uid` property within the User object is populated correctly to avoid any issues.
