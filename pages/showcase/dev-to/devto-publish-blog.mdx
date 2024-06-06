@@ -1,0 +1,60 @@
+---
+title: Integration - Publish Blog
+description: Documentation for the Publish Blog node which automates the process of publishing a blog post to Dev.to using the Dev.to API.
+---
+
+import Node from '/components/node';
+
+# Publish Blog
+The "Publish Blog" node automates the process of publishing a blog post to Dev.to using the Dev.to API. This node takes various inputs such as the blog title, content, summary, and other optional fields, and publishes the content to Dev.to.
+
+<Node id="@buildship/devto-publish-blog" version="1.3.0" />
+
+## Inputs
+The node requires the following inputs to function:
+
+- **API Key**: Your Dev.to API Key, which you can get from the [Dev.to settings page](https://dev.to/settings/extensions).
+  - **Type**: `string`
+  - **Sample Input**: `"your-devto-api-key"`
+
+- **Title**: The title of the blog post.
+  - **Type**: `string`
+  - **Sample Input**: `"My First Blog Post"`
+
+- **Body**: The body content of the blog post in Markdown format. This can be written using Markdown syntax to format the blog post.
+  - **Type**: `string`
+  - **Sample Input**:
+    ```markdown
+    ## Hello World  
+    ### This is my first post published through Forem API!
+    ```
+
+- **Canonical URL**: If the blog has been published elsewhere, add the original URL here (optional).
+  - **Type**: `string`
+  - **Sample Input**: `"https://originalblog.com/my-first-post"`
+
+- **OG Image**: The OG (Open Graph) image URL for the blog post.
+  - **Type**: `string`
+  - **Sample Input**: `"https://imageurl.com/og-image.jpg"`
+
+- **Summary**: A summary of the blog post.
+  - **Type**: `string`
+  - **Sample Input**: `"This is a brief summary of the blog post."`
+
+- **Tags**: Tags for the blog post, provided as a comma-separated string.
+  - **Type**: `string`
+  - **Sample Input**: `"[ 'javascript', 'typescript', 'react', 'node' ]"`
+
+## Output
+The node returns the result of the publishing operation. It provides two primary pieces of information:
+
+- **Success**: A boolean indicating whether the blog post was successfully published.
+- **Message**: A string providing additional information about the result of the operation.
+
+### Sample Output
+```json
+{
+  "success": true,
+  "message": "Successfully published to Dev.to: My First Blog Post"
+}
+```
