@@ -1,0 +1,42 @@
+---
+title: Integrations - Get Site Metadata
+description: Documentation for the "Get Site Metadata" node from Google Search Console using Buildship.
+---
+
+import Node from '/components/node';
+
+# Get Site Metadata
+The **Get Site Metadata** node allows you to fetch metadata for a given site URL from Google Search Console. This enables you to retrieve important information like the site's latest update time, type of update, and the update URL.
+
+<Node id="@buildship/gsearch-get-site-metadata" version="1.2.0" />
+
+## Inputs
+The **Get Site Metadata** node takes the following input:
+
+- **Site URL** (`siteUrl`): This is the base URL of the website for which you want to fetch metadata.
+
+### Sample Input
+```
+https://docs.buildship.com/basics/trigger
+```
+
+## Output
+The output of the node is an object containing site metadata information. The structure of the output is as follows:
+
+- **URL** (`url`): The base URL of the website.
+- **Latest Update** (`latestUpdate`): An object containing details about the latest update on the site.
+  - **Notify Time** (`notifyTime`): Timestamp of the latest update notification.
+  - **Type** (`type`): Type of the latest update.
+  - **URL** (`url`): URL related to the latest update.
+
+### Sample Output
+```json
+{
+  "url": "https://docs.buildship.com/basics/trigger",
+  "latestUpdate": {
+    "notifyTime": "2023-10-01T12:00:00Z",
+    "type": "update",
+    "url": "https://docs.buildship.com/basics/update-log"
+  }
+}
+```
