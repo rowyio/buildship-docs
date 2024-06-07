@@ -1,0 +1,41 @@
+---
+title: Firebase - Update Document
+description: Updates an entire Firestore document with a given object.
+---
+
+import Node from '/components/node';
+
+# Update Document
+This node is used to update an entire Firestore document with a new object. By leveraging the Firestore API, it allows you to overwrite the specified document with new data, effectively updating its contents. This action requires the Firestore project ID and the document path within the Firestore database.
+
+<Node id="@buildship/update-firestore-document" version="1.2.0" />
+
+## Inputs
+To use this node, you'll need to provide the following inputs:
+
+1. **Project ID**:
+   - **Description**: The ID of your Firestore project. This requires additional steps for granting Service Account permissions. Learn how to get your own Firestore Project ID and add Service Account Permissions from our [detailed setup blog](https://docs.buildship.com/tutorials/firebase-project).
+   - **Type**: string
+   - **Sample Input**: `my-firestore-project-id`
+
+2. **Document Path**:
+   - **Description**: The path of the Firestore document to update. For example, `collection/document`.
+   - **Type**: string
+   - **Sample Input**: `users/user123`
+
+3. **New Document**:
+   - **Description**: The new document object with updated values.
+   - **Type**: object
+   - **Sample Input**: 
+     ```json
+     {
+       "name": "John Doe",
+       "email": "johndoe@example.com",
+       "age": 30
+     }
+     ```
+
+## Output
+The node returns the result of the update operation as an object. This object confirms whether the document has been successfully updated in Firestore.
+
+By using these specified inputs and observing the output, you can seamlessly update documents within your Firestore database.
