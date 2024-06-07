@@ -1,0 +1,29 @@
+---
+title: Utilities - Youtube Caption Extractor
+description: Extracts auto-generated subtitles and video details from a YouTube video specified by its URL.
+---
+
+import Node from '/components/node';
+
+# Youtube Caption Extractor
+The **Youtube Caption Extractor** node allows users to extract auto-generated subtitles and detailed information from a YouTube video. By providing the URL of the YouTube video and the desired language for the captions, this node fetches the relevant subtitles and detailed metadata such as video title, description, and more.
+
+<Node id="@buildship/youtube-caption-extractor" version="1.3.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **YouTube Video URL** (`videoUrl`): The URL of the YouTube video from which you want to extract subtitles and details. This input is required.
+  - Example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+
+- **Language** (`lang`): The desired language for the subtitles. The default is `'en'` for English.
+  - Example: `en`
+
+## Output
+Upon successful execution, the node returns an object containing the extracted captions and video details:
+
+- **Subtitles** (`subtitles`): An array of subtitle objects extracted from the video.
+  
+- **Video Details** (`videoDetails`): An object containing detailed information about the video, such as title, description, and more. 
+
+This structured output enables other nodes and workflows to easily process and utilize the extracted captions and video metadata.
