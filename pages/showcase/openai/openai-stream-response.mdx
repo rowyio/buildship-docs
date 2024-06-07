@@ -1,0 +1,41 @@
+---
+title: Integrations - Stream Response
+description: Send a chat message to OpenAI and stream the response back to the client.
+---
+
+import Node from '/components/node';
+
+# Stream Response
+The **Stream Response** node allows you to send a chat message to OpenAI and stream the response back to the client in real-time. It sets the context using a system prompt and processes the user's message to generate a coherent reply using the specified OpenAI model. This node is particularly useful for creating interactive chatbots or real-time conversational applications.
+
+<Node id="@buildship/openai-stream-response" version="1.2.0" />
+
+## Inputs
+The Stream Response node accepts the following inputs which are necessary to communicate with the OpenAI API and get the response stream:
+
+- **API Key**: The OpenAI API Key required to authenticate and authorize your requests.
+  - *Type:* string
+  - *Example:* your-openai-api-key
+  
+- **System Prompt**: The initial system prompt that sets the context for the conversation.
+  - *Type:* string
+  - *Example:* The assistant is helpful and knowledgeable.
+  
+- **User Request**: The user's message that needs to be processed by the OpenAI model.
+  - *Type:* string
+  - *Example:* What is the weather like today?
+  
+- **Temperature**: The temperature value that controls the randomness of the model's output. A lower temperature will make the output more deterministic.
+  - *Type:* number
+  - *Default:* 0.7
+  
+- **Model**: The specific OpenAI model to use for generating responses. Available options are `gpt-4-1106-preview`, `gpt-4`, and `gpt-3.5-turbo`.
+  - *Type:* string
+  - *Default:* gpt-3.5-turbo
+
+## Output
+Upon successful execution, the Stream Response node returns the generated response from the OpenAI model in the form of a string. The response is streamed back to the client, allowing for real-time interaction.
+
+- **Type:** string
+- **Example:** "The weather today is sunny with a high of 75°F and a low of 55°F."
+
