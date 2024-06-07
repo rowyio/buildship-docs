@@ -1,0 +1,96 @@
+---
+title: Webflow - Update Product & SKU
+description: Updating a Product and SKU in Webflow.
+---
+
+import Node from '/components/node';
+
+# Update Product & SKU
+This node updates a product and its SKU (Stock Keeping Unit) in the Webflow e-commerce platform.
+
+<Node id="@buildship/oauth-webflow-update-product" version="1.1.0" />
+
+## Inputs
+To use this node effectively, you'll need to provide the following details:
+
+### `siteId`
+**Type:** `string`
+
+The unique identifier for a Site. You can obtain this ID by using the **List Sites** node to get a list of all available sites for your Webflow project.
+
+### `productId`
+**Type:** `string`
+
+The unique identifier for a Product. Use the **List Products and SKUs** node to list out the products available for the site.
+
+### `product`
+**Type:** `object`
+
+The information about the product you wish to update. This includes fields such as name, slug, description, shippable status, SKU properties, categories, tax category, default SKU, and product type. 
+
+**Sample Input:**
+```json
+{
+  "fieldData": {
+    "name": "T-Shirt",
+    "slug": "t-shirt",
+    "description": "A plain cotton t-shirt.",
+    "shippable": true,
+    "sku-properties": [
+     {
+       "id": "Color",
+       "name": "Color",
+       "enum": [{"id": "royal-blue", "name": "Royal Blue", "slug": "royal-blue"}]
+     }
+    ],
+    "categories": ["category1"],
+    "tax-category": "standard-taxable",
+    "default-sku": "66072fb71b89448912e2681c",
+    "ec-product-type": "ff42fee0113744f693a764e3431a9cc2"
+  }
+}
+```
+
+### `sku`
+**Type:** `object`
+
+The SKU object describing the specific Stock Keeping Unit properties such as price, quantity, and inventory tracking.
+
+**Sample Value:**
+```json
+{
+  "fieldData": {
+    "price": {"value": 100, "unit": "USD"},
+    "compare-at-price": {"value": 100, "unit": "USD"},
+    "ec-sku-subscription-plan": {"interval": "month", "frequency": 1, "trial": 7},
+    "track-inventory": false,
+    "name": "Blue T-shirt",
+    "slug": "t-shirt-blue",
+    "ec-sku-billing-method": "subscription",
+    "quantity": 10,
+    "newKey": "New Value"
+  }
+}
+```
+
+### `publishStatus`
+**Type:** `string`
+**Default:** `staging`
+
+Indicate whether your product should be set as `staging` or `live`. Options include:
+- `staging`
+- `live`
+
+## Output
+Upon successfully updating the product and SKU, the node returns an object containing various details about the updated product. Key fields include:
+
+- **id:** The unique identifier of the updated product.
+- **lastUpdated:** The date and time when the product was last updated.
+- **cmsLocaleId:** The locale ID of the product.
+- **fieldData:** Detailed information about the product fields, such as name, description, sku properties, etc.
+- **isArchived:** Indicator of whether the product is archived.
+- **isDraft:** Indicator of whether the product is a draft.
+- **lastPublished:** The date and time when the product was last published.
+- **createdOn:** The date and time when the product was created.
+
+This output provides a comprehensive overview of the updated product's status and details after the update has been performed.
