@@ -118,7 +118,7 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Notion Connection preview](../public/tutorial/notionOG.png)</>
   </ShowcaseCard>
-    <ShowcaseCard
+  <ShowcaseCard
     title='Vector Database'
     href='./tutorials/vector-applications'
     onClick={() => {
@@ -129,6 +129,18 @@ Step by step guided tutorial for powerful usecases and examples.
     }}
   >
     <>![Vector Database Applications preview](../public/tutorial/vectorOG.png)</>
+  </ShowcaseCard>
+  <ShowcaseCard
+    title='Supabase Postgres RPC'
+    href='./tutorials/supabase-rpc'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'supabase-rpc',
+      });
+    }}
+  >
+    <>![Supabase Postgres Remote Procedure Call preview](../public/tutorial/supabase-rpc-og.png)</>
   </ShowcaseCard>
 </Cards>
 
