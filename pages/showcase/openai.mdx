@@ -1,0 +1,22 @@
+import nodes from './openai/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# OpenAI
+
+BuildShip integrates with OpenAI, enabling you to leverage powerful AI models like GPT-3 within your workflows. You can
+generate human-like text, perform language translation, sentiment analysis, and other natural language tasks. This
+integration makes it simple to incorporate advanced AI capabilities into your applications and automations.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/openai/${node.meta.id}`}
+    />
+  ))}
+</Cards>

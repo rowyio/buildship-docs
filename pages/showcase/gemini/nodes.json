@@ -1,0 +1,57 @@
+[
+  {
+    "meta": {
+      "name": "Generate Embedding",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgemini.svg?alt=media&token=b81e9afb-b4a9-4136-a2ce-bca08c2a97e8"
+      },
+      "description": "Generate Embeddings from text input and represent text (words, sentences, and blocks of text) in a vectorized formusing Gemini AI",
+      "id": "gemini-generate-embeddings"
+    }
+  },
+  {
+    "meta": {
+      "name": "Multimodal",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgemini.svg?alt=media&token=b81e9afb-b4a9-4136-a2ce-bca08c2a97e8"
+      },
+      "description": "Use Google's Gemini AI to generate text from text-only or text-and-image input. [Full documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-multimodal).",
+      "id": "gemini-multimodal"
+    }
+  },
+  {
+    "meta": {
+      "name": "Count Tokens in Prompt",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgemini.svg?alt=media&token=b81e9afb-b4a9-4136-a2ce-bca08c2a97e8"
+      },
+      "description": "When using long prompts, it might be useful to count tokens before sending any content to the model.",
+      "id": "gemini-prompt-tokens"
+    }
+  },
+  {
+    "meta": {
+      "name": "Stream Response",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgemini.svg?alt=media&token=b81e9afb-b4a9-4136-a2ce-bca08c2a97e8"
+      },
+      "description": "Generates a stream of response text using Google's Generative AI with a given prompt",
+      "id": "gemini-stream-response"
+    }
+  },
+  {
+    "meta": {
+      "name": "Gemini Text Generator",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgemini.svg?alt=media&token=b81e9afb-b4a9-4136-a2ce-bca08c2a97e8"
+      },
+      "description": "Make an API call to the Generative Language Model endpoint",
+      "id": "gemini-text-generator"
+    }
+  }
+]

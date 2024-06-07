@@ -1,0 +1,24 @@
+[
+  {
+    "meta": {
+      "name": "Create Linear Issue",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Flinear-logos-id-IUp6ZRH.png?alt=media&token=26b546ed-7685-46bb-b0de-c0543b31be28"
+      },
+      "description": "Create an issue in Linear using the provided API key, title and description.",
+      "id": "create-linear-issue"
+    }
+  },
+  {
+    "meta": {
+      "name": "Fetch Linear Issues",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Flinear-logos-id-IUp6ZRH.png?alt=media&token=26b546ed-7685-46bb-b0de-c0543b31be28"
+      },
+      "description": "Fetch all issues from Linear that match a given project name",
+      "id": "fetch-linear-issues"
+    }
+  }
+]

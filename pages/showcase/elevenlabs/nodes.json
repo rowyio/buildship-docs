@@ -1,0 +1,299 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "description": "The public URL of the audio file saved to Google Cloud Storage",
+      "type": "string",
+      "title": "Public URL"
+    },
+    "meta": {
+      "name": "Text to Speech",
+      "icon": {
+        "type": "URL",
+        "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/elevenlabs.jpeg"
+      },
+      "description": "Converts text to speech using ElevenLabs API and saves the output to Google Cloud Storage",
+      "id": "elevenlabs-tts"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "ElevenLabs",
+        "description": "Nodes for utilizing ElevenLabs Text to Speech capabilities in your workflow",
+        "id": "0IAjU2tekQHjibkvicp7",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/elevenlabs.jpeg"
+      }
+    ],
+    "live": true,
+    "dependencies": { "@google-cloud/storage": "7.6.0", "axios": "1.6.2" },
+    "t": 112,
+    "syncAllAtOnce": "887",
+    "integrations": [],
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1707145988, "_nanoseconds": 958000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1707145995, "_nanoseconds": 803000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicp7",
+    "id": "elevenlabs-tts",
+    "_libRef": {
+      "integrity": "v3:96c3e33d2d07f61e907f83203f293798",
+      "libNodeRefId": "@buildship/elevenlabs-tts",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/elevenlabs-tts/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocILoI_sh5F9cCDm0zCgmFHLhF-kASZuKopCtfLTm5y5=s96-c",
+      "uid": "DLmyZbtRNYQqq45Gjcxfz9E3uBx1",
+      "displayName": "Gaurav Chadha",
+      "email": "gaurav@rowy.io.rowy",
+      "timestamp": { "_seconds": 1717072633, "_nanoseconds": 533000000 }
+    },
+    "integrity": "v3:9ffd735c711edd58ce2b8eca91f507be",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/elevenlabs-tts/1.1.1/build.cjs",
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "The name of the mp3 file.\n\nEXAMPLE: `testing.mp3` or `audioTTS/testing.mp3`.",
+          "title": "File Name",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "The API key for ElevenLabs. (Get your API key from the [ElevenLabs Developer Dashboard](https://elevenlabs.io/). Login / Signup and click on Profile Settings to reveal your API Key.)",
+          "type": "string",
+          "title": "API Key"
+        },
+        "voice_id": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "Rachel", "value": "21m00Tcm4TlvDq8ikWAM" },
+              { "label": "Clyde", "value": "2EiwWnXFnvU5JabPnv8n" },
+              { "label": "Domi", "value": "AZnzlk1XvdvUeBnXmlld" },
+              { "label": "Dave", "value": "CYw3kZ02Hs0563khs1Fj" },
+              { "label": "Fin", "value": "D38z5RcWu1voky8WS1ja" },
+              { "label": "Bella", "value": "EXAVITQu4vr4xnSDxMaL" },
+              { "label": "Antoni", "value": "ErXwobaYiN019PkySvjV" },
+              { "label": "Thomas", "value": "GBv7mTt0atIp3Br8iCZE" },
+              { "label": "Charlie", "value": "IKne3meq5aSn9XLyUdCD" },
+              { "label": "Emily", "value": "LcfcDJNUP1GQjkzn1xUU" },
+              { "label": "Elli", "value": "MF3mGyEYCl7XYWbV9V6O" },
+              { "label": "Callum", "value": "N2lVS1w4EtoT3dr4eOWO" },
+              { "label": "Patrick", "value": "ODq5zmih8GrVes37Dizd" },
+              { "label": "Harry", "value": "SOYHLrjzK2X1ezoPC6cr" },
+              { "label": "Liam", "value": "TX3LPaxmHKxFdv7VOQHJ" },
+              { "label": "Dorothy", "value": "ThT5KcBeYPX3keUQqHPh" },
+              { "label": "Josh", "value": "TxGEqnHWrfWFTfGW9XjX" },
+              { "label": "Arnold", "value": "VR6AewLTigWG4xSOukaG" },
+              { "label": "Charlotte", "value": "XB0fDUnXU5powFXDhCwa" },
+              { "label": "Matilda", "value": "XrExE9yKIg1WjnnlVkGX" },
+              { "label": "Matthew", "value": "Yko7PKHZNXotIFUBG7I9" },
+              { "label": "James", "value": "ZQe5CZNOzWyzPSCn5a3c" },
+              { "label": "Joseph", "value": "Zlb1dXrM653N07WRdFW3" },
+              { "label": "Jeremy", "value": "bVMeCyTHy58xNoL34h3p" },
+              { "label": "Michael", "value": "flq6f7yk4E4fJM5XTYuZ" },
+              { "label": "Ethan", "value": "g5CIjZEefAph4nQFvHAz" },
+              { "label": "Gigi", "value": "jBpfuIE2acCO8z3wKNLl" },
+              { "label": "Freya", "value": "jsCqWAovK2LkecY7zXl4" },
+              { "label": "Grace", "value": "oWAxZDx7w5VEj9dCyTzz" },
+              { "label": "Daniel", "value": "onwK4e9ZLuTAKqWW03F9" },
+              { "label": "Serena", "value": "pMsXgVXv3BLzUgSXRplE" },
+              { "label": "Adam", "value": "pNInz6obpgDQGcFmaJgB" },
+              { "label": "Nicole", "value": "piTKgcLEGmPE4e6mEKli" },
+              { "label": "Jessie", "value": "t0jbNlBVZ17f02VDIeMI" },
+              { "label": "Ryan", "value": "wViXBPUzp2ZZixB1xQuM" },
+              { "label": "Sam", "value": "yoZ06aMxZJJ28mfd3POQ" },
+              { "label": "Glinda", "value": "z9fAnlkpzviPz146aGWa" },
+              { "label": "Giovanni", "value": "zcAOhNBS3c14rBihAFp1" },
+              { "label": "Mimi", "value": "zrHiDhphv9ZnVXBqCLjz" }
+            ],
+            "index": 1,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "The ID of the voice to be used for speech synthesis. Check all the available voices [here](https://api.elevenlabs.io/v1/voices).",
+          "title": "Voice ID",
+          "type": "string",
+          "enum": [
+            "21m00Tcm4TlvDq8ikWAM",
+            "2EiwWnXFnvU5JabPnv8n",
+            "AZnzlk1XvdvUeBnXmlld",
+            "CYw3kZ02Hs0563khs1Fj",
+            "D38z5RcWu1voky8WS1ja",
+            "EXAVITQu4vr4xnSDxMaL",
+            "ErXwobaYiN019PkySvjV",
+            "GBv7mTt0atIp3Br8iCZE",
+            "IKne3meq5aSn9XLyUdCD",
+            "LcfcDJNUP1GQjkzn1xUU",
+            "MF3mGyEYCl7XYWbV9V6O",
+            "N2lVS1w4EtoT3dr4eOWO",
+            "ODq5zmih8GrVes37Dizd",
+            "SOYHLrjzK2X1ezoPC6cr",
+            "TX3LPaxmHKxFdv7VOQHJ",
+            "ThT5KcBeYPX3keUQqHPh",
+            "TxGEqnHWrfWFTfGW9XjX",
+            "VR6AewLTigWG4xSOukaG",
+            "XB0fDUnXU5powFXDhCwa",
+            "XrExE9yKIg1WjnnlVkGX",
+            "Yko7PKHZNXotIFUBG7I9",
+            "ZQe5CZNOzWyzPSCn5a3c",
+            "Zlb1dXrM653N07WRdFW3",
+            "bVMeCyTHy58xNoL34h3p",
+            "flq6f7yk4E4fJM5XTYuZ",
+            "g5CIjZEefAph4nQFvHAz",
+            "jBpfuIE2acCO8z3wKNLl",
+            "jsCqWAovK2LkecY7zXl4",
+            "oWAxZDx7w5VEj9dCyTzz",
+            "onwK4e9ZLuTAKqWW03F9",
+            "pMsXgVXv3BLzUgSXRplE",
+            "pNInz6obpgDQGcFmaJgB",
+            "piTKgcLEGmPE4e6mEKli",
+            "t0jbNlBVZ17f02VDIeMI",
+            "wViXBPUzp2ZZixB1xQuM",
+            "yoZ06aMxZJJ28mfd3POQ",
+            "z9fAnlkpzviPz146aGWa",
+            "zcAOhNBS3c14rBihAFp1",
+            "zrHiDhphv9ZnVXBqCLjz"
+          ]
+        },
+        "optimize_streaming_latency": {
+          "default": 0,
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "Optimization level for streaming latency from 0 (lowest) to 4 (highest).",
+          "title": "Optimize Streaming Latency",
+          "type": "number"
+        },
+        "text": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The text to be converted to speech",
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": ["apiKey", "storageFolder", "text", "voice_id", "fileName"]
+    },
+    "version": "1.1.1",
+    "script": "import axios from 'axios';\nimport {\n    Storage\n} from '@google-cloud/storage';\nexport default async function textToSpeech({\n    text,\n    voice_id,\n    apiKey,\n    fileName,\n    optimize_streaming_latency = 0,\n    output_format = 'mp3_44100_128',\n}: NodeInputs, {\n    logging\n}: NodeScriptOptions) : NodeOutput  {\n    try {\n        const apiEndpoint =\n            `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}?optimize_streaming_latency=${optimize_streaming_latency}&output_format=${output_format}`;\n        const requestBody = {\n            text,\n            model_id: 'eleven_monolingual_v1',\n            voice_settings: {\n                stability: 0,\n                similarity_boost: 0,\n                style: 0,\n                use_speaker_boost: true,\n            },\n        };\n        const response = await axios.post(apiEndpoint, requestBody, {\n            headers: {\n                'Content-Type': 'application/json',\n                'xi-api-key': apiKey,\n            },\n            responseType: 'arraybuffer',\n        });\n        const storage = new Storage();\n        const bucketName = process.env.BUCKET;\n        await storage.bucket(bucketName).file(fileName).save(response.data, {\n            metadata: {\n                contentType: 'audio/mpeg',\n                cacheControl: 'no-cache, max-age=0',\n                acl: [{\n                    entity: 'allUsers',\n                    role: storage.acl.READER_ROLE,\n                }],\n            },\n        });\n        const publicUrl = `https://storage.googleapis.com/${bucketName}/${fileName}`;\n        logging.log(`Text-to-speech audio saved to GCS: ${publicUrl}`);\n        return publicUrl\n    } catch (error) {\n        logging.error(`Error in text-to-speech function: ${error.message}`);\n    }\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 45000000 },
+    "failCount": 19,
+    "usageCounter": 825
+  },
+  {
+    "output": { "buildship": {}, "description": "", "title": "Audio Stream", "type": "object", "properties": {} },
+    "inputs": {
+      "type": "object",
+      "required": ["apiKey", "storageFolder", "voice_id", "stream"],
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "The API key for ElevenLabs. (Get your API key from the [ElevenLabs Developer Dashboard](https://elevenlabs.io/). Login / Signup and click on Profile Settings to reveal your API Key.)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "stream": {
+          "default": {},
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "This input accepts a stream of text as input.\n\n**TIP 💡:** Use the **OpenAI Stream Response** node as the input here.",
+          "title": "Stream",
+          "type": "object",
+          "properties": {}
+        },
+        "voice_id": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of the voice to be used for speech synthesis. Check all the available voices [here](https://api.elevenlabs.io/v1/voices).",
+          "title": "Voice ID",
+          "type": "string"
+        },
+        "optimize_streaming_latency": {
+          "default": 0,
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Optimization level for streaming latency from 0 (lowest) to 4 (highest).",
+          "title": "Optimize Streaming Latency",
+          "type": "number"
+        }
+      }
+    },
+    "meta": {
+      "name": "Stream TTS Audio",
+      "icon": {
+        "type": "URL",
+        "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/elevenlabs.jpeg"
+      },
+      "description": "Converts a stream of text to a stream of speech using ElevenLabs API.\n\nThe speech stream is mp3 encoded.",
+      "id": "elevenlabs-tts-stream"
+    },
+    "type": "script",
+    "integrations": [],
+    "dependencies": { "@types/node": "20.11.19", "ws": "8.16.0" },
+    "live": true,
+    "group": [
+      {
+        "uid": "elevenlabs",
+        "name": "ElevenLabs",
+        "description": "Nodes for utilizing ElevenLabs Text to Speech capabilities in your workflow",
+        "id": "0IAjU2tekQHjibkvicp7",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/elevenlabs.jpeg"
+      }
+    ],
+    "category": ["Integrations"],
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1708165042, "_nanoseconds": 492000000 }
+    },
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1708165046, "_nanoseconds": 521000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 478000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicp7",
+    "failCount": 5,
+    "integrity": "v3:e70373db6e971d7b3287b3b31cf35fb8",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/elevenlabs-tts-stream/1.1.0/build.cjs",
+    "id": "elevenlabs-tts-stream",
+    "_libRef": {
+      "integrity": "v3:6e7deff88d32b28ac35185ed82ef3f32",
+      "libNodeRefId": "@buildship/elevenlabs-tts-stream",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/elevenlabs-tts-stream/1.0.3/build.cjs",
+      "version": "1.0.3"
+    },
+    "version": "1.1.0",
+    "script": "import { Transform, Duplex, pipeline } from \"node:stream\";\nimport WebSocket, { createWebSocketStream } from \"ws\";\n\n// stream is a Stream from OpenAI returning text letter-by-letter\nexport default async function (\n  {\n    apiKey,\n    voice_id,\n    stream,\n  }: NodeInputs,\n  { logging, req: ctx }\n: NodeScriptOptions) : NodeOutput  {\n  const ws = new WebSocket(\n    `wss://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream-input?model_id=eleven_monolingual_v1`\n  );\n  const wsStream = createWebSocketStream(ws, { encoding: \"utf-8\" });\n\n  const from11LabsStream = new Transform({\n    transform(chunk, encoding, callback) {\n      const data = JSON.parse(chunk.toString());\n\n      if (data.audio) {\n        this.push(Buffer.from(data.audio ?? \"\", \"base64\"));\n      }\n      callback(null);\n    },\n    final(callback) {\n      wsStream.end();\n      this.push(null);\n      callback();\n    }\n  });\n\n  const to11LabsStream = new Transform({\n    transform(chunk, encoding, callback) {\n      chunk = chunk.toString();\n      const lastChar = chunk.slice(-1);\n      if (this.word === undefined) {\n        this.word = chunk;\n        ws.send(JSON.stringify({\n          text: \" \",\n          voice_settings: {\n            stability: 0.8,\n            similarity_boost: 0.8,\n          },\n          xi_api_key: apiKey,\n        }))\n        callback(null);\n      } else if ([\"\\n\", \"\\r\", \" \", \".\", \"!\", \"?\"].includes(lastChar)) {\n        this.word += chunk;\n        this.word = this.word.slice(-1) !== \" \" ? this.word + \" \" : this.word;\n        logging.log(\"Pushing\", this.word);\n        ws.send(JSON.stringify({\n          text: this.word,\n          try_trigger_generation: true,\n        }))\n        callback(null);\n        this.word = \"\";\n      } else {\n        this.word += chunk;\n        callback(null);\n      }\n    },\n    final(callback) {\n      ws.send(JSON.stringify({ text: \"\" }));\n      callback(null);\n    },\n  });\n\n  pipeline(stream, to11LabsStream, (err) => {\n    if (err) logging.log('Stream to 11Labs pipeline error', err);\n    else logging.log('Stream to 11Labs pipeline completed');\n  });\n\n  pipeline(wsStream, from11LabsStream, (err) => {\n    if (err) logging.log('11Labs to return stream error', err);\n    else logging.log('11Labs to return stream pipeline completed');\n  });\n\n  return from11LabsStream;\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 45000000 },
+    "usageCounter": 198
+  }
+]

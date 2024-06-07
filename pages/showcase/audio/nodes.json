@@ -1,0 +1,89 @@
+[
+  {
+    "meta": {
+      "name": "PlayHT Text to Speech",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faudio.png?alt=media&token=d3ceb48c-a51a-4cd1-8734-a4c263eea488"
+      },
+      "description": "Converts text to speech using PlayHT API and returns the audio URL",
+      "id": "playht-tts-ultra"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Audio",
+        "description": "Nodes for generating audio, processing, and data extraction",
+        "id": "A2XpZlFMtl4A9cI8dKgy",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Faudio.png?alt=media&token=d3ceb48c-a51a-4cd1-8734-a4c263eea488"
+      }
+    ],
+    "live": true,
+    "dependencies": {},
+    "output": {
+      "buildship": {},
+      "type": "object",
+      "properties": {
+        "url": {
+          "buildship": { "index": 0 },
+          "description": "The URL of the generated audio",
+          "type": "string",
+          "title": "Audio URL"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "inputText": {
+          "buildship": { "index": 1 },
+          "description": "The text to be converted to speech",
+          "title": "Input Text",
+          "type": "string"
+        },
+        "playhtSecret": {
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The secret and user ID for the Play.ht API.\n(Get your PlayHT API Key [here](https://play.ht/app/api-access).)\n\n```\n{\n    \"secretKey\": \"Paste your secret key\",\n    \"userId\": \"Paste your userId\"\n}\n```",
+          "title": "API Key",
+          "type": "object"
+        }
+      },
+      "required": ["inputText", "playhtSecret"]
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1702894597, "_nanoseconds": 395000000 }
+    },
+    "t": 327,
+    "syncAllAtOnce": "981",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 300000000 }
+    },
+    "groupInfo": "A2XpZlFMtl4A9cI8dKgy",
+    "id": "playht-tts-ultra",
+    "integrations": [],
+    "integrity": "v3:629798e7eebfc567275b54745051764e",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/playht-tts-ultra/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:86de41b5206c34265d8ea9904e236005",
+      "libNodeRefId": "@buildship/playht-tts-ultra",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/playht-tts-ultra/1.0.3/build.cjs",
+      "version": "1.0.3"
+    },
+    "version": "1.1.0",
+    "script": "export default async function convertTextToSpeech({ inputText, playhtSecret }: NodeInputs, {logging}: NodeScriptOptions) : NodeOutput  {\n  const result = await fetch(\"https://play.ht/api/v2/tts\", {\n    method: \"POST\",\n    headers: {\n      Authorization: \"Bearer \" + playhtSecret.secretKey,\n      \"X-User-ID\": playhtSecret.userId,\n      accept: \"text/event-stream\",\n      \"content-type\": \"application/json\",\n    },\n    body: JSON.stringify({\n      text: inputText,\n      voice:\n        \"s3://mockingbird-prod/charlotte_vo_meditatoin_b9f1822f-d753-46cc-87ed-c7c15635a7ab/voices/charlotte_vo_meditatoin/manifest.json\",\n      quality: \"premium\",\n      output_format: \"mp3\",\n      speed: 1,\n      sample_rate: 24000,\n    }),\n  });\n  if (!result.ok) {\n    const error = await result.json();\n    logging.log(error.error_message || error);\n    throw Error(error.error_message);\n  }\n  const lastEventData = (await result.text())\n    .split(\"completed\")[1]\n    ?.replace(\"data:\", \"\");\n  if (lastEventData) {\n    const { url } = JSON.parse(lastEventData);\n    return { url };\n  } else {\n    return { url: null };\n  }\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 65000000 },
+    "failCount": 70,
+    "usageCounter": 428
+  }
+]

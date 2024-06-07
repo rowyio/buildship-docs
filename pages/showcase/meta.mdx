@@ -1,0 +1,22 @@
+import nodes from './meta/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Meta
+
+BuildShip provides pre-defined nodes for seamless integration with Meta apps and services, allowing you to interact with
+Facebook, Instagram, and other Meta properties within your workflows. Efficiently manage social media content, gather
+insights, automate marketing tasks, and more.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/meta/${node.meta.id}`}
+    />
+  ))}
+</Cards>

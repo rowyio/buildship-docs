@@ -1,0 +1,22 @@
+import nodes from './openformat/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# OPENFORMAT
+
+OPENFORMAT enables developers to build gamified applications with ease, incorporating blockchain micro-transactions,
+missions, rewards, rankings, and leaderboards into their workflows. With pre-defined nodes, integrate blockchain
+technology seamlessly to enhance user engagement and interaction.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/openformat/${node.meta.id}`}
+    />
+  ))}
+</Cards>

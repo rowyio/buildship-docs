@@ -1,0 +1,610 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "type": "object",
+      "properties": {
+        "image": {
+          "buildship": {},
+          "description": "The generated image in Base64 format",
+          "title": "Image (Base64)",
+          "type": "string"
+        }
+      }
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "live": true,
+    "dependencies": { "node-fetch": "3.3.2" },
+    "group": [
+      {
+        "name": "StabilityAI",
+        "description": "Nodes for utilizing StabilityAI Models",
+        "id": "0IAjU2tekQHjibkvicp6",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API Key [here](https://replicate.com/account/api-tokens).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "stylePreset": {
+          "buildship": {
+            "options": [
+              { "label": "3D Model", "value": "3d-model" },
+              { "label": "Analog Film", "value": "analog-film" },
+              { "label": "Anime", "value": "anime" },
+              { "label": "Cinematic", "value": "cinematic" },
+              { "label": "Comic Book", "value": "comic-book" },
+              { "label": "Digital Art", "value": "digital-art" },
+              { "label": "Enhance", "value": "enhance" },
+              { "label": "Fantasy Art", "value": "fantasy-art" },
+              { "label": "Isometric", "value": "isometric" },
+              { "label": "Line Art", "value": "line-art" },
+              { "label": "Low Poly", "value": "low-poly" },
+              { "label": "Modeling Compound", "value": "modeling-compound" },
+              { "label": "Neon Punk", "value": "neon-punk" },
+              { "label": "Origami", "value": "origami" },
+              { "label": "Photographic", "value": "photographic" },
+              { "label": "Pixel Art", "value": "pixel-art" },
+              { "label": "Tile Texture", "value": "tile-texture" }
+            ],
+            "index": 1
+          },
+          "description": "The style preset for the image generation",
+          "type": "string",
+          "title": "Style Preset",
+          "enum": [
+            "3d-model",
+            "analog-film",
+            "anime",
+            "cinematic",
+            "comic-book",
+            "digital-art",
+            "enhance",
+            "fantasy-art",
+            "isometric",
+            "line-art",
+            "low-poly",
+            "modeling-compound",
+            "neon-punk",
+            "origami",
+            "photographic",
+            "pixel-art",
+            "tile-texture"
+          ]
+        },
+        "prompt": {
+          "buildship": { "index": 2 },
+          "description": "The text prompt for the image generation",
+          "type": "string",
+          "title": "Prompt"
+        }
+      },
+      "required": ["stylePreset", "prompt", "apiKey"]
+    },
+    "meta": {
+      "name": "Image Generator",
+      "icon": {
+        "type": "URL",
+        "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      },
+      "description": "Generate and returns an image in Base64 format using Stability API with given prompt and style preset.",
+      "id": "stability-generate-image"
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701527319, "_nanoseconds": 265000000 }
+    },
+    "t": 372,
+    "syncAllAtOnce": "982",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 304000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicp6",
+    "id": "stability-generate-image",
+    "integrations": [],
+    "integrity": "v3:aefce03f1a9eb1d571073d65b72cca34",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stability-generate-image/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:535aa2b4f1907cdda05accf4dc2b3049",
+      "libNodeRefId": "@buildship/stability-generate-image",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stability-generate-image/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from \"node-fetch\";\nexport default async function generateImage(\n  { apiKey, prompt, stylePreset }: NodeInputs,\n  { req }\n: NodeScriptOptions) : NodeOutput  {\n  const engineId = \"stable-diffusion-xl-beta-v2-2-2\";\n  const apiHost = \"https://api.stability.ai\";\n  const response = await fetch(\n    `${apiHost}/v1/generation/${engineId}/text-to-image`,\n    {\n      method: \"POST\",\n      headers: {\n        \"Content-Type\": \"application/json\",\n        Accept: \"application/json\",\n        Authorization: `Bearer ${apiKey}`,\n      },\n      body: JSON.stringify({\n        text_prompts: [\n          { text: prompt },\n          { text: \"sexual\", weight: -1 },\n          { text: \"nsfw\", weight: -1 },\n        ],\n        cfg_scale: 7,\n        style_preset: stylePreset,\n        clip_guidance_preset: \"FAST_BLUE\",\n        height: 512,\n        width: 512,\n        samples: 1,\n        steps: 50,\n      }),\n    }\n  );\n  if (!response.ok) {\n    throw new Error(`Non-200 response: ${await response.text()}`);\n  }\n  const responseJSON = await response.json();\n  return { image: responseJSON.artifacts[0].base64 };\n}\n",
+    "failCount": 8,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 67000000 },
+    "usageCounter": 193
+  },
+  {
+    "meta": {
+      "name": "Image Masking",
+      "icon": {
+        "type": "URL",
+        "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      },
+      "description": "Selectively modify portions of an image using a mask using StabilityAI.",
+      "id": "stabilityai-image-masking"
+    },
+    "type": "script",
+    "dependencies": { "path": "0.12.7", "node-fetch": "3.3.2", "form-data": "4.0.0", "fs": "0.0.1-security" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "StabilityAI",
+        "description": "Nodes for utilizing StabilityAI Models",
+        "id": "0IAjU2tekQHjibkvicp6",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      }
+    ],
+    "live": true,
+    "output": {
+      "buildship": {},
+      "description": "The response from the StabilityAI API",
+      "type": "object",
+      "title": "Response",
+      "properties": {
+        "artifacts": { "buildship": { "index": 0 }, "description": "", "type": "array", "title": "Artifacts" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "maskSource",
+        "style_preset",
+        "apiKey",
+        "init_image",
+        "mask_image",
+        "clip_guidance_preset",
+        "text_prompt"
+      ],
+      "properties": {
+        "init_image": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The path to the initial image to be modified.\n\nExample: If your image lies in the main BuildShip Storage directory, simply use: `filename.png`",
+          "title": "Initial Image",
+          "type": "string"
+        },
+        "style_preset": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "3d-model", "value": "3d-model" },
+              { "label": "analog-film", "value": "analog-film" },
+              { "label": "anime", "value": "anime" },
+              { "label": "cinematic", "value": "cinematic" },
+              { "label": "comic-book", "value": "comic-book" },
+              { "label": "digital-art", "value": "digital-art" },
+              { "label": "enhance", "value": "enhance" },
+              { "label": "fantasy-art", "value": "fantasy-art" },
+              { "label": "isometric", "value": "isometric" },
+              { "label": "line-art", "value": "line-art" },
+              { "label": "low-poly", "value": "low-poly" },
+              { "label": "modeling-compound", "value": "modeling-compound" },
+              { "label": "neon-punk", "value": "neon-punk" },
+              { "label": "origami", "value": "origami" },
+              { "label": "photographic", "value": "photographic" },
+              { "label": "pixel-art", "value": "pixel-art" },
+              { "label": "tile-texture", "value": "tile-texture" }
+            ],
+            "index": 6,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Pass in a style preset to guide the image model towards a particular style.",
+          "type": "string",
+          "title": "Style Preset",
+          "enum": [
+            "3d-model",
+            "analog-film",
+            "anime",
+            "cinematic",
+            "comic-book",
+            "digital-art",
+            "enhance",
+            "fantasy-art",
+            "isometric",
+            "line-art",
+            "low-poly",
+            "modeling-compound",
+            "neon-punk",
+            "origami",
+            "photographic",
+            "pixel-art",
+            "tile-texture"
+          ]
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your StabilityAI API Key [here](https://platform.stability.ai/account/keys).",
+          "type": "string",
+          "title": "API Key"
+        },
+        "mask_image": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The path to the mask image to be used for modification.\n\nExample: If your image lies in the main BuildShip Storage directory, simply use: `filename.png`",
+          "title": "Mask Image",
+          "type": "string"
+        },
+        "text_prompt": {
+          "default": "",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "Text prompt for image modification.\n\nQUICK TIP 💡: Use the `Upload Base64 File` node to upload the response from the Artifacts array as: `Modify Image.Artifacts[0].base64`",
+          "title": "Text Prompt",
+          "type": "string"
+        },
+        "clip_guidance_preset": {
+          "default": "NONE",
+          "buildship": {
+            "options": [
+              { "label": "FAST_BLUE", "value": "FAST_BLUE" },
+              { "label": "FAST_GREEN", "value": "FAST_GREEN" },
+              { "label": "NONE", "value": "NONE" },
+              { "label": "SIMPLE", "value": "SIMPLE" },
+              { "label": "SLOW", "value": "SLOW" },
+              { "label": "SLOWER", "value": "SLOWER" },
+              { "label": "SLOWEST", "value": "SLOWEST" }
+            ],
+            "index": 5,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Preset for the clip guidance",
+          "title": "Clip Guidance Preset",
+          "type": "string",
+          "enum": ["FAST_BLUE", "FAST_GREEN", "NONE", "SIMPLE", "SLOW", "SLOWER", "SLOWEST"]
+        },
+        "maskSource": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "MASK_IMAGE_WHITE", "value": "MASK_IMAGE_WHITE" },
+              { "label": "MASK_IMAGE_BLACK", "value": "MASK_IMAGE_BLACK" },
+              { "label": "INIT_IMAGE_ALPHA", "value": "INIT_IMAGE_ALPHA" }
+            ],
+            "index": 3,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "For any given pixel, the mask determines the strength of generation on a linear scale.",
+          "type": "string",
+          "title": "Mask Source",
+          "enum": ["MASK_IMAGE_WHITE", "MASK_IMAGE_BLACK", "INIT_IMAGE_ALPHA"]
+        }
+      }
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1702590770, "_nanoseconds": 4000000 }
+    },
+    "t": 263,
+    "syncAllAtOnce": "986",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 304000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicp6",
+    "id": "stabilityai-image-masking",
+    "integrations": [],
+    "integrity": "v3:afdf33affd1bc7d91115827e69f5d655",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stabilityai-image-masking/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:e18eb870400998f7c2d3cdece06eeaac",
+      "libNodeRefId": "@buildship/stabilityai-image-masking",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stabilityai-image-masking/1.0.3/build.cjs",
+      "version": "1.0.3"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nimport FormData from 'form-data';\nimport fs from 'fs';\nimport path from 'path';\nexport default async function stabilityAIImageModification({\n    init_image,\n    mask_image,\n    text_prompt,\n    clip_guidance_preset,\n    apiKey,\n    style_preset\n}: NodeInputs) : NodeOutput  {\n    const initPath = path.join(process.env.BUCKET_FOLDER_PATH, init_image);\n    const maskPath = path.join(process.env.BUCKET_FOLDER_PATH, mask_image);\n    const formData = new FormData();\n    formData.append('init_image', fs.readFileSync(initPath));\n    formData.append('mask_image', fs.readFileSync(maskPath));\n    formData.append('mask_source', 'MASK_IMAGE_BLACK');\n    formData.append('text_prompts[0][text]', text_prompt);\n    formData.append('clip_guidance_preset', clip_guidance_preset);\n    formData.append('style_preset', style_preset);\n    const response = await fetch('https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/image-to-image/masking', {\n        method: 'POST',\n        headers: {\n            ...formData.getHeaders(),\n            Accept: 'application/json',\n            Authorization: `Bearer ${apiKey}`\n        },\n        body: formData,\n    });\n    if (!response.ok) {\n        throw new Error(`Non-200 response: ${await response.text()}`)\n    }\n    const responseJSON = await response.json();\n    return responseJSON;\n}",
+    "usageCounter": 42,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 68000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The modified image in base64 format",
+      "title": "Modified Image",
+      "type": "object",
+      "properties": {
+        "artifacts": {
+          "buildship": { "index": 0 },
+          "description": "",
+          "title": "Artifacts",
+          "type": "array",
+          "key": "modifiedImage"
+        }
+      }
+    },
+    "meta": {
+      "name": "Modify Image",
+      "icon": {
+        "type": "URL",
+        "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      },
+      "description": "Modifies an image based on a text prompt using the StabilityAI API",
+      "id": "stabilityai-modify-image"
+    },
+    "type": "script",
+    "dependencies": { "path": "0.12.7", "node-fetch": "3.3.2", "form-data": "4.0.0", "fs": "0.0.1-security" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "StabilityAI",
+        "description": "Nodes for utilizing StabilityAI Models",
+        "id": "0IAjU2tekQHjibkvicp6",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      }
+    ],
+    "live": true,
+    "inputs": {
+      "type": "object",
+      "required": ["apiKey", "image", "style_preset", "textPrompt"],
+      "properties": {
+        "image": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Path to the image file.\n\nExample: If your image lies in the main BuildShip Storage directory, simply use: `filename.png`",
+          "title": "Image",
+          "type": "string"
+        },
+        "style_preset": {
+          "default": "",
+          "buildship": {
+            "options": [
+              { "label": "3d-model", "value": "3d-model" },
+              { "label": "analog-film", "value": "analog-film" },
+              { "label": "anime", "value": "anime" },
+              { "label": "cinematic", "value": "cinematic" },
+              { "label": "comic-book", "value": "comic-book" },
+              { "label": "digital-art", "value": "digital-art" },
+              { "label": "enhance", "value": "enhance" },
+              { "label": "fantasy-art", "value": "fantasy-art" },
+              { "label": "isometric", "value": "isometric" },
+              { "label": "line-art", "value": "line-art" },
+              { "label": "low-poly", "value": "low-poly" },
+              { "label": "modeling-compound", "value": "modeling-compound" },
+              { "label": "neon-punk", "value": "neon-punk" },
+              { "label": "origami", "value": "origami" },
+              { "label": "photographic", "value": "photographic" },
+              { "label": "pixel-art", "value": "pixel-art" },
+              { "label": "tile-texture", "value": "tile-texture" }
+            ],
+            "index": 5,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Pass in a style preset to guide the image model towards a particular style.",
+          "title": "Style Preset",
+          "type": "string",
+          "enum": [
+            "3d-model",
+            "analog-film",
+            "anime",
+            "cinematic",
+            "comic-book",
+            "digital-art",
+            "enhance",
+            "fantasy-art",
+            "isometric",
+            "line-art",
+            "low-poly",
+            "modeling-compound",
+            "neon-punk",
+            "origami",
+            "photographic",
+            "pixel-art",
+            "tile-texture"
+          ]
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your StabilityAI API Key [here](https://platform.stability.ai/account/keys).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "textPrompt": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Text prompt to modify the image.\n\nQUICK TIP 💡: Use the `Upload Base64 File` node to upload the response from the Artifacts array as: `Modify Image.Artifacts[0].base64`",
+          "title": "Text Prompt",
+          "type": "string"
+        },
+        "imageStrength": {
+          "default": 0.35,
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Strength of the initial image to be used in modification. The value lies between `0` to `1`.",
+          "title": "Image Strength",
+          "type": "number"
+        },
+        "clipGuidancePreset": {
+          "default": "NONE",
+          "buildship": {
+            "options": [
+              { "label": "FAST_BLUE", "value": "FAST_BLUE" },
+              { "label": "FAST_GREEN", "value": "FAST_GREEN" },
+              { "label": "NONE", "value": "NONE" },
+              { "label": "SIMPLE", "value": "SIMPLE" },
+              { "label": "SLOW", "value": "SLOW" },
+              { "label": "SLOWER", "value": "SLOWER" },
+              { "label": "SLOWEST", "value": "SLOWEST" }
+            ],
+            "index": 4,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "Clip guidance preset to be used in modification",
+          "title": "Clip Guidance Preset",
+          "type": "string",
+          "enum": ["FAST_BLUE", "FAST_GREEN", "NONE", "SIMPLE", "SLOW", "SLOWER", "SLOWEST"]
+        }
+      }
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1702549182, "_nanoseconds": 225000000 }
+    },
+    "t": 374,
+    "syncAllAtOnce": "984",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 304000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicp6",
+    "id": "stabilityai-modify-image",
+    "integrations": [],
+    "failCount": 5,
+    "integrity": "v3:375100a82e25141d38b164b70542eaed",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stabilityai-modify-image/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:cc4f14a19fd4d5c5a0dc2d2b47127795",
+      "libNodeRefId": "@buildship/stabilityai-modify-image",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stabilityai-modify-image/1.0.2/build.cjs",
+      "version": "1.0.2"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nimport fs from 'fs';\nimport path from 'path';\nimport FormData from 'form-data';\nexport default async function modifyImage({\n    apiKey,\n    image,\n    textPrompt,\n    imageStrength,\n    clipGuidancePreset,\n    style_preset\n}: NodeInputs) : NodeOutput  {\n    const engineId = 'stable-diffusion-xl-1024-v1-0';\n    const apiHost = 'https://api.stability.ai';\n    const imagePath = path.join(process.env.BUCKET_FOLDER_PATH, image);\n    const formData = new FormData();\n    formData.append('init_image', fs.readFileSync(imagePath));\n    formData.append('init_image_mode', 'IMAGE_STRENGTH');\n    formData.append('image_strength', imageStrength);\n    formData.append('text_prompts[0][text]', textPrompt);\n    formData.append('text_prompts[0][weight]', 1);\n    formData.append('clip_guidance_preset', clipGuidancePreset);\n    formData.append('style_preset', style_preset);\n    const response = await fetch(`${apiHost}/v1/generation/${engineId}/image-to-image`, {\n        method: 'POST',\n        headers: {\n            ...formData.getHeaders(),\n            'Accept': 'application/json',\n            'Authorization': `Bearer ${apiKey}`\n        },\n        body: formData\n    });\n    if (!response.ok) {\n        throw new Error(`Non-200 response: ${await response.text()}`);\n    }\n    const responseJSON = await response.json();\n    return responseJSON\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 68000000 },
+    "usageCounter": 57
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The public url of the upscaled image",
+      "title": "Upscaled Image URL",
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["apiKey", "image", "width"],
+      "properties": {
+        "image": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The path of the image to be upscaled.\n\nExample: If your image lies in the main BuildShip Storage directory, simply use: `filename.png`",
+          "title": "Image",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your StabilityAI API Key [here](https://platform.stability.ai/account/keys).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "width": {
+          "default": "1024",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The desired width of the upscaled image `>=512`.",
+          "title": "Width",
+          "type": "number"
+        }
+      }
+    },
+    "meta": {
+      "name": "Upscale Image",
+      "icon": {
+        "type": "URL",
+        "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      },
+      "description": "Upscales an image using StabilityAI and returns a public download url",
+      "id": "stabilityai-upscale-image"
+    },
+    "type": "script",
+    "dependencies": {
+      "path": "0.12.7",
+      "node-fetch": "2.7.0",
+      "form-data": "4.0.0",
+      "@google-cloud/storage": "7.7.0",
+      "fs": "0.0.2"
+    },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "StabilityAI",
+        "description": "Nodes for utilizing StabilityAI Models",
+        "id": "0IAjU2tekQHjibkvicp6",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/stabilityAI.jpg"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1702591442, "_nanoseconds": 442000000 }
+    },
+    "t": 370,
+    "syncAllAtOnce": "905",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 304000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicp6",
+    "id": "stabilityai-upscale-image",
+    "integrations": [],
+    "integrity": "v3:3a2877c5e919dbfcb89a22f3fb95289d",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stabilityai-upscale-image/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:a106ca4804f7ec224ec8421eb808dfa6",
+      "libNodeRefId": "@buildship/stabilityai-upscale-image",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stabilityai-upscale-image/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nimport FormData from 'form-data';\nimport fs from 'fs';\nimport path from 'path';\nimport { Storage } from '@google-cloud/storage';\n\nexport default async function upscaleImage({\n    apiKey,\n    image,\n    width\n}: NodeInputs) : NodeOutput  {\n    const engineId = 'esrgan-v1-x2plus';\n    const apiHost = 'https://api.stability.ai';\n\n    const storage = new Storage();\n    const bucketName = process.env.BUCKET;\n\n    const imagePath = path.join(process.env.BUCKET_FOLDER_PATH, image);\n    const formData = new FormData();\n    formData.append('image', fs.readFileSync(imagePath));\n    formData.append('width', width);\n\n    const response = await fetch(\n        `${apiHost}/v1/generation/${engineId}/image-to-image/upscale`,\n        {\n            method: 'POST',\n            headers: {\n                ...formData.getHeaders(),\n                Accept: 'image/png',\n                Authorization: `Bearer ${apiKey}`,\n            },\n            body: formData,\n        }\n    );\n\n    if (!response.ok) {\n        throw new Error(`Non-200 response: ${await response.text()}`);\n    }\n\n    const imageBuffer = await response.arrayBuffer();\n    const file = storage.bucket(bucketName).file(`v1_upscaled_image.png`);\n    await file.save(Buffer.from(imageBuffer), {\n        metadata: { contentType: 'image/png' },\n    });\n\n    await file.makePublic();\n\n    const publicUrl = `https://storage.googleapis.com/${bucketName}/${file.name}`;\n    return publicUrl;\n}\n",
+    "failCount": 1,
+    "usageCounter": 94,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 68000000 }
+  }
+]

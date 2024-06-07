@@ -1,0 +1,281 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Google Docs API",
+      "title": "Response",
+      "type": "object"
+    },
+    "meta": {
+      "name": "Batch Update Document",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgdocs.png?alt=media&token=da2a757f-8788-452f-a32b-cfcf8d8eb2cc"
+      },
+      "description": "Batch updates a Google Document",
+      "id": "oauth-gdocs-batch-update"
+    },
+    "type": "script",
+    "dependencies": { "node-fetch": "2.7.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Google Docs",
+        "description": "OAuth Nodes for utilizing the Google Docs API to perform operations on your Google Docs File.",
+        "id": "0IAjU2tekQHjibkvicoy",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgdocs.png?alt=media&token=da2a757f-8788-452f-a32b-cfcf8d8eb2cc"
+      }
+    ],
+    "integrations": ["gdocs"],
+    "t": 373,
+    "syncAllAtOnce": "866",
+    "live": true,
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710753637, "_nanoseconds": 860000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 486000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicoy",
+    "inputs": {
+      "type": "object",
+      "required": ["requests", "documentUrl"],
+      "properties": {
+        "documentUrl": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The URL of the Google Docs to update. [Refer API Documentation](https://developers.google.com/docs/api/reference/rest/v1/documents/batchUpdate).\n\nTIP 💡: Available in the following format in your Google Docs: `https://docs.google.com/document/d/document-id/edit`",
+          "type": "string",
+          "title": "Document URL"
+        },
+        "requests": {
+          "default": [],
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The array of update requests. Check out the Google Docs API Documentation [here](https://developers.google.com/docs/api/reference/rest/v1/documents/request).\n\nSAMPLE INPUT:\n```\nconst insertNewParagraphRequest = {\n    insertText: {\n        location: {\n            index: 1, // Index where you want to insert a new paragraph\n        },\n        text: \"\\n\", // Inserting a newline to create a new paragraph\n    }\n};\n\nconst insertTextRequest = {\n    insertText: {\n        location: {\n            index: 2, // Index within the new paragraph to insert text\n        },\n        text: \"Inserted text here\",\n    }\n};\n\nconst requests = [insertNewParagraphRequest, insertTextRequest];\nreturn requests;\n```",
+          "title": "Requests",
+          "type": "array"
+        }
+      }
+    },
+    "integrity": "v3:005b4e684f10abea6062ba312aff6f8d",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/oauth-gdocs-batch-update/1.1.0/build.cjs",
+    "id": "oauth-gdocs-batch-update",
+    "_libRef": {
+      "integrity": "v3:e8184228d9372f2011b859b90c1bbbde",
+      "libNodeRefId": "@buildship/oauth-gdocs-batch-update",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/oauth-gdocs-batch-update/1.0.2/build.cjs",
+      "version": "1.0.2"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\n\nexport default async function batchUpdateGoogleDocument({\n    documentUrl,\n    requests,\n}: NodeInputs, {\n    auth\n}: NodeScriptOptions) : NodeOutput  {\n    const { access_token } = await auth.getToken();\n\n    // Extracting spreadsheetId from the URL\n    const regex = /\\/document\\/d\\/([a-zA-Z0-9-_]+)/;\n    const match = documentUrl.match(regex);\n    if (!match) {\n        throw new Error('Invalid spreadsheet URL');\n    }\n    const documentId = match[1];\n\n    const requestBody = {\n        requests: requests,\n    };\n\n    const response = await fetch(`https://docs.googleapis.com/v1/documents/${documentId}:batchUpdate`, {\n        method: 'POST',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${access_token}`\n        },\n        body: JSON.stringify(requestBody)\n    });\n\n    return response.json();\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 57000000 },
+    "usageCounter": 112,
+    "failCount": 179
+  },
+  {
+    "output": {
+      "description": "The created Google Doc",
+      "title": "Google Doc",
+      "type": "object",
+      "properties": {
+        "headers": { "buildship": { "index": 9 }, "title": "Headers", "type": "object" },
+        "positionedObjects": { "buildship": { "index": 0 }, "title": "Positioned Objects", "type": "object" },
+        "inlineObjects": { "buildship": { "index": 4 }, "title": "Inline Objects", "type": "object" },
+        "namedStyles": { "buildship": { "index": 2 }, "title": "Named Styles", "type": "object" },
+        "suggestedNamedStylesChanges": {
+          "buildship": { "index": 6 },
+          "title": "Suggested Named Styles Changes",
+          "type": "object"
+        },
+        "body": { "buildship": { "index": 15 }, "title": "Body", "type": "object" },
+        "title": { "buildship": { "index": 5 }, "title": "Title", "type": "string" },
+        "documentStyle": { "buildship": { "index": 12 }, "title": "Document Style", "type": "object" },
+        "footers": { "buildship": { "index": 1 }, "title": "Footers", "type": "object" },
+        "revisionId": { "buildship": { "index": 3 }, "title": "Revision ID", "type": "string" },
+        "suggestedDocumentStyleChanges": {
+          "buildship": { "index": 10 },
+          "title": "Suggested Document Style Changes",
+          "type": "object"
+        },
+        "lists": { "buildship": { "index": 11 }, "title": "Lists", "type": "object" },
+        "namedRanges": { "buildship": { "index": 13 }, "title": "Named Ranges", "type": "object" },
+        "suggestionsViewMode": { "buildship": { "index": 8 }, "title": "Suggestions View Mode", "type": "string" },
+        "documentId": { "buildship": { "index": 7 }, "title": "Document ID", "type": "string" },
+        "footnotes": { "buildship": { "index": 14 }, "title": "Footnotes", "type": "object" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The title of the Google Doc to be created",
+          "title": "Title",
+          "type": "string"
+        }
+      }
+    },
+    "type": "script",
+    "dependencies": { "node-fetch": "2.7.0" },
+    "meta": {
+      "name": "Create Document",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgdocs.png?alt=media&token=da2a757f-8788-452f-a32b-cfcf8d8eb2cc"
+      },
+      "description": "Creates a blank Google Doc using the provided title. Ignores any other fields in the request, including provided content.",
+      "id": "oauth-gdocs-create-doc"
+    },
+    "group": [
+      {
+        "name": "Google Docs",
+        "description": "OAuth Nodes for utilizing the Google Docs API to perform operations on your Google Docs File.",
+        "id": "0IAjU2tekQHjibkvicoy",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgdocs.png?alt=media&token=da2a757f-8788-452f-a32b-cfcf8d8eb2cc"
+      }
+    ],
+    "category": ["Integrations"],
+    "integrations": ["gdocs"],
+    "t": 386,
+    "syncAllAtOnce": "860",
+    "live": true,
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710753636, "_nanoseconds": 860000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 486000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicoy",
+    "id": "oauth-gdocs-create-doc",
+    "integrity": "v3:92f34bda4d2ab78349a59d259bcd8467",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/oauth-gdocs-create-doc/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:9419cb9c09ff564a4557c9d390e8be79",
+      "libNodeRefId": "@buildship/oauth-gdocs-create-doc",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/oauth-gdocs-create-doc/1.0.2/build.cjs",
+      "version": "1.0.2"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nexport default async function createGoogleDoc({\n    title\n}: NodeInputs, {\n  auth\n}: NodeScriptOptions) : NodeOutput  {\n    const { access_token } = await auth.getToken();\n    const response = await fetch('https://docs.googleapis.com/v1/documents', {\n        method: 'POST',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${access_token}`\n        },\n        body: JSON.stringify({\n            title\n        })\n    });\n    const data = await response.json();\n    return data;\n}",
+    "failCount": 5,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 57000000 },
+    "usageCounter": 226
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Google Docs API",
+      "title": "Google Docs Response",
+      "type": "object"
+    },
+    "meta": {
+      "name": "Get Document",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgdocs.png?alt=media&token=da2a757f-8788-452f-a32b-cfcf8d8eb2cc"
+      },
+      "description": "Fetches the latest version of the specified Google Document",
+      "id": "oauth-gdocs-get-document"
+    },
+    "type": "script",
+    "dependencies": { "node-fetch": "2.7.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Google Docs",
+        "description": "OAuth Nodes for utilizing the Google Docs API to perform operations on your Google Docs File.",
+        "id": "0IAjU2tekQHjibkvicoy",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fgdocs.png?alt=media&token=da2a757f-8788-452f-a32b-cfcf8d8eb2cc"
+      }
+    ],
+    "integrations": ["gdocs"],
+    "t": 273,
+    "syncAllAtOnce": "862",
+    "live": true,
+    "syncIndex": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1710753636, "_nanoseconds": 75000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 486000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicoy",
+    "inputs": {
+      "type": "object",
+      "required": ["apiKey", "documentUrl"],
+      "properties": {
+        "suggestionsViewMode": {
+          "default": "DEFAULT_FOR_CURRENT_ACCESS",
+          "buildship": {
+            "options": [
+              { "label": "Default", "value": "DEFAULT_FOR_CURRENT_ACCESS" },
+              { "label": "Accepted", "value": "SUGGESTIONS_INLINE" },
+              { "label": "Rejected", "value": "PREVIEW_WITHOUT_SUGGESTIONS" }
+            ],
+            "index": 1
+          },
+          "description": "The suggestions view mode to apply to the document",
+          "type": "string",
+          "title": "Suggestions View Mode",
+          "enum": ["DEFAULT_FOR_CURRENT_ACCESS", "SUGGESTIONS_INLINE", "PREVIEW_WITHOUT_SUGGESTIONS"]
+        },
+        "documentUrl": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "The URL of the Google Docs to fetch. [Refer API Documentation](https://developers.google.com/docs/api/reference/rest/v1/documents/get).\n\nTIP 💡: Available in the following format in your Google Docs: `https://docs.google.com/document/d/document-id/edit`",
+          "type": "string",
+          "title": "Document URL"
+        }
+      }
+    },
+    "integrity": "v3:f49e00e61f41a971bd136e0da3904c4f",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/oauth-gdocs-get-document/1.1.0/build.cjs",
+    "id": "oauth-gdocs-get-document",
+    "_libRef": {
+      "integrity": "v3:d7ce0ed9ab12e5e55ee3677ce87c0d14",
+      "libNodeRefId": "@buildship/oauth-gdocs-get-document",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/oauth-gdocs-get-document/1.0.3/build.cjs",
+      "version": "1.0.3"
+    },
+    "version": "1.1.0",
+    "script": "import fetch from 'node-fetch';\nexport default async function getGoogleDocumentVersion({\n    documentUrl,\n    suggestionsViewMode,\n}: NodeInputs, {\n  auth\n}: NodeScriptOptions) : NodeOutput  {\n    const { access_token } = await auth.getToken();\n\n    // Extracting spreadsheetId from the URL\n    const regex = /\\/document\\/d\\/([a-zA-Z0-9-_]+)/;\n    const match = documentUrl.match(regex);\n    if (!match) {\n        throw new Error('Invalid spreadsheet URL');\n    }\n    const documentId = match[1];\n  \n    const response = await fetch(`https://docs.googleapis.com/v1/documents/${documentId}?suggestionsViewMode=${suggestionsViewMode}`, {\n        method: 'GET',\n        headers: {\n            'Content-Type': 'application/json',\n            'Authorization': `Bearer ${access_token}`\n        }\n    });\n    return response.json();\n}",
+    "failCount": 5,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 57000000 },
+    "usageCounter": 234
+  }
+]

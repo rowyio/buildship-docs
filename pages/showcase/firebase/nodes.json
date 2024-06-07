@@ -1,0 +1,513 @@
+[
+  {
+    "outputs": [
+      { "description": "The unique identifier of the created user", "label": "UID", "type": "string", "key": "uid" }
+    ],
+    "description": "Create a new Firebase Auth User with email, full name, and password ",
+    "main": "import { initializeApp } from \"firebase-admin\";\nimport { createUser } from \"firebase-admin/auth\";\n\ninitializeApp();\n\nexport default async function createFirebaseAuthUser(\n  { email, fullName, password },\n  { req }\n) {\n  try {\n    const userRecord = await createUser({\n      email,\n      displayName: fullName,\n      password,\n    });\n    return {\n      uid: userRecord.uid,\n    };\n  } catch (error) {\n    throw new Error(\"Failed to create user\");\n  }\n}\n",
+    "nodeFiles": [
+      {
+        "fileName": "index.ts",
+        "code": "import { initializeApp } from \"firebase-admin\";\nimport { createUser } from \"firebase-admin/auth\";\n\ninitializeApp();\n\nexport default async function createFirebaseAuthUser(\n  { email, fullName, password },\n  { req }\n) {\n  try {\n    const userRecord = await createUser({\n      email,\n      displayName: fullName,\n      password,\n    });\n    return {\n      uid: userRecord.uid,\n    };\n  } catch (error) {\n    throw new Error(\"Failed to create user\");\n  }\n}\n\nexport const meta = {\n  name: \"Create Firebase Auth User\",\n  id: \"create-firebase-auth-user\",\n  description: \"Create a new Firebase Auth User with email, full name, and password\",\n};\n\nexport const params = {\n  email: {\n    type: \"string\",\n    label: \"Email\",\n    description: \"The email of the user\",\n  },\n  fullName: {\n    type: \"string\",\n    label: \"Full Name\",\n    description: \"The full name of the user\",\n  },\n  password: {\n    type: \"string\",\n    label: \"Password\",\n    description: \"The password of the user\",\n  },\n};\n\nexport const output = {\n  uid: {\n    type: \"string\",\n    label: \"UID\",\n    description: \"The unique identifier of the created user\",\n  },\n};"
+      }
+    ],
+    "params": {
+      "password": { "description": "The password of the user", "label": "Password", "type": "string" },
+      "fullName": { "description": "The full name of the user", "label": "Full Name", "type": "string" },
+      "email": { "description": "The email of the user", "label": "Email", "type": "string" }
+    },
+    "vectorTest": {
+      "ranBy": "shams@rowy.io.rowy",
+      "completedAt": { "_seconds": 1688724173, "_nanoseconds": 581000000 },
+      "status": "upto date"
+    },
+    "type": "script",
+    "indexVector": true,
+    "name": "Create Firebase Auth User",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Firebase",
+        "description": "Nodes for working with firebase services and database",
+        "id": "XSzwpgAA2l6M19rea7UU",
+        "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+      }
+    ],
+    "dependencies": { "firebase-admin": "11.11.0" },
+    "output": {
+      "buildship": {},
+      "type": "object",
+      "properties": {
+        "uid": {
+          "buildship": { "index": 0 },
+          "description": "The unique identifier of the created user",
+          "type": "string",
+          "title": "UID"
+        },
+        "success": {
+          "buildship": { "index": 1 },
+          "description": "Flag indicating whether the user was saved successfully or not",
+          "type": "string",
+          "title": "Success"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": true },
+          "pattern": "",
+          "description": "The password of the user",
+          "title": "Password",
+          "type": "string"
+        },
+        "fullName": {
+          "buildship": { "index": 1 },
+          "description": "The full name of the user",
+          "title": "Full Name",
+          "type": "string"
+        },
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 0 },
+          "description": "The ID of the Google Cloud project. If not set, the underlying project is used. For more information, read our [Firebase Integration blog](https://docs.buildship.com/tutorials/firebase-project).\nAlso, creation of a Firebase Auth user, grant an additional role of `Firebase Admin SDK Administrator Service Agent` along with the other requirements mentioned in the tutorial.",
+          "title": "Project ID",
+          "type": "string"
+        },
+        "email": {
+          "buildship": { "index": 2 },
+          "description": "The email of the user",
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "required": ["fullName", "email", "password"]
+    },
+    "t": 109,
+    "syncAllAtOnce": "929",
+    "integrations": [],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1708064087, "_nanoseconds": 395000000 }
+    },
+    "groupInfo": "XSzwpgAA2l6M19rea7UU",
+    "id": "create-firebase-auth-user",
+    "_libRef": {
+      "integrity": "v3:890a21c71d921f6fd19fb311b8d769da",
+      "libNodeRefId": "@buildship/create-firebase-auth-user",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/create-firebase-auth-user/1.0.1/build.cjs",
+      "version": "1.0.1"
+    },
+    "script": "import { getApps, initializeApp } from \"firebase-admin/app\";\nimport { getAuth } from \"firebase-admin/auth\";\n\nexport default async function createFirebaseUser({\n  email,\n  password,\n  fullName,\n  projectId // Optional project ID parameter\n}: NodeInputs, { logging }: NodeScriptOptions) : NodeOutput  {\n  const alreadyCreatedApps = getApps();\n  const app =\n    alreadyCreatedApps.length === 0\n      ? initializeApp({ projectId })\n      : alreadyCreatedApps[0];\n  const auth = getAuth(app);\n\n  try {\n    const userRecord = await auth.createUser({\n      email,\n      password,\n      displayName: fullName\n    });\n\n    // User created successfully\n    logging.log(`User created: ${userRecord.uid}`);\n\n    return {\n      uid: userRecord.uid,\n      success: true,\n      message: 'User created successfully'\n    };\n  } catch (error) {\n    logging.error('Error creating user:', error);\n\n    return {\n      uid: null,\n      success: false,\n      error: error.message // Include the error message for diagnosis\n    };\n  }\n}\n",
+    "integrity": "v3:f3fb1bde3a45774cc9281943f96b6a4d",
+    "meta": {
+      "name": "Create Firebase User",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase.png?alt=media&token=b6adf7f8-e93e-40d9-bba6-4d8e93531890"
+      },
+      "description": "Create a new Firebase Auth User with email, full name, and password",
+      "id": "create-firebase-auth-user"
+    },
+    "syncIndex": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1716208238, "_nanoseconds": 95000000 }
+    },
+    "failCount": 3,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 44000000 },
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/create-firebase-auth-user/1.1.2/build.cjs",
+    "version": "1.1.2",
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTteHR1mYhhB_mvgntLyHkZFTdhB-nqqb3xJiKW13sX6odg=s96-c",
+      "uid": "HIGVNMhvkORk3bmp9wPorP5wsXT2",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1717537536, "_nanoseconds": 724000000 }
+    },
+    "usageCounter": 883
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Firebase auth getUser",
+      "type": "object",
+      "title": "Firebase User",
+      "properties": {
+        "uid": { "buildship": { "index": 0 }, "type": "string", "title": "UID" },
+        "email_verified": { "buildship": { "index": 1 }, "type": "boolean", "title": "Email Verified" },
+        "name": { "buildship": { "index": 2 }, "type": "string", "title": "Name" },
+        "exp": { "buildship": { "index": 3 }, "type": "string", "title": "Expiration Time" },
+        "iat": { "buildship": { "index": 4 }, "type": "string", "title": "Issued At" },
+        "email": { "buildship": { "index": 5 }, "type": "string", "title": "Email" }
+      }
+    },
+    "type": "script",
+    "dependencies": { "firebase-admin": "11.11.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Firebase",
+        "description": "Nodes for working with Firebase services and authentication",
+        "id": "XSzwpgAA2l6M19rea7UU",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase-plain.svg?alt=media&token=d69969cc-2fc0-41bc-921b-39d8939f76cd"
+      }
+    ],
+    "t": 193,
+    "syncAllAtOnce": "839",
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 0 },
+          "description": "The ID of the Google Cloud project. If not set, the underlying project is used. For more information, read our [Firebase Integration blog](https://docs.buildship.com/tutorials/firebase-project).",
+          "title": "Project ID",
+          "type": "string"
+        },
+        "userId": {
+          "buildship": { "index": 1 },
+          "description": "The user ID of the firebase user",
+          "title": "User ID",
+          "type": "string"
+        }
+      },
+      "required": ["userId"]
+    },
+    "integrations": [],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1708064094, "_nanoseconds": 419000000 }
+    },
+    "groupInfo": "XSzwpgAA2l6M19rea7UU",
+    "id": "fetch-firebase-user-with-id",
+    "_libRef": {
+      "integrity": "v3:5030e5c528868c30b3e60a1727bae8f5",
+      "libNodeRefId": "@buildship/fetch-firebase-user-with-id",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/fetch-firebase-user-with-id/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import {\n    getApps,\n    initializeApp\n} from \"firebase-admin/app\";\nimport {\n    getAuth\n} from \"firebase-admin/auth\";\n\nexport default async function fetchFirebaseUserData({\n    userId,\n    projectId\n}: NodeInputs, {\n    logging\n}: NodeScriptOptions) : NodeOutput  {\n    const alreadyCreatedApps = getApps();\n    const app =\n        alreadyCreatedApps.length === 0 ?\n        initializeApp({\n            projectId: projectId && projectId.length > 1 ? projectId.trim() : undefined,\n        }) :\n        alreadyCreatedApps[0];\n    const auth = getAuth(app);\n\n    try {\n        const user = await auth.getUser(userId);\n\n        return user;\n    } catch (error) {\n        logging.log(\"Error fetching user data:\", error);\n\n        throw error; // Re-throw the error for handling at a higher level if needed\n    }\n}",
+    "_updatedBy": {
+      "uid": "81gZMCgpk9SUHq1ao36d5NT1PnB3",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocILoI_sh5F9cCDm0zCgmFHLhF-kASZuKopCtfLTm5y5=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Gaurav Chadha",
+      "email": "gaurav@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716208947, "_nanoseconds": 976000000 }
+    },
+    "syncIndex": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1716208948, "_nanoseconds": 52000000 }
+    },
+    "integrity": "v3:81ca5e77f0f52ca1b5dd92b199b3d211",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/fetch-firebase-user-with-id/1.1.1/build.cjs",
+    "meta": {
+      "name": "Get User Data With ID",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase.png?alt=media&token=b6adf7f8-e93e-40d9-bba6-4d8e93531890"
+      },
+      "description": "Fetch user data from Firebase Auth based given their user ID",
+      "id": "fetch-firebase-user-with-id"
+    },
+    "version": "1.1.1",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 45000000 },
+    "failCount": 26,
+    "usageCounter": 271
+  },
+  {
+    "type": "script",
+    "category": ["Integrations"],
+    "indexVector": true,
+    "group": [
+      {
+        "name": "Firebase",
+        "description": "Nodes for working with firebase services and database",
+        "id": "XSzwpgAA2l6M19rea7UU",
+        "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+      }
+    ],
+    "dependencies": { "firebase-admin": "11.11.0" },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 0 },
+          "description": "The ID of the Google Cloud project. If not set, the underlying project is used. For more information, read our [Firebase Integration blog](https://docs.buildship.com/tutorials/firebase-project).",
+          "title": "Project ID",
+          "type": "string"
+        },
+        "token": {
+          "buildship": { "index": 1 },
+          "description": "The auth token of the firebase user",
+          "title": "Auth Token",
+          "type": "string"
+        }
+      },
+      "required": ["token"]
+    },
+    "output": {
+      "buildship": {},
+      "description": "The response from the Firebase auth verifyIdToken",
+      "type": "object",
+      "title": "Firebase User",
+      "properties": {
+        "uid": { "buildship": { "index": 0 }, "type": "string", "title": "UID" },
+        "email_verified": { "buildship": { "index": 1 }, "type": "boolean", "title": "Email Verified" },
+        "name": { "buildship": { "index": 2 }, "type": "string", "title": "Name" },
+        "exp": { "buildship": { "index": 3 }, "type": "string", "title": "Expiration Time" },
+        "iat": { "buildship": { "index": 4 }, "type": "string", "title": "Issued At" },
+        "email": { "buildship": { "index": 5 }, "type": "string", "title": "Email" }
+      }
+    },
+    "t": 240,
+    "syncAllAtOnce": "963",
+    "integrations": [],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1708064086, "_nanoseconds": 39000000 }
+    },
+    "groupInfo": "XSzwpgAA2l6M19rea7UU",
+    "id": "fetch-firebase-user-with-token",
+    "_libRef": {
+      "integrity": "v3:943b6c73a163fd539c2df5f898be43b1",
+      "libNodeRefId": "@buildship/fetch-firebase-user-with-token",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/fetch-firebase-user-with-token/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import { getApps, initializeApp } from \"firebase-admin/app\";\nimport { getAuth } from \"firebase-admin/auth\";\n\nexport default async function fetchFirebaseUserData(\n  { token, projectId }: NodeInputs,\n  { logging }\n: NodeScriptOptions) : NodeOutput  {\n  const alreadyCreatedApps = getApps();\n  const app =\n    alreadyCreatedApps.length === 0\n      ? initializeApp({\n          projectId:\n            projectId && projectId.length > 1 ? projectId.trim() : undefined,\n        })\n      : alreadyCreatedApps[0];\n  const auth = getAuth(app);\n\n  try {\n    const _token = token.includes(\" \") ? token.split(\" \")[1] : token; // Handle full bearer header\n    const user = await auth.verifyIdToken(_token);\n\n    return user;\n  } catch (error) {\n    logging.log(\"Error fetching user data:\", error);\n\n    throw error; // Re-throw the error for handling at a higher level if needed\n  }\n}\n",
+    "integrity": "v3:a6cbb962da172787d153a4c41d31540a",
+    "meta": {
+      "name": "Get User Data With Auth Token",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase.png?alt=media&token=b6adf7f8-e93e-40d9-bba6-4d8e93531890"
+      },
+      "description": "Fetch user data from Firebase based on the auth token",
+      "id": "fetch-firebase-user-with-token"
+    },
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/fetch-firebase-user-with-token/1.1.2/build.cjs",
+    "version": "1.1.2",
+    "syncIndex": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1716210830, "_nanoseconds": 84000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "isAnonymous": false,
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716928999, "_nanoseconds": 88000000 }
+    },
+    "subType": null,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 46000000 },
+    "usageCounter": 495,
+    "failCount": 59
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "Indicates if the user already exists",
+      "type": "boolean",
+      "title": "User Exists"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "email": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The email of the user",
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "required": ["email"]
+    },
+    "type": "script",
+    "dependencies": { "firebase-admin": "11.11.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Firebase",
+        "description": "Nodes for working with Firebase services and authentication",
+        "id": "XSzwpgAA2l6M19rea7UU",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase-plain.svg?alt=media&token=d69969cc-2fc0-41bc-921b-39d8939f76cd"
+      }
+    ],
+    "t": 192,
+    "syncAllAtOnce": "964",
+    "integrations": [],
+    "live": true,
+    "groupInfo": "XSzwpgAA2l6M19rea7UU",
+    "id": "firebase-auth-user-check",
+    "_libRef": {
+      "integrity": "v3:0a90dfea789d7d5665dea151a03de5a6",
+      "libNodeRefId": "@buildship/firebase-auth-user-check",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/firebase-auth-user-check/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import { getApps, initializeApp } from \"firebase-admin/app\";\nimport { getAuth } from \"firebase-admin/auth\";\n\nexport default async function checkIfFirebaseUserExists({\n  email,\n  projectId\n}: NodeInputs, { logging }: NodeScriptOptions) : NodeOutput  {\n  const alreadyCreatedApps = getApps();\n  const app =\n    alreadyCreatedApps.length === 0\n      ? initializeApp({\n          projectId:\n            projectId && projectId.length > 1 ? projectId.trim() : undefined,\n        })\n      : alreadyCreatedApps[0];\n  const auth = getAuth(app);\n\n  try {\n    await auth.getUserByEmail(email);\n    return true;\n  } catch (error) {\n    return false\n  }\n}\n",
+    "integrity": "v3:fe0f764abace8d1009b38a8d337f5922",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/firebase-auth-user-check/1.1.1/build.cjs",
+    "meta": {
+      "name": "User Exists Check",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase.png?alt=media&token=b6adf7f8-e93e-40d9-bba6-4d8e93531890"
+      },
+      "description": "Checks if a firebase user already exists for the given email",
+      "id": "firebase-auth-user-check"
+    },
+    "version": "1.1.1",
+    "deployToBucket": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "completedAt": { "_seconds": 1716209316, "_nanoseconds": 578000000 }
+    },
+    "_updatedBy": {
+      "uid": "81gZMCgpk9SUHq1ao36d5NT1PnB3",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocILoI_sh5F9cCDm0zCgmFHLhF-kASZuKopCtfLTm5y5=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Gaurav Chadha",
+      "email": "gaurav@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716209323, "_nanoseconds": 100000000 }
+    },
+    "syncIndex": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1716209323, "_nanoseconds": 110000000 }
+    },
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 47000000 },
+    "usageCounter": 347
+  },
+  {
+    "output": {
+      "buildship": {},
+      "type": "object",
+      "properties": {
+        "uid": {
+          "buildship": {},
+          "description": "The unique identifier of the verified user",
+          "type": "string",
+          "title": "UID"
+        },
+        "success": {
+          "buildship": {},
+          "description": "Flag indicating whether the user was marked as verified successfully or not",
+          "title": "Success",
+          "type": "string"
+        }
+      }
+    },
+    "type": "script",
+    "dependencies": { "firebase-admin": "11.11.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Firebase",
+        "description": "Nodes for working with Firebase services and authentication",
+        "id": "XSzwpgAA2l6M19rea7UU",
+        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase-plain.svg?alt=media&token=d69969cc-2fc0-41bc-921b-39d8939f76cd"
+      }
+    ],
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "default": "",
+          "buildship": { "index": 0 },
+          "description": "The ID of the Google Cloud project. If not set, the underlying project is used. For more information, read our [Firebase Integration blog](https://docs.buildship.com/tutorials/firebase-project).\nAlso, for verifying a Firebase Auth user, grant an additional role of `Firebase Admin SDK Administrator Service Agent` along with the other requirements mentioned in the tutorial.",
+          "title": "Project ID",
+          "type": "string"
+        },
+        "userId": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The ID of the user. Get your Firebase UID from the project's \"Authentication\" section. ",
+          "title": "User ID",
+          "type": "string"
+        }
+      },
+      "required": ["userId"]
+    },
+    "t": 217,
+    "syncAllAtOnce": "920",
+    "integrations": [],
+    "live": true,
+    "groupInfo": "XSzwpgAA2l6M19rea7UU",
+    "id": "mark-firebase-auth-user-verified",
+    "_libRef": {
+      "integrity": "v3:5b5e8805cfe7980babb0dc9f0ec17a7e",
+      "libNodeRefId": "@buildship/mark-firebase-auth-user-verified",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/mark-firebase-auth-user-verified/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import {\n    getApps,\n    initializeApp\n} from \"firebase-admin/app\";\nimport {\n    getAuth\n} from \"firebase-admin/auth\";\n\nexport default async function markFirebaseUserVerified({\n    userId,\n    projectId // Optional project ID parameter\n}: NodeInputs, {\n    logging\n}: NodeScriptOptions) : NodeOutput  {\n    const alreadyCreatedApps = getApps();\n    const app =\n        alreadyCreatedApps.length === 0 ?\n        initializeApp({\n            projectId\n        }) :\n        alreadyCreatedApps[0];\n    const auth = getAuth(app);\n\n    try {\n        const userRecord = await auth.getUser(userId);\n        await auth.updateUser(userId, {\n            emailVerified: true\n        });\n\n        // User marked as verified successfully\n        logging.log(`User marked as verified: ${userRecord.uid}`);\n\n        return {\n            uid: userRecord.uid,\n            success: true,\n            message: 'User marked as verified successfully'\n        };\n    } catch (error) {\n        logging.error('Error marking user as verified:', error);\n\n        return {\n            uid: null,\n            success: false,\n            error: error.message // Include the error message for diagnosis\n        };\n    }\n}",
+    "integrity": "v3:a073dd0a1658cf619f8922eff9d64c85",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/mark-firebase-auth-user-verified/1.1.1/build.cjs",
+    "meta": {
+      "name": "Mark Firebase User as Verified",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Ffirebase.png?alt=media&token=b6adf7f8-e93e-40d9-bba6-4d8e93531890"
+      },
+      "description": "Mark a Firebase Auth User as verified using user id",
+      "id": "mark-firebase-auth-user-verified"
+    },
+    "version": "1.1.1",
+    "deployToBucket": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "completedAt": { "_seconds": 1716210321, "_nanoseconds": 990000000 }
+    },
+    "_updatedBy": {
+      "uid": "81gZMCgpk9SUHq1ao36d5NT1PnB3",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocILoI_sh5F9cCDm0zCgmFHLhF-kASZuKopCtfLTm5y5=s96-c",
+      "updatedField": "syncIndex",
+      "displayName": "Gaurav Chadha",
+      "email": "gaurav@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716210323, "_nanoseconds": 926000000 }
+    },
+    "syncIndex": {
+      "ranBy": "gaurav@rowy.io.rowy",
+      "status": "synced",
+      "completedAt": { "_seconds": 1716210323, "_nanoseconds": 931000000 }
+    },
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 55000000 },
+    "usageCounter": 153
+  }
+]

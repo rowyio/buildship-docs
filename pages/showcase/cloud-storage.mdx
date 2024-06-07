@@ -1,0 +1,22 @@
+import nodes from './cloud-storage/nodes.json';
+import { Card, Cards } from 'nextra/components';
+import NodeCard from '/components/nodeCard';
+
+# Cloud Storage
+
+Cloud Storage allows you to store and serve user-generated content like photos, videos, and other media directly to your
+app. Manage and manipulate files stored in Google Cloud Storage with ease, enabling seamless and secure access to the
+storage of large amounts of unstructured data across the globe.
+
+## Nodes
+
+<Cards num={3}>
+  {nodes.map((node) => (
+    <NodeCard
+      key={node.meta.id}
+      title={node.meta.name}
+      image={node.meta.icon.url}
+      href={`/showcase/cloud-storage/${node.meta.id}`}
+    />
+  ))}
+</Cards>

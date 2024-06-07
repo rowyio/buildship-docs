@@ -1,0 +1,13 @@
+[
+  {
+    "meta": {
+      "name": "Discord Webhook Bot",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fdiscord-clyde.svg?alt=media&token=32d763e2-82f8-4461-9262-e1704703c1ac"
+      },
+      "description": "Send a message to a discord channel using webhook",
+      "id": "discord-webhook-bot"
+    }
+  }
+]

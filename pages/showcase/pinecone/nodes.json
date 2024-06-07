@@ -1,0 +1,26 @@
+[
+  {
+    "meta": {
+      "name": "Delete Vectors by ID",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/pinecone.jpeg" },
+      "description": "Deletes vectors by their id from a specified namespace",
+      "id": "pinecone-delete-vectors"
+    }
+  },
+  {
+    "meta": {
+      "name": "Upsert to Index",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/pinecone.jpeg" },
+      "description": "Creates a new Pinecone index if it does not already exist and upserts the given record.",
+      "id": "pinecone-upsert-to-index"
+    }
+  },
+  {
+    "meta": {
+      "name": "Query Vector DB",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/pinecone.jpeg" },
+      "description": "Queries vectors in the Pinecone database index",
+      "id": "pinecone-vector-query"
+    }
+  }
+]

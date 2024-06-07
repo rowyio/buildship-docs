@@ -1,0 +1,1227 @@
+[
+  {
+    "output": {
+      "buildship": {},
+      "type": "object",
+      "properties": {
+        "output": { "buildship": {}, "description": "The returned image", "type": "string", "title": "Image URL" }
+      }
+    },
+    "meta": {
+      "name": "Background Remover",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Remove the background from images using Replicate API",
+      "id": "background-remover"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "dependencies": { "replicate": "0.21.1" },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API Key [here](https://replicate.com/account/api-tokens).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "url": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Image with background you want to remove.",
+          "title": "Image URL",
+          "type": "string"
+        }
+      },
+      "required": ["apiKey", "url"]
+    },
+    "t": 135,
+    "syncAllAtOnce": "822",
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1709156785, "_nanoseconds": 312000000 }
+    },
+    "generateDocs": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1709288224, "_nanoseconds": 260000000 }
+    },
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 468000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "background-remover",
+    "integrations": [],
+    "integrity": "v3:df9ff4260f62d28cba36e1d65f6d249a",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/background-remover/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:4fe6c0effd7ae353fe871af8929d333a",
+      "libNodeRefId": "@buildship/background-remover",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/background-remover/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from \"replicate\";\n\nexport default async function removeBackground({ url, apiKey }: NodeInputs) : NodeOutput  {\n  const replicate = new Replicate({\n    auth: apiKey\n  });\n\n  const output = await replicate.run(\n    \"pollinations/modnet:da7d45f3b836795f945f221fc0b01a6d3ab7f5e163f13208948ad436001e2255\",\n    {\n      input: {\n        image: url,\n      },\n    }\n  );\n\n  return { output }\n}",
+    "failCount": 10,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 39000000 },
+    "usageCounter": 93
+  },
+  {
+    "output": { "buildship": {}, "type": "object", "properties": {} },
+    "meta": {
+      "name": "Llama 2 Chat",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Llama 2 for chat completion",
+      "id": "llama-2-chat"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "dependencies": { "replicate": "0.18.1", "langchain": "0.0.189" },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701282853, "_nanoseconds": 583000000 }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "systemPrompt": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "System prompt to send to the model.",
+          "title": "System Prompt",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "maxTokens": {
+          "default": "300",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Maximum number of tokens to generate. A word is generally 2-3 tokens.",
+          "title": "Max Tokens",
+          "type": "number"
+        },
+        "prompt": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Prompt to send to the model.",
+          "title": "Prompt",
+          "type": "string"
+        }
+      },
+      "required": ["apiKey", "systemPrompt", "prompt"]
+    },
+    "t": 264,
+    "syncAllAtOnce": "1024",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832978, "_nanoseconds": 484000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "llama-2-chat",
+    "integrations": [],
+    "integrity": "v3:14bb9b7087e8c784f8236a7810b537b0",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/llama-2-chat/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:f9301926a2e5423fa64c05789af4bd85",
+      "libNodeRefId": "@buildship/llama-2-chat",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/llama-2-chat/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import replicate from \"replicate\";\nimport { Replicate } from \"langchain/llms/replicate\";\n\nexport default async function llama2Chat({\n  systemPrompt, prompt, apiKey, maxTokens\n}: NodeInputs) : NodeOutput  {\n  const model = new Replicate({\n    apiKey,\n    model:\n      \"replicate/llama-2-70b-chat:2796ee9483c3fd7aa2e171d38f4ca12251a30609463dcfd4cd76703f22e96cdf\",\n    input: {\n      max_new_tokens: maxTokens,\n      system_prompt: systemPrompt,\n    },\n  });\n\n  const res = await model.call(prompt);\n  return res\n}",
+    "usageCounter": 81,
+    "failCount": 5,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 53000000 }
+  },
+  {
+    "meta": {
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "name": "Replicate Client",
+      "description": "A generic Replicate Client to use any Replicate model.",
+      "id": "replicate-client"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "dependencies": { "replicate": "0.21.1" },
+    "output": {
+      "buildship": {},
+      "description": "Specified replicate model response",
+      "title": "Replicate response",
+      "type": "object",
+      "properties": {
+        "output": {
+          "buildship": { "index": 0 },
+          "description": "The specified replicate model output",
+          "type": "string",
+          "title": "Output"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "default": {},
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Valid input for the specified model. Please refer to the model API documentation on Replicate to verify what properties are valid.",
+          "title": "Input",
+          "type": "object"
+        },
+        "defaults": {
+          "buildship": { "index": 3 },
+          "description": "Default inputs to pass to the specified model. Please refer to the model API documentation on Replicate to verify what properties are valid.",
+          "title": "Defaults",
+          "type": "object"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API Key [here](https://replicate.com/account/api-tokens).",
+          "title": "API Key",
+          "type": "string"
+        },
+        "model": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The replicate model to run. \n\nSAMPLE INPUT: `meta/musicgen:7a76a8258b23fae65c5a22debb8841d1d7e816b75c2f24218cd2bd8573787906`",
+          "title": "Model",
+          "type": "string"
+        }
+      },
+      "required": ["model", "apiKey", "input"]
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701286995, "_nanoseconds": 734000000 }
+    },
+    "t": 318,
+    "syncAllAtOnce": "1091",
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-client",
+    "integrations": [],
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTtfPe0yH9QzE2iqPg4aVB_xklqimDxaI5WOsRM9XqSvD=s96-c",
+      "uid": "lGcdiftmK4QNZ2XuMUVqrm6B21c2",
+      "displayName": "Aaditya Bhusal",
+      "email": "aaditya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716279230, "_nanoseconds": 331000000 }
+    },
+    "integrity": "v3:c4043acdf1eecb8a27001ee329e2e596",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-client/1.1.0/build.cjs",
+    "version": "1.1.0",
+    "_libRef": {
+      "integrity": "v3:44f7b6a5e9d26d6f994d1334d4c35a11",
+      "libNodeRefId": "@buildship/replicate-client",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-client/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import Replicate from \"replicate\";\n\nexport default async function runReplicate(\n  { apiKey, input, model, defaults }: NodeInputs) : NodeOutput  {\n  const replicate = new Replicate({\n    auth: apiKey,\n  });\n\n  const output = await replicate.run(model, {\n    input: {\n      ...defaults,\n      ...input\n    },\n  });\n\n  if (!output) {\n    throw new Error(\"Failed to run replicate model\");\n  }\n\n  return { output };\n}\n",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 },
+    "usageCounter": 182,
+    "failCount": 62
+  },
+  {
+    "output": { "buildship": {}, "description": "The restored image", "type": "object", "title": "Restored Image" },
+    "meta": {
+      "name": "Face Restoration",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Performs practical face restoration algorithm for old photos or AI-generated faces using Replicate",
+      "id": "replicate-face-restoration"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "imgUrl": {
+          "buildship": { "index": 1 },
+          "description": "The URL of the image to be restored",
+          "title": "Image URL",
+          "type": "string"
+        },
+        "apiToken": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "scale": {
+          "default": 2,
+          "buildship": { "index": 2 },
+          "description": "The scale of the image",
+          "title": "Scale",
+          "type": "number"
+        },
+        "version": {
+          "default": "v1.3",
+          "buildship": { "index": 3 },
+          "description": "The version of the algorithm to be used",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": ["imgUrl", "scale", "version", "apiToken"]
+    },
+    "type": "script",
+    "dependencies": { "replicate": "0.22.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1700168421, "_nanoseconds": 693000000 }
+    },
+    "t": 213,
+    "syncAllAtOnce": "993",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 300000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-face-restoration",
+    "integrations": [],
+    "integrity": "v3:baeefd59918be6146d1e8cbe96c476e6",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-face-restoration/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:7e78cd25147fb09c74e9f253cfdf9926",
+      "libNodeRefId": "@buildship/replicate-face-restoration",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-face-restoration/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from 'replicate';\nexport default async function faceRestoration({\n    apiToken,\n    imgUrl,\n    scale,\n    version\n}: NodeInputs) : NodeOutput  {\n    const replicate = new Replicate({\n        auth: apiToken\n    });\n    const output = await replicate.run('tencentarc/gfpgan:ae80bbe1adce7d616b8a96ba88a91d3556838d4f2f4da76327638b8e95ea4694', {\n        input: {\n            img: imgUrl,\n            scale: scale,\n            version: version\n        }\n    });\n    return output;\n}",
+    "usageCounter": 38,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Replicate face swap operation",
+      "type": "object",
+      "title": "Replicate Response"
+    },
+    "meta": {
+      "name": "Face Swap",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Swaps faces using replicate's yan-ops/face_swap model.",
+      "id": "replicate-face-swap"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "requestId": {
+          "default": "aa6a2aad-90ec-4c00-b90b-89f4d62e6b84",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "The request ID for the face swap operation",
+          "title": "Request ID",
+          "type": "string"
+        },
+        "sourceImage": {
+          "default": "",
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "The URL of the source image",
+          "title": "Source Image",
+          "type": "string"
+        },
+        "targetImage": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The URL of the target image",
+          "title": "Target Image",
+          "type": "string"
+        }
+      },
+      "required": ["apiKey", "targetImage", "sourceImage", "requestId"]
+    },
+    "type": "script",
+    "dependencies": { "replicate": "0.22.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1700200670, "_nanoseconds": 167000000 }
+    },
+    "t": 324,
+    "syncAllAtOnce": "1073",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 300000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-face-swap",
+    "integrations": [],
+    "integrity": "v3:08269626e00f9661baec053c6e5081b0",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-face-swap/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:613024932c163b99a28a67c2e790881a",
+      "libNodeRefId": "@buildship/replicate-face-swap",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-face-swap/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from 'replicate';\nexport default async function faceSwap({\n    apiKey,\n    targetImage,\n    sourceImage,\n    requestId\n}: NodeInputs) : NodeOutput  {\n    const replicate = new Replicate({\n        auth: apiKey\n    });\n    const output = await replicate.run('yan-ops/face_swap:ad6bd82aaff9ffabee90890c7bfbb249e4433b7a9f0ebf27b39f927edbd9b129', {\n        input: {\n            request_id: requestId,\n            target_image: targetImage,\n            source_image: sourceImage\n        }\n    });\n    return output.image;\n}",
+    "usageCounter": 91,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 },
+    "failCount": 20
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The response from the Replicate model",
+      "type": "object",
+      "title": "Replicate Response"
+    },
+    "meta": {
+      "name": "Answer Image Questions",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Answers questions about images using the Replicate model",
+      "id": "replicate-image-questions"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "useNucleusSampling": {
+          "default": false,
+          "buildship": { "index": 5, "sensitive": false },
+          "pattern": "",
+          "description": "Toggles the model using nucleus sampling to generate responses",
+          "title": "Use Nucleus Sampling",
+          "type": "boolean"
+        },
+        "question": {
+          "default": "",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Question to ask about this image. Leave blank for captioning",
+          "title": "Question",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "imageFile": {
+          "buildship": { "index": 1 },
+          "description": "The image file to query or caption",
+          "title": "Image File",
+          "type": "string"
+        },
+        "context": {
+          "buildship": { "index": 4 },
+          "description": "Optional - previous questions and answers to be used as context for answering current question",
+          "title": "Context",
+          "type": "string"
+        },
+        "temperature": {
+          "default": 1,
+          "buildship": { "index": 6, "sensitive": false },
+          "pattern": "",
+          "description": "Temperature for use with nucleus sampling",
+          "title": "Temperature",
+          "type": "number"
+        },
+        "caption": {
+          "default": false,
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Select if you want to generate image captions instead of asking questions",
+          "title": "Caption",
+          "type": "boolean"
+        }
+      },
+      "required": ["imageFile", "caption", "useNucleusSampling", "temperature", "apiKey"]
+    },
+    "type": "script",
+    "dependencies": { "replicate": "0.22.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1700170200, "_nanoseconds": 659000000 }
+    },
+    "t": 215,
+    "syncAllAtOnce": "1035",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 300000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-image-questions",
+    "integrations": [],
+    "integrity": "v3:eda32c1937d25bac7ed0e9988cc4355e",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-image-questions/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:22dcfd910438573a8b726778f041bd09",
+      "libNodeRefId": "@buildship/replicate-image-questions",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-image-questions/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from 'replicate';\nexport default async function imageQuestions({\n    apiKey,\n    imageFile,\n    caption,\n    question,\n    context,\n    useNucleusSampling,\n    temperature\n}: NodeInputs) : NodeOutput  {\n    const replicate = new Replicate({\n        auth: apiKey\n    });\n    const output = await replicate.run('andreasjansson/blip-2:9109553e37d266369f2750e407ab95649c63eb8e13f13b1f3983ff0feb2f9ef7', {\n        input: {\n            image: imageFile,\n            caption: caption,\n            question: question,\n            context: context,\n            use_nucleus_sampling: useNucleusSampling,\n            temperature: temperature\n        }\n    });\n    return output;\n}",
+    "usageCounter": 63,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The text generated by the Replicate Llama model",
+      "title": "Generated Text",
+      "type": "string"
+    },
+    "meta": {
+      "name": "Replicate Llama Text Generator",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Uses Replicate Llama model to generate text based on a provided prompt and system prompt while applying various text generation settings.",
+      "id": "replicate-llama-text-generator"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "dependencies": { "replicate": "0.22.0" },
+    "inputs": {
+      "type": "object",
+      "required": ["prompt", "apiKey", "systemPrompt"],
+      "properties": {
+        "topK": {
+          "default": "50",
+          "buildship": { "index": 7, "sensitive": false },
+          "pattern": "",
+          "description": "When decoding text, samples from the top k most likely tokens; lower to ignore less likely tokens. (Defaults to 50)",
+          "title": "Top K",
+          "type": "number"
+        },
+        "systemPrompt": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "System prompt to send to Llama v2. This is prepended to the prompt and helps guide system behavior",
+          "title": "System Prompt",
+          "type": "string"
+        },
+        "minNewTokens": {
+          "default": "-1",
+          "buildship": { "index": 4, "sensitive": false },
+          "pattern": "",
+          "description": "Minimum number of tokens to generate. To disable, set to -1. A word is generally 2-3 tokens. (Defaults to -1)",
+          "title": "Min New Tokens",
+          "type": "number"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "maxNewTokens": {
+          "default": "128",
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Maximum number of tokens to generate. A word is generally 2-3 tokens. (Defaults to 128)",
+          "title": "Max New Tokens",
+          "type": "number"
+        },
+        "temperature": {
+          "default": "0.75",
+          "buildship": { "index": 5, "sensitive": false },
+          "pattern": "",
+          "description": "Adjusts randomness of outputs, greater than 1 is random and 0 is deterministic, 0.75 is a good starting value. (Defaults to 0.75)",
+          "title": "Temperature",
+          "type": "number"
+        },
+        "prompt": {
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Prompt to send to Llama v2",
+          "type": "string",
+          "title": "Prompt"
+        },
+        "topP": {
+          "default": "0.9",
+          "buildship": { "index": 6, "sensitive": false },
+          "pattern": "",
+          "description": "When decoding text, samples from the top p percentage of most likely tokens; lower to ignore less likely tokens. (Defaults to 0.9)",
+          "title": "Top P",
+          "type": "number"
+        }
+      }
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701289336, "_nanoseconds": 578000000 }
+    },
+    "t": 329,
+    "syncAllAtOnce": "899",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 300000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-llama-text-generator",
+    "integrations": [],
+    "integrity": "v3:487396657851d11b7d1d5f201e2442c3",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-llama-text-generator/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:9780854445fba2957b9fc1b7a01a8683",
+      "libNodeRefId": "@buildship/replicate-llama-text-generator",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-llama-text-generator/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from 'replicate';\nexport default async function generateText({\n    apiKey,\n    prompt,\n    systemPrompt,\n    maxNewTokens,\n    minNewTokens,\n    temperature,\n    topP,\n    topK\n}: NodeInputs) : NodeOutput  {\n    const replicate = new Replicate({\n        auth: apiKey\n    });\n    const output = await replicate.run('meta/llama-2-70b-chat:58d078176e02c219e11eb4da5a02a7830a283b14cf8f94537af893ccff5ee781', {\n        input: {\n            prompt: systemPrompt + ' ' + prompt\n        },\n        max_new_tokens: maxNewTokens,\n        min_new_tokens: minNewTokens,\n        temperature: temperature,\n        top_p: topP,\n        top_k: topK,\n    });\n    return output.join().replace(/,/g, '');;\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 },
+    "usageCounter": 69,
+    "failCount": 29
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "Specified replicate model response",
+      "title": "Replicate response",
+      "type": "object",
+      "properties": {
+        "output": {
+          "buildship": { "index": 0 },
+          "description": "The specified replicate model output",
+          "title": "Output",
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "name": "Music Generator",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Uses Replicate's music-gen model to generate music based on a user prompt.",
+      "id": "replicate-music-gen"
+    },
+    "type": "script",
+    "dependencies": { "replicate": "0.22.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "inputs": {
+      "type": "object",
+      "required": ["model", "apiKey", "input"],
+      "properties": {
+        "input": {
+          "default": { "duration": 30, "prompt": "A soothing R&B mix featuring Chris Brown" },
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "Add input for the Music Gen model.\n\nSAMPLE INPUT: `{\"duration\":30,\"prompt\":\"A soothing R&B mix\"}`",
+          "title": "Input",
+          "type": "object"
+        },
+        "defaults": {
+          "buildship": { "index": 2 },
+          "description": "Default inputs to pass to the specified model. Please refer to the model API documentation on Replicate to verify what properties are valid.",
+          "type": "object",
+          "title": "Defaults"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API Key [here](https://replicate.com/account/api-tokens).",
+          "title": "API Key",
+          "type": "string"
+        }
+      }
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701290190, "_nanoseconds": 898000000 }
+    },
+    "t": 211,
+    "syncAllAtOnce": "902",
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-music-gen",
+    "integrations": [],
+    "_updatedBy": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AAcHTtfPe0yH9QzE2iqPg4aVB_xklqimDxaI5WOsRM9XqSvD=s96-c",
+      "uid": "lGcdiftmK4QNZ2XuMUVqrm6B21c2",
+      "displayName": "Aaditya Bhusal",
+      "email": "aaditya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1716279061, "_nanoseconds": 35000000 }
+    },
+    "integrity": "v3:e41393b156d94a8ed9b49bd88d734031",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-music-gen/1.1.0/build.cjs",
+    "version": "1.1.0",
+    "_libRef": {
+      "integrity": "v3:dc53ca700ed684e45c3407ddc3baa017",
+      "libNodeRefId": "@buildship/replicate-music-gen",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-music-gen/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "script": "import Replicate from \"replicate\";\n\nexport default async function runReplicate(\n  { apiKey, input, model, defaults }: NodeInputs) : NodeOutput  {\n  const replicate = new Replicate({\n    auth: apiKey,\n  });\n\n  const output = await replicate.run(\"meta/musicgen:7a76a8258b23fae65c5a22debb8841d1d7e816b75c2f24218cd2bd8573787906\", {\n    input: {\n      ...defaults,\n      ...input\n    },\n  });\n\n  if (!output) {\n    throw new Error(\"Failed to run replicate model\");\n  }\n\n  return { output };\n}\n",
+    "failCount": 6,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 },
+    "usageCounter": 86
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The output from the Real-ESRGAN upscaling",
+      "type": "object",
+      "title": "Output"
+    },
+    "meta": {
+      "name": "Upscale Image",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Performs Real-ESRGAN with optional face correction and adjustable upscale",
+      "id": "replicate-real-esrgan-upscale"
+    },
+    "type": "script",
+    "dependencies": { "replicate": "0.22.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "default": "",
+          "buildship": { "index": 1, "sensitive": false },
+          "pattern": "",
+          "description": "The URL of the image to be upscaled",
+          "title": "Image URL",
+          "type": "string"
+        },
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "scale": {
+          "default": 2,
+          "buildship": { "index": 2, "sensitive": false },
+          "pattern": "",
+          "description": "Factor by which to upscale the image",
+          "title": "Scale",
+          "type": "number"
+        },
+        "face_enhance": {
+          "default": false,
+          "buildship": { "index": 3, "sensitive": false },
+          "pattern": "",
+          "description": "Whether to enhance faces in the image",
+          "title": "Face Enhance",
+          "type": "boolean"
+        }
+      },
+      "required": ["apiKey", "face_enhance", "image", "scale"]
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1700201459, "_nanoseconds": 452000000 }
+    },
+    "t": 352,
+    "syncAllAtOnce": "917",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 301000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-real-esrgan-upscale",
+    "integrations": [],
+    "failCount": 2,
+    "integrity": "v3:3520d12f979074cf75ccb5f66e4ea03e",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-real-esrgan-upscale/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:b05989cf850e05ef4b9a9bcf4f0d5a56",
+      "libNodeRefId": "@buildship/replicate-real-esrgan-upscale",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-real-esrgan-upscale/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from 'replicate';\n\nexport default async function realESRGANUpscale({\n    apiKey,\n    image,\n    scale,\n    face_enhance\n}: NodeInputs) : NodeOutput  {\n    const replicate = new Replicate({\n      auth: apiKey,\n  });\n    const output = await replicate.run('nightmareai/real-esrgan:42fed1c4974146d4d2414e2be2c5277c7fcf05fcc3a73abf41610695738c1d7b', {\n        input: {\n            image: image,\n            scale: scale,\n            face_enhance: face_enhance\n        }\n    });\n    return output;\n}",
+    "usageCounter": 69,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 }
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The output from the Replicate run",
+      "type": "object",
+      "title": "Replicate Output"
+    },
+    "meta": {
+      "name": "Image Super-Resolution and Restoration",
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "description": "Performs a AI Photorealistic Image Super-Resolution and Restoration using Replicate",
+      "id": "replicate-resolution-restoration"
+    },
+    "type": "script",
+    "dependencies": { "replicate": "0.22.0" },
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1700170765, "_nanoseconds": 873000000 }
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "task": {
+          "default": "real_sr",
+          "buildship": {
+            "options": [
+              { "label": "Classical SR", "value": "classical_sr" },
+              { "label": "Real SR", "value": "real_sr" },
+              { "label": "Compressed SR", "value": "compressed_sr" }
+            ],
+            "index": 2,
+            "sensitive": false
+          },
+          "pattern": "",
+          "description": "The task to be performed on the image",
+          "title": "Task",
+          "type": "string",
+          "enum": ["classical_sr", "real_sr", "compressed_sr"]
+        },
+        "api_key": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "image_file": {
+          "buildship": { "index": 1 },
+          "description": "The image file to be processed",
+          "title": "Image File",
+          "type": "string"
+        }
+      },
+      "required": ["image_file", "task", "api_key"]
+    },
+    "t": 209,
+    "syncAllAtOnce": "996",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 301000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "replicate-resolution-restoration",
+    "integrations": [],
+    "failCount": 2,
+    "integrity": "v3:aa9d48ce322aca6ab963f99c2596478c",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-resolution-restoration/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:b9c4d6e65bd99710240310af33b5ac29",
+      "libNodeRefId": "@buildship/replicate-resolution-restoration",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/replicate-resolution-restoration/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from 'replicate';\nexport default async function aiImageSuperResolutionRestoration({\n    api_key,\n    image_file,\n    task\n}: NodeInputs) : NodeOutput  {\n    const replicate = new Replicate({\n        auth: api_key,\n    });\n    const output = await replicate.run('mv-lab/swin2sr:a01b0512004918ca55d02e554914a9eca63909fa83a29ff0f115c78a7045574f', {\n        input: {\n            task: task,\n            image: image_file\n        }\n    });\n    return output;\n}",
+    "usageCounter": 43,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 66000000 }
+  },
+  {
+    "meta": {
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "name": "Stability AI Image Generation",
+      "description": "Text to image generation using Stability AI's sdxl model that creates beautiful 1024x1024 images",
+      "id": "stability-ai-image-generation"
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "dependencies": { "replicate": "0.21.1" },
+    "output": {
+      "buildship": {},
+      "description": "The url of the generated image",
+      "label": "Stability AI Image Generation",
+      "type": "object",
+      "title": "Stability AI Image Generation",
+      "parameters": [
+        { "description": "The generated image URL", "label": "Image URL", "type": "string", "key": "imageUrl" }
+      ],
+      "properties": {
+        "imageUrl": {
+          "buildship": { "index": 0 },
+          "description": "The generated image URL",
+          "title": "Image URL",
+          "type": "string"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["prompt", "apiKey"],
+      "properties": {
+        "apiKey": {
+          "default": "",
+          "buildship": { "index": 0, "sensitive": true },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "title": "API Key",
+          "type": "string"
+        },
+        "width": {
+          "default": 1024,
+          "buildship": { "index": 2 },
+          "description": "Optional width of the output image. Default is 1024.",
+          "title": "Width",
+          "type": "number"
+        },
+        "prompt": {
+          "buildship": { "index": 1 },
+          "description": "The initial text or context provided as a prompt to generate image from",
+          "title": "Input Prompt",
+          "type": "string"
+        },
+        "height": {
+          "default": 1024,
+          "buildship": { "index": 3 },
+          "description": "Optional height of the output image. Default is 1024.",
+          "title": "Height",
+          "type": "number"
+        }
+      }
+    },
+    "deployToBucket": {
+      "ranBy": "bhavya@rowy.io.rowy",
+      "completedAt": { "_seconds": 1701290760, "_nanoseconds": 297000000 }
+    },
+    "t": 212,
+    "syncAllAtOnce": "983",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 304000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "stability-ai-image-generation",
+    "integrations": [],
+    "integrity": "v3:52228c56995e217e2256dc3dc1954c7f",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stability-ai-image-generation/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:18cf258c9455a14cd0bfc3f0f10a29cf",
+      "libNodeRefId": "@buildship/stability-ai-image-generation",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stability-ai-image-generation/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "import Replicate from \"replicate\";\n\nexport default async function stabilityAIImageGeneration({ prompt, apiKey, width = 1024, height = 1024 }: NodeInputs, { logging }: NodeScriptOptions) : NodeOutput  {\n  const replicate = new Replicate({\n    auth: apiKey,\n  });\n\n  const output = await replicate.run(\n    \"stability-ai/sdxl:2b017d9b67edd2ee1401238df49d75da53c523f36e363881e057f5dc3ed3c5b2\", {\n    input: {\n      prompt,\n      width,\n      height\n    },\n  }\n  );\n\n  return { imageUrl: output[0] }\n}",
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 67000000 },
+    "usageCounter": 252,
+    "failCount": 24
+  },
+  {
+    "output": {
+      "buildship": {},
+      "description": "The url of the generated image",
+      "title": "Stability AI Image Generation",
+      "type": "object",
+      "properties": {
+        "generatedText": {
+          "buildship": {},
+          "description": "The generated text from the Stability AI model",
+          "title": "Generated Text",
+          "type": "string"
+        },
+        "imageUrl": {
+          "buildship": {},
+          "description": "The generated image URL",
+          "type": "string",
+          "title": "Image URL"
+        }
+      }
+    },
+    "meta": {
+      "icon": { "type": "URL", "url": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg" },
+      "name": "Stability AI Text Generation",
+      "description": "Generate text using the Stability AI 7 billion parameter language model",
+      "id": "stability-ai-text-generation"
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["temperature", "repetitionPenalty", "prompt", "topP", "maxTokens", "apiKey"],
+      "properties": {
+        "apiKey": {
+          "buildship": { "index": 0, "sensitive": false },
+          "pattern": "",
+          "description": "Get your Replicate API key [here](https://replicate.com/account/api-tokens)",
+          "type": "string",
+          "title": "API Key"
+        },
+        "width": {
+          "default": 1024,
+          "buildship": { "index": 2 },
+          "description": "Optional width of the output image. Default is 1024.",
+          "type": "number",
+          "title": "Width"
+        },
+        "maxTokens": {
+          "buildship": { "index": 5 },
+          "description": "The maximum number of tokens (words or characters) in the generated text",
+          "type": "number",
+          "title": "Maximum Tokens"
+        },
+        "temperature": {
+          "buildship": { "index": 1 },
+          "description": "A value controlling the randomness of the generated text, with higher values making the output more random (0.0 to 1.0)",
+          "title": "Temperature",
+          "type": "number"
+        },
+        "repetitionPenalty": {
+          "buildship": { "index": 2 },
+          "description": "A factor that penalizes the likelihood of repetitive phrases in the generated text (1.0 or higher)",
+          "title": "Repetition Penalty",
+          "type": "number"
+        },
+        "topP": {
+          "buildship": { "index": 4 },
+          "description": "A value controlling the diversity of the generated text, with higher values producing more diverse results (0.0 to 1.0)",
+          "title": "Top P",
+          "type": "number"
+        },
+        "prompt": {
+          "buildship": { "index": 3 },
+          "description": "The initial text or context provided as a prompt to generate text from",
+          "type": "string",
+          "title": "Input Prompt"
+        },
+        "height": {
+          "default": 1024,
+          "buildship": { "index": 3 },
+          "description": "Optional height of the output image. Default is 1024.",
+          "type": "number",
+          "title": "Height"
+        }
+      }
+    },
+    "type": "script",
+    "category": ["Integrations"],
+    "group": [
+      {
+        "name": "Replicate",
+        "description": "replicate.com hosted open source models",
+        "id": "0IAjU2tekQHjibkvicpU",
+        "iconUrl": "https://storage.googleapis.com/buildship-app-us-central1/icons/replicate.jpg"
+      }
+    ],
+    "live": true,
+    "dependencies": {},
+    "t": 366,
+    "syncAllAtOnce": "1040",
+    "_updatedBy": {
+      "uid": "Nb5Sn267f6eOTgqnlB1d6Hxi5VR2",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a-/AFdZucpItz8EJNSW_ttNzT-N4cG9IQVT5Ipuvbq7xx5Z=s96-c",
+      "updatedField": "groupInfo",
+      "displayName": "Bhavya Verma",
+      "email": "bhavya@rowy.io.rowy",
+      "timestamp": { "_seconds": 1712832980, "_nanoseconds": 304000000 }
+    },
+    "groupInfo": "0IAjU2tekQHjibkvicpU",
+    "id": "stability-ai-text-generation",
+    "integrations": [],
+    "integrity": "v3:9396524124fc53b54f7c1a941145c0b1",
+    "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stability-ai-text-generation/1.1.0/build.cjs",
+    "_libRef": {
+      "integrity": "v3:863ff0d183e2c717a7169fdd4c733265",
+      "libNodeRefId": "@buildship/stability-ai-text-generation",
+      "isDirty": false,
+      "libType": "public",
+      "src": "https://storage.googleapis.com/buildship-app-us-central1/publicLib/nodes/@buildship/stability-ai-text-generation/1.0.0/build.cjs",
+      "version": "1.0.0"
+    },
+    "version": "1.1.0",
+    "script": "export default async function stabilityAITextGeneration({ prompt, maxTokens, topP, temperature, repetitionPenalty,apiKey }: NodeInputs, { logging }: NodeScriptOptions) : NodeOutput  {\n  logging.log(\"Executing stabilityAITextGeneration\", { prompt, maxTokens, topP, temperature, repetitionPenalty,apiKey })\n  const version = 'c49dae362cbaecd2ceabb5bd34fdb68413c4ff775111fea065d259d577757beb';\n  const response = await fetch('https://api.replicate.com/v1/predictions', {\n    method: 'POST',\n    headers: {\n      'Authorization': `Token ${apiKey}`,\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify({\n      version,\n      input: {\n        prompt,\n        max_tokens: maxTokens,\n        top_p: topP,\n        temperature,\n        repetition_penalty: repetitionPenalty\n      }\n    })\n  });\n\n  const result = await response.json();\n  const predictionId = result.id;\n\n  let status = result.status;\n  while (status === 'starting') {\n    await new Promise(resolve => setTimeout(resolve, 5000));\n\n    const statusResponse = await fetch(`https://api.replicate.com/v1/predictions/${predictionId}`, {\n      headers: {\n        'Authorization': `Token ${apiKey}`,\n        'Content-Type': 'application/json'\n      }\n    });\n\n    const statusResult = await statusResponse.json();\n    status = statusResult.status;\n  }\n\n  return result.output;\n}",
+    "usageCounter": 20,
+    "deployedAt": { "_seconds": 1717467670, "_nanoseconds": 67000000 }
+  }
+]

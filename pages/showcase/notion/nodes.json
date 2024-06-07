@@ -1,0 +1,156 @@
+[
+  {
+    "meta": {
+      "name": "Create Notion Access Token",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Creates an access token for third-party service authentication with Notion",
+      "id": "notion-create-access-token"
+    }
+  },
+  {
+    "meta": {
+      "name": "Append Blocks to Page",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "A block object represents a piece of content within Notion. The API translates the headings, toggles, paragraphs, lists, media, and more that you can interact with in the Notion UI as different block type objects. (https://developers.notion.com/reference/block)",
+      "id": "oauth-notion-append-block"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Creates a comment in a page or existing discussion thread.",
+      "id": "oauth-notion-comment-post",
+      "name": "Create Comments"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Creates a new page that is a child of an existing page or database using OAuth",
+      "id": "oauth-notion-create-page",
+      "name": "Create Page"
+    }
+  },
+  {
+    "meta": {
+      "name": "Creates a database as a subpage",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Creates a database as a subpage in the specified parent page, with the specified properties schema. Currently, the parent of a new database must be a Notion page or a wiki database.",
+      "id": "oauth-notion-database-subpage"
+    }
+  },
+  {
+    "meta": {
+      "name": "Fetch Page Blocks",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "A block object represents a piece of content within Notion. The API translates the headings, toggles, paragraphs, lists, media, and more that you can interact with in the Notion UI as different block type objects. (https://developers.notion.com/reference/block)",
+      "id": "oauth-notion-fetch-block"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Retrieve a Notion page using OAuth.",
+      "id": "oauth-notion-fetch-page",
+      "name": "Fetch Page"
+    }
+  },
+  {
+    "meta": {
+      "name": "List Users",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Lists all users in a Notion workspace",
+      "id": "oauth-notion-list-users"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Updates Notion database. Retrieves a database object — information that describes the structure and columns of a database via OAuth\n",
+      "id": "oauth-notion-patch-database",
+      "name": "Update Database"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Gets a list of Pages and/or Databases contained in the database, filtered and ordered according to the filter conditions and sort criteria provided in the request using OAuth",
+      "id": "oauth-notion-query-databse",
+      "name": "Query Database"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Retrieves a list of un-resolved Comment objects from a page or block via OAuth",
+      "id": "oauth-notion-retrieve-comments",
+      "name": "Retrieve Comments"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Retrieves a database object — information that describes the structure and columns of a database — for a provided database ID.",
+      "id": "oauth-notion-retrieve-database",
+      "name": "Retrieve Database"
+    }
+  },
+  {
+    "meta": {
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Performs a search on Notion for a given title through all the parent and child pages using OAuth",
+      "id": "oauth-notion-search-by-title",
+      "name": "Search By Title"
+    }
+  },
+  {
+    "meta": {
+      "name": "Update Notion Page",
+      "icon": {
+        "type": "URL",
+        "url": "https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2FNotion.png?alt=media&token=cc28e19e-a4a3-4504-b188-cf4708291157&_gl=1*7b1ekv*_ga*MjAxOTYxMjk5OS4xNjk0NTIzMjQ2*_ga_CW55HF8NVT*MTY5NjM1NjQzOC4yNC4xLjE2OTYzNTY1MDIuNjAuMC4w"
+      },
+      "description": "Updates the properties of a page in a database. Official Documentation - [here](https://developers.notion.com/reference/patch-page)",
+      "id": "oauth-notion-update-page"
+    }
+  }
+]
