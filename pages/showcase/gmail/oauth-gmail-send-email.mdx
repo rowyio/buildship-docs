@@ -1,0 +1,40 @@
+---
+title: Gmail - Send Email
+description: Send an email using Gmail API.
+---
+
+import Node from '/components/node';
+
+# Send Email
+This node allows you to send an email using the Gmail API. By providing the necessary details such as sender, receiver, subject, and message, the node will authenticate your request and dispatch the email to the specified recipient.
+
+<Node id="@buildship/oauth-gmail-send-email" version="1.0.2" />
+
+## Inputs
+To use the Send Email node, you need to provide the following inputs:
+
+- **Sender Email**: The email address of the sender. The special value `me` can be used to indicate the authenticated user.
+- **Receiver Email**: The email address of the receiver.
+- **Email Subject**: The subject of the email.
+- **Email Message**: The body of the email in plain text.
+
+### Sample Input
+```json
+{
+  "sender": "me",
+  "receiver": "receiver@example.com",
+  "subject": "Meeting Reminder",
+  "message": "Don't forget about our meeting tomorrow at 10 AM."
+}
+```
+
+## Output
+The node will return the response from the Gmail API, which includes the details of the sent email. The output will be an object containing the response data. Here is an example of what the response might look like:
+
+```json
+{
+  "id": "abcdef123456",
+  "threadId": "xyz987654",
+  "labelIds": ["SENT"]
+}
+```
