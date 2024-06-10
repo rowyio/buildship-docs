@@ -1,0 +1,55 @@
+---
+title: BuildShip - Execute Workflow
+description: Executes a BuildShip Workflow using the `BuildShip Trigger` on the target workflow.
+---
+
+import Node from '/components/node';
+
+# Execute Workflow
+The **Execute Workflow** node is designed to trigger and execute a BuildShip Workflow using the `BuildShip Trigger` on the target workflow. This node allows you to programmatically start workflows, optionally waiting for their completion, and can pass specific data to the workflow being triggered.
+
+<Node id="@buildship/execute-workflow" version="1.5.0" />
+
+## Inputs
+### Workflow ID
+- **Type**: `string`
+- **Description**: The ID of the workflow to call. You can get the Workflow ID from the `BuildShip Trigger` config.
+- **Example**: `exampleWorkflowId`
+
+### Await?
+- **Type**: `boolean`
+- **Description**: Whether you wish to wait for the triggered workflow to execute.
+- **Default**: `true`
+- **Example**: `true`
+
+### Data
+- **Type**: `object`
+- **Description**: The data to be passed to another workflow as the body.
+- **Default**: `{}`
+- **Example**: `{ "key": "value" }`
+
+### Project ID
+- **Type**: `string`
+- **Description**: **(OPTIONAL)** If you wish to execute a BuildShip Workflow that's not a part of the same project, you'd need to specify the Project ID. You can find the **Project ID** in the BuildShip Project Settings or from the `BuildShip Trigger` config.
+- **Default**: `""`
+- **Example**: `exampleProjectId`
+
+## Output
+The output of the **Execute Workflow** node varies based on whether the `await` input is set to true or false.
+
+- If `await` is set to `true`, the output will include the response data from the triggered workflow.
+    ```json
+    {
+        "success": true,
+        "response": {
+            // response data from the triggered workflow
+        }
+    }
+    ```
+
+- If `await` is set to `false`, the output will simply confirm that the workflow was successfully triggered, without waiting for its completion.
+    ```json
+    {
+        "success": true
+    }
+    ```
