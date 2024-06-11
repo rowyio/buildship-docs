@@ -1,0 +1,64 @@
+---
+title: OpenAI - Stream Response
+description: Send a chat message to OpenAI and stream the response back to the client.
+---
+
+import Node from '/components/node';
+
+# Stream Response
+
+The **Stream Response** Node sends a chat message to OpenAI and streams the response back to the client. This is useful for applications where real-time data is required from AI models. It does not support workflow or node testing, and a blank return node should be added at the end to prevent printing `OK` in the response.
+
+<Node id="@buildship/openai-stream-response" version="1.4.0" />
+
+## Inputs
+
+The node takes the following inputs:
+
+### API Key
+- **Title:** API Key
+- **Description:** The OpenAI API Key. (Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys).)
+- **Type:** string
+- **Required:** Yes
+
+### System Prompt
+- **Title:** System Prompt
+- **Description:** The system prompt to set the context
+- **Type:** string
+- **Required:** Yes
+
+### User Request
+- **Title:** User Request
+- **Description:** The user's message to the chat
+- **Type:** string
+- **Required:** Yes
+
+### Temperature
+- **Title:** Temperature
+- **Description:** The temperature for the output
+- **Type:** number
+- **Required:** Yes
+- **Default:** 0.7
+
+### Model
+- **Title:** Model
+- **Description:** The OpenAI model to use
+- **Type:** string
+- **Required:** Yes
+- **Default:** gpt-3.5-turbo
+- **Enum:** ["gpt-4o", "gpt-4-1106-preview", "gpt-4", "gpt-3.5-turbo"]
+
+#### Sample Input
+```json
+{
+  "systemPrompt": "You're a helpful assistant.",
+  "userRequest": "What's the weather like today?",
+  "temperature": 0.7,
+  "openaiSecret": "YOUR_OPENAI_API_KEY",
+  "model": "gpt-3.5-turbo"
+}
+```
+
+## Output
+
+The node returns the response upon successful completion. The output type is a string. This will contain the content streamed from OpenAI based on the user prompt and system context provided.
