@@ -1,0 +1,34 @@
+---
+title: Integrations - Create Sheet
+description: Creates a new Google Spreadsheet using the specified configuration settings.
+
+import Node from '/components/node';
+
+# Create Sheet
+The **Create Sheet** node enables you to create a new Google Spreadsheet. This node utilizes the Google Sheets API to initialize a new spreadsheet with a given name. You have the option to configure additional properties such as the spreadsheet's theme, default format, and various settings for individual sheets within the spreadsheet.
+
+<Node id="@buildship/oauth-gdocs-create-sheet" version="2.0.1" />
+
+## Inputs
+To use the **Create Sheet** node, you need to provide a name for the new spreadsheet. Here are the details:
+
+- **Sheet Name** (`spreadsheet`): The name for the spreadsheet to be created. This is a mandatory field.
+
+**Sample Input:**  
+`Sample Data`
+
+**Quick Tip 💡:** Use the **Add Row** node to add values to the spreadsheet.
+
+For further details, you can refer to the [API Documentation](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/create).
+
+## Output
+Upon successful execution, the node returns a detailed object containing information about the newly created spreadsheet. Here is a breakdown of the key components in the output:
+
+- **spreadsheetId**: The unique identifier of the new spreadsheet.
+- **spreadsheetUrl**: The URL of the new spreadsheet.
+- **sheets**: An array containing detailed information about each sheet within the spreadsheet.
+- **properties**: Various properties and settings for the entire spreadsheet.
+
+The object structure includes attributes like the spreadsheet's title, auto-recalculation settings, time zone, locale, theme colors, default format, and more.
+
+You can find further customization options and detailed properties for each part of the output in the [Google Sheets API Documentation](https://developers.google.com/sheets/api/reference/rest).
