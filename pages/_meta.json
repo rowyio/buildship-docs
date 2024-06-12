@@ -61,6 +61,8 @@
   "framer": "Framer",
   "weweb": "WeWeb",
   "webstudio": "WebStudio",
+  "wordpress": "WordPress",
+  "nextjs": "Next.js",
   "--Theme": {
     "type": "separator",
     "title": "Dev Tools"
