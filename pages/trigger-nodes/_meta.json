@@ -17,5 +17,6 @@
   "email-trigger": "Email Trigger",
   "lemon-squeezy": "Lemon Squeezy",
   "revenue-cat": "RevenueCat Trigger",
-  "mongodb-trigger": "MongoDB Trigger"
+  "mongodb-trigger": "MongoDB Trigger",
+  "youtube-trigger": "YouTube Trigger"
 }
