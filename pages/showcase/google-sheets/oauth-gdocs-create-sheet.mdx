@@ -1,0 +1,33 @@
+---
+title: GSheets - Create Sheet
+description: Creates a new Google Spreadsheet with a given name using the provided input.
+---
+
+import Node from '/components/node';
+
+# Create Sheet
+The "Create Sheet" node initializes a new Google Spreadsheet with a specified name. This node leverages the Google Sheets API to create a new spreadsheet, offering a foundation for further data manipulation and storage.
+
+<Node id="@buildship/oauth-gdocs-create-sheet" version="2.0.0" />
+
+## Inputs
+The node requires the following input:
+
+- **Sheet Name (spreadsheet):** The name or title for the new spreadsheet to be created. This string input is essential to identify the newly created sheet.
+
+  **Sample Input:** 
+  ```
+  Sample Data
+  ```
+
+  **Quick Tip 💡:** Use the **Add Row** node to add values to the spreadsheet after it's created.
+
+## Output
+Upon successful creation, the node returns an object containing the following properties:
+
+- **spreadsheetId:** A unique string identifier for the created spreadsheet.
+- **spreadsheetUrl:** A string URL that links directly to the new spreadsheet.
+- **sheets:** An array of sheet objects, each with properties detailing the sheet type, ID, index, title, and grid properties including row and column counts.
+- **properties:** An object with additional attributes such as the spreadsheet theme, auto-recalculation settings, time zone, title, locale, and default formatting options.
+
+These output properties collectively describe the newly created spreadsheet, making it easy to locate, access, and further customize.
