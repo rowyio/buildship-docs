@@ -1,0 +1,55 @@
+---
+title: Google Sheets - Batch Update Sheet
+description: Batch updates values in a Google Sheet. This node is technically a bit complex to entertain more versatile use cases. To simply add values to a Google Sheet, check out the "Add Row" node.
+---
+
+import Node from '/components/node';
+
+# Batch Update Sheet
+Batch updates values in a Google Sheet. This node is technically a bit complex to entertain more versatile use cases. To simply add values to a Google Sheet, check out the "Add Row" node.
+
+<Node id="@buildship/oauth-gsheets-batch-update" version="2.0.0" />
+
+## Inputs
+To use this node, you'll need to provide the following inputs:
+
+- **Sheet URL**: The URL of the Google Spreadsheet to update. 
+  TIP 💡: Available in the following format in your Google Sheets: `https://docs.google.com/spreadsheets/d/spreadsheet-id/edit`. [Refer API Documentation](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/batchUpdate).
+
+- **Value Input Option**: Specifies how the input data should be interpreted. It can be either `RAW` or `USER_ENTERED`. This determines how the input data is interpreted by the Google Sheets API.
+
+- **Data**: The new values to apply to the spreadsheet. Example input:
+    ```json
+    [
+        {
+            range: 'Sheet1!A1:B2', // Range to update in A1 notation
+            majorDimension: 'ROWS', // ROWS or COLUMNS
+            values: [
+                ['New Value 1', 'New Value 2'],
+                ['New Value 3', 'New Value 4'],
+            ],
+        },
+    ]
+    ```
+  
+- **Include Values In Response**: Determines if the update response should include the values of the cells that were updated. Defaults to `true`.
+
+- **Response Value Render Option**: Determines how values in the response should be rendered. Options include `FORMATTED_VALUE`, `UNFORMATTED_VALUE`, and `FORMULA`.
+
+- **Response Date Time Render Option**: Determines how dates, times, and durations in the response should be rendered. Options include `SERIAL_NUMBER` and `FORMATTED_STRING`.
+
+## Output
+The output of this node will be an object representing the response from the Google Sheets API, containing details about the batch update operation.
+
+Example output:
+```json
+{
+  "spreadsheetId": "sampleSpreadsheetId",
+  "totalUpdatedRows": 2,
+  "totalUpdatedColumns": 2,
+  "totalUpdatedCells": 4,
+  "totalUpdatedSheets": 1
+}
+```
+
+This response will include various metrics on the number of affected rows, columns, cells, and sheets due to the batch update operation.
