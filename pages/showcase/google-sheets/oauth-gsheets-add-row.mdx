@@ -1,0 +1,45 @@
+---
+title: Google Sheets - Add Row
+description: Adds row(s) of data in a Google Sheet.
+---
+
+import Node from '/components/node';
+
+# Add Row
+The **Add Row** node integrates with Google Sheets to append new rows of data to a specific spreadsheet. This functionality is ideal for automating the addition of data entries, ensuring your Google Sheets stay up-to-date effortlessly.
+
+<Node id="@buildship/oauth-gsheets-add-row" version="2.0.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+### Sheet URL
+- **Description**: The URL of the Google Spreadsheet where the rows will be added.
+- **Sample Input**: `https://docs.google.com/spreadsheets/d/abcd1234/edit`
+
+### Sheet Name
+- **Description**: The name of the sheet within the spreadsheet. You can find this in the bottom left corner of your Google Sheet.
+- **Sample Input**: `Sheet1`
+
+### Cell Number
+- **Description**: The cell number to start adding the new row. This prevents accidental overwrites. You can also specify a cell range.
+- **Sample Input**: `A11` or `C2:C`
+
+### Data Array
+- **Description**: The new values to be added as rows to the spreadsheet. Each sub-array represents a row.
+- **Sample Input**:
+    ```
+    [
+      ["Cell1", "Cell2"],
+      ["Cell3", "Cell4"]
+    ]
+    ```
+
+### Dimension
+- **Description**: The major dimension of the values to be added, either `ROWS` or `COLUMNS`.
+- **Sample Input**: `ROWS`
+
+## Output
+The output of this node is the response from the Google Sheets API, which includes the details of the updated spreadsheet. It provides information about the cells that were modified, ensuring that the data was added correctly.
+
+This node is essential for automating data entry tasks, keeping your Google Sheets synchronized with up-to-date information.
