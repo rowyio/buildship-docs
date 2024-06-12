@@ -1,0 +1,45 @@
+---
+title: Google Sheets - Get Sheets
+description: Fetch a Google Spreadsheet using the Google Sheets API
+---
+
+import Node from '/components/node';
+
+# Get Sheets
+Fetches a Google Spreadsheet by utilizing the Google Sheets API. This function requires the URL of the Google Spreadsheet and optionally a specific range within the sheet to fetch the data from.
+
+<Node id="@buildship/oauth-gsheets-get-sheet" version="2.0.0" />
+
+## Inputs
+To effectively use this node, you need to provide the following inputs:
+
+1. **Sheet Name (ranges)**
+   - **Description:** The name of the sheet within the Google Spreadsheet. This can be found at the bottom left corner of your Google Sheet. You can also specify a range if needed.
+   - **Sample Input:** Sheet1
+   - **Tips:** You can specify a particular range, for example, `Sheet1!B2:B` if you want to read the `B` column except the header row.
+
+2. **Sheet URL (spreadsheetUrl)**
+   - **Description:** The URL of the Google Spreadsheet you want to fetch. 
+   - **Sample Input:** https://docs.google.com/spreadsheets/d/spreadsheet-id/edit
+   - **Tips:** The URL is available in your Google Sheets. Refer to [Buildship OAuth Google Sheets Documentation](https://docs.buildship.com/productivity/google-workspace/gsheets) and [Google Sheets API Documentation](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/create) for more details.
+
+## Output
+The node returns the content of the Google Spreadsheet in the following structure:
+
+- **majorDimension:** Represents the dimension used when reporting data (e.g., ROWS or COLUMNS).
+- **values:** An array of arrays containing the data from the specified range.
+- **range:** The range over which the data is retrieved.
+
+Here's a sample of what the output looks like:
+
+```json
+{
+  "majorDimension": "ROWS",
+  "values": [
+    ["Name", "Age", "Location"],
+    ["Alice", "30", "New York"],
+    ["Bob", "25", "San Francisco"]
+  ],
+  "range": "Sheet1!A1:C3"
+}
+```
