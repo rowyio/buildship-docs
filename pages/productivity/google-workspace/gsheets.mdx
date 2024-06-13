@@ -1,15 +1,202 @@
 # Google Sheets Nodes
 
 import Image from 'next/image';
+import Node from '/components/node';
 import gsheetsNodes from '/public/assets/gsheets-nodes.png';
+import gsheet1 from 'public/integrations/productivity/gsheet-1.png';
 
 <Image src={gsheetsNodes} alt='Gsheets Nodes' width={1200} />
 
 The Google Sheets Nodes allow you to interact with your Google Sheets account. You can create, update, and delete
 spreadsheets, as well as read and write data to them.
 
-| Node name          | Description                                     | API Reference                                                                                             |
-| ------------------ | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Get Sheet          | Returns the spreadsheet at the given ID         | [Get Sheet](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/get)                  |
-| Create Sheet       | Initializes a new spreadsheet                   | [Create Sheet](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/create)            |
-| Batch Update Sheet | Applies one or more updates to the spreadsheet. | [Batch Update Sheet](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/batchUpdate) |
+| Node name          | Description                                     | API Reference                                                                                                             |
+| ------------------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Get Sheets         | Returns the spreadsheet at the given ID         | [Get Sheet](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/get)                                  |
+| Create Sheet       | Initializes a new spreadsheet                   | [Create Sheet](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/create)                            |
+| Add Row            | Add / updates row values in the sheet           | [Variation of the Batch Update node](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/batchUpdate) |
+| Batch Update Sheet | Applies one or more updates to the spreadsheet. | [Batch Update Sheet](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/batchUpdate)                 |
+
+## Get Sheets
+
+Fetches a Google Spreadsheet by utilizing the Google Sheets API. This function requires the URL of the Google
+Spreadsheet and optionally a specific range within the sheet to fetch the data from.
+
+<Node id='@buildship/oauth-gsheets-get-sheet' version='2.0.0' />
+
+### Inputs
+
+<Image src={gsheet1} alt='Gsheet Node' width={1200} />
+
+To effectively use this node, you need to provide the following inputs:
+
+1. **Sheet URL** The URL of the Google Spreadsheet you want to fetch. The URL is available in your Google Sheets. You
+   can copy it from the address bar of your browser.
+
+**Sample Input:** `https://docs.google.com/spreadsheets/d/spreadsheet-id/edit`
+
+2. **Sheet Name** The name of the sheet within the Google Spreadsheet. This can be found at the bottom left corner of
+   your Google Sheet. You can also specify a range if needed, for example, `Sheet1!B2:B` if you want to read the `B`
+   column except the header row.
+
+**Sample Input:** `Sheet1`
+
+### Output
+
+The node returns the content of the Google Spreadsheet in the following structure:
+
+- **majorDimension:** Represents the dimension used when reporting data (e.g., ROWS or COLUMNS).
+- **values:** An array of arrays containing the data from the specified range.
+- **range:** The range over which the data is retrieved.
+
+Here's a sample of what the output looks like:
+
+```json
+{
+  "majorDimension": "ROWS",
+  "values": [
+    ["Name", "Age", "Location"],
+    ["Alice", "30", "New York"],
+    ["Bob", "25", "San Francisco"]
+  ],
+  "range": "Sheet1!A1:C3"
+}
+```
+
+## Create Sheet
+
+The "Create Sheet" node initializes a new Google Spreadsheet with a specified name. This node leverages the Google
+Sheets API to create a new spreadsheet, offering a foundation for further data manipulation and storage.
+
+<Node id='@buildship/oauth-gdocs-create-sheet' version='2.0.0' />
+
+### Inputs
+
+The node requires the following input:
+
+- **Sheet Name**: The name or title for the new spreadsheet to be created. This string input is essential to identify
+  the newly created sheet.
+
+**Sample Input:** `Testing Data`
+
+### Output
+
+Upon successful creation, the node returns an object containing the following properties:
+
+- **spreadsheetId:** A unique string identifier for the created spreadsheet.
+- **spreadsheetUrl:** A string URL that links directly to the new spreadsheet.
+- **sheets:** An array of sheet objects, each with properties detailing the sheet type, ID, index, title, and grid
+  properties including row and column counts.
+- **properties:** An object with additional attributes such as the spreadsheet theme, auto-recalculation settings, time
+  zone, title, locale, and default formatting options.
+
+These output properties collectively describe the newly created spreadsheet, making it easy to locate, access, and
+further customize.
+
+## Add Row
+
+The **Add Row** node integrates with Google Sheets to append new rows of data to a specific spreadsheet. This
+functionality is ideal for automating the addition of data entries, ensuring your Google Sheets stay up-to-date
+effortlessly.
+
+<Node id='@buildship/oauth-gsheets-add-row' version='2.0.0' />
+
+### Inputs
+
+To use this node, you need to provide the following inputs:
+
+1. **Sheet URL** The URL of the Google Spreadsheet where the rows will be added.
+
+**Sample Input**: `https://docs.google.com/spreadsheets/d/1OEgMxmFd29SGjEuJZ58ee94W_aU0Xx4pUngG628uJsk`
+
+2. **Sheet Name** The name of the sheet within the spreadsheet. You can find this in the bottom left corner of your
+   Google Sheet.
+
+**Sample Input**: `Sheet1`
+
+3. **Cell Number** The cell number to start adding the new row. This prevents accidental overwrites. We can also use
+   this field to specify range. For example, if we just want to write to the `C` column except the header row, we could
+   specify: `C2:C` and select the **Dimension** field as `column`.
+
+**Sample Input**: `A11` or `C2:C`
+
+4. **Data Array** The new values to be added as rows to the spreadsheet. Each sub-array represents a row. **Sample
+   Input**:
+
+```
+[
+    ["Cell1", "Cell2"],
+    ["Cell3", "Cell4"]
+]
+```
+
+5. **Dimension** The major dimension of the values to be added, either `ROWS` or `COLUMNS`.
+
+- **Sample Input**: `ROWS`
+
+### Output
+
+The output of this node is the response from the Google Sheets API, which includes the details of the updated
+spreadsheet. It provides information about the cells that were modified, ensuring that the data was added correctly.
+
+## Batch Update Sheet
+
+Batch updates values in a Google Sheet. This node is technically a bit complex to entertain more versatile use cases. To
+simply add values to a Google Sheet, check out the [Add Row](#add-row) node.
+
+<Node id='@buildship/oauth-gsheets-batch-update' version='2.0.0' />
+
+### Inputs
+
+To use this node, you'll need to provide the following inputs:
+
+- **Sheet URL**: The URL of the Google Spreadsheet to update. Available in the following format in your Google Sheets:
+  `https://docs.google.com/spreadsheets/d/spreadsheet-id/edit`.
+  [Refer API Documentation](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/batchUpdate).
+
+- **Value Input Option**: Specifies how the input data should be interpreted. It can be either `RAW` or `USER_ENTERED`.
+  This determines how the input data is interpreted by the Google Sheets API.
+
+- **Data**: The new values to apply to the spreadsheet. Example input:
+
+```json
+[
+  {
+    "range": "Sheet1!A1:B2", // Range to update in A1 notation
+    "majorDimension": "ROWS", // ROWS or COLUMNS
+    "values": [
+      ["New Value 1", "New Value 2"],
+      ["New Value 3", "New Value 4"]
+    ]
+  }
+]
+```
+
+- **Include Values In Response**: Determines if the update response should include the values of the cells that were
+  updated. Defaults to `true`.
+
+- **Response Value Render Option**: Determines how values in the response should be rendered. Options include
+  `FORMATTED_VALUE`, `UNFORMATTED_VALUE`, and `FORMULA`.
+
+- **Response Date Time Render Option**: Determines how dates, times, and durations in the response should be rendered.
+  Options include `SERIAL_NUMBER` and `FORMATTED_STRING`.
+
+### Output
+
+The output of this node will be an object representing the response from the Google Sheets API, containing details about
+the batch update operation.
+
+Example output:
+
+```json
+{
+  "spreadsheetId": "sampleSpreadsheetId",
+  "totalUpdatedRows": 2,
+  "totalUpdatedColumns": 2,
+  "totalUpdatedCells": 4,
+  "totalUpdatedSheets": 1
+}
+```
+
+This response will include various metrics on the number of affected rows, columns, cells, and sheets due to the batch
+update operation.
