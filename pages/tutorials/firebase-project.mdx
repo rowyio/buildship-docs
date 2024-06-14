@@ -91,4 +91,18 @@ project.
 
 This will allow BuildShip to interact with your Firebase resources.
 
+<Callout type='info' emoji='💡'>
+  Please note that GCP takes time (approx 2 to ~7 minutes or more in extreme cases) for access changes through the system. For more info refer to this documentation [here](https://cloud.google.com/iam/docs/access-change-propagation).
+</Callout>
+
+
 </Steps>
+
+### Troubleshooting
+
+Follow these troubleshooting steps incase you received the following errors:
+
+| Error Codes | Description                                                                                                  | Solution            |   
+| -------- | ------------------------------------------------------------------------------------------------------------ | ------------------ |
+| `7 PERMISSION_DENIED: Missing or insufficient permissions.`     | Indicates that the request failed due to missing or insufficient IAM permissions.                   | Check the required permissions from above steps, if provided wait for ~7 minutes for GCP to sync.
+| `5 NOT_FOUND`    | Indicates that the requested document or collection could not be found.                                        | Ensure you have created your database in Firestore, you can simply create from firebase console.       
