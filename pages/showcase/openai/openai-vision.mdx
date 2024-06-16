@@ -1,0 +1,60 @@
+---
+title: AI Integration - GPT-4 Vision
+description: Use GPT-4 Vision to ask questions about images.
+---
+
+import Node from '/components/node';
+
+# GPT-4 Vision
+GPT-4 Vision node allows users to ask questions about images using OpenAI's advanced vision models. You can provide an image and ask specific questions to get insightful responses based on the image content.
+
+<Node id="@buildship/openai-vision" version="1.1.1" />
+
+## Inputs
+To use the GPT-4 Vision node, you will need to provide the following inputs:
+
+### API Key
+The OpenAI API Key is required to access the OpenAI services. You can create and obtain your API Key [here](https://platform.openai.com/account/api-keys).
+
+- **Type:** string
+- **Example:** `sk-your_api_key_here`
+
+### Question
+Specify the question you want to ask about the image. 
+
+- **Type:** string
+- **Example:** `What is happening in this picture?`
+
+### Image URL
+Provide the URL of the image you want to analyze. You can also use Base64 encoded images.
+
+- **Type:** string
+- **Example:** `https://example.com/path/to/image.jpg`
+
+### Max Tokens
+Define the maximum number of tokens allowed for the response. 
+
+- **Type:** number
+- **Default:** 300
+- **Example:** `200`
+
+### Model
+Select the model you wish to use.
+
+- **Type:** string
+- **Options:** `gpt-4o`, `gpt-4-turbo`, `gpt-4-vision-preview`
+- **Example:** `gpt-4-vision-preview`
+
+### Detail
+Controls the fidelity of the model's analysis of the image.
+
+- **Type:** string
+- **Options:** `auto`, `low`, `high`
+- **Default:** `auto`
+- **Example:** `high`
+
+## Output
+The output of the GPT-4 Vision node will be a string containing the answer to your image-related question.
+
+- **Type:** string
+- **Example:** `The image shows a group of people hiking on a mountain trail.`
