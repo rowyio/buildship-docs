@@ -1,0 +1,60 @@
+---
+title: Firebase - Create Document
+description: Creates or updates a document in a specified Firestore collection (with Document Reference field type support).
+---
+
+import Node from '/components/node';
+
+# Create Document
+This node allows you to create or update a document in a specified Firestore collection. It supports setting document reference fields using a special `_ref:` prefix.
+
+<Node id="@buildship/buildship-create-document" version="1.2.0" />
+
+## Inputs
+
+### Collection Name
+- **Description:** The name of your Firestore collection.
+- **Type:** string
+- **Required:** Yes
+
+### Document ID
+- **Description:** The ID of the document to create or update.
+- **Type:** string
+- **Required:** No
+
+### Data
+- **Description:** The data to set in the document. You can include document reference fields by using the `_ref:` prefix before the path.
+- **Type:** object
+- **Required:** Yes
+
+**Sample Input:**
+
+```
+{
+  price: 24,
+  status: pending,
+  ref: "_ref:customers/D5KjdTWkV9YeY3CXHApo" // this is a doc ref field
+}
+```
+
+### Merge
+- **Description:** Whether to merge the data with any existing document.
+- **Type:** boolean
+- **Required:** Yes
+- **Default:** false
+
+## Output
+
+The node returns an object containing the following properties:
+
+### Path
+- **Description:** The document path.
+- **Type:** string
+
+### ID
+- **Description:** The document ID.
+- **Type:** string
+
+### Status
+- **Description:** The status of the set operation.
+- **Type:** string
