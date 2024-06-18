@@ -1,0 +1,87 @@
+---
+title: Firestore - Collection Query
+description: Get documents of a query in Firestore with multiple filters (with support for document reference).
+---
+
+import Node from '/components/node';
+
+# Collection Query
+The "Collection Query" node is designed to fetch documents from a Firestore collection based on specified filters. It supports complex querying with AND, OR logical operators, and document references.
+
+<Node id="@buildship/firestore-collection-query" version="2.0.0" />
+
+## Inputs
+Here is an overview of the data you need to provide in order to use this node effectively:
+
+- **Project ID**: The ID of your Firestore project.
+    - Type: `string`
+    - Example: `my-firestore-project-id`
+
+- **Collection Name**: The name of the Firestore collection from which you want to fetch documents.
+    - Type: `string`
+    - Example: `users`
+
+- **Filters**: The object specifying the criteria for filtering documents.
+    - Type: `object`
+    - Example for a basic filter:
+      ```json
+      {
+          field: "name",
+          operator: "==",
+          value: "Marta" 
+      }
+      ```
+    - Example for a complex filter with logical OR:
+      ```json
+      {
+          logic: "OR",
+          filters: [
+            { field: "active", operator: "==", value: false },
+            { field: "name", operator: "==", value: "Luis" },
+          ]
+      }
+      ```
+
+- **Limit** (Optional): The maximum number of documents to return.
+    - Type: `number`
+    - Example: `10`
+
+- **Order By** (Optional): An array for ordering the results by specific fields in ascending or descending order.
+    - Type: `array`
+    - Example:
+      ```json
+      [
+          { fieldName: "asc" },
+          { anotherFieldName: "desc" }
+      ]
+      ```
+
+## Output
+The output is an array of documents that match the specified query. Each document in the array has the following structure:
+
+- **Document Data**: An object containing the fields of the document.
+- **Document ID**: The unique identifier for the document.
+
+### Example Output:
+```json
+[
+    {
+        "id": "document123",
+        "data": {
+            "name": "Marta",
+            "age": 28,
+            "active": true
+        }
+    },
+    {
+        "id": "document456",
+        "data": {
+            "name": "Luis",
+            "age": 33,
+            "active": false
+        }
+    }
+]
+```
+
+This documentation should help you efficiently use the Collection Query node to retrieve documents from your Firestore collection based on various filters and sorting criteria.
