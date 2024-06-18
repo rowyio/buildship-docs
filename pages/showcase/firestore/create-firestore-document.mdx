@@ -1,0 +1,63 @@
+---
+title: Firestore - Create Document
+description: Creates or updates a document in a specified Firestore collection (with document reference field type support).
+---
+
+import Node from '/components/node';
+
+# Create Document
+This node allows you to create or update a document in a specified Firestore collection. It supports document reference field types, enabling sophisticated Firestore operations within your workflow.
+
+<Node id="@buildship/create-firestore-document" version="1.3.0" />
+
+## Inputs
+The node accepts the following inputs:
+
+- **Project ID:**  
+  The ID of your Firestore project. Note that this requires additional steps for granting Service Account permissions. For detailed setup instructions, refer to [our setup blog](https://docs.buildship.com/tutorials/firebase-project).
+
+- **Collection Name:**  
+  The name of the Firestore collection where the document will be created or updated.
+
+- **Document ID (Optional):**  
+  Manually set the document ID for the new Firestore document. Leave this field blank for auto-generated Document IDs.
+
+- **Merge:**  
+  A boolean value indicating whether to merge the data with any existing document.
+
+- **Data:**  
+  The data to set in the document. To create a document reference field, include the path to the document.
+
+  **Sample Input:**
+
+  ```json
+  {
+    "price": 24, 
+    "status": "pending",
+    "ref": "customers/D5KjdTWkV9YeY3CXHApo" // this is not a doc ref field
+  }
+  ```
+
+  In case of a document reference, the value should be in the format `_ref:collectionName/documentId`. The `_ref:` prefix is used to identify the value as a reference.
+
+  **Sample Input:**
+
+  ```json
+  {
+    "price": 24, 
+    "status": "pending",
+    "ref": "_ref:customers/D5KjdTWkV9YeY3CXHApo" // this is a doc ref field
+  }
+  ```
+
+## Output
+The node returns an object with the following properties:
+
+- **Status:**  
+  A string indicating the operation's success status.
+
+- **Document ID:**  
+  The ID of the created or updated document.
+
+- **Path:**  
+  The full path to the created or updated document within the Firestore collection.
