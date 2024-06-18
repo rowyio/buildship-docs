@@ -1,0 +1,99 @@
+---
+title: Firestore - Collection Query
+description: Retrieve documents from a Firestore collection with multiple filters and sorting options.
+---
+
+import Node from '/components/node';
+
+# Collection Query
+The **Collection Query** node allows you to fetch documents from a Firestore collection based on various filters and sorting criteria. This node is particularly useful for querying Firestore databases in a flexible and efficient manner.
+
+<Node id="@buildship/buildship-firestore-collection-query" version="1.3.1" />
+
+## Inputs
+The node accepts the following inputs to customize your query:
+
+- **Collection Name**: The name of the Firestore collection you want to query. This is a required field and must be a string.
+  
+- **Filters**: An object that defines the filtering criteria for the query. Filters can be simple or nested:
+  - **Simple filter**:
+    ```json
+    {
+      "field": "name",
+      "operator": "==",
+      "value": "Marta"
+    }
+    ```
+  - **Logical OR**:
+    ```json
+    {
+      "logic": "OR",
+      "filters": [
+        { "field": "active", "operator": "==", "value": false },
+        { "field": "name", "operator": "==", "value": "luis" }
+      ]
+    }
+    ```
+  - **Logical AND**:
+    ```json
+    {
+      "logic": "AND",
+      "filters": [
+        { "field": "technology", "operator": "==", "value": "Firebase" },
+        {
+          "logic": "OR",
+          "filters": [
+            { "field": "admin", "operator": "==", "value": true },
+            { "field": "age", "operator": ">=", "value": 18 }
+          ]
+        }
+      ]
+    }
+    ```
+  - **Filtering by references**:
+    ```json
+    {
+      "field": "user_ref",
+      "operator": "==",
+      "value": "users/user123"
+    }
+    ```
+
+- **Limit**: Specifies the maximum number of documents to return. Defaults to 100 if not provided.
+
+- **Order By**: An array to order the results. Can be in ascending or descending order. Example:
+  ```json
+  [{ "fieldName": "asc" }, { "fieldName": "desc" }]
+  ```
+
+## Output
+The node returns an array of documents that match the query criteria. Each document in the array contains:
+
+- **Document ID**: The unique identifier of the document.
+- **Document Data**: An object containing the actual data of the document.
+
+Example output:
+```json
+[
+  {
+    "id": "document123",
+    "data": {
+      "name": "Marta",
+      "active": true,
+      "technology": "Firebase"
+    }
+  },
+  {
+    "id": "document456",
+    "data": {
+      "name": "Luis",
+      "active": false,
+      "technology": "Firebase",
+      "admin": true,
+      "age": 25
+    }
+  }
+]
+```
+
+This output makes it easy to process and utilize the queried documents in subsequent workflows.
