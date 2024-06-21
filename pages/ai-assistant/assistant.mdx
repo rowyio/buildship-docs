@@ -948,6 +948,14 @@ Guidelines:
 {tool condition} you must use '{toolName}' to {toolDescription}
 ```
 
+  <Callout type='info' emoji='ℹ️'>
+    **Guidelines on how to prevent execssive token usage:**
+     - **Minimize Back-and-Forth:** When you have an ongoing back-and-forth with the assistant, the entire thread including previous prompts and responses is passed back with every new prompt, meaning your prompt token cost increases rapidly. Don't have long chats, to cut down on token usage. Start a chat over at the beginning of each new task.
+     - **API Functionality:** Enabling certain Assistant API functions (function calls, retrieval, and code interpreter), adds significant amount of text to system prompt. [Learn more](https://community.openai.com/t/assistant-api-way-too-much-input-tokens-used/699661/5).
+     - **Structured Data:** Prefer using the code interpreter over file_search for structured data like CSV files.
+
+  </Callout>
+
 To succeed, we also provide a set of guidelines for defining instructions based on our explorations:
 
 - **Use the name of the tool**. _E.g: use 'Send email' tool_
