@@ -1,0 +1,43 @@
+---
+title: Firestore - Update Field Value
+description: Updates a field value in BuildShip's Firestore document with a given object
+---
+
+import Node from '/components/node';
+
+# Update Field Value
+Updates a field value in BuildShip's Firestore document with a specified new value. This node interacts with Google's Firestore to update a field specified by its key within a document path, and it supports document reference values in a specific format.
+
+<Node id="@buildship/buildship-update-firestore-field-value" version="1.2.0" />
+
+## Inputs
+This node requires three inputs:
+
+1. **Document Path (`docPath`)**: The path to the BuildShip's Firestore document. The format should follow `collectionName/documentId`.
+
+   **Example**: `customers/12345`
+   
+2. **Field Key (`fieldKey`)**: The key of the field that needs to be updated. This can be a single key or a nested key separated by dots.
+
+   **Example**: `contact.email`
+   
+3. **New Value (`newValue`)**: The new value to update the field with. If the value is a document reference, it should be in the format `_ref:collectionName/documentId`. The `_ref:` prefix is used to identify the value as a reference.
+
+   **Example**: `_ref:customers/D5KjdTWkV9YeY3CXHApo`
+   
+## Output
+Upon successful execution, the node returns an object containing metadata about the write operation, specifically the timestamp when the write occurred.
+
+### Example Output:
+```json
+{
+  "_writeTime": {
+    "_seconds": 1636553058,
+    "_nanoseconds": 123456789
+  }
+}
+```
+
+This output confirms that the field update was performed successfully and provides the precise time of the write operation in Firestore.
+
+By using this node, developers can efficiently update specific fields in their Firestore documents while handling document references seamlessly.
