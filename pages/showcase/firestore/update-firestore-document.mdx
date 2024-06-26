@@ -1,0 +1,44 @@
+---
+title: Firestore - Update Document
+description: Updates an entire Firestore document with a given object.
+---
+
+import Node from '/components/node';
+
+# Update Document
+The **Update Document** node allows you to update an entire Firestore document with a specified object. This is particularly useful when you need to ensure consistency and atomicity in your database updates.
+
+<Node id="@buildship/update-firestore-document" version="1.3.0" />
+
+## Inputs
+The node requires three key inputs to function correctly:
+
+1. **Project ID**
+   - **Description:** The ID of your Firestore project. This is necessary for identifying and authenticating your Firestore instance.
+   - **Type:** `string`
+   - **Sample Input:** `your-firestore-project-id`
+   - **Note:** Ensure you have granted the necessary Service Account permissions. Learn more details from our [detailed setup blog](https://docs.buildship.com/tutorials/firebase-project).
+
+2. **Document Path**
+   - **Description:** The path of the Firestore document to update. This specifies which document will be updated.
+   - **Type:** `string`
+   - **Sample Input:** `collection/document`
+   - **Quick Tip:** The document ID can be obtained directly from your Firestore Database.
+
+3. **New Document**
+   - **Description:** The data to be updated in the document. You can provide regular fields or document reference fields.
+   - **Type:** `object`
+   - **Sample Input:**
+     ```json
+     {
+       "price": 24, 
+       "status": "pending",
+       "ref": "_ref:customers/D5KjdTWkV9YeY3CXHApo" // Reference field
+     }
+     ```
+   - **Notes:** 
+     - For creating a document reference field, use the `_ref:` prefix followed by the `collectionName/documentId`.
+
+## Output
+The output of this node is an object indicating the result of updating the Firestore document. This will confirm whether the operation was successful or if there were any errors encountered during the update process. The structure of the output is defined as an object but may vary based on the data that was updated.
+
