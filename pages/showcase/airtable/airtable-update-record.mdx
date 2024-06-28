@@ -1,0 +1,69 @@
+---
+title: Airtable - Update Record
+description: Batch updates records in Airtable.
+---
+
+import Node from '/components/node';
+
+# Update Record
+The "Update Record" node allows you to batch update multiple records in an Airtable table through the Airtable API. This can be particularly useful for efficiently managing large datasets and automating updates.
+
+<Node id="@buildship/airtable-update-record" version="1.1.1" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **Access Token (apiKey)**
+  - Description: Your Airtable Personal Access Token. You can get your tokens [here](https://airtable.com/create/tokens).
+  - Type: string
+  - Example: `your_airtable_access_token`
+
+- **Base ID (baseId)**
+  - Description: The Base ID of the base to update the record. 
+  - Example: 
+    ```
+    https://airtable.com/BASE_ID/TABLE_ID/VIEW
+    ```
+  - Type: string
+  - Example: `app1234567890`
+
+- **Table ID (tableId)**
+  - Description: The Table ID of the base to update the record.
+  - Example:
+    ```
+    https://airtable.com/BASE_ID/TABLE_ID/VIEW
+    ```
+  - Type: string
+  - Example: `tbl1234567890`
+
+- **Fields (fields)**
+  - Description: The list of fields to be updated, specified with `fields` and `id` properties. Refer to the [Airtable Documentation](https://airtable.com/developers/web/api/update-multiple-records) for more details.
+  - Type: object
+  - Example:
+    ```json
+    [
+      {
+        "fields": {
+          "Address": "501 Twin Peaks Blvd",
+          "Name": "Twin Peaks",
+          "Visited": true
+        },
+        "id": "rec560UJdUtocSouk"
+      },
+      {
+        "fields": {
+          "Visited": true
+        },
+        "id": "rec3lbPRG4aVqkeOQ"
+      }
+    ]
+    ```
+
+## Output
+Upon successful execution, the node returns the response from the Airtable API. The output contains:
+
+- **Airtable Response**
+  - Description: The response from the Airtable API
+  - Type: object
+
+This output will contain detailed information about the records that were updated, allowing you to further process or log the updates as needed.
