@@ -91,6 +91,10 @@ The "Add Document" node allows you to create or insert a new document into an ex
 - **Document**: The document object that you want to insert into the index. This should be formatted as a JSON object
   according to the schema defined for the index.
 
+  <Callout type='info' emoji='ℹ️'>
+    Please note that the data should have **primary key** for each document object as it uniquely identifies each document in an index. For more information on Primary Key refer to this [docs](https://www.meilisearch.com/docs/learn/core_concepts/primary_key).
+  </Callout>
+
 **EXAMPLE INPUT**
 
 ```json
@@ -135,6 +139,10 @@ operation.
 - **Index Name**: The unique identifier of the MeiliSearch index where you want to insert the document.
 - **Documents**: An array of document objects that you want to insert into the index. Each document should follow the
   schema defined for the collection.
+
+  <Callout type='info' emoji='ℹ️'>
+    Please note that the data should have **primary key** for each document object as it uniquely identifies each document in an index. For more information on Primary Key refer to this [docs](https://www.meilisearch.com/docs/learn/core_concepts/primary_key).
+  </Callout>
 
 **EXAMPLE INPUT**
 
@@ -244,6 +252,10 @@ ID and the updated field values.
 - **Document**: A JSON object with the updated fields and the document's unique ID. Only included fields will be
   updated.
 
+  <Callout type='info' emoji='ℹ️'>
+    Please note that the data should have **primary key** for each document object as it uniquely identifies each document in an index. For more information on Primary Key refer to this [docs](https://www.meilisearch.com/docs/learn/core_concepts/primary_key).
+  </Callout>
+
 **EXAMPLE INPUT**
 
 ```json
@@ -287,6 +299,10 @@ IDs and the updated field values.
 - **Index Name**: The unique identifier of the Meilisearch index where you want to insert the document.
 - **Documents**: An array of objects with the updated fields and the document's unique ID. Only included fields will be
   updated.
+
+  <Callout type='info' emoji='ℹ️'>
+    Please note that the data should have **primary key** for each document object as it uniquely identifies each document in an index. For more information on Primary Key refer to this [docs](https://www.meilisearch.com/docs/learn/core_concepts/primary_key).
+  </Callout>
 
 **EXAMPLE INPUT**
 
