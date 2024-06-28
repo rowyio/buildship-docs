@@ -1,0 +1,86 @@
+---
+title: Airtable - List Records
+description: Fetches records from an Airtable table
+---
+
+import Node from '/components/node';
+
+# List Records
+The "List Records" node fetches records from a specified Airtable table using your Airtable Personal Access Token. This node allows you to retrieve data from Airtable for further processing or analysis in your workflow.
+
+<Node id="@buildship/airtable-list-records" version="1.2.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+### Access Token
+**Description:** Your Airtable Personal Access Token.
+**Required:** Yes
+
+You can get your tokens [here](https://airtable.com/create/tokens).
+
+**Example Input:** 
+```
+keyXXYYZZ00
+```
+
+### Table ID
+**Description:** The Table ID of the base to fetch records. *(Skip this field if you wish to apply filters and sort, and use API URL instead.)*
+
+**Example:**
+```
+https://airtable.com/BASE_ID/TABLE_ID/VIEW
+```
+
+**Example Input:** 
+```
+tbl123abc
+```
+
+### Base ID
+**Description:** The Base ID of the base to fetch records. *(Skip this field if you wish to apply filters and sort, and use API URL instead.)*
+
+**Example:**
+```
+https://airtable.com/BASE_ID/TABLE_ID/VIEW
+```
+
+**Example Input:** 
+```
+app456def
+```
+
+### Fields
+**Description:** Specify the fields to fetch from the Airtable table.
+
+**Example Input:** 
+```
+["Assets", "Permanent URL"]
+```
+
+**Note:** If no fields are specified, all fields will be fetched by default.
+
+## Output
+The output is an array of records fetched from the specified Airtable table. Each record within the array is an object containing the details of each row from the table.
+
+**Example Output:**
+```json
+[
+    {
+        "id": "rec123",
+        "fields": {
+            "Name": "Sample Name",
+            "Assets": "Asset URL"
+        }
+    },
+    {
+        "id": "rec456",
+        "fields": {
+            "Name": "Another Name",
+            "Permanent URL": "Permanent URL"
+        }
+    }
+]
+```
+
+This format allows further integration and analysis within your workflow operations.
