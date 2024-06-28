@@ -1,0 +1,50 @@
+---
+title: LLM Extract - LLM Extract
+description: Extract structured data from any web page.
+---
+
+import Node from '/components/node';
+
+# LLM Extract
+The **LLM Extract** node leverages OpenAI's capabilities to extract structured data from any web page. By specifying the extraction mode, relevant HTML selector, fields, and the URL, users can seamlessly extract and organize data into a structured format.
+
+<Node id="@buildship/openai-extract" version="2.2.0" />
+
+## Inputs
+The **LLM Extract** node accepts the following inputs to customize the data extraction process:
+
+- **Mode**: Defines the extraction mode. It can either be `text` or `html`. 
+  - **`text`**: Provides a concise context but omits web page semantics like URLs.
+  - **`html`**: Preserves HTML semantics during extraction.
+  - *Default*: `html`
+- **API Key**: The OpenAI API Key. Users can obtain their API key [here](https://platform.openai.com/account/api-keys).
+- **URL**: The URL of the webpage from which information needs to be extracted.
+- **Selector**: A specific HTML selector for targeted extraction. If not specified, the entire body of the page will be used.
+- **Fields**: Comma-separated list of field names to extract, such as `title, price, description`.
+
+### Sample Input
+```json
+{
+  "mode": "html",
+  "apiKey": "your-openai-api-key",
+  "url": "https://www.example.com",
+  "selector": "#main-content",
+  "fields": "title, price, description"
+}
+```
+
+## Output
+The output will be a structured array containing the extracted fields as specified. Each object in the array corresponds to an item with the defined fields.
+
+### Sample Output
+```json
+[
+  {
+    "title": "Example Title",
+    "price": "$19.99",
+    "description": "This is a sample description."
+  }
+]
+```
+
+By using the **LLM Extract** node, users can efficiently extract relevant structured data from webpages, enhancing data processing workflows.
