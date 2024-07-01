@@ -31,5 +31,8 @@
   },
   "supabase-rpc": {
     "display": "hidden"
+  },
+  "supabase-search": {
+    "display": "hidden"
   }
 }
