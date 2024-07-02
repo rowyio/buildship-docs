@@ -1,0 +1,46 @@
+---
+title: Audio Processing - Text to Speech (Save to File)
+description: Converts text to speech using ElevenLabs API and saves the output to as a file on BuildShip Storage and gives a publicly accessible URL.
+---
+
+import Node from '/components/node';
+
+# Text to Speech (Save to File)
+
+The "Text to Speech (Save to File)" node utilizes the ElevenLabs API to convert text input into speech. It then saves the generated speech as an audio file on BuildShip Storage and provides a publicly accessible URL for the audio file.
+
+<Node id="@buildship/elevenlabs-tts" version="1.1.3" />
+
+## Inputs
+
+To use this node, the following inputs are required:
+
+- **API Key**: The API key for ElevenLabs. Obtain it from the [ElevenLabs Developer Dashboard](https://elevenlabs.io/).
+- **Text**: The text that you want to convert to speech.
+- **Voice ID**: The ID of the voice to be used for speech synthesis. You can select from a variety of available voice IDs. For example, `21m00Tcm4TlvDq8ikWAM` represents the voice "Rachel."
+- **File Name**: The name of the mp3 file you want to create on BuildShip Storage. For example, `testing.mp3` or `audioTTS/testing.mp3`.
+- **Optimize Streaming Latency**: (Optional) Optimization level for streaming latency from 0 (lowest) to 4 (highest). Default is 0.
+
+### Sample Input
+
+```json
+{
+  "apiKey": "your-elevenlabs-api-key",
+  "text": "Hello, this is a test.",
+  "voice_id": "21m00Tcm4TlvDq8ikWAM",
+  "fileName": "audioFiles/hello_test.mp3",
+  "optimize_streaming_latency": 2
+}
+```
+
+## Output
+
+The output of this node is a publicly accessible URL pointing to the saved mp3 file in Google Cloud Storage.
+
+### Sample Output
+
+```json
+{
+  "Public URL": "https://storage.googleapis.com/your-bucket-name/audioFiles/hello_test.mp3"
+}
+```
