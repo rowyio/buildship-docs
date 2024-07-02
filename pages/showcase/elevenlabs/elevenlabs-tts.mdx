@@ -1,0 +1,38 @@
+---
+title: BuildShip - Text to Speech (save to File)
+description: Converts text to speech using ElevenLabs API and saves the output file on BuildShip Storage, providing a publicly accessible URL.
+---
+
+import Node from '/components/node';
+
+# Text to Speech (save to File)
+The "Text to Speech (save to File)" node utilizes the ElevenLabs API to convert text into speech and saves the resultant audio file to BuildShip Storage. Once the process is complete, the node provides a publicly accessible URL for the saved file.
+
+<Node id="@buildship/elevenlabs-tts" version="1.1.2" />
+
+## Inputs
+This node requires several inputs to function correctly:
+
+- **API Key**: The API key for accessing the ElevenLabs services. You can get your API key from the [ElevenLabs Developer Dashboard](https://elevenlabs.io/).
+- **Text**: The text string that needs to be converted into speech.
+- **Voice ID**: The identifier for the specific voice to be used for speech synthesis. Multiple voice IDs are available, such as "Rachel", "Clyde", "Domi", etc.
+- **File Name**: The desired name for the resulting MP3 file. This can be a simple file name like `testing.mp3` or a path like `audioTTS/testing.mp3` for organized storage.
+- **Storage Folder**: The storage location path where the file will be saved.
+- **Optimize Streaming Latency**: An optional parameter to optimize the streaming latency from 0 (lowest) to 4 (highest).
+
+### Sample Inputs:
+- **API Key**: your-elevenlabs-api-key
+- **Text**: Hello, this is a sample text to be converted into speech.
+- **Voice ID**: 21m00Tcm4TlvDq8ikWAM
+- **File Name**: sample_audio.mp3
+- **Optimize Streaming Latency**: 2
+
+## Output
+The output of this node is a publicly accessible URL that points to the saved audio file in BuildShip Storage.
+
+### Example Output:
+```
+https://storage.googleapis.com/your-bucket-name/sample_audio.mp3
+```
+This URL can be accessed by anyone to listen to the generated audio file.
+
