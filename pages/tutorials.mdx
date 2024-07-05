@@ -142,6 +142,18 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Supabase Postgres Remote Procedure Call preview](../public/tutorial/supabase-rpc-og.png)</>
   </ShowcaseCard>
+    <ShowcaseCard
+    title='Supabase Search'
+    href='./tutorials/supabase-search'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'supabase-search',
+      });
+    }}
+  >
+    <>![Supabase Search preview](../public/tutorial/supabase-search.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(
