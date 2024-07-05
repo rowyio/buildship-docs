@@ -4,6 +4,7 @@ description:
   The Supabase Search Integration in BuildShip allows users to leverage Supabase for their searching and indexing needs.
 ---
 
+import { Steps } from 'nextra/components';
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
 import supabase6 from '/public/assets/supabase6.png';
@@ -47,17 +48,22 @@ You'll need access to a Supabase project. Follow these steps to prepare your acc
 It's important to note, generating API keys for secure interaction with your Supabase instance is an important step that
 follows the establishment of your project.
 
-### API Keys
+### API Key
 
 Supabase utilizes API keys to authenticate, granting complete operational access. For enhanced security, it is
 recommended to [generate new API keys](https://supabase.com/docs/guides/api) with restricted scopes tailored to specific
 use cases.
 
-### Host
+<Callout>
+  Supabase provides two types of API keys. You can find more details in this [API Key
+  Documentation](https://docs.buildship.com/tutorials/supabase-crud#api-key-and-url).
+</Callout>
 
-The URL of your Supabase instance serves as the host. This critical piece of information is required for connecting
-BuildShip's Supabase nodes to your Supabase server. For more details on obtaining your Supabase instance's URL, refer to
-the [Supabase documentation](https://supabase.com/docs/guides/api).
+### API URL
+
+Supabase projects are uniquely identified by their API URL which you can retrieve from your project's API settings in
+the Supabase Dashboard. For more details on obtaining your Supabase instance's URL, refer to the
+[Supabase documentation](https://supabase.com/docs/guides/api).
 
 For comprehensive guidance on setting up the Supabase project, please refer to the
 [Supabase Tutorial](https://docs.buildship.com/tutorials/supabase-crud).
@@ -76,6 +82,9 @@ CREATE TABLE documents (
 );
 ```
 
+Add some sample data to the above table as described in the
+["Creating Data"](https://docs.buildship.com/tutorials/supabase-crud#creating-data) section.
+
 ## Full Text Search
 
 The "Full Text Search" node allows you to perform full-text searches on a Supabase table, enabling you to find documents
@@ -83,15 +92,10 @@ that match a specific search query.
 
 <Image src={supabase6} alt='Supabase' width={1200} />
 
-### Prerequisites
+To set up supabase full text search in your BuildShip workflow, follow these steps:
 
-1. Supabase Project: Ensure you have a Supabase project set up.
-2. Table with Data: Ensure your table has data added as described in the
-   ["Creating Data"](https://docs.buildship.com/tutorials/supabase-crud#creating-data) section.
-
-### Step-by-Step Guide
-
-1. Add Full Text Search Column
+<Steps>
+### Add Full Text Search Column
 
 Add a full-text search (`fts`) column to the table you want to search within. Lets add a `fts` column to the `documents`
 table which we have created earlier.
@@ -104,7 +108,7 @@ ALTER TABLE documents ADD COLUMN fts TSVECTOR GENERATED ALWAYS AS (to_tsvector('
 for full-text search. This specifies that the fts column is a computed column, automatically generated based on the
 content of another column (`content` in this case).
 
-2. Create Index
+### Create Index
 
 Create an index for the full-text search.
 
@@ -115,7 +119,7 @@ CREATE INDEX ON documents USING gin(fts);
 This command creates an index on the `fts` column of the `documents` table. It allows fast lookups of documents that
 contain specific words or phrases.
 
-{' '}
+</Steps>
 
 <Callout>
   Adding a `TSVECTOR` column and creating a `GIN` index significantly enhances the performance of full-text search
@@ -175,9 +179,10 @@ with
   schema extensions;
 ```
 
-### Step-by-Step Guide
+To create embeddings for your supabase table, follow these steps:
 
-1. Add Embedding Column
+<Steps>
+### Add Embedding Column
 
 Add an `embedding` column to the `documents` table:
 
@@ -185,7 +190,7 @@ Add an `embedding` column to the `documents` table:
 ALTER TABLE documents ADD COLUMN embedding VECTOR(1536);
 ```
 
-2. Generate Embeddings
+### Generate Embeddings
 
 - **Generate Embeddings with OpenAI:** Use the Buildship OpenAI Generate Embeddings Node to create embeddings for each
   document's content.
@@ -193,6 +198,8 @@ ALTER TABLE documents ADD COLUMN embedding VECTOR(1536);
   columns. In this case, you only need the `id` and `content` of each row.
 - **Update Embedding Column:** For each row, update the new embedding column value using the Generate Embeddings node
   and Supabase Update Row node enclosed in a Repeat node.
+
+</Steps>
 
 For a streamlined implementation, you can use this
 [Remix template](https://buildship.app/remix/8c31f380-021d-43a4-ad33-7c8d729a1631) as shown in the image below:
@@ -209,14 +216,12 @@ of a search query.
 
 <Image src={supabase8} alt='Supabase' width={1200} />
 
-### Prerequisites
+<Callout>Ensure your table has data and embeddings added as described above.</Callout>
 
-1. Supabase Project: Ensure you have a Supabase project set up.
-2. Table with Data and Embeddings: Ensure your table has data and embeddings added as described above.
+To set up supabase semantic search in your BuildShip workflow, follow these steps:
 
-### Step-by-Step Guide
-
-1. Create Index
+<Steps>
+### Create Index
 
 To perform efficient semantic vector searches, you need to create an index on the embedding column in your table. This
 index uses the HNSW (Hierarchical Navigable Small World) algorithm, which is suitable for high-dimensional vector data.
@@ -227,11 +232,11 @@ Create an index for the semantic vector search:
 CREATE INDEX ON documents USING hnsw (embedding vector_ip_ops);
 ```
 
-2. Semantic Search Function
+### Semantic Search Function
 
-To perform semantic search, you need to create a SQL function in your Supabase database to match documents based on
-embeddings. This function will help you find documents that are semantically similar to the query. It is crucial that
-the function is named `semantic_search`, as the node requires this specific name to operate correctly.
+To perform semantic search, you need to create a SQL function in your Supabase database to match rows based on
+embeddings. This function will help you find rows that are semantically similar to the query. It is crucial that the
+function is named `semantic_search`, as the node requires this specific name to operate correctly.
 
 ```sql
 CREATE OR REPLACE FUNCTION semantic_search (
@@ -239,16 +244,21 @@ CREATE OR REPLACE FUNCTION semantic_search (
   match_threshold FLOAT,
   match_count INT
 )
-RETURNS SETOF documents
+RETURNS SETOF your_table
 LANGUAGE SQL
 AS $$
   SELECT *
-  FROM documents
-  WHERE documents.embedding <=> query_embedding < 1 - match_threshold
-  ORDER BY documents.embedding <=> query_embedding ASC
+  FROM your_table
+  WHERE your_table.embedding <=> query_embedding < 1 - match_threshold
+  ORDER BY your_table.embedding <=> query_embedding ASC
   LIMIT LEAST(match_count, 200);
 $$;
 ```
+
+In this example, replace `your_table` with the name of the table you are working with. The function will search for rows
+within the specified table that are semantically similar to the provided query embedding.
+
+</Steps>
 
 <Callout>
   Use the `semantic_search` function to perform semantic search queries. This function compares the embeddings stored in
@@ -294,24 +304,21 @@ hybrid searches on a Supabase table, enabling you to find documents that match t
 
 <Image src={supabase9} alt='Supabase' width={1200} />
 
-### Prerequisites
+To set up supabase hybrid search in your BuildShip workflow, follow these steps:
 
-1. Supabase Project: Ensure you have a Supabase project set up.
-2. Table with Data and Embeddings: Ensure your table has data and embeddings added as described above.
+<Steps>
 
-### Step-by-Step Guide
+### Create the `fts` and `embedding` columns for the `documents` table as described in the Full Text Search and Semantic Search sections.
 
-1. Create the `fts` and `embedding` columns for the `documents` table as described in the Full Text Search and Semantic
-   Search sections. The table should look as follows:
+The table should look like below after adding `fts` and `embedding` columns:
 
 <Image src={supabase10} alt='Supabase' width={1200} />
 
-2. Hybrid Search Function
+### Hybrid Search Function
 
-Create a function to perform hybrid search: To perform hybrid search, you need to create a SQL function in your Supabase
-database to match documents based on embeddings. This function will help you find documents that are semantically
-similar to the query. It is crucial that the function is named `hybrid_search`, as the node requires this specific name
-to operate correctly.
+To perform hybrid search, you need to create a SQL function in your Supabase database to match rows based on embeddings
+and full-text search. This function will help you find rows that are semantically and textually similar to the query. It
+is crucial that the function is named `hybrid_search`, as the node requires this specific name to operate correctly.
 
 ```sql
 CREATE OR REPLACE FUNCTION hybrid_search(
@@ -322,45 +329,37 @@ CREATE OR REPLACE FUNCTION hybrid_search(
   SEMANTIC_WEIGHT FLOAT = 1,
   RRF_K INT = 50
 )
-RETURNS SETOF documents
+RETURNS SETOF your_table
 LANGUAGE SQL
 AS $$
 WITH full_text AS (
-  SELECT
-    id,
-    ROW_NUMBER() OVER (ORDER BY ts_rank_cd(fts, websearch_to_tsquery(QUERY_TEXT)) DESC) AS rank_ix
-  FROM
-    documents
-  WHERE
-    fts @@ websearch_to_tsquery(QUERY_TEXT)
-  ORDER BY rank_ix
+  SELECT id, ROW_NUMBER() OVER (ORDER BY ts_rank_cd(fts, websearch_to_tsquery(QUERY_TEXT)) DESC) AS rank_ix
+  FROM your_table
+  WHERE fts @@ websearch_to_tsquery(QUERY_TEXT)
   LIMIT LEAST(MATCH_COUNT, 30) * 2
 ),
 semantic AS (
-  SELECT
-    id,
-    ROW_NUMBER() OVER (ORDER BY embedding <#> QUERY_EMBEDDING) AS rank_ix
-  FROM
-    documents
-  ORDER BY rank_ix
+  SELECT id, ROW_NUMBER() OVER (ORDER BY embedding <#> QUERY_EMBEDDING) AS rank_ix
+  FROM your_table
   LIMIT LEAST(MATCH_COUNT, 30) * 2
 )
-SELECT
-  documents.*
-FROM
-  full_text
-  FULL OUTER JOIN semantic
-    ON full_text.id = semantic.id
-  JOIN documents
-    ON COALESCE(full_text.id, semantic.id) = documents.id
+SELECT your_table.*
+FROM full_text
+FULL OUTER JOIN semantic ON full_text.id = semantic.id
+JOIN your_table ON COALESCE(full_text.id, semantic.id) = your_table.id
 ORDER BY
   COALESCE(1.0 / (RRF_K + full_text.rank_ix), 0.0) * FULL_TEXT_WEIGHT +
   COALESCE(1.0 / (RRF_K + semantic.rank_ix), 0.0) * SEMANTIC_WEIGHT
-  DESC
-LIMIT
-  LEAST(MATCH_COUNT, 30)
+DESC
+LIMIT LEAST(MATCH_COUNT, 30);
 $$;
 ```
+
+In this example, replace `your_table` with the name of the table you are working with. The function will perform a
+hybrid search within the specified table, combining both full-text search and semantic search to find rows that are
+relevant to the provided query text and embedding.
+
+</Steps>
 
 <Callout>
   Employ the "Hybrid Search" function to enhance search functionality in your applications by delivering results that
