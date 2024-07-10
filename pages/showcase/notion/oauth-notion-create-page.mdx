@@ -1,0 +1,56 @@
+---
+title: Notion - Create Page
+description: This node creates a new page under an existing Notion page or database using OAuth.
+---
+
+import Node from '/components/node';
+
+# Create Page
+The "Create Page" node allows you to create a new page in Notion under an existing page or database. This node uses OAuth for secure access to your Notion workspace.
+
+<Node id="@buildship/oauth-notion-create-page" version="2.1.1" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **Name**: The title of the new page. Ensure the first column of your table is called "Name".
+- **Database ID**: The unique identifier of the Notion database where the new page will be added. This can be found in your Notion web URL. For more information, refer to the [Notion API documentation](https://developers.notion.com/reference/retrieve-a-database).
+
+### Sample Inputs
+```json
+{
+  "name": "Meeting Notes",
+  "databaseId": "abcd1234efgh5678ijkl"
+}
+```
+
+## Output
+The output will be a JSON object that includes the response from the Notion API. This will typically contain information about the newly created page including its ID, properties, and other metadata.
+
+### Sample Output
+```json
+{
+  "object": "page",
+  "id": "e5c1b9dc-4f3b-4aaf-8afe-5e1f8b0e8e04",
+  "created_time": "2023-10-12T07:00:00.000Z",
+  "last_edited_time": "2023-10-12T07:00:00.000Z",
+  "parent": {
+    "type": "database_id",
+    "database_id": "abcd1234efgh5678ijkl"
+  },
+  "properties": {
+    "Name": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "Meeting Notes"
+          }
+        }
+      ]
+    }
+  }
+}
+```
