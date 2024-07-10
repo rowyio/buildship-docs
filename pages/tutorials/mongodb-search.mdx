@@ -14,6 +14,7 @@ import mongo4 from '/public/assets/mongo-4.png';
 import mongo5 from '/public/assets/mongo-5.png';
 import mongo6 from '/public/assets/mongo-6.png';
 import mongo7 from '/public/assets/mongo-7.png';
+import mongo11 from '/public/assets/mongo-11.png';
 
 The MongoDB Search Integration in BuildShip enables users to leverage MongoDB for their advanced search and indexing
 needs through a streamlined, low-code interface. MongoDB offers powerful full-text search, vector search, and hybrid
@@ -59,6 +60,14 @@ functionalities accessible to all users.
     href='/tutorials/mongodb-search#semantic-search'
   >
     <>![Semantic Search: Finding Meaning in Your Data](../../public/assets/mongo-9.png)</>
+  </Card>
+  <Card
+    image
+    arrow
+    title='Hybrid Search: Combining Power of Semantic and Full Text Search'
+    href='/tutorials/mongodb-search#hybrid-search'
+  >
+    <>![Hybrid Search: Combining Power of Semantic and Full Text Search](../../public/assets/mongo-12.png)</>
   </Card>
 </Cards>
 
@@ -249,3 +258,58 @@ The node returns an object with the following properties:
 - `success` : A boolean value indicating the success of the operation.
 - `count` : The number of documents returned by the search query.
 - `results` : An array of documents resulting from the search query.
+
+## Hybrid Search
+
+Hybrid Search combines the power of semantic search and full-text search, leveraging both Atlas Vector Search and Atlas
+Full-Text Search to provide comprehensive search results. This method combines the semantic similarity of documents with
+the exact match capabilities of full-text search.
+
+To set up MongoDB hybrid search in your workflow, you first need to create both Atlas Search Index and Atlas Vector
+Search index. Refer to the below sections to create the indexes:
+
+- `fts` : [Atlas Search Index](https://docs.buildship.com//tutorials/mongodb-search#create-an-atlas-search-index)
+- `vector_index` :
+  [Atlas Vector Search Index](https://docs.buildship.com//tutorials/mongodb-search#create-an-atlas-vector-search-index)
+
+<Callout>
+  Make sure to create the indexes with the names `fts` and `vector_index` to avoid changing the Index Names in the node.
+</Callout>
+
+<Image src={mongo11} alt='mongodb' width={1200} />
+
+#### Inputs
+
+- **Connection String**: The MongoDB connection string.
+- **Database**: The name of the database.
+- **Collection**: The name of the column in the specified table where the full-text search will be conducted.
+- **Query**: The search query string that you want to use for finding matching documents.
+- **Vector Index Name**: The name of the vector search index.
+- **Full-Text Index Name**: The name of the full-text search index.
+- **Candidates**: (Optional) The number of candidate results to consider. Default is 150.
+- **Limit**: (Optional) The maximum number of results to return. Default is 10.
+
+#### Output
+
+The node returns an object with the following properties:
+
+```json
+{
+  "success": boolean,
+  "count": integer,
+  "documents": [
+    {
+      "document": object
+    }
+  ]
+}
+```
+
+- `success` : A boolean value indicating the success of the operation.
+- `count` : The number of documents returned by the search query.
+- `results` : An array of documents resulting from the search query.
+
+<Callout>
+  This node combines the results of both semantic and full-text searches using reciprocal rank fusion to provide a
+  comprehensive set of results.
+</Callout>
