@@ -34,5 +34,8 @@
   },
   "supabase-search": {
     "display": "hidden"
+  },
+  "mongodb-search": {
+    "display": "hidden"
   }
 }
