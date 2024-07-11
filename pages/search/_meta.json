@@ -1,5 +1,4 @@
 {
   "typesense": "Typesense",
-  "meilisearch": "Meilisearch",
-  "mongodb": "MongoDB"
+  "meilisearch": "Meilisearch"
 }
