@@ -154,6 +154,19 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Supabase Search preview](../public/tutorial/supabase-search.png)</>
   </ShowcaseCard>
+  <ShowcaseCard
+    title='MongoDB Search'
+    href='./tutorials/mongodb-search'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'mongodb-search',
+      });
+    }}
+  >
+    <>![MongoDB Search preview](../public/assets/mongodb-search.png)</>
+  </ShowcaseCard>
+  
 </Cards>
 
 export const ShowcaseCard = Object.assign(
