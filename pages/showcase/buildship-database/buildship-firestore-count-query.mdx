@@ -1,0 +1,39 @@
+---
+title: Firestore - Query Count
+description: Get server count of a query in Firestore with multiple filters
+---
+
+import Node from '/components/node';
+
+# Query Count
+The **Query Count** node is designed to retrieve the count of documents in a Firestore collection that match specified query filters. This is particularly useful for applications that need to count documents meeting certain criteria without retrieving all document details.
+
+<Node id="@buildship/buildship-firestore-count-query" version="1.1.1" />
+
+## Inputs
+The node requires two main inputs:
+
+### Collection
+- **Description**: The name of the Firestore collection to query.
+- **Type**: `string`
+- **Example**: `Users`
+
+### Filters
+- **Description**: An array of filter objects where each object includes `field`, `operator`, and `value`.
+- **Type**: `array`
+- **Example**:
+  ```json
+  [
+    {"field": "Name", "operator": "==", "value": "Alice"},
+    {"field": "Age", "operator": ">=", "value": 25}
+  ]
+  ```
+
+## Output
+The node returns the count of documents that match the specified filters.
+
+- **Type**: `number`
+- **Description**: The count of documents that match the query.
+- **Example**: `5`
+
+This can be directly used in your application to determine the number of items that satisfy specific conditions within your Firestore database.
