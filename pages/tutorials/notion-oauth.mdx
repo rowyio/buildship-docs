@@ -17,6 +17,7 @@ import queryDb from '/public/tutorial/notion-query-db.png';
 import search from '/public/tutorial/notion-search.png';
 import subpage from '/public/tutorial/notion-subpage.png';
 import ids from '/public/tutorial/notion-ids.png';
+import updateBlock from '/public/tutorial/notion-update-block.png';
 
 In the realm of productivity tools, Notion stands out as an all-encompassing platform for planning, brainstorming, and
 project management.
@@ -99,6 +100,22 @@ streamlining your workflow.
 </Callout>
 
 <Image src={createPage} alt='Notion Create Page' width={1200} />
+
+### Update Block
+
+The Update Block function allows you to modify existing content within a specific block in Notion by using the block's
+unique identifier (`blockId`). It supports various block types, such as `paragraph`, `heading_1`, `heading_2`, `code`,
+and more, each allowing different styles and content formats.
+
+<Callout type="tip" emoji="✍️">
+**SAMPLE USE CASE:** Consider a project management scenario where you maintain a Notion page for each project. As the project progresses, you might need to update status reports, task lists, or technical documentation directly within specific blocks on a page.
+
+With the Update Block Node, you can update these sections in real time, ensuring that project documentation remains
+current and accessible to all stakeholders.
+
+</Callout>
+
+<Image src={updateBlock} alt='Notion Update Block' width={1200} />
 
 ### List Users
 
