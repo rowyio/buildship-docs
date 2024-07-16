@@ -1,11 +1,11 @@
 {
-  "firebase": "Firebase",
-  "firestore-nodes": {
+  "buildship-db": "BuildShip",
+  "buildship-db-nodes": {
+    "title": "BuildShip Database Nodes",
     "display": "hidden"
   },
-  "buildship-db": "Buildship",
-  "buildship-db-nodes": {
-    "title": "Buildship Database Nodes",
+  "firebase": "Firebase",
+  "firestore-nodes": {
     "display": "hidden"
   },
   "supabase": "Supabase",
