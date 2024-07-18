@@ -1,0 +1,67 @@
+---
+title: MeiliSearch - Update Documents
+description: Update multiple documents in MeiliSearch by sending an array of JSON objects.
+---
+
+import Node from '/components/node';
+
+# Update Documents
+The **Update Documents** node allows you to update multiple documents in a MeiliSearch index by sending an array of JSON objects to the server.
+
+<Node id="@buildship/update-documents-to-meilisearch" version="1.1.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+1. **API Key**: The API Key of your MeiliSearch instance. Refer to [generate new API keys](https://docs.meilisearch.com/reference/api/keys.html) with restricted scopes tailored to specific use cases.
+   
+    Example: `my_api_key_123`
+
+2. **Host URL**: The Host URL of your MeiliSearch server. You can find your MeiliSearch Host URL in the [Meilisearch documentation](https://docs.meilisearch.com/learn/getting_started/quick_start.html).
+   
+    Example: 
+    ```
+    https://ms-123456.sgp.meilisearch.io
+    ```
+
+3. **Index Name**: The name of the index in your MeiliSearch instance where the documents will be updated.
+   
+   Example:
+   ```
+   movies
+   ```
+
+4. **Documents**: An array of JSON objects representing the documents to be updated in the MeiliSearch index.
+   
+   Example:
+   ```json
+   [
+     {
+       "id": "2",
+       "title": "Inception",
+       "release_date": "2010-08-16",
+       "director": "Colin Firth"
+     },
+     {
+       "id": "3",
+       "title": "The Grand Budapest Hotel",
+       "release_date": "2014-02-28",
+       "director": "Michael Caine"
+     }
+   ]
+   ```
+
+## Output
+Upon successful execution, the node returns an object with the following structure:
+
+```json
+{
+  "success": true,
+  "detail": "Documents update succeeded",
+  "documents": [ /* Array of updated documents */ ]
+}
+```
+
+This output confirms that the documents were successfully updated in the specified MeiliSearch index. If an error occurs during execution, it will log the error and throw an exception.
+
+Use this node to keep your MeiliSearch index up-to-date with the latest document information, facilitating efficient search and retrieval operations.
