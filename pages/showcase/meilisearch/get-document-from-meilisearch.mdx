@@ -1,0 +1,35 @@
+---
+title: MeiliSearch - Get Document
+description: Retrieve a document from a Meilisearch index using the given Document ID.
+---
+
+import Node from '/components/node';
+
+# Get Document
+This function allows you to retrieve a document from a specified Meilisearch index using the given Document ID. Meilisearch is a fast and easy-to-use search engine that is highly customizable. This node can be used for obtaining specific documents based on their unique identifiers.
+
+<Node id="@buildship/get-document-from-meilisearch" version="1.1.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **API Key (string):** The API Key of your MeiliSearch instance. Check [generate new API keys](https://docs.meilisearch.com/reference/api/keys.html) for more details.
+- **Host URL (string):** The Host URL of your MeiliSearch server. For example, `https://ms-123456.sgp.meilisearch.io`. Refer to the [Meilisearch documentation](https://docs.meilisearch.com/learn/getting_started/quick_start.html) for guidance on how to find your MeiliSearch Host URL.
+- **Index Name (string):** The Index Name in your MeiliSearch instance where the document is stored.
+- **Document ID (string):** The unique ID of the document that you wish to retrieve from MeiliSearch.
+
+### Sample Inputs
+Here is an example of the required inputs:
+- **API Key:** `abcd1234efgh5678ijkl9012mnop3456`
+- **Host URL:** `https://ms-123456.sgp.meilisearch.io`
+- **Index Name:** `products`
+- **Document ID:** `123456`
+
+## Output
+Upon successful retrieval, the node will return the following output:
+
+- **success (boolean):** Indicates whether the document retrieval was successful (`true`).
+- **detail (string):** A message describing the outcome of the retrieval process (`'Document retrieval succeeded'`).
+- **document (object):** The retrieved document from the specified Meilisearch index.
+
+This will allow you to handle the document as needed in your workflow, ensuring you can access and utilize the data stored in your Meilisearch environment efficiently.
