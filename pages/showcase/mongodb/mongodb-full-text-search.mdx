@@ -1,0 +1,59 @@
+---
+title: Database Operations - Full Text Search
+description: Perform full-text searches in a specified MongoDB collection and return matched documents.
+---
+
+import Node from '/components/node';
+
+# Full Text Search
+
+This script performs a full-text search in a specified MongoDB collection and returns the matched documents. To enable Full-Text Search (FTS) in MongoDB, follow this [guide](https://docs.buildship.com/tutorials/mongodb-search#full-text-search) on setting up MongoDB Search Index.
+
+<Node id="@buildship/mongodb-full-text-search" version="1.2.0" />
+
+## Inputs
+
+- **Connection String**: The MongoDB connection string.  
+  **Example:**  
+  ```
+  mongodb+srv://username:password@cluster0.uatl1m6.mongodb.net/?retryWrites=true&w=majority
+  ```
+
+- **Database Name**: The name of the database to connect to. Check [BuildShip X MongoDB docs](https://docs.buildship.com/database/mongodb) for more details.
+
+- **Collection Name**: The name of the collection to search within.
+
+- **Query**: The search query string that will be used to perform the full-text search.
+
+- **Index Name** *(optional)*: The name of the Atlas Search index. Defaults to `fts`.
+
+### Sample Inputs
+```json
+{
+  "connectionString": "mongodb+srv://username:password@cluster0.uatl1m6.mongodb.net/?retryWrites=true&w=majority",
+  "databaseName": "sampleDB",
+  "collectionName": "sampleCollection",
+  "searchText": "search query",
+  "indexName": "fts"
+}
+```
+
+## Output
+
+The result of the insertion operation, including the count and IDs of the inserted documents. The output structure includes:
+
+- **Inserted Count**: The number of documents that were inserted.
+- **Inserted Ids**: An array of IDs of the inserted documents.
+
+### Example Output
+```json
+{
+  "success": true,
+  "count": 5,
+  "documents": [
+    { "title": "Document 1", "content": "Content of document 1" },
+    { "title": "Document 2", "content": "Content of document 2" }
+    // ...
+  ]
+}
+```
