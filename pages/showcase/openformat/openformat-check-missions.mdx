@@ -1,0 +1,67 @@
+---
+title: Buildship - Check Missions
+description: Checks whether the user has completed all of the actions that make up a mission, and whether they have already been rewarded for completing the mission.
+---
+
+import Node from '/components/node';
+
+# Check Missions
+The "Check Missions" node checks whether a user has completed all of the actions that constitute a mission and determines if the user has been rewarded for completing the mission.
+
+<Node id="@buildship/openformat-check-missions" version="1.1.0" />
+
+## Inputs
+To use this node, you will need to provide the following inputs:
+
+- **API Key**: Your OPENFORMAT API Key. This can be obtained from the [OPENFORMAT dashboard](https://app.openformat.tech/) under Settings > API Key.
+  
+  *Example input:* `YOUR_API_KEY_HERE`
+  
+- **Missions**: An array of missions, each containing the required actions and rewards for that mission. Detailed structure for missions can be found [here](https://docs.openformat.tech/no-code/buildship/nodes/check-missions).
+  
+  *Example input:* `[{"name": "Mission1", "requirements": [{"action_name": "action1", "count": 3}], "xp_reward_amount": 100, "badge_reward_id": "badge1"}]`
+  
+- **dApp ID**: The ID for your OPENFORMAT dApp. You can create and find your dApp ID from the [OPENFORMAT dashboard](https://app.openformat.tech/).
+  
+  *Example input:* `0x1234567890abcdef1234567890abcdef12345678`
+  
+- **User ID**: The account address of the user whose information you want to retrieve (e.g., `0xeed12ae3b7cc78ea09ba4cc6e34a997b969ea8e6`).
+  
+  *Example input:* `0xeed12ae3b7cc78ea09ba4cc6e34a997b969ea8e6`
+
+## Output
+The output of this node provides the following details:
+
+- **completedMissions**: An array of mission names that the user has completed.
+
+  ```json
+  {
+    "completedMissions": ["Mission1", "Mission2"]
+  }
+  ```
+  
+- **pendingMissions**: An array of newly completed missions by the user including reward details like `xp_reward_amount` and `badge_reward_id`.
+
+  ```json
+  {
+    "pendingMissions": [
+      {"name": "Mission3", "xp_reward_amount": 200, "badge_reward_id": "badge2"}
+    ]
+  }
+  ```
+  
+- **uncompletedMissions**: An array of missions that are still in progress, including progress information with percentage and remaining actions.
+
+  ```json
+  {
+    "uncompletedMissions": [
+      {
+        "name": "Mission4",
+        "progressInPercent": "50.0",
+        "remainingActions": [{"name": "action2", "remainingCount": 1}]
+      }
+    ]
+  }
+  ```
+
+This node ensures that you can effectively track user progress on missions, identify completed missions for reward distribution, and pinpoint actions still required to fully complete missions.
