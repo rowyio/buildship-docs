@@ -1,0 +1,38 @@
+---
+title: GCP - Delete GCP Folder
+description: Deletes a folder in GCP Storage if it exists
+---
+
+import Node from '/components/node';
+
+# Delete GCP Folder
+The **Delete GCP Folder** node is designed to remove a specified folder from a Google Cloud Platform (GCP) Storage bucket if it exists. This function leverages the Google Cloud Storage API to locate and delete all files within the specified folder.
+
+<Node id="@buildship/gcp-storage-delete-folder" version="1.2.0" />
+
+## Inputs
+To successfully utilize this node, the following inputs are required:
+
+### Folder Path
+- **Description**: The path of the folder in the GCP bucket.
+- **Example**: If you wish to delete the `icons` folder inside the `public` folder in your root directory, you can set the folder path as: `public/icons`.
+- **Type**: string
+
+### Bucket ID
+- **Description**: The ID of the GCP Storage bucket. Note that this requires additional steps for granting Service Account permissions. Detailed instructions on obtaining your GCP Bucket ID and adding Service Account Permissions can be found [here](https://docs.buildship.com/tutorials/gcp-storage#access-buildship-settings).
+- **Default**: `process.env.BUCKET`
+- **Type**: string
+
+## Sample Input
+```json
+{
+  "folderPath": "public/icons",
+  "bucketId": "my-gcp-bucket-id"
+}
+```
+
+## Output
+Upon successful execution, the node will return a confirmation message:
+- **Output**: "Folder successfully deleted".
+
+If an error occurs during the process, the node will log the error and throw an exception.
