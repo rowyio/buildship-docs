@@ -1,0 +1,35 @@
+---
+title: MongoDB - Full Text Search
+description: This node performs a full-text search in a specified MongoDB collection and returns matched documents.
+---
+
+import Node from '/components/node';
+
+# Full Text Search
+The **Full Text Search** node performs a comprehensive full-text search within a specified MongoDB collection. It's useful for finding documents in a MongoDB database that match a given search query. Ensure that the full-text search (FTS) is enabled in your MongoDB setup by following this [guide](https://docs.buildship.com/tutorials/mongodb-search#full-text-search).
+
+<Node id="@buildship/mongodb-full-text-search" version="1.3.0" />
+
+## Inputs
+To use this node, you need to provide:
+
+- **Connection String**: The MongoDB connection string.
+  - Example: 
+    ```
+    mongodb+srv://username:password@cluster0.uatl1m6.mongodb.net/?retryWrites=true&w=majority
+    ```
+- **Database Name**: The name of the database.
+  - Example: `myDatabase`
+- **Collection Name**: The name of the collection to search.
+  - Example: `myCollection`
+- **Query String**: The search query string used to perform the full-text search.
+  - Example: `search for this text`
+- **Index Name**: (Optional) The name of the Atlas Search index; defaults to `fts`.
+
+## Output
+The node returns an object containing the following:
+
+- **Inserted Ids**: An array of IDs of the inserted documents.
+  - Example: `[ "id1", "id2", "id3" ]`
+- **Inserted Count**: The count of the inserted documents.
+  - Example: `3`
