@@ -1,0 +1,36 @@
+---
+title: Webflow - Delete Collection Field
+description: Delete a custom field in a collection within Webflow. This endpoint does not currently support bulk deletion.
+---
+
+import Node from '/components/node';
+
+# Delete Collection Field
+The **Delete Collection Field** node allows you to delete a custom field in a collection within your Webflow CMS. This operation is performed for individual fields and does not support bulk deletion.
+
+<Node id="@buildship/oauth-webflow-delete-cms-field" version="1.1.0" />
+
+## Inputs
+To use this node, the following inputs are required:
+
+- **Collection ID:** The unique identifier for a collection within your Webflow project. You can fetch the list of available collections using the **List Collections** node.
+- **Field ID:** The unique identifier for a field within the collection. This can be obtained by using the **Get Collection Details** node to get a list of all fields within your Webflow CMS collection.
+
+### Example
+Here is an example of how the inputs should be provided:
+
+- **Collection ID:** `5f3e3a401eb0c5eadf5a7767`
+- **Field ID:** `5f5f3afd7e1b3b9d8c6d5bb2`
+
+## Output
+The output of the node will be a boolean indicating the success of the field deletion, along with a message confirming the deletion.
+
+### Example Output
+```json
+{
+  "success": true,
+  "message": "Field 5f5f3afd7e1b3b9d8c6d5bb2 deleted successfully"
+}
+```
+
+The node ensures that the specified field is successfully removed from the specified collection, and provides a success message to confirm the action.
