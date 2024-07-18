@@ -1,0 +1,47 @@
+---
+title: WordPress - List Posts
+description: Get a paginated list of WordPress posts.
+---
+
+import Node from '/components/node';
+
+# List Posts
+The "List Posts" node fetches a paginated list of posts from a WordPress site. Using this node, you can easily retrieve a set number of posts per page from your site using WordPress REST API.
+
+<Node id="@buildship/wordpress-list-posts" version="1.1.0" />
+
+## Inputs
+To use the "List Posts" node, you need to provide the following inputs:
+
+- **Site URL**: The base URL of your WordPress site.
+  - **Type**: string
+  - **Required**: Yes
+  - **Description**: Example: `https://example.com`
+
+- **Username**: Your WordPress login username.
+  - **Type**: string
+  - **Required**: Yes
+  - **Description**: Example: `admin`
+
+- **Password**: Your application password. [Instructions for creating one](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide).
+  - **Type**: string
+  - **Required**: Yes
+  - **Description**: Example: `your-app-password`
+
+- **Per Page**: The number of posts to return per page.
+  - **Type**: number
+  - **Default**: 10
+  - **Required**: No
+  - **Description**: Example: `5`
+
+- **Page**: Page number to retrieve.
+  - **Type**: number
+  - **Default**: 1
+  - **Required**: No
+  - **Description**: Example: `1`
+
+## Output
+The output of this node is a JSON object containing the list of posts as retrieved from the WordPress REST API.
+
+- **Type**: JSON object
+- **Description**: This will contain the list of posts for the specified page as per the inputs provided. If there is an error, an error message will be returned instead.
