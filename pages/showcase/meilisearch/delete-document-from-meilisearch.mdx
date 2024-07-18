@@ -1,0 +1,46 @@
+---
+title: MeiliSearch - Delete Document
+description: Delete a document from a MeiliSearch index.
+---
+
+import Node from '/components/node';
+
+# Delete Document
+
+This node facilitates the deletion of a document from a specified MeiliSearch index. Using the provided API key and host URL, it interfaces with a MeiliSearch instance to remove a particular document identified by its document ID.
+
+<Node id="@buildship/delete-document-from-meilisearch" version="1.2.0" />
+
+## Inputs
+
+To effectively use this node, the following inputs are required:
+
+1. **API Key**: This is the API Key of your MeiliSearch instance. It controls access to your MeiliSearch server and ensures security. If you do not have an API Key, refer to the [MeiliSearch API key documentation](https://docs.meilisearch.com/reference/api/keys.html) to generate one tailored to your use case.
+
+2. **Host URL**: The Host URL of your MeiliSearch server. This URL is essential for connecting to the right MeiliSearch instance. Refer to the [MeiliSearch quick start documentation](https://docs.meilisearch.com/learn/getting_started/quick_start.html) to find your host URL.
+   
+   **Example:** 
+   ```
+   https://ms-123456.sgp.meilisearch.io
+   ```
+
+3. **Index Name**: The name of the index in your MeiliSearch instance from which you wish to delete the document.
+
+4. **Document ID**: The ID of the document you wish to delete from the specified index.
+
+   **Sample Input:** 
+   ```
+   2
+   ```
+
+## Output
+
+Upon successful execution of this node, the following output is returned:
+
+- **success**: A boolean value indicating whether the document deletion was successful (`true` if the deletion succeeded).
+- **detail**: A message providing additional details about the operation.
+- **documentId**: The ID of the deleted document, confirming which document was removed.
+
+This information serves as confirmation and logs the success status of the deletion process. In case of an error, proper logging will help in debugging the process.
+
+By providing the required inputs, this node ensures seamless deletion operations in your MeiliSearch instance.
