@@ -1,0 +1,29 @@
+---
+title: GCP - Rename GCP Folder
+description: Renames a given folder in Google Cloud Storage if it exists.
+---
+
+import Node from '/components/node';
+
+# Rename GCP Folder
+This function allows you to rename a folder within a Google Cloud Storage bucket. If the folder exists, it will be renamed to the specified new name.
+
+<Node id="@buildship/gcp-storage-folder-rename" version="1.2.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **Bucket ID**: The ID of the GCP Storage bucket. You can get your GCP Bucket ID and add Service Account Permissions as described in our [detailed setup blog](https://docs.buildship.com/tutorials/gcp-storage#access-buildship-settings).
+  - **Example**: process.env.BUCKET
+
+- **Old Folder Name**: The current name of the folder you wish to rename. If the folder is in the root directory, directly write the name (e.g., *folder-name*).
+  - **Example**: folder-name
+
+- **New Folder Name**: The new name for the folder. For example, to migrate a folder named *folder-name* inside a *public* folder and rename it as *assets*, you would input: `public/assets`.
+  - **Example**: public/assets
+
+## Output
+The node will return a string indicating the status of the rename operation.
+
+- **Status**: A confirmation message indicating the success or failure of the operation.
+  - **Example**: "Folder successfully renamed!"
