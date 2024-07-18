@@ -1,0 +1,41 @@
+---
+title: Typesense - Get Document
+description: Retrieve a document from a Typesense collection using the given Document ID.
+---
+
+import Node from '/components/node';
+
+# Get Document
+The "Get Document" node allows you to retrieve a document from a Typesense collection using a specific Document ID. This is useful for accessing stored data quickly and accurately from your Typesense collections.
+
+<Node id="@buildship/retrieve-document-from-typesense" version="1.2.0" />
+
+## Inputs
+To use the "Get Document" node, you need to provide the following inputs:
+
+### API Key
+**Description:** The TypeSense API Key used for authentication. Obtain your API Key from the [TypeSense Dashboard](https://cloud.typesense.org/).  
+**Type:** `string`  
+**Sample Input:** `your-api-key`
+
+### Host
+**Description:** The host specified on the TypeSense Dashboard.  
+**Type:** `string`  
+**Example:** `1234ab6cd1efghjkl-1.a1.typesense.net`
+
+### Collection Name
+**Description:** The name of the Typesense collection from which the document will be retrieved.  
+**Type:** `string`  
+**Sample Input:** `products`
+
+### Document ID
+**Description:** The ID of the document you want to retrieve.  
+**Type:** `string`  
+**Sample Input:** `1`
+
+## Output
+The "Get Document" node returns the document corresponding to the specified Document ID from the designated Typesense collection in the form of a JSON string.
+
+---
+
+By using these inputs, you can successfully retrieve documents stored within a Typesense collection, making data management tasks much more seamless and efficient.
