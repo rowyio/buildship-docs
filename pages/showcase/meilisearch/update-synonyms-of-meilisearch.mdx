@@ -1,0 +1,43 @@
+---
+title: Buildship - Update Synonyms
+description: Update the synonyms for any index in your MeiliSearch instance
+---
+
+import Node from '/components/node';
+
+# Update Synonyms
+The **Update Synonyms** node allows you to update the synonyms for a specific index in your MeiliSearch instance. This is particularly useful when you want to enhance search results by considering different terms as equivalent.
+
+<Node id="@buildship/update-synonyms-of-meilisearch" version="1.2.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **API Key**: The API Key of your MeiliSearch instance. You can obtain this from your server's configuration or dashboard.
+  - **Example**: `xyzABC123APIKey`
+
+- **Host URL**: The Host URL of your MeiliSearch server. This is available in the configuration settings or dashboard of your MeiliSearch instance.
+  - **Example**: `http://127.0.0.1:7700`
+
+- **Index Name**: The Index Name within your MeiliSearch instance that you want to update.
+  - **Example**: `books`
+
+- **Synonyms**: An object where each key is a term, and its value is an array of its synonyms. This helps the search engine understand that different terms are equivalent.
+  - **Example**: 
+    ```json
+    {
+      "book": ["novel", "story"],
+      "author": ["writer", "novelist"]
+    }
+    ```
+
+## Output
+Upon successful execution, the node will return a confirmation that the synonyms have been updated. The output is an object containing the following property:
+
+- **success**: A boolean value indicating the success of the operation.
+  - **Example**: 
+    ```json
+    {
+      "success": true
+    }
+    ```
