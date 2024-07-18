@@ -1,0 +1,79 @@
+---
+title: Search - Full Text Search
+description: Performs a full text search on a specified collection in Typesense.
+---
+
+import Node from '/components/node';
+
+# Full Text Search
+The **Full Text Search** node performs a comprehensive search on a specified collection in Typesense. This node is ideal for querying text-based data, allowing users to filter and sort results efficiently.
+
+<Node id="@buildship/typesense-full-text-search" version="1.2.0" />
+
+## Inputs
+To utilize the Full Text Search node, you'll need to provide the following inputs:
+
+### API Key
+- **Description**: The TypeSense API Key for authentication. Get your API Key from the [TypeSense Dashboard](https://cloud.typesense.org/).
+- **Type**: `string`
+- **Required**: Yes
+
+### Host
+- **Description**: The `Node` mentioned on the TypeSense Dashboard is your host.
+- **Type**: `string`
+- **Required**: Yes
+- **Example**:  
+  ```
+  1234ab6cd1efghjkl-1.a1.typesense.net
+  ```
+
+### Collection Name
+- **Description**: The name of the collection you want to search.
+- **Type**: `string`
+- **Required**: Yes
+
+### Field
+- **Description**: The Field to search the Query with.
+- **Type**: `string`
+- **Required**: Yes
+- **Sample Input**:  
+  ```
+  name
+  ```
+
+### Query
+- **Description**: The query to search in the collection.
+- **Type**: `string`
+- **Required**: Yes
+- **Sample Input**:  
+  ```
+  Jon Snow
+  ```
+
+### Sort By (Optional)
+- **Description**: Optional sorting criteria.
+- **Type**: `string`
+- **Sample Input**:  
+  ```
+  num_employees:desc
+  ```
+
+### Filter By (Optional)
+- **Description**: Optional filtering criteria.
+- **Type**: `string`
+- **Sample Input**:  
+  ```
+  num_employees:>100
+  ```
+
+## Output
+The output of the Full Text Search node is an array of search results from Typesense.
+
+### Search Results
+- **Type**: `array`
+- **Description**: Contains the hits from the search query executed on Typesense.
+
+Each element in the array includes:
+- **Document**: The matching document object from the Typesense collection.
+
+This output allows you to process the results from your search query, enabling further data manipulation or presentation.
