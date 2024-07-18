@@ -1,0 +1,55 @@
+---
+title: WordPress - Create Post
+description: Create a WordPress post.
+---
+
+import Node from '/components/node';
+
+# Create Post
+This node allows you to create a new post on a WordPress site. By providing the necessary credentials and post details, the node communicates with the WordPress site's REST API to create the post.
+
+<Node id="@buildship/wordpress-create-post" version="1.1.0" />
+
+## Inputs
+To use this node, you need to supply the following inputs:
+
+- **Site URL**: The base URL of your WordPress site.
+  
+  Example: `https://example.com`
+
+- **Username**: Your login username for the WordPress site.
+  
+  Example: `admin`
+
+- **Password**: Your application password. See [instructions](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide) for creating a new one.
+  
+- **Title**: The title of the post you want to create.
+  
+  Example: `My First Post`
+
+- **Content**: The body content of the post.
+  
+  Example: `This is the content of my first post.`
+
+- **Status**: The status of the post which can be either `draft` or `publish`. Default is `draft`.
+  
+  Example: `publish`
+
+## Output
+The node returns the created post's data in JSON format. If the post creation is successful, you will receive a response containing details of the newly created post. In case of an error, an error message will be logged and thrown.
+
+Example output:
+```json
+{
+  "id": 101,
+  "date": "2023-10-09T12:34:56",
+  "title": {
+    "rendered": "My First Post"
+  },
+  "content": {
+    "rendered": "<p>This is the content of my first post.</p>"
+  },
+  "status": "publish",
+  "link": "https://example.com/my-first-post/"
+}
+```
