@@ -1,0 +1,36 @@
+---
+title: Buildship - Delete Document
+description: Delete a document from a Typesense collection.
+---
+
+import Node from '/components/node';
+
+# Delete Document
+The **Delete Document** node allows you to delete a specific document from a Typesense collection using its document ID. This is useful for maintaining data integrity and managing your Typesense collections effectively.
+
+<Node id="@buildship/delete-document-from-typesense" version="1.2.0" />
+
+## Inputs
+To use this node, you must provide the following inputs:
+
+- **API Key**: The TypeSense API Key for authentication. Retrieve your API Key from the [TypeSense Dashboard](https://cloud.typesense.org/).
+- **Host**: The host URL provided on the TypeSense Dashboard. For example, `1234ab6cd1efghjkl-1.a1.typesense.net`.
+- **Collection Name**: The name of the Typesense collection from which the document will be deleted.
+- **Document ID**: The ID of the document you wish to delete from the specified collection. 
+
+### Sample Input
+```json
+{
+  "apiKey": "your_typesense_api_key",
+  "host": "1234ab6cd1efghjkl-1.a1.typesense.net",
+  "collectionName": "products",
+  "documentId": "3"
+}
+```
+
+## Output
+The node returns the result of the delete operation, encapsulated in the following format:
+
+- **success**: A boolean indicating if the operation was successful.
+- **result**: The result object from the Typesense API, which includes information about the deletion status.
+
