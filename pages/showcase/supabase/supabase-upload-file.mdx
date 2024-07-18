@@ -1,0 +1,48 @@
+---
+title: Supabase - Upload File
+description: Upload a file to a public Supabase storage bucket and return the download URL.
+---
+
+import Node from '/components/node';
+
+# Upload File
+Upload a file to a public Supabase storage bucket and return the download URL.
+
+<Node id="@buildship/supabase-upload-file" version="2.1.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **API Key**: The API Key of the Supabase instance. You can get your API Key from the [Supabase Dashboard](https://supabase.com/dashboard/projects) under Settings > API.
+  
+  Sample Input: `YOUR_SUPABASE_API_KEY`
+
+- **API URL**: The URL of your Supabase project. This can be obtained from your [Supabase Project](https://supabase.com/dashboard/projects) API Reference.
+
+  Sample Input: `https://xyzcompany.supabase.co`
+
+- **Bucket**: The name of the bucket in Supabase to upload the file into.
+
+  Sample Input: `my-bucket`
+
+- **File Path**: The path of the local file to upload to Supabase.
+
+  Sample Input: `./path/to/file.txt`
+
+## Output
+The node returns an object that includes the download URL of the uploaded file, allowing for easy access. Below is a description of the output fields:
+
+- **Download URL**: The URL from which the uploaded file can be downloaded.
+- **Id**: The ID related to the uploaded file.
+- **Key**: A key associated with the uploaded file.
+
+Sample Output:
+```json
+{
+  "downloadUrl": "https://xyzcompany.supabase.co/storage/v1/object/public/my-bucket/file.txt",
+  "Id": "12345",
+  "Key": "file.txt"
+}
+```
+
+This node facilitates seamless file uploads to your Supabase storage bucket, making it easy to handle and access files programmatically.
