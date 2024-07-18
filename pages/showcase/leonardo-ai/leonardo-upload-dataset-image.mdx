@@ -1,0 +1,38 @@
+---
+title: Leonardo - Upload Dataset Image
+description: This node uploads the given file buffer to the signed URL provided by the "Upload Init Image" node.
+---
+
+import Node from '/components/node';
+
+# Upload Dataset Image
+This endpoint uploads the given file buffer to the signed URL provided by the **Upload Init Image** node.
+
+Detailed instructions for using this endpoint are available in the guide: [How to upload an image using a presigned URL](https://docs.leonardo.ai/docs/how-to-upload-an-image-using-a-presigned-url).
+
+<Node id="@buildship/leonardo-upload-dataset-image" version="1.2.0" />
+
+## Inputs
+The **Upload Dataset Image** node requires the following inputs:
+
+- **fileName**: *string* - The name of the file to be uploaded.
+  - Example: `image.png`
+
+- **fileBuffer**: *string* - The Buffer of the file to be uploaded. This is typically a binary representation of the file.
+  - **TIP 💡:** Use the **Rest API File Upload Trigger** to receive multipart requests in BuildShip.
+  - Example: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...`
+
+- **fields**: *string* - The raw fields from the **Upload Init Image** node. These fields are usually received in JSON format.
+  - Example: `{"key":"value"}`
+
+- **url**: *string* - The signed URL from the **Upload Init Image** node. The presigned URL expires in 2 minutes, so this method must be run within that timeframe.
+  - Example: `https://your-signed-url.com`
+
+## Output
+The node returns an output object with the following properties:
+
+- **buildship**: An object containing the index of the operation.
+- **description**: A string which is usually empty or contains a description of the operation.
+- **type**: The type of the returned object, typically "object".
+
+This node will perform the file upload operation to the specified presigned URL and return the results of this operation.
