@@ -1,0 +1,35 @@
+---
+title: WordPress - Get Post
+description: Get a WordPress post.
+---
+
+import Node from '/components/node';
+
+# Get Post
+This node retrieves a specific post from a WordPress website using the WordPress REST API. By providing certain credentials and the ID of a post, it fetches the post's details in a structured format.
+
+<Node id="@buildship/wordpress-get-post" version="1.2.0" />
+
+## Inputs
+To successfully use this node, you need to provide the following inputs:
+
+- **Site URL**: The base URL of your WordPress site.
+  - *Type*: `string`
+  - *Description*: Example: `http://example.com`
+
+- **Username**: Your WordPress login username.
+  - *Type*: `string`
+  - *Description*: Example: `admin`
+
+- **Password**: Your application password for WordPress. For information on how to generate an application password, refer to [these instructions](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide).
+  - *Type*: `string`
+  - *Description*: Example: `your-app-password`
+
+- **Post ID**: The unique ID of the post you wish to retrieve.
+  - *Type*: `number`
+  - *Description*: Example: `123`
+
+## Output
+The output of this node is the detailed information of the specified WordPress post in JSON format. This includes various properties of the post such as its title, content, author, publication date, and more.
+
+By using this node, you can seamlessly integrate WordPress post data retrieval into your workflow.
