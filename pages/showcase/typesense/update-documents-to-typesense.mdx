@@ -1,0 +1,34 @@
+---
+title: Buildship - Update Document
+description: Creates or uses an existing Typesense collection to update documents, utilizing provided schema and authentication details.
+---
+
+import Node from '/components/node';
+
+# Update Document
+The **Update Document** node interfaces with the Typesense API to create or update documents in a Typesense collection. By providing the necessary authentication details and schema, the node ensures seamless integration with your Typesense cluster to update the specified document.
+
+<Node id="@buildship/update-documents-to-typesense" version="1.2.0" />
+
+## Inputs
+To use this node, you'll need to provide the following inputs:
+
+- **API Key**: The TypeSense API Key for authentication. Obtain your API Key from the [TypeSense Dashboard](https://cloud.typesense.org/). 
+- **Host**: The host identifier given on the TypeSense Dashboard. 
+  - **Example**: `1234ab6cd1efghjkl-1.a1.typesense.net`
+- **Collection Name**: The name of the Typesense collection you want to update.
+- **Document ID**: The ID of the document you wish to update.
+  - **Sample Data**: `3`
+- **Data**: The details of the document to be updated in the collection.
+  - **Sample Data**:
+    ```json
+    { "name": "Bran Stark", "email": "bran@gmail.com" }
+    ```
+
+## Output
+This node returns a structured output ensuring whether the operation was successful:
+
+- **Results**: The updated document's data.
+- **Success**: A boolean indicating the operation's success status.
+
+By integrating this node, you can update any document within your specified Typesense collection efficiently and securely.
