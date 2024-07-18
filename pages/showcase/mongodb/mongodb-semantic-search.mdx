@@ -1,0 +1,62 @@
+---
+title: Database - Semantic Search
+description: Perform a semantic search in a MongoDB collection to find and return matched documents using an OpenAI model.
+---
+
+import Node from '/components/node';
+
+# Semantic Search
+This function performs a semantic search in a specified MongoDB collection using an OpenAI embedding model. It connects to a MongoDB database, sends a query to OpenAI to get an embedding, and then conducts a search based on that embedding, returning the matched documents.
+
+<Node id="@buildship/mongodb-semantic-search" version="1.2.0" />
+
+## Inputs
+To use this function, you'll need to provide the following inputs:
+
+### Connection String
+- **Description:** The MongoDB connection string.
+- **Example:** 
+    ```
+    mongodb+srv://username:password@cluster0.uatl1m6.mongodb.net/?retryWrites=true&w=majority
+    ```
+
+### Database
+- **Description:** The name of the MongoDB database.
+- **Example:** `myDatabase`
+
+### OpenAI Key
+- **Description:** The API key required for authentication with OpenAI. This should be provided as a secret.
+- **Example:** `sk-abcdefg123`
+
+### Candidates
+- **Description:** The number of candidate results to consider.
+- **Default:** 150
+
+### Index Name
+- **Description:** The name of the Atlas Search index. Defaults to `vector_index`.
+- **Default:** `vector_index`
+
+### Query
+- **Description:** The search query string that will be used to perform the semantic search.
+- **Example:** `find documents about climate change`
+
+### Limit
+- **Description:** The maximum number of results to return.
+- **Default:** 10
+
+### OpenAI Model
+- **Description:** The embedding model to use.
+- **Default:** `text-embedding-ada-002`
+
+### Collection
+- **Description:** The name of the MongoDB collection.
+- **Example:** `myCollection`
+
+## Output
+The output of this function is an object containing the result of the search operation, including the count and the matched documents.
+
+### Insertion Result
+- **Inserted Count:** The count of documents that were inserted.
+- **Inserted Ids:** The array of ids of the inserted documents.
+
+Using this function, you can efficiently perform semantic searches within your MongoDB collection, leveraging the power of machine learning models from OpenAI.
