@@ -1,0 +1,39 @@
+---
+title: WordPress - Delete Post
+description: Delete a WordPress post.
+---
+
+import Node from '/components/node';
+
+# Delete Post
+The "Delete Post" node allows you to delete a specific post from your WordPress site. By providing necessary credentials and the post ID, you can programmatically remove content from your site. This function performs an HTTP DELETE request to the WordPress REST API, ensuring that the specified post is deleted securely using Basic Authentication.
+
+<Node id="@buildship/wordpress-delete-post" version="1.1.0" />
+
+## Inputs
+To use the "Delete Post" node, provide the following inputs:
+
+- **Site URL**: The base URL of your WordPress site.
+  - **Type**: string
+  - **Description**: The URL should include the protocol (e.g., `https://example.com`).
+  - **Sample Input**: `https://your-wordpress-site.com`
+
+- **Username**: Your WordPress login username.
+  - **Type**: string
+  - **Description**: Required to authenticate the API request.
+  - **Sample Input**: `admin`
+
+- **Password**: Your application password. You can create a new application password by following these [instructions](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide).
+  - **Type**: string
+  - **Description**: The application-specific password for authentication.
+  - **Sample Input**: `your-app-password`
+
+- **Post ID**: The unique ID of the post you intend to delete.
+  - **Type**: number
+  - **Description**: An integer representing the ID of the post.
+  - **Sample Input**: `123`
+
+## Output
+Upon successful execution, the node returns the response from the WordPress REST API, indicating the result of the delete operation. If the operation fails, an error is logged and an appropriate exception is raised.
+
+The output object will contain details of the deleted post or an error message if the deletion was not successful.
