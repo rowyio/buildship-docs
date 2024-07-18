@@ -1,0 +1,37 @@
+---
+title: Google Cloud Storage - Move File
+description: Checks if a file exists in the Google Cloud Storage and if it does, moves it to a different location.
+---
+
+import Node from '/components/node';
+
+# Move File
+This node checks if a file exists in the Google Cloud Storage bucket and, if it does, moves it to a specified destination within the bucket.
+
+<Node id="@buildship/gcp-storage-move" version="1.2.0" />
+
+## Inputs
+This node requires the following inputs:
+
+- **File Path**: The path of the file in the bucket.
+  - **Description:** The path of the file in the bucket. If the file is currently in the root directory, simply write the name of the file.
+  - **Example:** `group-image.png`
+  - **Type:** string
+
+- **Bucket ID**: The ID of the GCP Storage bucket.
+  - **Description:** The ID of the GCP Storage bucket. Note that this requires additional steps for granting Service Account permissions. Learn how to get your GCP Bucket ID and add Service Account Permissions from our [detailed setup blog](https://docs.buildship.com/tutorials/gcp-storage#access-buildship-settings).
+  - **Example:** `process.env.BUCKET`
+  - **Type:** string
+
+- **Destination Path**: The path to move the file to in the bucket.
+  - **Description:** The path to which the file should be moved within the bucket. For example, moving the file to a `test` folder inside the root directory and renaming it `image.png`.
+  - **Example:** `test/image.png`
+  - **Type:** string
+
+## Output
+The node returns an object indicating the status of the operation. The possible statuses are:
+
+- **status**: A string indicating whether the file was successfully moved or not.
+  - **Example:** 
+    - `'File moved successfully'`
+    - `'File does not exist'`
