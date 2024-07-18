@@ -1,0 +1,32 @@
+---
+title: notion - Update Block
+description: Updates the content for the specified `block_id` based on the block type.
+---
+
+import Node from '/components/node';
+
+# Update Block
+Updates the content for the specified `block_id` based on the block type. This node facilitates updating various types of blocks in Notion, such as paragraphs, headings, code blocks, and list items.
+
+<Node id="@buildship/oauth-notion-update-block" version="3.2.0" />
+
+## Inputs
+The node takes the following inputs:
+
+- **Block ID:** This parameter specifies the unique identifier of the Notion block you wish to update. Example: `d5f8e3f5-a7b1-4b93-bba5-d1732c8053ec`.
+
+- **Block Type:** This parameter indicates the type of block being updated. Supported values include `paragraph`, `heading_1`, `heading_2`, `heading_3`, `bulleted_list_item`, `numbered_list_item`, `to_do`, `toggle`, and `code`.
+  - Example: `paragraph`
+
+- **Content:** This parameter contains the actual content to be updated within the specified block. The format and structure of this content vary depending on the `blockType`.
+  - Text Block Example: `This is a simple text paragraph.`
+  - Code Block Example: 
+    ```json
+    {
+        "language": "javascript",
+        "code": "console.log('Hello, world!');"
+    }
+    ```
+
+## Output
+The node returns the updated block data from the Notion API, confirming the successful update operation. The response includes details about the updated block, such as the type, content, and status. In case of an error, appropriate error messages are logged and returned.
