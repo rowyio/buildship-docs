@@ -1,0 +1,56 @@
+---
+title: Buildship - Add Documents
+description: Adds documents to a Typesense collection using the provided schema and authentication details.
+---
+
+import Node from '/components/node';
+
+# Add Documents
+The **Add Documents** node allows you to create or use an existing Typesense collection to insert documents. It uses the Typesense API and requires specific authentication details and schema to carry out the task.
+
+<Node id="@buildship/add-documents-to-typesense" version="1.2.0" />
+
+## Inputs
+To use the **Add Documents** node, the following inputs are required:
+
+- **API Key**: The TypeSense API Key for authentication. You can get your API Key from the [Typesense Dashboard](https://cloud.typesense.org/).
+- **Host**: The host provided by Typesense for the node, usually in the format `xxxxx-1.a1.typesense.net`.
+- **Collection Name**: The name of the Typesense collection where the documents will be inserted.
+- **Documents**: An array of documents that you want to insert into the specified collection. Each document must be represented as an object containing the relevant fields.
+
+### Sample Inputs
+- **API Key**: `xyz`
+- **Host**: `1234ab6cd1efghjkl-1.a1.typesense.net`
+- **Collection Name**: `users`
+- **Documents**:
+    ```json
+    [
+        {
+            "id": "2",
+            "name": "Arya Stark",
+            "email": "aryastark@gmail.com"
+        },
+        {
+            "id": "3",
+            "name": "Sansa Stark",
+            "email": "sansastark@gmail.com"
+        }
+    ]
+    ```
+
+## Output
+The output of the **Add Documents** node indicates whether the documents were successfully inserted into the Typesense collection and includes the results of the operation.
+
+- **success**: Boolean value indicating the success status.
+- **results**: Contains the results of the document insertion operation.
+
+Example Output:
+```json
+{
+  "success": true,
+  "results": [
+    {"success": true, "document": {"id": "2", "name": "Arya Stark", "email": "aryastark@gmail.com"}},
+    {"success": true, "document": {"id": "3", "name": "Sansa Stark", "email": "sansastark@gmail.com"}}
+  ]
+}
+```
