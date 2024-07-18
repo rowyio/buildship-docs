@@ -1,0 +1,44 @@
+---
+title: Meilisearch - Delete Document
+description: Node to delete a document from a Meilisearch index.
+---
+
+import Node from '/components/node';
+
+# Delete Document
+The **Delete Document** node enables the removal of a document from a specified index within a Meilisearch database. This node is particularly useful for maintaining the relevance and accuracy of your search indices by eliminating outdated or unnecessary documents.
+
+<Node id="@buildship/delete-document-from-meilisearch" version="1.1.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+- **API Key**: The API key for your Meilisearch instance. This key should have the necessary permissions to delete documents. You can generate new API keys with restricted scopes tailored to specific use cases. Refer to [generate new API keys](https://docs.meilisearch.com/reference/api/keys.html).
+
+- **Host URL**: The Host URL of your Meilisearch server. This URL points to your Meilisearch instance. For example:
+  ```
+  https://ms-123456.sgp.meilisearch.io
+  ```
+  Refer to the [Meilisearch documentation](https://docs.meilisearch.com/learn/getting_started/quick_start.html) for more details.
+
+- **Index Name**: The name of the index in your Meilisearch instance from which you want to delete the document.
+
+- **Document ID**: The ID of the document you wish to delete from the specified index. For example:
+  ```
+  2
+  ```
+
+## Output
+Upon successful execution, the node returns an object containing:
+- `success`: A boolean indicating the success of the deletion operation.
+- `detail`: A message providing details about the deletion operation.
+- `documentId`: The ID of the document that was deleted.
+
+The output will look like this:
+```json
+{
+  "success": true,
+  "detail": "Document deletion succeeded",
+  "documentId": "2"
+}
+```
