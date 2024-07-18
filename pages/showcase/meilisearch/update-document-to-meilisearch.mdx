@@ -1,0 +1,66 @@
+---
+title: Buildship - Update Document
+description: Update a single document in MeiliSearch using a JSON object representing the document.
+---
+
+import Node from '/components/node';
+
+# Update Document
+The **Update Document** node updates a single document in MeiliSearch. Using a JSON object representing the document, it inserts the updated data into the specified MeiliSearch index.
+
+<Node id="@buildship/update-document-to-meilisearch" version="1.1.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+### API Key
+- **Description**: The API Key of your MeiliSearch instance. Refer to [generate new API keys](https://docs.meilisearch.com/reference/api/keys.html) with restricted scopes tailored to specific use cases.
+- **Expected Type**: `string`
+- **Example**: `my-secret-api-key`
+
+### Host URL
+- **Description**: The Host URL of your MeiliSearch server. Refer to the [Meilisearch documentation](https://docs.meilisearch.com/learn/getting_started/quick_start.html) to find your MeiliSearch Host URL.
+- **Expected Type**: `string`
+- **Example**:
+```
+https://ms-123456.sgp.meilisearch.io
+```
+
+### Index Name
+- **Description**: The Index Name in your MeiliSearch instance.
+- **Expected Type**: `string`
+- **Example**: `movies`
+
+### Document
+- **Description**: The data for the updated document to insert into the MeiliSearch index.
+- **Expected Type**: `object`
+- **Sample Data**:
+```json
+{
+  "id": "1",
+  "title": "Shazam",
+  "release_date": "2019-03-23",
+  "director": "Sandrinna Michelle"
+}
+```
+
+## Output
+The node returns an object with the following properties:
+
+- **success**: `boolean` - Indicates whether the document update was successful.
+- **detail**: `string` - A message detailing the result of the update operation.
+- **document**: `object` - The updated document data.
+
+Example:
+```json
+{
+  "success": true,
+  "detail": "Document update succeeded",
+  "document": {
+    "id": "1",
+    "title": "Shazam",
+    "release_date": "2019-03-23",
+    "director": "Sandrinna Michelle"
+  }
+}
+```
