@@ -1,0 +1,60 @@
+---
+title: Database - Hybrid Search
+description: This performs a hybrid search in a specified MongoDB collection, conducts the search, and returns matched documents.
+---
+
+import Node from '/components/node';
+
+# Hybrid Search
+This node performs a hybrid search in a specified MongoDB collection. It uses both vector search and full-text search, combining results using a reciprocal rank fusion technique to return the most relevant documents.
+
+<Node id="@buildship/mongodb-hybrid-search" version="1.2.0" />
+
+## Inputs
+To use this node, you need to provide the following inputs:
+
+1. **Connection String**: The connection string for MongoDB.
+   ```
+   EXAMPLE:
+   mongodb+srv://username:password@cluster0.uatl1m6.mongodb.net/?retryWrites=true&w=majority
+   ```
+
+2. **Database Name**: The name of the database.
+   ```
+   EXAMPLE:
+   myDatabase
+   ```
+
+3. **OpenAI Key**: The API key required for authentication with OpenAI.
+
+4. **OpenAI Model**: The embedding model to use for generating query vectors.
+   ```
+   SAMPLE INPUT:
+   text-embedding-ada-002
+   ```
+
+5. **Collection Name**: The name of the MongoDB collection.
+   ```
+   EXAMPLE:
+   myCollection
+   ```
+
+6. **Query**: The search query string for the semantic search.
+   ```
+   EXAMPLE:
+   Find documents related to machine learning
+   ```
+
+7. **Vector Index Name**: The name of the Atlas Vector Search index. Defaults to `vector_index`.
+
+8. **FTS Index Name**: The name of the Atlas Search index. Defaults to `fts`.
+
+9. **Candidates**: The number of candidate results to consider. Defaults to 150.
+
+10. **Limit**: The maximum number of results to return. Defaults to 10.
+
+## Output
+The node returns the result of the search operation, including the number of matched documents and relevant document information.
+
+- **Inserted Ids**: The array of IDs of the inserted documents.
+- **Inserted Count**: The count of inserted documents.
