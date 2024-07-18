@@ -1,0 +1,88 @@
+---
+title: Supabase - Semantic Search
+description: This performs a semantic search in a specified Supabase table and returns matched documents.
+
+import Node from '/components/node';
+
+# Semantic Search
+The Semantic Search node performs a semantic search in a specified Supabase table, executing the search query and returning matched documents. This node leverages OpenAI's embedding models to convert the search query into vectors and match these vectors against the documents stored in the Supabase table.
+
+To enable semantic search in Supabase, follow this [guide](https://docs.buildship.com/tutorials/supabase-search#semantic-search) on setting up embedding columns and indexing.
+
+<Node id="@buildship/supabase-semantic-search" version="1.2.0" />
+
+## Inputs
+The Semantic Search node requires several inputs to operate:
+
+### **API Key**
+- **Description**: The API Key of the Supabase instance.
+- **Details**: You can get your API Key from the [Supabase Dashboard](https://supabase.com/dashboard/projects) under Settings > API.
+- **Type**: `string`
+- **Sample Input**: your-supabase-key
+
+### **API URL**
+- **Description**: The URL of your Supabase project.
+- **Details**: Get it from your [Supabase Project](https://supabase.com/dashboard/projects) API Reference.
+- **Type**: `string`
+- **Sample Input**: https://your-supabase-project.supabase.co
+
+### **OpenAI Key**
+- **Description**: The API key required for authentication with OpenAI.
+- **Details**: This should be provided as a secret.
+- **Type**: `string`
+- **Sample Input**: your-openai-key
+
+### **Query**
+- **Description**: The search query string that you want to use for finding matching documents.
+- **Type**: `string`
+- **Sample Input**: Find me all the documents about machine learning
+
+### **Match Threshold**
+- **Description**: The threshold for matching results.
+- **Type**: `number`
+- **Sample Input**: 0.78
+
+### **Match Count**
+- **Description**: The number of results to return.
+- **Type**: `number`
+- **Sample Input**: 10
+
+### **Open AI Model**
+- **Description**: The embedding model to use.
+- **Type**: `string`
+- **Sample Input**: text-embedding-ada-002
+
+## Output
+The output of the Semantic Search node is an array of matched documents, each containing specific document details except for the embedding and fts fields.
+
+### **Output Structure**
+- **Type**: `array`
+- **Items**: `object`
+    - **Properties**:
+        - **lifespan**: `integer`
+        - **origin**: `string`
+        - **id**: `integer`
+        - **breed**: `string`
+
+This output will include the fields lifespan, origin, id, and breed of the matched documents.
+
+Example:
+
+```json
+[
+    {
+        "lifespan": 12,
+        "origin": "England",
+        "id": 1,
+        "breed": "Beagle"
+    },
+    {
+        "lifespan": 14,
+        "origin": "Scotland",
+        "id": 2,
+        "breed": "Scottish Terrier"
+    }
+]
+```
+
+This node helps in conducting highly accurate searches by leveraging the power of semantic analysis through OpenAI's sophisticated embeddings and Supabase's robust database capabilities.
