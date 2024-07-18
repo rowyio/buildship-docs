@@ -1,0 +1,63 @@
+---
+title: Supabase - Full Text Search
+description: This performs a full-text search in a specified Supabase table and returns matched documents.
+---
+
+import Node from '/components/node';
+
+# Full Text Search
+This node performs a full-text search in a specified Supabase table. It conducts the search and returns matched documents based on the query and search type provided.
+
+<Node id="@buildship/supabase-full-text-search" version="1.2.0" />
+
+## Inputs
+Here are the inputs that this node takes:
+
+- **API Key** (`supabaseKey`): The API Key of your Supabase instance. You can retrieve this key from the [Supabase Dashboard](https://supabase.com/dashboard/projects) under Settings > API.  
+  **Example:** `your_supabase_api_key`
+
+- **API URL** (`supabaseUrl`): The URL of your Supabase project. This can be found in the API Reference section of your Supabase Project.  
+  **Example:** `https://xyzcompany.supabase.co`
+
+- **Table Name** (`tableName`): The name of the table in your Supabase database where the full-text search will be conducted.  
+  **Example:** `documents`
+
+- **Column Name** (`columnName`): The name of the column in the specified table where the full-text search will be performed.  
+  **Example:** `content`
+
+- **Query** (`query`): The search query string that will be used to perform the full-text search.  
+  **Example:** `example search term`
+
+- **Search Type** (`searchType`): The type of full-text search to perform. Options typically include `plain`, `phrase`, and `websearch`.  
+  **Example:** `plain`
+
+- **Match Count** (`matchCount`): The number of matches to return.  
+  **Example:** `10`
+
+## Output
+The node returns an array of objects, each representing a matched document. Each object may include various properties related to the document:
+
+- **id**: The unique identifier of the document.
+- **origin**: The origin or source of the document.
+- **breed**: The breed type if applicable.
+- **lifespan**: The lifespan of entities if applicable.
+
+### Example
+```json
+[
+  {
+    "id": 1,
+    "origin": "USA",
+    "breed": "Golden Retriever",
+    "lifespan": 12
+  },
+  {
+    "id": 2,
+    "origin": "Canada",
+    "breed": "Labrador",
+    "lifespan": 10
+  }
+]
+```
+
+By following these instructions, you can seamlessly configure and execute the full-text search functionality using the Supabase Full Text Search node.
