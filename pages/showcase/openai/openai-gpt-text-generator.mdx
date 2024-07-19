@@ -1,0 +1,53 @@
+---
+title: AI Tools - Text Generator
+description: Generates text using OpenAI API for a given user and system prompt
+---
+
+import Node from '/components/node';
+
+# Text Generator
+The **Text Generator** node leverages the OpenAI API to generate text based on user and system prompts. It allows for specifying the model, behavior, tone, and other attributes, making it versatile for various applications like content creation, conversation building, and more.
+
+<Node id="@buildship/openai-gpt-text-generator" version="1.1.4" />
+
+## Inputs
+To use the Text Generator node, you need to provide several inputs:
+
+- **API Key**: Your OpenAI API Key. Obtain it from your [OpenAI account](https://platform.openai.com/account/api-keys).
+  
+- **System Prompt**: This sets the behavior and tone for your text generation.
+  
+- **User Prompt**: The main input prompt for generating the desired text.
+  
+- **Max Tokens**: The maximum length, in tokens, of the generated text. Default is 600.
+  
+- **Temperature**: A value between 0 and 1 that dictates the randomness of the output. Lower values make the output more deterministic, while higher values introduce more randomness.
+  
+- **Model**: Select the OpenAI model for text generation. Options include:
+  - `gpt-4o-mini`
+  - `gpt-4o`
+  - `gpt-4`
+  - `gpt-3.5-turbo`
+  - `gpt-4-1106-preview`
+
+### Example Input
+```json
+{
+  "apiKey": "your-openai-api-key",
+  "systemPrompt": "You are a helpful assistant",
+  "userPrompt": "Write a brief introduction about AI.",
+  "maxTokens": 150,
+  "temperature": 0.7,
+  "model": "gpt-4"
+}
+```
+
+## Output
+The node returns the generated text based on the provided inputs. The output is a single string containing the text created by the OpenAI GPT API.
+
+### Example Output
+```
+"AI, or Artificial Intelligence, refers to the simulation of human intelligence in machines that are designed to think and act like humans. These systems can learn from data, recognize patterns, and make decisions with minimal human intervention."
+```
+
+This node is an excellent tool for generating engaging and contextually accurate text tailored to your specific needs.
