@@ -1,0 +1,39 @@
+---
+title: Reward - Reward XP
+description: Reward a user with experience points (XP) for completing an action.
+---
+
+import Node from '/components/node';
+
+# Reward XP
+The "Reward XP" node is designed to reward users with experience points (XP) for completing specified actions within your decentralized application (dApp). This process involves creating a transaction and broadcasting it to the Arbitrum Sepolia network.
+
+<Node id="@buildship/openformat-reward-xp" version="1.1.0" />
+
+## Inputs
+To use the "Reward XP" node, provide the following inputs:
+
+- **API Key**: Your OPENFORMAT API Key, obtainable from the OPENFORMAT Launchpad under Settings > API Key.
+- **dApp ID**: The ID of your OPENFORMAT dApp, which you can find or create in the OPENFORMAT Launchpad.
+- **Private Key**: The private key for the account used to create your dApp. This is available from the OPENFORMAT Launchpad under Settings > Private Key.
+- **Action Name**: The name of the action completed by the user (e.g., "Correct answer").
+- **Amount of XP**: The amount of experience points to reward the user with (e.g., 50).
+- **Receiver**: The account address of the user being rewarded (e.g., `0xeed12ae3b7cc78ea09ba4cc6e34a997b969ea8e6`).
+- **Await?**: A boolean value indicating whether to wait for the transaction to be confirmed before returning a response.
+
+### Sample Input
+```json
+{
+  "apiKey": "your_api_key",
+  "appId": "your_app_id",
+  "privateKey": "your_private_key",
+  "actionId": "complete_activity",
+  "amount": 50,
+  "receiver": "0xeed12ae3b7cc78ea09ba4cc6e34a997b969ea8e6",
+  "awaitTx": false
+}
+```
+
+## Output
+The output of this node is an object containing the broadcast data of the reward transaction. This may include information such as the transaction ID, status, and other details relevant to the execution and confirmation of the reward transaction. This allows you to track the success and details of the action of rewarding XP to users.
+
