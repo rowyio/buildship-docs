@@ -1,0 +1,58 @@
+---
+title: AI - Text to Speech
+description: Converts text to speech using OpenAI API and returns audio in Base64.
+---
+
+import Node from '/components/node';
+
+# Text to Speech
+The Text to Speech node converts text into speech using the OpenAI API and returns the resulting audio in Base64 format. This node is particularly useful for applications that require speech synthesis, such as voice assistants, accessibility tools, and more.
+
+<Node id="@buildship/openai-text-to-speech" version="1.1.1" />
+
+## Inputs
+The node requires the following inputs:
+
+- **API Key**: Your OpenAI API key. You can obtain it from [here](https://platform.openai.com/account/api-keys).
+- **Model**: The model to be used for the text-to-speech conversion. Available options are:
+  - `tts-1`
+  - `tts-1-hd`
+- **Voice**: The voice to be used for the speech. Available voices include:
+  - `alloy`
+  - `echo`
+  - `fable`
+  - `onyx`
+  - `nova`
+  - `shimmer`
+- **Input Text**: The text to be converted into speech.
+- **Language (Optional)**: The language for the text-to-speech conversion. If not provided, English will be used. Available languages include:
+  - `af` (Afrikaans)
+  - `ar` (Arabic)
+  - `zh` (Chinese)
+  - `fr` (French)
+  - `de` (German)
+  - `hi` (Hindi)
+  - `ja` (Japanese)
+  - `es` (Spanish)
+  - `ru` (Russian)
+
+### Sample Input
+```json
+{
+  "apiKey": "your-api-key-here",
+  "model": "tts-1-hd",
+  "voice": "alloy",
+  "input": "Hello, welcome to our service!",
+  "language": "en"
+}
+```
+
+## Output
+The node returns the audio of the speech in Base64 format, enabling easy integration into applications without the need for complex audio processing.
+
+### Sample Output
+```json
+{
+  "speechAudio": "UklGRjiRA... (base64 string)"
+}
+```
