@@ -1,0 +1,48 @@
+---
+title: OpenAI - GPT-4 Vision
+description: Use GPT-4 Vision to ask questions about images.
+---
+
+import Node from '/components/node';
+
+# GPT-4 Vision
+GPT-4 Vision is a powerful tool that allows you to ask questions about images using OpenAI's advanced GPT-4 model. By providing an image and a question, the model can generate informative and detailed responses based on the visual content of the image.
+
+<Node id="@buildship/openai-vision" version="1.1.2" />
+
+## Inputs
+To use the GPT-4 Vision node, you'll need to provide the following inputs:
+
+1. **API Key** (`string`): Your OpenAI API key, which you can obtain [here](https://platform.openai.com/account/api-keys).
+2. **Question** (`string`): The question you want to ask about the provided image.
+3. **Image URL** (`string`): The URL of the image you’re questioning. Base64 encoded images are also supported.
+4. **Max Tokens** (`number`): The maximum number of tokens for the generated response. Default is set to 300.
+5. **Model** (`string`): The model type to use for the GPT-4 Vision. Options include:
+    - `gpt-4o`
+    - `gpt-4-turbo`
+    - `gpt-4-vision-preview`
+    - `gpt-4o-mini`
+6. **Detail** (`string`): The level of detail to process in the image and generate the response. Options are:
+    - `auto`
+    - `low`
+    - `high`
+
+### Sample Input
+```json
+{
+  "apiKey": "your-openai-api-key",
+  "input": "What is happening in this image?",
+  "imageUrl": "https://example.com/image.jpg",
+  "maxTokens": 300,
+  "model": "gpt-4-vision-preview",
+  "detail": "auto"
+}
+```
+
+## Output
+The output will be a string containing the model's response to the question based on the image provided. This textual response will aim to provide a comprehensive answer to your question.
+
+### Example Output
+```text
+The image shows a group of people playing soccer in a park. It seems to be a sunny day, and everyone appears to be enjoying the game.
+```
