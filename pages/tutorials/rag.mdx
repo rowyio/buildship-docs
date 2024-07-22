@@ -1,0 +1,214 @@
+---
+title: Retrieval-Augmented Generation (RAG) with BuildShip
+description:
+  Learn how to set up and use Retrieval-Augmented Generation (RAG) with BuildShip, including two starter templates for
+  document chunking and RAG generation.
+---
+
+import { Callout, Steps } from 'nextra/components';
+import Image from 'next/image';
+import ragOg from '/public/tutorial/ragOg.png';
+import rag1 from '/public/tutorial/rag-1.png';
+import rag2 from '/public/tutorial/rag-2.png';
+import rag3 from '/public/tutorial/rag-3.png';
+
+# Retrieval-Augmented Generation (RAG) with BuildShip
+
+Retrieval-Augmented Generation (RAG) is a powerful method that combines document retrieval with text generation,
+enhancing the quality and relevance of generated content. In a typical RAG setup, documents are chunked into small
+subsections, and similarity searches are performed over those sections to find the most relevant information.
+
+<Image src={ragOg} alt='Retrieval-Augmented Generation with BuildShip' width={1200} />
+
+## Starter Templates
+
+To help you get started with RAG, we provide two starter templates. These templates serve as a foundation, and you can
+customize and extend them as per your requirements.
+
+---
+
+**You can access the RAG using Meilisearch templates from this
+[Remix link](https://buildship.app/remix/e345974b-fd12-4adb-bc90-48a063a602e1).**
+
+---
+
+### Template 1: Add Document Chunk to Meilisearch
+
+This template allows you to upload a file, which is then processed and stored in BuildShip storage. The steps involved
+are:
+
+1. **File Upload**: Upload a file via the file upload trigger to the path `/add-document-chunks` using the POST method.
+2. **Document Creation**: The uploaded file is stored in the `files` collection in BuildShip storage with metadata,
+   including size, mimeType, encoding, and originalName.
+3. **File Storage**: The file buffer is saved to BuildShip storage under `uploads/${file.id}`.
+4. **Document Update**: The document in the `files` collection is updated with the download URL of the stored file.
+5. **Content Extraction**: The file content is extracted using the PDF to Text node with the provided download URL.
+   Currently, this template supports PDF files.
+6. **Chunking**: The extracted content is split into chunks of 1000 characters.
+
+This node is generated using the **Node Generator**. You can try creating a similar node by providing the following
+inputs to the Node Generator:
+
+- `Given` : `an input string and a specified chunk size`
+- `I want to` : `split the input string into chunks, replacing newline characters with spaces`
+- `And return` : `an array containing the string chunks`
+
+7. **Indexing**: The chunks are added to the Meilisearch index `assistant`.
+
+<Image src={rag1} alt='Add Document Chunk to Meilisearch' width={1200} />
+
+<Callout>
+  Currently, this template supports PDF files. However, you can customize the template to support different file types
+  by adding the appropriate extraction nodes.
+</Callout>
+
+### Template 2: RAG using Meilisearch
+
+This template performs a hybrid search on the Meilisearch instance where document chunks were previously added. The
+steps involved are:
+
+1. **Hybrid Search**: Perform a search on the Meilisearch instance to retrieve relevant knowledge based on the user's
+   query.
+2. **Text Generation**: Use the OpenAI text generator to generate content by providing the retrieved knowledge as
+   context. Sample System Prompt is given below. ( Replace `chunks` and `userQuery` with node values ):
+
+```
+Leverage relevant knowledge from MeiliSearch and the latest user query to create a clear, coherent, and engaging response.
+
+**Relevant Knowledge**: Use text chunks from documents stored in MeiliSearch.
+
+- **Extracted Chunks**: ${chunks.map(chunk => chunk.extractedText).join("\n\n")}
+- **User Query**: Address the latest user inquiry.
+
+  - Current Query: ${userQuery}
+
+**Strategy**:
+
+- **Analysis**: Combine document chunks and the user query.
+- **Engagement**: Provide explanations or educated guesses as needed.
+- **Continuity**: Build on the conversation's direction.
+
+**Output**:
+
+- **Format**: Use clear language with markdown.
+- **Structure**: Organize into cohesive paragraphs.
+- **Depth**: Be informative and concise.
+```
+
+<Image src={rag2} alt='RAG Generation' width={1200} />
+
+## Understanding RAG
+
+RAG leverages the strengths of both retrieval and generation. It retrieves relevant information from a large corpus of
+documents and uses that information to generate detailed and contextually accurate responses. This approach
+significantly enhances the capabilities of AI models, especially in scenarios requiring specific and factual
+information.
+
+### How RAG Works
+
+1. **Document Chunking**: Large documents are divided into smaller, manageable sections. This ensures that searches are
+   more efficient and relevant.
+2. **Vector Embeddings**: Each document chunk is converted into a high-dimensional vector using embeddings. These
+   embeddings capture the semantic meaning of the text.
+3. **Similarity Search**: When a query is made, it is also converted into a vector. A similarity search is then
+   performed to find document chunks that are semantically similar to the query.
+4. **Text Generation**: The retrieved chunks are provided as context to a text generation model, which produces a
+   response based on the combined knowledge.
+
+## Use Case
+
+For this use case, we are going to use RAG with MongoDB templates instead of RAG with Meilisearch templates. However,
+you can use Meilisearch as well if that suits your needs. You can also tweak the starter templates to use with any other
+platform. Currently, the templates are created for Meilisearch and MongoDB only, but you can use other database nodes
+which are in the node library to modify these templates according to your needs. For example, you can use Supabase nodes
+if you want. Additionally, you can extend the starter templates as needed. Here, we are providing you with the basic
+setup and use case for using RAG with BuildShip.
+
+### Knowledge Management System for a Research Organization
+
+**Overview:** A research organization needs an efficient system to manage its vast collection of research papers,
+reports, and documents. The goal is to create a Knowledge Management System (KMS) that allows researchers to easily
+retrieve relevant information from their database of documents to support their ongoing projects and inquiries.
+
+**Problem Statement:** Researchers at the organization often need to refer to previous studies, reports, and papers.
+Manually searching through documents is time-consuming and inefficient, leading to delays and potential oversight of
+relevant information.
+
+**Solution:** Implement a Retrieval-Augmented Generation (RAG) system that accepts PDF files of research papers,
+extracts their content, chunks it, and saves it in MongoDB. When a researcher queries the system, a hybrid search
+retrieves the most relevant chunks from MongoDB and uses OpenAI's text generation to provide comprehensive, contextually
+relevant responses.
+
+---
+
+**You can access the RAG using MongoDB templates from this
+[Remix link](https://buildship.app/remix/3fc78f10-5a6e-4162-9bdb-057c342e6d4f).**
+
+---
+
+<Steps>
+
+### Add Document Chunks:
+
+- Use the **Add Document** Chunks template to add chunks to your MongoDB collection. In this case, we are using two
+  collections:
+  1. `files` - to store file details. The files are stored in BuildShip storage. You can set it inside the Insert
+     Document node. The template currently stores the following details:
+  ```json
+  [{
+    size: size of the file,
+    mimeType: mimeType of the file,
+    encoding: file encoding,
+    originalName: original file name
+  }]
+  ```
+  2. `chunks` - to store file chunks. You can set the collection name in the last Insert Document node. Currently, we
+     are storing the chunk under the `extractedText` field and also the following fields with the document:
+  ```json
+  {
+    fileId: id we get after we insert file details into files collection,
+    position: chunk index,
+    originalName: original file name,
+    extractedText: chunk,
+    downloadUrl: downloadable file public URL
+  }
+  ```
+- Set the upload destination to the location `uploads/id`. You can set the destination inside the Upload File node.
+- Set the chunk size to 100 characters. You can set it inside the Split into Chunks node.
+- Configure the templates to work with your MongoDB cluster and fill the nodes with the above details.
+- After configuring, execute the workflow by uploading a
+  [Sample File](https://storage.googleapis.com/buildship-7d7zjm-us-central1/SampleFileRAG/The_Impact_of_Climate_Change_on_Global_Agriculture.pdf)
+  to chunk the document content and store the chunks in MongoDB.
+
+### Create Embeddings:
+
+- Use the **Create Embeddings** template to create vector embeddings for the document chunks.
+- Configure the template with your MongoDB connection and OpenAI secrets. Detailed configuration steps can be found
+  [here](https://docs.buildship.com/tutorials/mongodb-search#creating-embeddings). Fetch the `_id` and `extractedText`
+  fields of each document from the chunks collection. You can tweak this inside the Query Collection node under
+  `Projection`.
+- Run the template to generate embeddings for the stored chunks. The embeddings will be saved in each document with the
+  field name `embedding`.
+
+<Image src={rag3} alt='RAG Generation' width={1200} />
+
+### Configure Atlas Search Index:
+
+- Before using RAG, we need to configure search indexes for hybrid search which is more accurate for this purpose.
+- Set up the Atlas Search index and Atlas Vector Search index. Follow the detailed steps provided in the below
+  documentation:
+  - [Atlas Search index](https://docs.buildship.com/tutorials/mongodb-search#create-an-atlas-search-index)
+  - [Atlas Vector Search index](https://docs.buildship.com/tutorials/mongodb-search#create-an-atlas-vector-search-index)
+
+### Use RAG with MongoDB:
+
+- Use the **RAG using MongoDB** template, which includes hybrid search and OpenAI nodes.
+- Configure the template to perform hybrid search on the stored chunks and generate content using OpenAI. Use the chunks
+  collection and related search index names inside the hybrid search node. Refer to the above sections to craft a better
+  system prompt for the OpenAI node using retrieved chunks from hybrid search.
+- Test the system with user queries to retrieve and generate relevant information.
+
+</Steps>
+
+By following these steps, the research organization can effectively manage and retrieve information from their extensive
+document database, enhancing their research capabilities and efficiency.
