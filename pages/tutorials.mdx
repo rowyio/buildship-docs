@@ -166,7 +166,18 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![MongoDB Search preview](../public/assets/mongodb-search.png)</>
   </ShowcaseCard>
-  
+    <ShowcaseCard
+    title='RAG with Buildship'
+    href='./tutorials/rag'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'rag',
+      });
+    }}
+  >
+    <>![RAG with Buildship](../public/tutorial/ragOg.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(

@@ -37,5 +37,8 @@
   },
   "mongodb-search": {
     "display": "hidden"
+  },
+  "rag": {
+    "display": "hidden"
   }
 }
