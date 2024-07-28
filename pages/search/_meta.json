@@ -1,4 +1,12 @@
 {
-  "typesense": "Typesense",
-  "meilisearch": "Meilisearch"
+  "mongodb": {
+    "title": "MongoDB",
+    "href": "https://docs.buildship.com/tutorials/mongodb-search"
+  },
+  "supabase": {
+    "title": "Supabase",
+    "href": "https://docs.buildship.com/tutorials/supabase-search"
+  },
+  "meilisearch": "Meilisearch",
+  "typesense": "Typesense"
 }
