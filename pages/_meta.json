@@ -17,13 +17,6 @@
       "breadcrumb": false
     }
   },
-  "showcase": {
-    "title": "Node Showcase",
-    "display": "hidden",
-    "theme": {
-      "breadcrumb": false
-    }
-  },
   "basics": {
     "title": "Basics",
     "theme": {
