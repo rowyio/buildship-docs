@@ -70,5 +70,10 @@
     "title": "Help & Troubleshooting"
   },
   "support-messages": "Support Messages",
-  "subscriptions-billing": "Subscriptions & Billing"
+  "subscriptions-billing": "Subscriptions & Billing",
+  "contribute": {
+    "type": "separator",
+    "title": "Contributing"
+  },
+  "create-triggers": "Create Triggers"
 }
