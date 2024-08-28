@@ -1,0 +1,327 @@
+# Creating BuildShip Triggers
+
+import { Cards, Card } from 'nextra/components';
+import { Callout } from 'nextra/components';
+
+Triggers are mechanisms to initiate a BuildShip Workflow. There are three main types of BuildShip Triggers:
+
+## 1. API-based Triggers
+
+These are triggered via any API Call. For example, the Rowy Trigger: The **BuildShip** workflow gets triggered when the
+BuildShip Workflow endpoint is called via the Rowy Extension.
+
+<Cards num={1}>
+  <Card image arrow title='Rowy Trigger: Read docs' href='/trigger-nodes/rowy-trigger'>
+    <>![Rowy Trigger](/assets/rowy-trigger-1.png)</>
+  </Card>
+</Cards>
+
+## 2. Webhook-based Triggers
+
+These are triggered by adding the BuildShip Workflow endpoint to a third-party service to receive a webhook call for
+specified events with the event payload. Examples include [LemonSqueezy](/trigger-nodes/lemon-squeezy),
+[GitHub Trigger](/trigger-nodes/github-trigger), and [RevenueCat Trigger](/trigger-nodes/revenue-cat).
+
+<Cards num={3}>
+  <Card image arrow title='Lemon Squeezy Trigger' href='/trigger-nodes/lemon-squeezy'>
+    <>![Lemon Squeezy Trigger](/assets/lemon-og.png)</>
+  </Card>
+  <Card image arrow title='RevenueCat Trigger' href='/trigger-nodes/revenue-cat'>
+    <>![RevenueCat Trigger](/assets/revenuecat-og.png)</>
+  </Card>
+  <Card image arrow title='GitHub Trigger' href='/trigger-nodes/github-trigger'>
+    <>![GitHub Trigger](/assets/github-trigger-og.png)</>
+  </Card>
+</Cards>
+
+Webhook-based triggers are preferably automatic. When a BuildShip Workflow is deployed or updated, the configuration is
+automatically updated on the linked service via their API Endpoints to set up webhooks.
+
+<Callout>
+
+If a service doesn't support automatic setup via API, manual instructions need to be provided for users to add the API
+endpoint. (See example:
+[RevenueCat Trigger](https://docs.buildship.com/trigger-nodes/revenue-cat#setting-up-the-revenuecat-trigger))
+
+</Callout>
+
+## 3. Schedule-based Triggers
+
+These are cron-based triggers called by the **GCP Cloud Scheduler** at specified times/schedules. Examples include:
+
+<Cards num={2}>
+  <Card image arrow title='Scheduled Cron: Read docs' href='/trigger-nodes/rowy-trigger'>
+    <>![Scheduled Cron Trigger](/nodes/cron-1.png)</>
+  </Card>
+  <Card
+    image
+    arrow
+    title='User-friendly cron sub-trigger'
+    href='/trigger-nodes/scheduled-cron#user-friendly-cron-triggers-'
+  >
+    <>![Every Month (Cron) Trigger](/assets/every-month.png)</>
+  </Card>
+</Cards>
+
+## Trigger Authentication
+
+Third-party triggers require authentication to connect with other services, either via API Keys or OAuth Apps.
+
+### API Key Authentication
+
+The trigger and documentation should provide details on how users can easily find API Keys on the third-party service.
+For example:
+
+<Cards num={1}>
+  <Card image arrow title='Telegram Bot' href='/trigger-nodes/telegram-bot'>
+    <>![Telegram Bot](/nodes/telegram-bot.png)</>
+  </Card>
+</Cards>
+
+### OAuth App Authentication
+
+If an OAuth App is required, contact the [BuildShip Team](mailto:hello@buildship.com) to set up and verify the OAuth
+App. Here are some examples:
+
+<Cards num={3}>
+  <Card image arrow title='YouTube Trigger' href='/trigger-nodes/youtube-trigger'>
+    <>![YouTube Trigger](/assets/yt-trigger-og.png)</>
+  </Card>
+  <Card image arrow title='Supabase Trigger' href='/trigger-nodes/supabase-trigger'>
+    <>![Supabase Trigger](/assets/supaTrigger2.png)</>
+  </Card>
+  <Card image arrow title='GitHub Trigger' href='/trigger-nodes/github-trigger'>
+    <>![GitHub Trigger](/assets/github-trigger-og.png)</>
+  </Card>
+</Cards>
+
+## Trigger Logic
+
+Trigger Logic is built on four lifecycle functions: `onCreate`, `onUpdate`, `onExecution`, and `onDelete`.
+
+### `onCreate`
+
+- Runs only once when the workflow is shipped for the very first time
+- This is the function which should include the API Call to set up the webhook endpoint.
+  <Callout>
+    If the automated webhook set up fails on the first try, this needs to be handled in the `onUpdate` function. Check
+    the `onUpdate` example.
+  </Callout>
+
+Sample `onCreate` method for **Lemon Squeezy Trigger**:
+
+```javascript
+const onCreate = async (
+  { apiKey, events, secretKey, storeId }, // trigger inputs
+  { workflow, runtimeUrl, env },
+) => {
+  const webhookUrl = runtimeUrl + '/executeWorkflow/' + workflow.id;
+
+  const addWebhookResp = await fetch('https://api.lemonsqueezy.com/v1/webhooks', {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/vnd.api+json',
+    },
+    method: 'POST',
+    // body according to the lemonsqueezy docs
+    body: JSON.stringify({
+      data: {
+        type: 'webhooks',
+        attributes: {
+          test_mode: true,
+          url: webhookUrl,
+          events: events,
+          secret: secretKey,
+        },
+        relationships: {
+          store: {
+            data: {
+              type: 'stores',
+              id: storeId,
+            },
+          },
+        },
+      },
+    }),
+  });
+  const resJson = await addWebhookResp.json();
+
+  const id = resJson.data?.id;
+  // setting the webhookId as workflow level env variable (required for deletion and updation)
+  await env.set([{ name: 'webhookId', value: id }]);
+
+  if (!addWebhookResp.ok) {
+    const error = await resJson;
+    return { success: false, message: 'Failed to create webhook' };
+  }
+};
+```
+
+### `onUpdate`
+
+- Runs on every subsequent deployment of the workflow after the first time
+- Add API Calls to update the Webhook endpoint here
+
+Sample `onUpdate` method for **Lemon Squeezy Trigger**:
+
+```javascript
+const onUpdate = async ({ apiKey, secretKey, events, storeId }, { workflow, runtimeUrl, env }) => {
+  try {
+    const webhookId = env.get('webhookId');
+    if (!webhookId) {
+      throw new Error('webhookId is not set');
+    }
+    const res = await fetch(`https://api.lemonsqueezy.com/v1/webhooks/${webhookId}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        data: {
+          type: 'webhooks',
+          id: webhookId,
+          attributes: {
+            events: events,
+          },
+        },
+      }),
+    });
+    return res;
+  } catch (error) {
+    // if the webhook updation fails, create one instead
+    const webhookUrl = runtimeUrl + '/executeWorkflow/' + workflow.id;
+
+    const addWebhookResp = await fetch('https://api.lemonsqueezy.com/v1/webhooks', {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/vnd.api+json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        data: {
+          type: 'webhooks',
+          attributes: {
+            test_mode: true,
+            url: webhookUrl,
+            events: events,
+            secret: secretKey,
+          },
+          relationships: {
+            store: {
+              data: {
+                type: 'stores',
+                id: storeId,
+              },
+            },
+          },
+        },
+      }),
+    });
+    const resJson = await addWebhookResp.json();
+
+    const id = resJson.data.id;
+    await env.set([{ name: 'webhookId', value: id }]);
+
+    if (!addWebhookResp.ok) {
+      const error = await addWebhookResp.json();
+      return { success: false, message: 'Failed to create webhook' };
+    }
+  }
+};
+```
+
+### `onExecution`
+
+- This is the method which runs on every execution.
+- This is where we need to add payload verification (if applicable) and manually parse the incoming request body. (check
+  the example below)
+
+Sample `onExecution` method for **Lemon Squeezy Trigger**:
+
+```javascript
+const onExecution = async ({ secretKey }, { nodeReq, request, logging }) => {
+  const body = await parser['json'](nodeReq, { returnRawBody: true });
+
+  validate(secretKey, body.raw, request.headers);
+
+  const ret = {
+    query: request.query,
+    headers: request.headers,
+    body: body !== null && body !== void 0 ? body : {},
+  };
+
+  return {
+    request: ret,
+    output: ret.body,
+  };
+};
+
+// custom function to validate the raw request body (as specified by LemonSqueezy)
+function validate(secretKey, body, headers) {
+  const hmac = crypto.createHmac('sha256', secretKey);
+  const hmacUpd = hmac.update(body).digest('hex');
+  const digest = Buffer.from(hmacUpd, 'utf8');
+  const signature = Buffer.from(headers['x-signature'] || '', 'utf8');
+
+  if (!crypto.timingSafeEqual(digest, signature)) {
+    throw new Error('Invalid signature.');
+  }
+  console.log('signature is valid');
+}
+```
+
+### `onDelete`
+
+- The clean up function which runs every time the workflow or the trigger is deleted.
+- This is where we need to add the API Call for removing the webhook set-up by the `onCreate` and `onUpdate` functions.
+
+Sample `onDelete` method for **Lemon Squeezy Trigger**:
+
+```javascript
+const onDelete = async ({ apiKey }, { env }) => {
+  const webhookId = env.get('webhookId');
+  console.log(webhookId);
+  if (webhookId) {
+    await fetch(`https://api.lemonsqueezy.com/v1/webhooks/${webhookId}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+    });
+    await env.delete(['webhookId']);
+    console.log(`env deleted`);
+    return true;
+  } else {
+    return true;
+  }
+};
+```
+
+<Callout>
+**NOTE:** All of these functions would have to be exported, like:
+```javascript
+export default {
+  onCreate,
+  onUpdate,
+  onExecution,
+  onDelete,
+};
+```
+
+**TIP:** If we are planning to re-use the `onCreate` functionality for every subsequent `onUpdate` function as well, we
+can do:
+
+```javascript
+export default {
+  onCreate,
+  onUpdate: onCreate,
+  onExecution,
+  onDelete,
+};
+```
+
+</Callout>
