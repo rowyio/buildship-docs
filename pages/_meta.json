@@ -73,7 +73,11 @@
   "subscriptions-billing": "Subscriptions & Billing",
   "contribute": {
     "type": "separator",
-    "title": "Contributing"
+    "title": "Contributing",
+    "display": "hidden"
   },
-  "create-triggers": "Create Triggers"
+  "create-triggers": {
+    "title": "Create Triggers",
+    "display": "hidden"
+  }
 }
