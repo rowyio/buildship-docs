@@ -8,7 +8,7 @@ import { Steps } from 'nextra/components';
 import { Callout } from 'nextra/components';
 import { Card, Cards } from 'nextra/components';
 import Image from 'next/image';
-import mongodbOg from '/public/assets/mongodb-search.png';
+import mongodbOg from '/public/assets/mongodbsearch.png';
 import mongo3 from '/public/assets/mongo-3.png';
 import mongo4 from '/public/assets/mongo-4.png';
 import mongo5 from '/public/assets/mongo-5.png';
@@ -82,7 +82,7 @@ project:
 
 1. Navigate to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to either sign up for a new account or log in if you
    are an existing user.
-2. Create a new project and configure your database as needed with sample data.
+2. Create a new project and configure your database, including adding sample data if needed.
 
 For detailed instructions on setting up your MongoDB Atlas project and integrating it with BuildShip, please refer to
 [BuildShip X MongoDB docs](https://docs.buildship.com/database/mongodb#database).
@@ -183,12 +183,9 @@ For a streamlined implementation, you can use this
 
 ## Semantic Search
 
-You must configure an Atlas Vector Search index to query data in your Atlas cluster using MongoDB Semantic Search. Atlas
-Vector Search indexes enable efficient retrieval of documents based on vector similarity. The "Semantic Search" node
-allows you to perform semantic searches on a MongoDB collection, enabling you to find documents that match the semantic
-meaning of a search query.
+To query data in your Atlas cluster using the MongoDB Full Text Search node, you must first configure an Atlas Search index. These indexes enable faster document retrieval using specific identifiers. The "Full Text Search" node allows you to perform full-text searches on a MongoDB collection, making it easy to find documents that match a given search query.
 
-To set up MongoDB semantic search in your workflow, you first need to create a Vector Search index.
+To set up MongoDB full text search in your BuildShip workflow, let's first create a Search index
 
 ### Create an Atlas Vector Search Index
 
@@ -196,7 +193,7 @@ To set up MongoDB semantic search in your workflow, you first need to create a V
 
 <Image src={mongo7} alt='mongodb' width={1200} />
 
-1. In Atlas, go to the Clusters page for your project.
+1. In your project, go to the Clusters page. 
 2. Go to the Atlas Search page for your cluster.
 3. Select JSON Editor under Atlas Vector Search Method and click Next
 4. Enter the Index Name (`vector_index`), and set the Database and Collection.
@@ -264,9 +261,7 @@ The node returns an object with the following properties:
 
 ## Hybrid Search
 
-Hybrid Search combines the power of semantic search and full-text search, leveraging both Atlas Vector Search and Atlas
-Full-Text Search to provide comprehensive search results. This method combines the semantic similarity of documents with
-the exact match capabilities of full-text search.
+Hybrid Search combines the power of semantic search and full-text search, using both Atlas Vector Search and Atlas Full-Text Search to provide comprehensive search results. This method combines the semantic similarity of documents with the exact match capabilities of full-text search.
 
 To set up MongoDB hybrid search in your workflow, you first need to create both Atlas Search Index and Atlas Vector
 Search index. Refer to the below sections to create the indexes:
