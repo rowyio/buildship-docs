@@ -1,0 +1,321 @@
+---
+title: HubSpot CRM
+description:
+  The HubSpot CRM Integration in BuildShip enables users to connect their HubSpot accounts and streamline their sales
+  and marketing workflows with ease.
+---
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import hubspotOG from '/public/assets/hubspotOG.png';
+import hubspot1 from '/public/assets/hubspot1.png';
+import hubspot2 from '/public/assets/hubspot2.png';
+import hubspot3 from '/public/assets/hubspot3.png';
+import hubspot4 from '/public/assets/hubspot4.png';
+import hubspot5 from '/public/assets/hubspot5.png';
+import hubspot6 from '/public/assets/hubspot6.png';
+import hubspot7 from '/public/assets/hubspot7.png';
+import hubspot8 from '/public/assets/hubspot8.png';
+import hubspot9 from '/public/assets/hubspot9.png';
+import hubspot10 from '/public/assets/hubspot10.png';
+import hubspot11 from '/public/assets/hubspot11.png';
+import hubspot12 from '/public/assets/hubspot12.png';
+import hubspot13 from '/public/assets/hubspot13.png';
+
+# HubSpot CRM Integration
+
+The HubSpot CRM Integration in BuildShip allows users to connect directly with their HubSpot accounts, enabling them to
+manage contacts, deals, and other CRM functionalities directly from BuildShip. This integration provides a seamless way
+to automate marketing, sales, and customer service processes using HubSpot’s powerful CRM tools.
+
+<br />
+
+<Image src={hubspotOG} alt='HubSpot CRM' width={1200} />
+
+Leveraging BuildShip's HubSpot Nodes, users can seamlessly connect to their HubSpot CRM, unlocking the potential to
+create APIs, scheduled jobs, and various backend workflows centered around CRM activities. This integration is crafted
+to reduce the need for extensive coding, facilitating straightforward management of customer interactions, sales
+pipelines, and more within the intuitive BuildShip environment.
+
+## Prerequisites ✅
+
+Before you can start using the HubSpot CRM Nodes in BuildShip, ensure that you have the following prerequisites in
+place:
+
+### HubSpot Account
+
+You'll need an active HubSpot account to utilize this integration. If you do not have an account, you can create one at
+[HubSpot](https://www.hubspot.com/).
+
+### HubSpot API Authentication
+
+Please note: as of November 30, 2022, HubSpot API Keys are deprecated and no longer supported. Instead, you need to
+authenticate using a **private app access token** or **OAuth**. For more information, visit
+[HubSpot's official guide](https://knowledge.hubspot.com/integrations/how-do-i-get-my-hubspot-api-key).
+
+<Image src={hubspot1} alt='HubSpot Authentication' width={1200} />
+
+- **Private App Access Token**: This is the recommended method for authenticating your API requests to HubSpot.
+- **OAuth**: OAuth allows you to securely access HubSpot resources on behalf of a user.
+
+## Create Deal
+
+The "Create Deal" node allows you to create a new deal in HubSpot CRM with specified properties.
+
+<Image src={hubspot2} alt='Create HubSpot Deal' width={1200} />
+
+### Inputs
+
+- **Name**: The name of the deal.
+- **Amount**: The monetary value associated with the deal.
+- **Stage**: The sales stage of the deal.
+- **Pipeline**: The sales pipeline that the deal belongs to.
+- **Properties**: Additional custom properties for the deal.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Create Deal" node to quickly add new deals into your HubSpot pipeline. This helps streamline your sales
+  process directly within BuildShip, enabling better management of opportunities.
+</Callout>
+
+### Output
+
+The node returns an object with details about the newly created deal, including the deal ID and other specified
+properties.
+
+## Update Deal
+
+The "Update Deal" node allows you to update an existing deal in HubSpot CRM.
+
+<Image src={hubspot3} alt='Update HubSpot Deal' width={1200} />
+
+### Inputs
+
+- **Deal ID**: The unique identifier of the deal to update.
+- **Properties**: The properties to update on the deal.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Update Deal" node to modify existing deal information, such as changing the deal stage or adjusting deal
+  values, ensuring your CRM data remains up-to-date.
+</Callout>
+
+### Output
+
+The node returns an object with the updated deal details, reflecting the changes made.
+
+## Rerieve Deal
+
+The "Rerieve Deal" node allows you to retrieve details of a specific deal using its ID.
+
+<Image src={hubspot4} alt='Retrieve HubSpot Deal' width={1200} />
+
+### Inputs
+
+- **Deal ID**: The unique identifier of the deal to retrieve.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Rerieve Deal" node to fetch detailed information about a deal, which can be useful for reporting or further
+  processing within your workflows.
+</Callout>
+
+### Output
+
+The node returns an object with detailed information about the specified deal, including all its properties.
+
+## Delete Deal
+
+The "Delete Deal" node allows you to delete a specific deal from HubSpot CRM.
+
+<Image src={hubspot5} alt='Delete HubSpot Deal' width={1200} />
+
+### Inputs
+
+- **Deal ID**: The unique identifier of the deal to delete.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Delete Deal" node to remove outdated or erroneous deals from your HubSpot CRM, keeping your data clean and
+  relevant.
+</Callout>
+
+### Output
+
+The node returns a success message confirming the deletion of the deal or an error message if the operation fails.
+
+## Create Contact
+
+The "Create Contact" node allows you to create a new contact in HubSpot CRM with specified properties.
+
+<Image src={hubspot6} alt='Create HubSpot Contact' width={1200} />
+
+### Inputs
+
+- **First Name**: The first name of the contact.
+- **Last Name**: The last name of the contact.
+- **Email**: The email address of the contact.
+- **Phone**: The phone number of the contact.
+- **Properties**: Additional custom properties for the contact.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Create Contact" node to quickly add new contacts into your HubSpot CRM. This helps streamline your customer
+  relationship management process directly within BuildShip, enabling better management of your contact information.
+</Callout>
+
+### Output
+
+The node returns an object with details about the newly created contact, including the contact ID and other specified
+properties.
+
+## Update Contact
+
+The "Update Contact" node allows you to update an existing contact in HubSpot CRM.
+
+<Image src={hubspot7} alt='Update HubSpot Contact' width={1200} />
+
+### Inputs
+
+- **Contact ID**: The unique identifier of the contact to update.
+- **Properties**: The properties to update on the contact.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Update Contact" node to modify existing contact information, such as updating the contact’s details or adding
+  new information, ensuring your CRM data remains accurate and up-to-date.
+</Callout>
+
+### Output
+
+The node returns an object with the updated contact details, reflecting the changes made.
+
+## Retrieve Contact
+
+The "Retrieve Contact" node allows you to retrieve details of a specific contact using its ID.
+
+<Image src={hubspot8} alt='Retrieve HubSpot Contact' width={1200} />
+
+### Inputs
+
+- **Contact ID**: The unique identifier of the contact to retrieve.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Retrieve Contact" node to fetch detailed information about a contact, which can be useful for reporting,
+  analyzing customer data, or further processing within your workflows.
+</Callout>
+
+### Output
+
+The node returns an object with detailed information about the specified contact, including all its properties.
+
+## Delete Contact
+
+The "Delete Contact" node allows you to delete a specific contact from HubSpot CRM.
+
+<Image src={hubspot9} alt='Delete HubSpot Contact' width={1200} />
+
+### Inputs
+
+- **Contact ID**: The unique identifier of the contact to delete.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Delete Contact" node to remove outdated or incorrect contacts from your HubSpot CRM, keeping your contact
+  list clean and relevant.
+</Callout>
+
+### Output
+
+The node returns a success message confirming the deletion of the contact or an error message if the operation fails.
+
+## Create Company
+
+The "Create Company" node allows you to create a new company in HubSpot CRM with specified properties.
+
+<Image src={hubspot2} alt='Create HubSpot Company' width={1200} />
+
+### Inputs
+
+- **Name**: The name of the company.
+- **Domain**: The company's domain (website URL).
+- **Properties**: Additional custom properties for the company.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Create Company" node to quickly add new companies into your HubSpot CRM. This helps streamline your business
+  relationships management process directly within BuildShip, enabling better management of your company information.
+</Callout>
+
+### Output
+
+The node returns an object with details about the newly created company, including the company ID and other specified
+properties.
+
+## Update Company
+
+The "Update Company" node allows you to update an existing company in HubSpot CRM.
+
+<Image src={hubspot3} alt='Update HubSpot Company' width={1200} />
+
+### Inputs
+
+- **Company ID**: The unique identifier of the company to update.
+- **Properties**: The properties to update on the company.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Update Company" node to modify existing company information, such as updating the company's details or adding
+  new information, ensuring your CRM data remains accurate and up-to-date.
+</Callout>
+
+### Output
+
+The node returns an object with the updated company details, reflecting the changes made.
+
+## Retrieve Company
+
+The "Retrieve Company" node allows you to retrieve details of a specific company using its ID.
+
+<Image src={hubspot4} alt='Retrieve HubSpot Company' width={1200} />
+
+### Inputs
+
+- **Company ID**: The unique identifier of the company to retrieve.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Retrieve Company" node to fetch detailed information about a company, which can be useful for reporting,
+  analyzing business data, or further processing within your workflows.
+</Callout>
+
+### Output
+
+The node returns an object with detailed information about the specified company, including all its properties.
+
+## Delete Company
+
+The "Delete Company" node allows you to delete a specific company from HubSpot CRM.
+
+<Image src={hubspot5} alt='Delete HubSpot Company' width={1200} />
+
+### Inputs
+
+- **Company ID**: The unique identifier of the company to delete.
+- **Access Token**: Your HubSpot private app access token for authentication.
+
+<Callout>
+  Use the "Delete Company" node to remove outdated or incorrect companies from your HubSpot CRM, keeping your company
+  list clean and relevant.
+</Callout>
+
+### Output
+
+The node returns a success message confirming the deletion of the company or an error message if the operation fails.
+
+## Summary
+
+The HubSpot CRM integration in BuildShip is designed to simplify your sales and marketing workflows by allowing you to
+manage deals and other CRM elements directly from BuildShip. By utilizing these nodes, you can automate data flow
+between HubSpot and your other tools, ensuring your business processes are efficient and data-driven.

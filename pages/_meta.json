@@ -50,6 +50,7 @@
   "search": "Search",
   "productivity": "Productivity",
   "storage": "Storage",
+  "crm": "CRM",
   "-- Connect BuildShip With": {
     "type": "separator",
     "title": "Connect BuildShip With"
