@@ -11,5 +11,6 @@
   "api-spec": "API Specification",
   "buildship-tables": "BuildShip Database",
   "oauth": "OAuth Nodes",
-  "ship-an-api": "SHIP an API"
+  "ship-an-api": "SHIP an API",
+  "path-variable": "Path Variable in REST APIs"
 }
