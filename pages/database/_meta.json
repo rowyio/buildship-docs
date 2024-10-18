@@ -15,6 +15,7 @@
   },
   "pinecone": "Pinecone",
   "mysql": "MySQL",
+  "mssql": "Microsoft SQL Server",
   "airtable": "Airtable",
   "mongodb": "MongoDB"
 }

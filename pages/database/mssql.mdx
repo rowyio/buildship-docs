@@ -1,0 +1,162 @@
+# Microsoft SQL Server Integration with BuildShip
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+
+import mssql1 from '/public/integrations/database/mssql/mssql1.png';
+import mssqlSqlQuery from '/public/integrations/database/mssql/mssqlSqlQuery.png';
+import mssqlInsertRow from '/public/integrations/database/mssql/mssqlInsertRow.png';
+import mssqlUpdateRow from '/public/integrations/database/mssql/mssqlUpdateRow.png';
+import mssqlDeleteRow from '/public/integrations/database/mssql/mssqlDeleteRow.png';
+import mssqlSelectQuery from '/public/integrations/database/mssql/mssqlSelectQuery.png';
+
+BuildShip supports seamless integration with Microsoft SQL Server through its pre-built integration nodes. These nodes
+enable you to effortlessly perform Create, Read, Update, and Delete (CRUD) operations, as well as run raw queries on
+your database.
+
+<br />
+<Image src={mssql1} alt='Mssql Integration' width={1200} />
+
+You can find the Microsoft SQL Server Integration nodes under the **Integrations** section of the node explorer.
+
+## Prerequisites ✅
+
+Before you get started with integrating Microsoft SQL Server with BuildShip, ensure you have the following:
+
+### Microsoft SQL Server Database
+
+You should have access to a Microsoft SQL Server database. If you don't have one, you can host your Microsoft SQL Server
+database using various providers and methods, including:
+
+- **Self-Hosted**: You may have a self-hosted Microsoft SQL Server database on your own server or infrastructure.
+- **Cloud-Based**: Microsoft SQL Server can be hosted on cloud platforms like AWS RDS, Azure SQL Database, etc
+
+### Connection String Parameters
+
+Retrieve the connection string parameters for your Microsoft SQL Server database. You'll need the following:
+
+- **Host**: The host of your Microsoft SQL Server database.
+- **Port**: The port of your Microsoft SQL Server database.
+- **Database Name**: The name of your Microsoft SQL Server database.
+- **Username**: The username to access your Microsoft SQL Server database.
+- **Password**: The password associated with the user.
+
+Let's walk through an example of how you can use these nodes to perform CRUD operations on your Microsoft SQL Server
+database. In this example, we'll be using a Microsoft SQL Server database hosted on [Railway](https://railway.app/).
+
+## SQL Query
+
+The SQL Quyer node allows you to run raw SQL queries on your Microsoft SQL Server database. You can use this node to
+perform complex operations that are not supported by the pre-built integration nodes.
+
+<br />
+
+<Image src={mssqlSqlQuery} alt='Mssql Integration' width={1200} />
+
+### Input Fields
+
+| Input       | Type   | Description                                                                      |
+| ----------- | ------ | -------------------------------------------------------------------------------- |
+| `host`      | string | The hostname or IP address of the Microsoft SQL Server                           |
+| `database`  | string | The name of the Microsoft SQL Server database where the query will run           |
+| `username`  | string | The username used for authenticating access to the Microsoft SQL Server database |
+| `password`  | string | The password for authentication                                                  |
+| `SQL query` | string | The SQL query to be executed                                                     |
+
+All of the Microsoft SQL Server integration nodes will share input fields such as `host`, `database`, `username`, and
+`password`. These fields are used to establish a connection to your Microsoft SQL Server database.
+
+<Callout emoji="💡" title="Tip">
+**Using Secrets to store passwords**
+
+It's always a good practice to use the **Secrets** to store your database's connection string password or other
+sensitive data. You can then use the **Secrets** node to retrieve the values of the secrets and use them as inputs for
+the Microsoft SQL Server Integration nodes. [Learn more about using Secrets in BuildShip.](../secrets)
+
+</Callout>
+
+## Select Query
+
+The Select Query node lets you retrieve data from a specified table in your Microsoft SQL Server database, with optional
+filters and the ability to specify which columns to select.
+
+<br />
+
+<Image src={mssqlSelectQuery} alt='Mssql Integration' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                                      |
+| ---------- | ------ | -------------------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the Microsoft SQL Server                           |
+| `database` | string | The name of the Microsoft SQL Server database                                    |
+| `username` | string | The username used for authenticating access to the Microsoft SQL Server database |
+| `password` | string | The password for authentication                                                  |
+| `table`    | string | The name of the table where the select query is to be run                        |
+| `columns`  | array  | The columns to be selected. Leave empty to select all columns                    |
+| `filter`   | json   | The filter to apply on the selection. Leave empty to select all rows             |
+
+## Insert Row
+
+The Insert Row node allows you to add a new row to a specified table in your Microsoft SQL Server database.
+
+<br />
+
+<Image src={mssqlInsertRow} alt='Mssql Integration' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                                                                                                                                             |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the Microsoft SQL Server                                                                                                                                  |
+| `database` | string | The name of the Microsoft SQL Server database where the insertion will occur                                                                                                            |
+| `username` | string | The username used for authenticating access to the Microsoft SQL Server database                                                                                                        |
+| `password` | string | The password for authentication                                                                                                                                                         |
+| `table`    | string | The name of the table where the new row will be inserted                                                                                                                                |
+| `data`     | json   | An object containing the data to be inserted into the table. The object's keys represent the column names, and the corresponding values are the data to be inserted into those columns. |
+
+<Callout type='warning' emoji='‼️'>
+  Make sure to match each key in the data object with the correct column data type in the table. For example, use text
+  values for string columns and numerical values for integer columns.
+</Callout>
+
+## Update Row
+
+The Update Row node lets you modify data in a specified table by applying a filter to select which rows to update in
+your Microsoft SQL Server database
+
+<br />
+
+<Image src={mssqlUpdateRow} alt='Mssql Integration' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                                                                                                                                     |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the Microsoft SQL Server                                                                                                                          |
+| `database` | string | The name of the Microsoft SQL Server database where the insertion will occur                                                                                                    |
+| `username` | string | The username used for authenticating access to the Microsoft SQL Server database                                                                                                |
+| `password` | string | The password for authentication                                                                                                                                                 |
+| `table`    | string | The name of the table where the row(s) will be updated                                                                                                                          |
+| `filter`   | json   | The filter to select the rows to update                                                                                                                                         |
+| `data`     | json   | An object containing the data to update in the table. The object's keys represent the column names, and the corresponding values are the data to be updated into those columns. |
+
+## Delete Row
+
+The Delete Row node allows you to remove rows from a specified table in your Microsoft SQL Server database by applying a
+filter to select which rows to delete.
+
+<br />
+
+<Image src={mssqlDeleteRow} alt='Mssql Integration' width={1200} />
+
+### Input Fields
+
+| Input      | Type   | Description                                                                      |
+| ---------- | ------ | -------------------------------------------------------------------------------- |
+| `host`     | string | The hostname or IP address of the Microsoft SQL Server                           |
+| `database` | string | The name of the Microsoft SQL Server database where the deletion will occur      |
+| `username` | string | The username used for authenticating access to the Microsoft SQL Server database |
+| `password` | string | The password for authentication                                                  |
+| `table`    | string | The name of the table from where the row will be deleted                         |
+| `filter`   | json   | The filter to select the rows to delete                                          |
