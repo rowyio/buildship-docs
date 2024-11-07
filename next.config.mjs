@@ -92,75 +92,17 @@ export default withNextra({
       destination: '/utility-nodes/api-call-node',
       permanent: true,
     },
-    // v2 redirects
+    // v2 redirect changes
     {
-      source: '/basics/workflow',
-      destination: '/getting-started/workflow',
+      source:
+        '/basics/:slug(workflow|node|trigger|input|ship-an-api|input-validation|output|update-outputs|variables|reordering-nodes|api-spec|buildship-tables|oauth|path-variable)',
+      destination: '/getting-started/:slug',
       permanent: true,
     },
     {
-      source: '/basics/node',
-      destination: '/getting-started/node',
-      permanent: true,
-    },
-    {
-      source: '/basics/trigger',
-      destination: '/getting-started/trigger',
-      permanent: true,
-    },
-    {
-      source: '/basics/input',
-      destination: '/getting-started/input',
-      permanent: true,
-    },
-    {
-      source: '/basics/ship-an-api',
-      destination: '/getting-started/ship-an-api',
-      permanent: true,
-    },
-    {
-      source: '/basics/input-validation',
-      destination: '/getting-started/input-validation',
-      permanent: true,
-    },
-    {
-      source: '/basics/output',
-      destination: '/getting-started/output',
-      permanent: true,
-    },
-    {
-      source: '/basics/update-outputs',
-      destination: '/getting-started/update-outputs',
-      permanent: true,
-    },
-    {
-      source: '/basics/variables',
-      destination: '/getting-started/variables',
-      permanent: true,
-    },
-    {
-      source: '/basics/reordering-nodes',
-      destination: '/getting-started/reordering-nodes',
-      permanent: true,
-    },
-    {
-      source: '/basics/api-spec',
-      destination: '/getting-started/api-spec',
-      permanent: true,
-    },
-    {
-      source: '/basics/buildship-tables',
-      destination: '/getting-started/buildship-tables',
-      permanent: true,
-    },
-    {
-      source: '/basics/oauth',
-      destination: '/getting-started/oauth',
-      permanent: true,
-    },
-    {
-      source: '/basics/path-variable',
-      destination: '/getting-started/path-variable',
+      source:
+        '/trigger-nodes/:slug(rest-api|scheduled-cron|rowy-trigger|telegram-bot|supabase-trigger|buildship-trigger|firebase-auth-request|github-trigger|rest-api-file-upload|rest-api-file-upload-auth|whatsapp-bot|email-trigger|lemon-squeezy|revenuecat-trigger|mongodb-trigger|youtube-trigger)',
+      destination: '/connecting-triggers/:slug',
       permanent: true,
     },
   ],

@@ -23,11 +23,16 @@
       "breadcrumb": false
     }
   },
+  "connecting-triggers": {
+    "title": "Connecting Triggers",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
   "-- Themes": {
     "type": "separator",
     "title": "Node Types"
   },
-  "trigger-nodes": "Trigger Nodes",
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
