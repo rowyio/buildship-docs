@@ -1,8 +1,9 @@
 {
   "workflow": "Creating Workflows",
-  "trigger": "Triggers",
   "node": "Nodes",
+  "trigger": "Triggers",
   "input": "Node Inputs",
+  "ship-an-api": "Shipping Your Workflow",
   "input-validation": "Input Validation",
   "output": "Node Output",
   "update-outputs": "Update Node Output",
@@ -11,6 +12,5 @@
   "api-spec": "API Specification",
   "buildship-tables": "BuildShip Database",
   "oauth": "OAuth Nodes",
-  "ship-an-api": "SHIP an API",
   "path-variable": "Path Variable in REST APIs"
 }

@@ -92,6 +92,77 @@ export default withNextra({
       destination: '/utility-nodes/api-call-node',
       permanent: true,
     },
+    // v2 redirects
+    {
+      source: '/basics/workflow',
+      destination: '/getting-started/workflow',
+      permanent: true,
+    },
+    {
+      source: '/basics/node',
+      destination: '/getting-started/node',
+      permanent: true,
+    },
+    {
+      source: '/basics/trigger',
+      destination: '/getting-started/trigger',
+      permanent: true,
+    },
+    {
+      source: '/basics/input',
+      destination: '/getting-started/input',
+      permanent: true,
+    },
+    {
+      source: '/basics/ship-an-api',
+      destination: '/getting-started/ship-an-api',
+      permanent: true,
+    },
+    {
+      source: '/basics/input-validation',
+      destination: '/getting-started/input-validation',
+      permanent: true,
+    },
+    {
+      source: '/basics/output',
+      destination: '/getting-started/output',
+      permanent: true,
+    },
+    {
+      source: '/basics/update-outputs',
+      destination: '/getting-started/update-outputs',
+      permanent: true,
+    },
+    {
+      source: '/basics/variables',
+      destination: '/getting-started/variables',
+      permanent: true,
+    },
+    {
+      source: '/basics/reordering-nodes',
+      destination: '/getting-started/reordering-nodes',
+      permanent: true,
+    },
+    {
+      source: '/basics/api-spec',
+      destination: '/getting-started/api-spec',
+      permanent: true,
+    },
+    {
+      source: '/basics/buildship-tables',
+      destination: '/getting-started/buildship-tables',
+      permanent: true,
+    },
+    {
+      source: '/basics/oauth',
+      destination: '/getting-started/oauth',
+      permanent: true,
+    },
+    {
+      source: '/basics/path-variable',
+      destination: '/getting-started/path-variable',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
