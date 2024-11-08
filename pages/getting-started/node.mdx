@@ -8,38 +8,66 @@ import script4 from '/public/nodes/script-4.png';
 import script5 from '/public/nodes/script-5.png';
 
 Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete
-workflow.
+workflow. Each workflow now has two default nodes: **Inputs** and **Outputs**.
 
 > It's important to note that the initial node in any workflow must be a trigger node (find more information on triggers
-> [here](/basics/trigger)).
+> [here](/basics/trigger)). However, having a trigger is optional for testing workflows.
 
 The fundamental building blocks of a workflow are the logic nodes. Let's delve into the details of a logic node's
-structure and functionality.
+structure and functionality of the **Inputs** and **Outputs** nodes.
 
 ## Node Anatomy
 
+Explore the essential components and functionalities of Input and Output nodes, the building blocks of any workflow.
+
+### Input Node
+
 <Image src={anatomy1} alt='Node Anatomy' width={1200} />
 
+The Input Node is designed to provide various types of inputs for your workflow. Here's a breakdown of its capabilities:
+
+- **Input Types**: Easily add inputs of different types, including: **String**, **Number**, **Boolean**, **Array**,
+  **Object**, **Select**, **Multi Select**, **Files**, **Any**.
+
+- **Trigger Data**: Easily pass data from a Trigger node as input to use it across your workflow.
+
+- **Edit Inputs**: An intuitive form based UI to edit inputs with the ability to set default values, descriptions, and,
+  type, label, required field, sensitive field, and validation regex.
+
+The input node ensures that your nodes receive the necessary data with the required type to perform their tasks
+efficiently in the workflow.
+
+### Output Node
+
+<Image src={anatomy1} alt='Node Anatomy' width={1200} />
+
+The Output Node is designed to return the data from the workflow. Here's a breakdown of its capabilities:
+
+<Callout emoji='💡' type='info'>
+  The output node is a Return node with advanced options
+</Callout>
+
+- **Output Types**: Choose between Last Node Output, or Custom Output.
+- **Last Node Output**: Returns the output of the last node in the workflow.
+- **Custom Output**: Return any custom value of your choice.
+
+The output node ensures that your workflow returns the required data according to your workflow logic.
+
+### Edit and Customize Nodes
+
+- **Add SecretKey**: Add the secret key for the node to use as authentication token or API key. Your keys are securely
+  stored using BuildShip's Secret Manager.
 - **Open Node Editor** `</>` This feature grants you the power to **modify the logic**, **input parameters**, **output
   configuration**, and **metadata descriptions** associated with a given node, providing the flexibility to tailor the
   nodes to your exact requirements.
-
-- **Node Options** Manage nodes through **AI-powered editing**, **deletion**, **copying**, and the ability to **view
-  logs** specific to each individual node.
-
+- **Node Options** Manage nodes through **AI-powered editing**, **deletion**, **copying**, **skip node**, **save to team
+  library**, and **add On Fail** options.
 - **Value Expression Editor** Tap into the capabilities of **AI data autofill for inputs**, leverage **variables**, and
   safeguard sensitive information using **secret keys**.
-
+- **Advanced Settings**: Configure additional advanced settings for the node. You can move any field under the advanced
+  section by editing the node Inputs from the node editor and add a new section by clicking on the `folder` button.
 - **Expand/Collapse Toggle** Enhance your workspace by toggling between expanded and collapsed views for nodes, ensuring
   a **clutter-free experience**.
-
-## Edit and Customize Nodes
-
-Whether selecting a node from the **Nodeverse library** or **generating one via AI**, the Node Editor provides a
-user-friendly environment for configuring nodes.
-
-Moreover, the Node Editor is accompanied by a **testing environment**, enabling users to **edit and test nodes
-simultaneously**, all without the need for deployment.
 
 ## Node Editor `</>`
 
@@ -51,6 +79,9 @@ a node. With Node Logic, you can:
 - Write and modify the underlying functions for a node to suit your specific needs.
 - Seamlessly integrate with APIs, leverage AI models, or incorporate NPM libraries to enhance your workflow's
   capabilities.
+- Write Unit Tests for your node to ensure its functionality is working as expected.
+- Whether selecting a node from the **Nodeverse library** or **generating one via AI**, the Node Editor provides a
+  user-friendly environment for configuring nodes.
 
 ```js filename="Generate QR Codes"
 import { toDataURL } from 'qrcode';
@@ -64,6 +95,8 @@ export default async function generateQRCode({ url }) {
 <Callout emoji='💡' type='tip'>
   If you wish to create your own node from scratch, you can do so by using the [Script node](../core-nodes/script).
 </Callout>
+Moreover, the Node Editor is accompanied by a **testing environment**, enabling users to **edit and test nodes simultaneously**,
+all without the need for deployment.
 
 ## Input Params
 
@@ -95,10 +128,14 @@ handling resulting data, promoting seamless integration with downstream processe
 
 Just as input parameters are accompanied by comprehensive descriptions, the "Info" section contains essential insights
 about the node's purpose and functionality. This contextual information aids in better understanding the node's role
-within your workflow.
+within your workflow. In the Node Info, you can:
+
+- Add Name, Description, and Icon for the node.
+- Select the NPM Package to execute for the SDK.
+- Select the required integration.
 
 <Callout emoji='💡' type='info'>
-  Learn more about Node Metadata [here](../core-nodes/script#node-metadata).
+  Learn more about Node Metadata [here](../core-nodes/script#node-metadata)
 </Callout>
 
 <Image src={script5} alt='script node' width='1200' />
