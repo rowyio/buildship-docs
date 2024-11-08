@@ -4,8 +4,16 @@ import Image from 'next/image';
 import { Callout } from 'nextra/components';
 import anatomy1 from '/public/basics/anatomy1.png';
 import script2 from '/public/nodes/script-2.png';
+import anatomy3 from '/public/basics/anatomy3.png';
 import script4 from '/public/nodes/script-4.png';
 import script5 from '/public/nodes/script-5.png';
+import inputNode from '/public/basics/input-node.png';
+import outputNode from '/public/basics/output-node.png';
+import v2NodeLogic from '/public/nodes/v2-node-logic.png';
+import inputEditor from '/public/nodes/editor-input.png';
+import nodeInfo from '/public/nodes/editor-info.png';
+import inputJson from '/public/nodes/input-json.png';
+import editorOutput from '/public/nodes/editor-output.png';
 
 Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete
 workflow. Each workflow now has two default nodes: **Inputs** and **Outputs**.
@@ -22,7 +30,7 @@ Explore the essential components and functionalities of Input and Output nodes, 
 
 ### Input Node
 
-<Image src={anatomy1} alt='Node Anatomy' width={1200} />
+<Image src={inputNode} alt='Input Node' width={1200} />
 
 The Input Node is designed to provide various types of inputs for your workflow. Here's a breakdown of its capabilities:
 
@@ -39,12 +47,12 @@ efficiently in the workflow.
 
 ### Output Node
 
-<Image src={anatomy1} alt='Node Anatomy' width={1200} />
+<Image src={outputNode} alt='Output Node' width={1200} />
 
 The Output Node is designed to return the data from the workflow. Here's a breakdown of its capabilities:
 
 <Callout emoji='💡' type='info'>
-  The output node is a Return node with advanced options
+  The output node is a **Return** node with advanced options
 </Callout>
 
 - **Output Types**: Choose between Last Node Output, or Custom Output.
@@ -55,8 +63,10 @@ The output node ensures that your workflow returns the required data according t
 
 ### Edit and Customize Nodes
 
-- **Add SecretKey**: Add the secret key for the node to use as authentication token or API key. Your keys are securely
-  stored using BuildShip's Secret Manager.
+<Image src={anatomy3} alt='Node Anatomy' width={1200} />
+
+- **Add Key**: Add the key for the node to use as authentication token or API key. Your keys are securely stored using
+  BuildShip's Secret Manager.
 - **Open Node Editor** `</>` This feature grants you the power to **modify the logic**, **input parameters**, **output
   configuration**, and **metadata descriptions** associated with a given node, providing the flexibility to tailor the
   nodes to your exact requirements.
@@ -71,7 +81,7 @@ The output node ensures that your workflow returns the required data according t
 
 ## Node Editor `</>`
 
-<Image src={script2} alt='script node' width='1200' />
+<Image src={v2NodeLogic} alt='Node Logic' width='1200' />
 
 Node Logic is a versatile code editor within BuildShip that empowers users to create and customize the functionality of
 a node. With Node Logic, you can:
@@ -110,7 +120,8 @@ These parameters can be set in the form UI or via JSON schema.
   page](./input).
 </Callout>
 
-<Image src={script4} alt='script node' width='1200' />
+<Image src={inputEditor} alt='Input Editor' width='1200' />
+<Image src={inputJson} alt='Input JSON' width='1200' />
 
 ## Output
 
@@ -122,7 +133,7 @@ handling resulting data, promoting seamless integration with downstream processe
   page](./input).
 </Callout>
 
-<Image src={script4} alt='script node' width='1200' />
+<Image src={editorOutput} alt='Output Editor' width='1200' />
 
 ## Node Info
 
@@ -138,4 +149,4 @@ within your workflow. In the Node Info, you can:
   Learn more about Node Metadata [here](../core-nodes/script#node-metadata)
 </Callout>
 
-<Image src={script5} alt='script node' width='1200' />
+<Image src={nodeInfo} alt='Node Info' width='1200' />
