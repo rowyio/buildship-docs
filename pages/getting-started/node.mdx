@@ -14,6 +14,9 @@ import inputEditor from '/public/nodes/editor-input.png';
 import nodeInfo from '/public/nodes/editor-info.png';
 import inputJson from '/public/nodes/input-json.png';
 import editorOutput from '/public/nodes/editor-output.png';
+import infoTip from '/public/nodes/info-tip.png';
+import saveNode from '/public/nodes/save-to-library.png';
+import Video from '../../components/video/index.jsx';
 
 Within BuildShip, each node is designated to fulfill a specific function, and the combination of nodes forms a complete
 workflow. Each workflow now has two default nodes: **Inputs** and **Outputs**.
@@ -60,6 +63,21 @@ The Output Node is designed to return the data from the workflow. Here's a break
 - **Custom Output**: Return any custom value of your choice.
 
 The output node ensures that your workflow returns the required data according to your workflow logic.
+
+### Using a Node
+
+Node can be added from the Nodes Library by clicking the "Add Node" button on the canvas between the input and output
+nodes.
+
+<Video src='/support/v2-node.mp4' />
+
+<Callout emoji='💡' type='tip'>
+  You can always hover over a node and click the info icon (i) to view more information about the node.
+</Callout>
+
+<br />
+
+<Image src={infoTip} alt='Node Info tooltip' width={1200} />
 
 ### Edit and Customize Nodes
 
@@ -117,9 +135,10 @@ These parameters can be set in the form UI or via JSON schema.
 
 <Callout emoji='💡' type='info'>
   Learn more about setting input params via JSON Schema and customizing node input parameters on the [Node Inputs
-  page](./input).
+  page](./input)
 </Callout>
 
+<br />
 <Image src={inputEditor} alt='Input Editor' width='1200' />
 <Image src={inputJson} alt='Input JSON' width='1200' />
 
@@ -130,9 +149,10 @@ handling resulting data, promoting seamless integration with downstream processe
 
 <Callout emoji='💡' type='info'>
   Learn more about setting outputs via JSON Schema and customizing node input parameters on the [Node Inputs
-  page](./input).
+  page](./input)
 </Callout>
 
+<br />
 <Image src={editorOutput} alt='Output Editor' width='1200' />
 
 ## Node Info
@@ -149,4 +169,13 @@ within your workflow. In the Node Info, you can:
   Learn more about Node Metadata [here](../core-nodes/script#node-metadata)
 </Callout>
 
+<br />
 <Image src={nodeInfo} alt='Node Info' width='1200' />
+
+## Save Node to Team Library
+
+You can save your node to the team library by clicking the **Save to Team Library** button in the node options menu. It
+helps you reuse the node in other workflows throughout the workspace and publish new version to maintain the node's
+version history.
+
+<Image src={saveNode} alt='Save Node to Team Library' width='1200' />
