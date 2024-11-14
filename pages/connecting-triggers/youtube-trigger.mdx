@@ -1,0 +1,113 @@
+---
+title: YouTube Trigger
+description: Trigger a workflow when a new video is uploaded to a YouTube channel.
+---
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import ytTriggerOg from 'public/assets/yt-trigger-og.png';
+import ytTriggerAuth from 'public/assets/yt-trigger-auth.png';
+import ytTriggerOutputs from 'public/assets/yt-trigger-outputs.png';
+
+# YouTube Trigger
+
+The YouTube Trigger is an OAuth-based **scheduled trigger** that **periodically checks a specified YouTube channel for
+new video uploads**, fetches the details of any newly published videos, and returns those video details along with an
+updated snapshot of the channel's state.
+
+<Image src={ytTriggerOg} alt='YouTube Trigger' width={1200} />
+
+Now easily automate workflows that need to be **triggered when a new video is uploaded to a YouTube channel**. For
+example, use the YouTube Trigger to **automatically share new video links on social media, send notifications to your
+team, or update a database with video details**.
+
+## Authentication
+
+The YouTube Trigger **uses OAuth 2.0 to authenticate with the YouTube API**. When you add a YouTube Trigger to your
+workflow, you will be prompted to authenticate with your Google account and grant the necessary permissions to the
+trigger.
+
+<Image src={ytTriggerAuth} alt='YouTube Trigger Authentication' width={1200} />
+
+<Callout>
+  To use the YouTube Trigger, you need to **make sure you are neccessary permissions to manage the associated YouTube
+  channel**.
+</Callout>
+
+## Trigger Inputs
+
+The YouTube Trigger requires the following inputs:
+
+### Channel URL
+
+The **URL of the YouTube channel** that you want to monitor for new video uploads. It's a required field, and you need
+to provide a valid YouTube channel URL.
+
+**SAMPLE INPUT:**
+
+`https://www.youtube.com/channel/UC1_8S7ffEDaOjcnjWOlRRlg`
+
+### Track Frequency
+
+The **frequency at which the trigger should check for new video uploads**. You can choose from the following options:
+
+- Every 5 minutes
+- Every 15 minutes
+- Every 30 minutes
+- Every 60 minutes
+- Every 6 hours
+- Every 12 hours
+- Every 24 hours
+- Every 5 days
+- Every 15 days
+- Every 30 days
+
+## Trigger Outputs
+
+The YouTube Trigger returns an output object containing the following properties:
+
+<Image src={ytTriggerOutputs} alt='YouTube Trigger Outputs' width={1200} />
+
+### New Videos
+
+`newVideos` is an **array of new videos detected** on the monitored YouTube channel since the last execution of the
+trigger.
+
+The `newVideos` array contains objects with the following properties:
+
+- `id` (string): The ID of the video.
+- `url` (string): The URL of the video.
+- `title` (string): The title of the video.
+- `description` (string): The description of the video.
+- `publishedAt` (string): The date and time when the video was published (in ISO format).
+- `thumbnail` (string): The URL of the video's thumbnail image.
+
+### Snapshot
+
+`snapshot` is an **object representing the current state of the monitored YouTube channel**, including the latest
+video's published date and a list of the most recent videos.
+
+The `snapshot` object contains the following properties:
+
+- `channelId` (string): The ID of the monitored YouTube channel.
+- `latestVideoPublishedAt` (string): The published date of the latest video on the channel (in ISO format).
+- `videos` (array): An array of video objects representing the most recent videos on the channel, with the same
+  properties as described in the newVideos array.
+
+### Channel ID
+
+The property `channelId` is the ID of the monitored YouTube channel.
+
+### Channel URL
+
+The property `channelUrl` is the URL of the monitored YouTube channel.
+
+### Latest Video Published At
+
+Property `latestVideoPublishedAt` gives the published date of the latest video on the channel (in ISO format).
+
+The `newVideos` array contains the details of any new videos that have been published on the monitored YouTube channel
+since the last execution of the trigger.
+
+The `snapshot` object provides a comprehensive view of the channel's current state, including the latest video's
+published date and a list of the most recent videos.

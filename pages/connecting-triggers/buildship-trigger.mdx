@@ -1,0 +1,99 @@
+# BuildShip Trigger
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import bs1 from '/public/assets/bs-trigger-1.png';
+import bs2 from '/public/assets/bs-trigger-2.png';
+import bs3 from '/public/assets/bs-trigger-3.png';
+import bs4 from '/public/assets/bs-trigger-4.png';
+import bs5 from '/public/assets/bs-trigger-5.png';
+
+The BuildShip Trigger serves as a **mechanism to initiate a BuildShip Workflow from another workflow** by employing the
+**Execute Workflow** node.
+
+This functionality enables users to trigger workflows within the same project or across different projects.
+
+<Callout type='tip'>
+  TIP 💡: An alternative method to accomplish this is through the **API Call** Node available in the Node Library.
+</Callout>
+
+<Image src={bs1} alt='BuildShip Trigger' width={1200} />
+
+## Understanding the Mechanism
+
+**1. Execute Workflow Node**
+
+This node is added to the primary workflow and serves the purpose of initiating the secondary workflow.
+
+**2. BuildShip Trigger**
+
+This is integrated into the secondary workflow, which is intended to be triggered.
+
+<Image src={bs2} alt='BuildShip Trigger' width={1200} />
+
+## Execute Workflow Node
+
+The Execute Workflow Node empowers users to trigger any workflow, regardless of whether it belongs to the same or a
+different project.
+
+<Image src={bs3} alt='BuildShip Trigger' width={1200} />
+
+For the Execute Workflow Node, the following information is required:
+
+### Project ID (optional)
+
+When executing a BuildShip Workflow that isn't part of the current project, users **must specify the Project ID**.
+
+This ID can be found within the **BuildShip Trigger Config** or in the **BuildShip Project Settings** page.
+
+### Workflow ID
+
+The Workflow ID is necessary to identify the workflow to be invoked. Users can retrieve this ID from the BuildShip
+Trigger config or copy it from the address bar. The Workflow ID is the last part of the URL, as shown below:
+
+```
+https://buildship.app/p/project-id/workflow/workflow-id
+```
+
+### Data
+
+This input allows users to pass data to another workflow as the request body. The data format is expected to be in the
+form of a JSON object.
+
+**Sample Data Object:**
+
+```json
+{
+  "name": "John Doe",
+  "age": 30,
+  "city": "New York"
+}
+```
+
+### Await?
+
+This boolean input determines whether the triggered secondary workflow needs to complete before proceeding with the
+remaining nodes in the primary workflow.
+
+## The BuildShip Trigger
+
+To complete this mechanism, users need to include the BuildShip Trigger Node in the secondary workflow intended to be
+initiated via the Execute Workflow node.
+
+<Image src={bs4} alt='BuildShip Trigger' width={1200} />
+
+The BuildShip Trigger node processes incoming trigger requests from the "**Execute Workflow**" node, validating the
+source and authenticating it.
+
+If calling the target workflow from a different BuildShip Project (other than the one housing the target workflow),
+users need to specify the Runtime Service Account from the other project. This information can be obtained from the
+Project Settings page within BuildShip.
+
+If the user needs to call the target workflow from a different BuildShip Project (other than the one with the target
+workflow), users need to specify the Runtime Service Account of other project (one with the "**Execute Workflow**"
+Node). The BuildShip Runtime Service Account can be obtained from the Project Settings page.
+
+The data passed through the Execute Workflow node can be accessed in the target workflow using the Data variable from
+the context menu in the Input Editor.
+
+<Image src={bs5} alt='BuildShip Trigger' width={1200} />

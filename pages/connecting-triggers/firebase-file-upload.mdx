@@ -1,0 +1,112 @@
+---
+title: Rest API File Upload (Auth) Trigger
+description:
+  The Authenticated Rest API File Upload Trigger is designed to verify and handle incoming HTTP requests with
+  multipart/form-data content type, which is commonly used for file uploads.
+---
+
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+import fbFileUpload1 from '/public/assets/firebase-file-upload-1.png';
+import fbFileUpload2 from '/public/assets/firebase-file-upload-2.png';
+import fbFileUpload3 from '/public/assets/firebase-file-upload-3.png';
+import fbFileUpload4 from '/public/assets/firebase-file-upload-4.png';
+import fileUpload5 from '/public/assets/file-upload-5.png';
+
+# Rest API File Upload (Auth) Trigger
+
+The Authenticated Rest API File Upload Trigger is designed to handle incoming HTTP requests with multipart/form-data
+content type, which is commonly used for file uploads.
+
+However, before processing the file upload, the trigger verifies if the request is coming from an authenticated user by
+checking the Authorization header for a valid Firebase ID token.
+
+If the token is valid, the trigger proceeds to parse the request body and extract the uploaded file along with its
+metadata. The file is then stored in a buffer, which can be used for further processing or storage.
+
+<Image src={fbFileUpload1} alt='Authenticated Rest API File Upload Trigger' width={1200} />
+
+<Callout>
+  If you're looking for a more general-purpose file upload trigger without verification, you can use the [Rest API File
+  Upload Trigger](/trigger-nodes/file-upload) instead.
+</Callout>
+
+## Input Request Structure
+
+The Upload File Trigger allows you to specify a **Path**, **Method**, and a **Project ID** for the trigger. The **Path**
+is the URL endpoint where the trigger will listen for incoming requests. The **Method** is the HTTP method that the
+trigger will listen for. The **Project ID** is the ID of the Firebase project that the trigger will use to verify the ID
+token. Leave empty to use default project associated with your BuildShip Workspace.
+
+<Image src={fbFileUpload2} alt='Authenticated Rest API File Upload Trigger' width={1200} />
+
+The trigger expects an HTTP request with the following structure:
+
+- **Content-Type:** `multipart/form-data`
+- **Method:** `POST` or `PUT`
+- **Headers:** The request should contain an `Authorization` header with a valid Firebase ID token.
+- **Body:** The request body should contain the file data and any additional form fields.
+
+The request body is parsed using the `multer` library, which is a middleware for handling `multipart/form-data` in
+Node.js.
+
+## Output
+
+<Image src={fbFileUpload3} alt='Authenticated Rest API File Upload Trigger' width={1200} />
+
+The trigger produces the following output:
+
+- **file:** An object containing the uploaded file and its metadata, including:
+
+  - `fieldname`: The name of the field containing the file in the form data.
+  - `originalname`: The original name of the file on the user's computer.
+  - `mimetype`: The MIME type of the file.
+  - `buffer`: A Buffer (Node.js) containing the entire file data.
+  - `size`: The size of the file in bytes.
+  - `encoding`: The encoding type of the file.
+
+- **body:** An object containing any additional form fields submitted with the request.
+- **headers:** An object containing the request headers.
+
+## Authentication
+
+Before processing the file upload, the trigger verifies the provided Firebase ID token by calling the `verifyIdToken`
+method from the Firebase Admin SDK. If the token is valid, the trigger proceeds with the file upload process. If the
+token is invalid or missing, an error is thrown with an "Unauthorized request" message.
+
+<Callout>
+  The Authenticated Rest API File Upload Trigger is designed to verify the Firebase ID token before processing the file
+  upload. Learn more on how to add the Firebase ID token to the request (or for testing) in the [Firebase Authentication
+  Trigger > Request Headers](/trigger-nodes/firebase-auth#request-headers).
+</Callout>
+
+## Usage
+
+Here's a basic template that can be cloned and used as a starting point. This example demonstrates how to use the
+Authenticated Rest API File Upload Trigger to verify and handle incoming file uploads and save the file to the BuildShip
+Cloud Storage to get back a public URL.
+([Click here to clone the template in your project!](https://buildship.app/remix?template=basic-firebase-file-upload))
+⭐️
+
+<Image src={fbFileUpload4} alt='Authenticated Rest API File Upload Trigger' width={1200} />
+
+## Testing
+
+You can test the Authenticated Rest API File Upload Trigger using tools like Postman or Hoppscotch. Here's an example of
+how to test it using Postman:
+
+1. Open Postman and create a new request.
+2. Set the request method to **POST** or **PUT**.
+3. Enter the endpoint URL in the request URL field.
+4. In the "Headers" tab, add a new header with the key "Authorization" and the value `Bearer <Firebase ID Token>`.
+   Replace `<Firebase ID Token>` with a valid Firebase ID token for an authenticated user.
+5. In the **Body** tab, select the `form-data` option.
+6. Click the "Choose File" button and select the file you want to upload.
+7. If you have additional form fields, you can add them under the "form-data" section.
+8. Click the "Send" button to submit the request.
+
+<Image src={fileUpload5} alt='Authenticated Rest API File Upload Trigger' width={1200} />
+
+If the request is successful and the provided Firebase ID token is valid, you should see the response from the trigger
+containing the file buffer and metadata. If the token is invalid or missing, you should see an "Unauthorized request"
+error.

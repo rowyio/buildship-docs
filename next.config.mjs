@@ -92,6 +92,19 @@ export default withNextra({
       destination: '/utility-nodes/api-call-node',
       permanent: true,
     },
+    // v2 redirect changes
+    {
+      source:
+        '/basics/:slug(workflow|node|trigger|input|ship-an-api|input-validation|output|update-outputs|variables|reordering-nodes|api-spec|buildship-tables|oauth|path-variable)',
+      destination: '/getting-started/:slug',
+      permanent: true,
+    },
+    {
+      source:
+        '/trigger-nodes/:slug(rest-api|scheduled-cron|rowy-trigger|telegram-bot|supabase-trigger|buildship-trigger|firebase-auth-request|github-trigger|rest-api-file-upload|rest-api-file-upload-auth|whatsapp-bot|email-trigger|lemon-squeezy|revenuecat-trigger|mongodb-trigger|youtube-trigger)',
+      destination: '/connecting-triggers/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

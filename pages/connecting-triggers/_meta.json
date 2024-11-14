@@ -1,0 +1,22 @@
+{
+  "rest-api": "Rest API",
+  "scheduled-cron": "Scheduled Cron",
+  "scheduled-interval": {
+    "title": "Scheduled Interval",
+    "display": "hidden"
+  },
+  "rowy-trigger": "Rowy Trigger",
+  "telegram-bot": "Telegram Bot",
+  "supabase-trigger": "Supabase Trigger",
+  "buildship-trigger": "Buildship Trigger",
+  "firebase-auth": "Firebase Auth Request",
+  "github-trigger": "GitHub Trigger",
+  "file-upload": "Rest API File Upload",
+  "firebase-file-upload": "Rest API File Upload (Auth)",
+  "whatsapp-bot": "WhatsApp Bot",
+  "email-trigger": "Email Trigger",
+  "lemon-squeezy": "Lemon Squeezy",
+  "revenue-cat": "RevenueCat Trigger",
+  "mongodb-trigger": "MongoDB Trigger",
+  "youtube-trigger": "YouTube Trigger"
+}

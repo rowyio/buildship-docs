@@ -1,0 +1,108 @@
+import Image from 'next/image';
+import triggers1 from '/public/basics/triggers1.png';
+import triggers2 from '/public/basics/triggers2.png';
+import { Callout } from 'nextra/components';
+import { Cards, Card } from 'nextra/components';
+
+# What is a Trigger?
+
+Triggers are the basis of the execution of any workflow. Each trigger node **serves as a starting point** for your
+workflow, allowing you to automate processes based on specific events or schedules. You can only add a single trigger
+node to a workflow.
+
+<Image src={triggers1} alt='Triggers' width={1200} priority={true} />
+
+## What are Trigger Nodes?
+
+Trigger nodes play a pivotal role in BuildShip as they are the **catalysts responsible for initiating the execution** of
+a workflow. Think of them as the "_starting points_" that kickstart the entire automation process.
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center', // Center horizontally
+    alignItems: 'center', // Center vertically
+  }}
+>
+  <Image src={triggers2} alt='Triggers' width={1200} />
+</div>
+
+## Characteristics of a Trigger
+
+- Trigger nodes are **responsible for triggering the execution** of a workflow
+- A workflow can have **only one trigger node**
+- Trigger nodes **do not have Input / Output manipulation** settings
+
+<Callout type='info' emoji='💡'>
+  Learn how to go from an idea to an actual workflow low-code style with BuildShip [here](/basics/ship-an-api). 🚀
+</Callout>
+
+## Types of Triggers
+
+Below you'll find detailed explaination and examples of our most popular Triggers types:
+
+<Cards num={3}>
+  <Card image arrow title='Rest API Call' href='/trigger-nodes/rest-api'>
+    <>![Rest API Call Trigger](/nodes/rest-api-1.png)</>
+  </Card>
+  <Card image arrow title='Scheduled Cron' href='/trigger-nodes/scheduled-cron'>
+    <>![Scheduled Cron Trigger](/nodes/cron-1.png)</>
+  </Card>
+  <Card image arrow title='Scheduled Interval' href='/trigger-nodes/scheduled-interval'>
+    <>![Scheduled Interval Trigger](/nodes/interval-1.png)</>
+  </Card>
+  <Card image arrow title='Rowy Trigger' href='/trigger-nodes/rowy-trigger'>
+    <>![Rowy Trigger](/assets/rowy-trigger-1.png)</>
+  </Card>
+  <Card image arrow title='Telegram Bot' href='/trigger-nodes/telegram-bot'>
+    <>![Telegram Bot](/nodes/telegram-bot.png)</>
+  </Card>
+  <Card image arrow title='Supabase Trigger' href='/trigger-nodes/supabase-trigger'>
+    <>![Supabase Trigger](/assets/supaTrigger2.png)</>
+  </Card>
+  <Card image arrow title='BuildShip Trigger' href='/trigger-nodes/buildship-trigger'>
+    <>![BuildShip Trigger](/assets/bs-trigger-4.png)</>
+  </Card>
+  <Card image arrow title='Firebase Auth Request Trigger' href='/trigger-nodes/firebase-auth'>
+    <>![Firebase Auth Request Trigger](/assets/fb-auth-1.png)</>
+  </Card>
+  <Card image arrow title='GitHub Trigger' href='/trigger-nodes/github-trigger'>
+    <>![GitHub Trigger](/assets/github-trigger-og.png)</>
+  </Card>
+  <Card image arrow title='Rest API File Upload Trigger' href='/trigger-nodes/file-upload'>
+    <>![Rest API File Upload Trigger](/assets/file-upload-1.png)</>
+  </Card>
+  <Card image arrow title='Rest API File Upload (Auth) Trigger' href='/trigger-nodes/firebase-file-upload'>
+    <>![Rest API File Upload (Auth) Trigger](/assets/firebase-file-upload-1.png)</>
+  </Card>
+  <Card image arrow title='WhatsApp Bot' href='/trigger-nodes/whatsapp-bot'>
+    <>![WhatsApp Bot](/nodes/whatsapp-bot.png)</>
+  </Card>
+  <Card image arrow title='Email Trigger' href='/trigger-nodes/email-trigger'>
+    <>![Email Trigger](/nodes/email-1.png)</>
+  </Card>
+  <Card image arrow title='Lemon Squeezy Trigger' href='/trigger-nodes/lemon-squeezy'>
+    <>![Lemon Squeezy Trigger](/assets/lemon-og.png)</>
+  </Card>
+  <Card image arrow title='RevenueCat Trigger' href='/trigger-nodes/revenue-cat'>
+    <>![RevenueCat Trigger](/assets/revenuecat-og.png)</>
+  </Card>
+  <Card image arrow title='Every Day (Cron) Trigger' href='/trigger-nodes/every-day'>
+    <>![Every Day (Cron) Trigger](/assets/every-day.png)</>
+  </Card>
+  <Card image arrow title='Every Hour (Cron) Trigger' href='/trigger-nodes/every-hour'>
+    <>![Every Hour (Cron) Trigger](/assets/every-hour.png)</>
+  </Card>
+  <Card image arrow title='Every Month (Cron) Trigger' href='/trigger-nodes/every-month'>
+    <>![Every Month (Cron) Trigger](/assets/every-month.png)</>
+  </Card>
+  <Card image arrow title='Every Week (Cron) Trigger' href='/trigger-nodes/every-week'>
+    <>![Every Week (Cron) Trigger](/assets/every-week.png)</>
+  </Card>
+  <Card image arrow title='MongoDB Trigger' href='/trigger-nodes/mongodb-trigger'>
+    <>![MongoDB Trigger](/assets/mongo-1.png)</>
+  </Card>
+  <Card image arrow title='YouTube Trigger' href='/trigger-nodes/youtube-trigger'>
+    <>![YouTube Trigger](/assets/yt-trigger-og.png)</>
+  </Card>
+</Cards>

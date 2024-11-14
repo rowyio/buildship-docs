@@ -1,0 +1,74 @@
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import rest1 from '/public/nodes/rest-api-1.png';
+import rest2 from '/public/nodes/rest-api-2.png';
+import rest3 from '/public/nodes/rest-api-3.png';
+import rest4 from '/public/nodes/rest-api-4.png';
+import addInputs from '/public/nodes/addInputs.png';
+import useRest1 from '/public/nodes/use-rest-1.png';
+import { Callout } from 'nextra/components';
+
+# REST API Call Trigger
+
+With this powerful trigger node, you can initiate automation by **sending HTTP requests to specified URL endpoints**.
+When setting up the REST API Call Trigger, you define the **path**, choose the **HTTP method** (GET, PUT, POST, DELETE),
+and create the complete endpoint URL.
+
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'center', // Center horizontally
+    alignItems: 'center', // Center vertically
+  }}
+>
+<Image src={rest1} alt='REST API Call Trigger' width={900} />
+
+</div>
+
+## How to connect 🔌
+
+1. Select the Method to trigger this API Call.
+2. Click on the button ‘Connect’ to get your endpoint URL listen to new data
+
+![1setup.gif](public/assets/1setup.gif)
+
+## How to test 🧪
+
+1. Click on ‘Get Data’ button and make a POST API call to your endpoint URL with the data you want to use on this
+   trigger.
+2. Select the data you would like to use in this Trigger and click on the button ‘Update Inputs’.
+
+![2GetData.gif](public/assets/2GetData.gif)
+
+<Callout type='info' emoji='💡'>
+  Your data will be added in the default values of the flow inputs. You can now access this data inside the following
+  actions in your Flow!
+</Callout>
+
+You can add more inputs by clicking on **‘+ Add input’** and You can change the **Type** of data if you need
+
+<Image src={addInputs} alt='REST API Call Trigger' width={900} />
+
+## How to use it 📝
+
+Click the button ‘Ship’ on the top right corner to make your flow **Active**. Copy the URL and make an API call to test
+it! You can ‘Pause’ your flow after if you need.
+
+<Image src={useRest1} alt='REST API Call Trigger Use' width={900} />
+
+You can use a tool like Hoppscotch or Postman to make an API Call to your flow and test it!
+
+https://hoppscotch.io/ or https://www.postman.com/
+
+Once you do the API Call, you can check the Logs to verify the data you are sending is being received.
+
+![Rest  Api Call - logs (2).gif](public/assets/rest-api-call-logs.gif)
+
+### Testing the Workflow
+
+To test our our Workflow, let’s go to Postman. Add in the copied Endpoint URL and set the request method to POST. (Same
+as we had set up in the Trigger Node)
+
+Add in the body and click Send! 🚀
+
+<Image src={rest4} alt='REST API Call Trigger' width={1000} />

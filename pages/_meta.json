@@ -17,8 +17,14 @@
       "breadcrumb": false
     }
   },
-  "basics": {
-    "title": "Basics",
+  "getting-started": {
+    "title": "Getting Started",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
+  "connecting-triggers": {
+    "title": "Connecting Triggers",
     "theme": {
       "breadcrumb": false
     }
@@ -27,7 +33,6 @@
     "type": "separator",
     "title": "Node Types"
   },
-  "trigger-nodes": "Trigger Nodes",
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",

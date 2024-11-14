@@ -1,0 +1,39 @@
+---
+title: Every Hour (Cron) Trigger
+description: The Every Hour (Cron) trigger is a convenient way to schedule a workflow to run automatically every hour.
+---
+
+import Image from 'next/image';
+import everyHour from '/public/assets/every-hour.png';
+
+# Every Hour Trigger
+
+The **Every Hour (Cron)** trigger is a convenient way to **schedule a workflow to run automatically every hour**. This
+trigger allows you to set up a recurring hourly execution for your workflows, similar to a traditional cron job. It can
+be particularly useful for automating tasks or processes that need to be executed on an hourly basis.
+
+<Image src={everyHour} alt='Every Hour (Cron) Trigger' width={1200} />
+
+## Trigger Inputs
+
+### Time Zone
+
+This is the only input field for this trigger. Here, you can **choose the appropriate time zone** for your scheduled
+trigger. The available time zones are listed, including popular options like `UTC`, `America/New_York`, `Europe/London`,
+`Asia/Shanghai`, and others.
+
+## Trigger Outputs
+
+This trigger does not have any specific outputs since its purpose is to initiate the execution of a workflow every hour.
+The outputs will depend on the workflow itself and the actions it performs.
+
+## Possible Use Cases
+
+The **Every Hour (Cron)** trigger can be useful in various scenarios where you need to automate recurring hourly tasks
+or processes. Here are some potential use cases:
+
+- **Data Synchronization:** Schedule a workflow to synchronize data between different systems or databases on an hourly
+  basis.
+- **Notifications:** Send out hourly notifications or reminders to users or customers for time-sensitive events or
+  updates.
+- **Web Scraping:** Scrape data from websites or APIs on an hourly basis for real-time data collection or analysis.

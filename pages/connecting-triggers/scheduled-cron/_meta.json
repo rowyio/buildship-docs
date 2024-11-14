@@ -1,0 +1,22 @@
+{
+  "every-day": {
+    "title": "Every Day (Cron)",
+    "display": "hidden"
+  },
+  "every-hour": {
+    "title": "Every Hour (Cron)",
+    "display": "hidden"
+  },
+  "every-month": {
+    "title": "Every Month (Cron)",
+    "display": "hidden"
+  },
+  "every-week": {
+    "title": "Every Week (Cron)",
+    "display": "hidden"
+  },
+  "scheduled-interval": {
+    "title": "Scheduled Interval",
+    "display": "hidden"
+  }
+}
