@@ -4,6 +4,9 @@ import rest1 from '/public/nodes/rest-api-1.png';
 import rest2 from '/public/nodes/rest-api-2.png';
 import rest3 from '/public/nodes/rest-api-3.png';
 import rest4 from '/public/nodes/rest-api-4.png';
+import addInputs from '/public/nodes/addInputs.png';
+import useRest1 from '/public/nodes/use-rest-1.png';
+import { Callout } from 'nextra/components';
 
 # REST API Call Trigger
 
@@ -18,60 +21,48 @@ and create the complete endpoint URL.
     alignItems: 'center', // Center vertically
   }}
 >
-  <Image src={rest1} alt='REST API Call Trigger' width={1200} />
+<Image src={rest1} alt='REST API Call Trigger' width={900} />
+
 </div>
 
-## Setting up a REST API Call Trigger in BuildShip
+## How to connect 🔌
 
-To set up a REST API Call Trigger in your BuildShip workflow, follow these steps:
+1. Select the Method to trigger this API Call.
+2. Click on the button ‘Connect’ to get your endpoint URL listen to new data
 
-<Steps>
-### Add Trigger Node
- 
-In a fresh workflow, click "Add Trigger," and select "Rest API Call" from the available options. The Rest API Call trigger comes with three fields:
+![1setup.gif](public/assets/1setup.gif)
 
-- **Path:** Specify the URL Endpoint to which you want to send the request.
-- **Method:** Choose the appropriate HTTP method for your request, such as GET, PUT, POST, or DELETE.
-- **Endpoint URL:** This is the complete request URL, including the endpoint you specified in the Path field.
+## How to test 🧪
 
-### Platform to send Requests
+1. Click on ‘Get Data’ button and make a POST API call to your endpoint URL with the data you want to use on this
+   trigger.
+2. Select the data you would like to use in this Trigger and click on the button ‘Update Inputs’.
 
-The REST API Call Trigger allows you to pick any platform to trigger an HTTP request to the specified Endpoint URL. This
-flexibility empowers you to integrate BuildShip with various applications and services seamlessly.
+![2GetData.gif](public/assets/2GetData.gif)
 
-</Steps>
+<Callout type='info' emoji='💡'>
+  Your data will be added in the default values of the flow inputs. You can now access this data inside the following
+  actions in your Flow!
+</Callout>
 
-## Example: Triggering a Workflow with a REST API Call
+You can add more inputs by clicking on **‘+ Add input’** and You can change the **Type** of data if you need
 
-**Calculator - Multiplying two numbers and returning the result**
+<Image src={addInputs} alt='REST API Call Trigger' width={900} />
 
-<Steps>
+## How to use it 📝
 
-### NODE 1: Trigger - Rest API Call
+Click the button ‘Ship’ on the top right corner to make your flow **Active**. Copy the URL and make an API call to test
+it! You can ‘Pause’ your flow after if you need.
 
-- Set path to `/calculator`
-- Method: `POST`
-- Copy the endpoint URL
+<Image src={useRest1} alt='REST API Call Trigger Use' width={900} />
 
-### NODE 2: Calculator Node
+You can use a tool like Hoppscotch or Postman to make an API Call to your flow and test it!
 
-- Selected a pre-built **Calculator Node** from the Node Library.
-- To add first and second numbers, **click on the Expression `(x)` icon** → Select **Expression** → Click on the
-  **Expression Editor** → Click on **Insert Variable** → Under **Request**, select **Body** and add the key in either of
-  the following formats: `["num1"]` or `.num1`.
-- Repeat the above step for the second number.
-- Selected the operation as **MULTIPLY**.
+https://hoppscotch.io/ or https://www.postman.com/
 
-<Image src={rest2} alt='REST API Call Trigger' width={900} />
+Once you do the API Call, you can check the Logs to verify the data you are sending is being received.
 
-### NODE 3: Return Node
-
-- Added a pre-built Return Node from the Node Library.
-- Set the Status Code to `(OK) 200`
-- For the Value, click on the Expression `(x)` icon → Select Expression → Click on the Expression Editor → Click on
-  Insert Variable → Under Calculator, select **Result**.
-
-<Image src={rest3} alt='REST API Call Trigger' width={900} />
+![Rest  Api Call - logs (2).gif](public/assets/rest-api-call-logs.gif)
 
 ### Testing the Workflow
 
@@ -81,5 +72,3 @@ as we had set up in the Trigger Node)
 Add in the body and click Send! 🚀
 
 <Image src={rest4} alt='REST API Call Trigger' width={1000} />
-
-</Steps>
