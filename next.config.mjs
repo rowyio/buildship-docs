@@ -101,7 +101,7 @@ export default withNextra({
     },
     {
       source:
-        '/trigger-nodes/:slug(rest-api|scheduled-cron|rowy-trigger|telegram-bot|supabase-trigger|buildship-trigger|firebase-auth-request|github-trigger|rest-api-file-upload|rest-api-file-upload-auth|whatsapp-bot|email-trigger|lemon-squeezy|revenuecat-trigger|mongodb-trigger|youtube-trigger)',
+        '/trigger-nodes/:slug(rest-api|scheduled-cron|rowy-trigger|telegram-bot|supabase-trigger|buildship-trigger|firebase-auth|github-trigger|file-upload|firebase-file-upload|whatsapp-bot|email-trigger|lemon-squeezy|revenue-cat|mongodb-trigger|youtube-trigger)',
       destination: '/connecting-triggers/:slug',
       permanent: true,
     },
