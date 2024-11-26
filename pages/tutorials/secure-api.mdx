@@ -2,11 +2,16 @@
 
 import Image from 'next/image';
 import { Callout } from 'nextra/components';
-import { Steps } from 'nextra/components';
+import { Steps, f } from 'nextra/components';
 import secureworkflow from '/public/tutorial/secureworkflows.png';
 import condition from '/public/tutorial/branch.png';
 import header from '/public/tutorial/header.png';
 import secureAPI from '/public/tutorial/secure-apis.png';
+import secureAPI1 from '/public/tutorial/secure-api-1.png';
+import secureAPI2 from '/public/tutorial/secure-api-2.png';
+import secureAPI3 from '/public/tutorial/secure-api-3.png';
+import secureAPI4 from '/public/tutorial/secure-api-4.png';
+import secureAPI5 from '/public/tutorial/secure-api-5.png';
 
 As you build, ship, and deploy workflows on BuildShip, it's crucial to ensure the security of your API endpoint when
 making it accessible on the internet.
@@ -23,32 +28,44 @@ access to the requested resource.
 
 ### Accessing Authorization Header
 
-To secure your API endpoint, you can utilize the REST API **Authorization Header** to validates the API key. It enables
-to authenticate and authorize users, protecting the API from unauthorized access. Follow these simple steps:
+To secure your API endpoint, you can utilize the REST API **Authorization Header** to validate the API key. It enables
+you to authenticate and authorize users, protecting the API from unauthorized access. Follow these simple steps:
 
-- Click on the **Edit icon (✎)** on the REST API Trigger.
-- Add a new input under **Request Headers** - authorization.
-- Click on Save.
+1. Click on the **Connect Button** to setup the REST API Trigger.<br/><br/>
+   <Image src={secureAPI1} alt='trigger connect setup' width='1200' />
+   <br />
+   <br />
+2. Under the Workflow inputs schema section, add a new input. Call it Authorization and set the type to String, then
+   save.<br/><br/>
+   <Image src={secureAPI2} alt='add new input' width='1200' /> <br />
+   <br />
+3. You can use dot notation to access any header value from the request headers. To begin, update the input to select
+   the authorization header from the request headers instead of from the request body: **Select Body > Trigger Data >
+   headers > headers** <br/><br/>
 
-<Image src={header} alt='authorizarion-header' width='1200' />
+   {' '}
+
+   <Image src={secureAPI3} alt='setup input' width='1200' />
 
 ### Adding Condition to Validate Header
 
 To enhance security, use a Branch Node to add a condition that validates and verifies the authorization header in the
 API request:
 
-- Set the condition in the Branch Node as `Authorization Header Value == key-to-match`. Utilize variables for
-  flexibility (refer to the image below).
+- For the first value of the condition select the Authorization input you created earlier. For the comparison, select
+  the equals to operator (==). Lastly, set the final value to the key you want to validate.
 - Organize your workflow nodes into the "then" and "else" conditions accordingly.
-
-<Image src={condition} alt='authorizarion-header-condition' width='1200' />
+  <br />
+  <br />
+  <Image src={secureAPI4} alt='authorizarion-header-condition' width='1200' />
 
 ### Congratulations! Your API Endpoint is Now Secured
 
 With the implemented security measures, you can confidently test and ship your workflow, ensuring the endpoint's safe
 usage within your application. Your workflow structure should resemble the following after following the above steps:
 
-<Image src={secureAPI} alt='authorizarion-header-condition-workflow' width='1200' />
+<br />
+<Image src={secureAPI5} alt='authorizarion-header-condition-workflow' width='1200' />
 
 </Steps>
 
