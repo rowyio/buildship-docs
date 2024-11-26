@@ -12,6 +12,9 @@ import secureAPI2 from '/public/tutorial/secure-api-2.png';
 import secureAPI3 from '/public/tutorial/secure-api-3.png';
 import secureAPI4 from '/public/tutorial/secure-api-4.png';
 import secureAPI5 from '/public/tutorial/secure-api-5.png';
+import secureAPILinking1 from '/public/tutorial/secure-api-linking-1.png';
+import secureAPILinking2 from '/public/tutorial/secure-api-linking-2.png';
+import secureAPILinking3 from '/public/tutorial/secure-api-linking-3.png';
 
 As you build, ship, and deploy workflows on BuildShip, it's crucial to ensure the security of your API endpoint when
 making it accessible on the internet.
@@ -24,18 +27,34 @@ The Authorization header provides the server with information to authenticate an
 It typically contains a token or credentials that the server uses to validate the client’s identity and grant or deny
 access to the requested resource.
 
+You have two options of accessing the Authorization header in your workflows:
+
 <Steps>
 
-### Accessing Authorization Header
+### Option 1: Listening for Authorization Header from a request
 
-To secure your API endpoint, you can utilize the REST API **Authorization Header** to validate the API key. It enables
-you to authenticate and authorize users, protecting the API from unauthorized access. Follow these simple steps:
+You can send a request to your workflow endpoint to define the input schema. Then you can easily select the
+Authorization header from the request headers. Follow these steps:
+
+1. Send a request to your workflow endpoint with the Authorization header.<br/><br/>
+   <Image src={secureAPILinking1} alt='send request' width='1200' /> <br />
+2. In BuildShip, select the **Get Data** button to load the request data. Once the data is loaded then you can find the
+   Authorization header by expanding the list of available headers.<br/><br/>
+   <Image src={secureAPILinking2} alt='get data' width='1200' />
+   <br />
+3. Click on the **Add input to schema** button to add the Authorization header as an input to your workflow. And that's
+   it.<br/><br/>
+   <Image src={secureAPILinking3} alt='add input to schema' width='1200' />
+
+### Option 2: Manually accessing Authorization Header
+
+You can manually create an input for you workflow to access the Authorization header. Follow these steps:
 
 1. Click on the **Connect Button** to setup the REST API Trigger.<br/><br/>
    <Image src={secureAPI1} alt='trigger connect setup' width='1200' />
    <br />
    <br />
-2. Under the Workflow inputs schema section, add a new input. Call it Authorization and set the type to String, then
+2. Under the Workflow inputs schema section, add a new input. Call it `Authorization` and set the type to String, then
    save.<br/><br/>
    <Image src={secureAPI2} alt='add new input' width='1200' /> <br />
    <br />
