@@ -105,6 +105,11 @@ export default withNextra({
       destination: '/connecting-triggers/:slug',
       permanent: true,
     },
+    {
+      source: '/:slug(flutterflow|bubble|toddle|webflow|framer|weweb|webstudio|wordpress|nextjs)',
+      destination: '/connect-with/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

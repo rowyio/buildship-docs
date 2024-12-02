@@ -17,10 +17,21 @@
       "breadcrumb": false
     }
   },
+  "connect-with": {
+    "title": "Connect BuildShip",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
+  "-- Getting": {
+    "type": "separator",
+    "title": "Basics"
+  },
   "getting-started": {
     "title": "Getting Started",
     "theme": {
-      "breadcrumb": false
+      "breadcrumb": false,
+      "collapsible": false
     }
   },
   "connecting-triggers": {
@@ -29,13 +40,22 @@
       "breadcrumb": false
     }
   },
-  "-- Themes": {
+  "-- Node Types": {
     "type": "separator",
     "title": "Node Types"
   },
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
+  "-- Dev Tools": {
+    "type": "separator",
+    "title": "Dev Tools"
+  },
+  "features": "Explore Features",
+  "env-var": "Environment Variables",
+  "testing": "Testing",
+  "logging": "Logging",
+  "secrets": "Secrets & API Keys",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"
@@ -49,28 +69,6 @@
   "productivity": "Productivity",
   "storage": "Storage",
   "crm": "CRM",
-  "-- Connect BuildShip With": {
-    "type": "separator",
-    "title": "Connect BuildShip With"
-  },
-  "flutterflow": "FlutterFlow",
-  "bubble": "Bubble",
-  "toddle": "Toddle",
-  "webflow": "Webflow",
-  "framer": "Framer",
-  "weweb": "WeWeb",
-  "webstudio": "WebStudio",
-  "wordpress": "WordPress",
-  "nextjs": "Next.js",
-  "--Theme": {
-    "type": "separator",
-    "title": "Dev Tools"
-  },
-  "features": "Explore Features",
-  "env-var": "Environment Variables",
-  "testing": "Testing",
-  "logging": "Logging",
-  "secrets": "Secrets & API Keys",
   "help-and-troubleshooting": {
     "type": "separator",
     "title": "Help & Troubleshooting"
