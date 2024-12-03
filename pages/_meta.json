@@ -25,7 +25,14 @@
   },
   "-- Getting": {
     "type": "separator",
-    "title": "Basics"
+    "title": "Getting Started"
+  },
+  "nodes": {
+    "title": "Nodes",
+    "theme": {
+      "breadcrumb": false,
+      "collapsible": false
+    }
   },
   "getting-started": {
     "title": "Getting Started",
@@ -33,6 +40,10 @@
       "breadcrumb": false,
       "collapsible": false
     }
+  },
+  "-- Triggers": {
+    "type": "separator",
+    "title": "Triggers"
   },
   "connecting-triggers": {
     "title": "Connecting Triggers",

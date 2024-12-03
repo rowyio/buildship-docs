@@ -110,6 +110,16 @@ export default withNextra({
       destination: '/connect-with/:slug',
       permanent: true,
     },
+    {
+      source: '/getting-started/node',
+      destination: '/nodes',
+      permanent: true,
+    },
+    {
+      source: '/getting-started/:slug(input|input-validation|output|update-outputs|oauth)',
+      destination: '/nodes/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
