@@ -27,6 +27,12 @@
     "type": "separator",
     "title": "Getting Started"
   },
+  "workflows": {
+    "title": "Workflows",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
   "nodes": {
     "title": "Nodes",
     "theme": {
@@ -34,8 +40,8 @@
       "collapsible": false
     }
   },
-  "getting-started": {
-    "title": "Getting Started",
+  "triggers": {
+    "title": "Triggers",
     "theme": {
       "breadcrumb": false,
       "collapsible": false

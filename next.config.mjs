@@ -120,6 +120,31 @@ export default withNextra({
       destination: '/nodes/:slug',
       permanent: true,
     },
+    {
+      source: '/getting-started/workflow',
+      destination: '/workflows',
+      permanent: true,
+    },
+    {
+      source: '/getting-started/:slug(ship-an-api|variables|api-spec)',
+      destination: '/nodes/:slug',
+      permanent: true,
+    },
+    {
+      source: '/getting-started/trigger',
+      destination: '/triggers',
+      permanent: true,
+    },
+    {
+      source: '/getting-started/path-variable',
+      destination: '/triggers/path-variable',
+      permanent: true,
+    },
+    {
+      source: '/getting-started/:slug(reordering-nodes|buildship-tables)',
+      destination: '/features/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
