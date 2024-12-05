@@ -6,12 +6,14 @@ import { Steps } from 'nextra/components';
 import secureworkflow from '/public/tutorial/secureworkflows.png';
 import condition from '/public/tutorial/branch.png';
 import header from '/public/tutorial/header.png';
-import secureAPI from '/public/tutorial/secure-apis.png';
 import secureAPI1 from '/public/tutorial/secure-api-1.png';
 import secureAPI2 from '/public/tutorial/secure-api-2.png';
 import secureAPI3 from '/public/tutorial/secure-api-3.png';
 import secureAPI4 from '/public/tutorial/secure-api-4.png';
 import secureAPI5 from '/public/tutorial/secure-api-5.png';
+import secureAPI6 from '/public/tutorial/secure-api-6.png';
+import secureAPI7 from '/public/tutorial/secure-api-7.png';
+import secureAPI8 from '/public/tutorial/secure-api-8.png';
 import secureAPILinking1 from '/public/tutorial/secure-api-linking-1.png';
 import secureAPILinking2 from '/public/tutorial/secure-api-linking-2.png';
 import secureAPILinking3 from '/public/tutorial/secure-api-linking-3.png';
@@ -50,10 +52,7 @@ Authorization header from the request headers. Follow these steps:
 
 You can manually create an input for you workflow to access the Authorization header. Follow these steps:
 
-1. Click on the **Connect Button** to setup the REST API Trigger.<br/><br/>
-   <Image src={secureAPI1} alt='trigger connect setup' width='1200' />
-   <br />
-   <br />
+1. Click on the **Connect Button** at the top to setup the REST API Trigger.
 2. Under the Workflow inputs schema section, add a new input. Call it `Authorization` and set the type to String, then
    save.<br/><br/>
    <Image src={secureAPI2} alt='add new input' width='1200' /> <br />
@@ -78,13 +77,31 @@ API request:
   <br />
   <Image src={secureAPI4} alt='authorizarion-header-condition' width='1200' />
 
+### Return Authorized and Unauthorized Responses
+
+Given an authorized request, it's typical to return an HTTP 200 (OK) response back to the client. Likewise, for an
+unauthorized request, return an HTTP 401 (Unauthorized) response. You can achieve this by setting the **Status Code**
+which can be found under the Additional options of the Output node.<br/><br/>
+
+<Image src={secureAPI6} alt='Secure-workflow' width='1200' />
+
+Lastly, you can update the workflow output properties in the trigger settings to return the `Flow Output` for the
+response body and the `Flow Output Status Code` for the response status code.
+
+<br />
+
+<Image src={secureAPI7} alt='Secure-workflow' width='1200' />
+
+1. For setting the Response Body, select **Flow Output > Flow Output**
+2. For setting the Response Status Code, select **Local Variables > Flow Output Status Code**
+
 ### Congratulations! Your API Endpoint is Now Secured
 
 With the implemented security measures, you can confidently test and ship your workflow, ensuring the endpoint's safe
 usage within your application. Your workflow structure should resemble the following after following the above steps:
 
 <br />
-<Image src={secureAPI5} alt='authorizarion-header-condition-workflow' width='1200' />
+<Image src={secureAPI8} alt='Secure-workflow' width='1200' />
 
 </Steps>
 
