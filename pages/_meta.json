@@ -49,7 +49,7 @@
   },
   "-- Triggers": {
     "type": "separator",
-    "title": "Triggers"
+    "title": "Connecting Triggers"
   },
   "connecting-triggers": {
     "title": "Connecting Triggers",
