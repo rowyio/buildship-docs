@@ -1,0 +1,95 @@
+# OAuth Nodes
+
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import oauthOg from '/public/basics/oauth-og.png';
+import oauth1 from '/public/basics/oauth-1.png';
+import oauth2 from '/public/basics/oauth-2.png';
+import { Cards, Card } from 'nextra/components';
+
+OAuth Nodes are a new addition to the BuildShip Node Library, designed to seamlessly integrate with various services
+through OAuth authentication.
+
+These nodes simplify the integration process by enabling connections with our favorite integrations without the need for
+additional setup involving API Keys or IDs.
+
+<Image src={oauthOg} alt='OAuth Nodes' width={1200} />
+
+## Key Features
+
+- **One-Click Integration**: Easily connect with selected integrations with a single click.
+
+- **No Additional Configuration**: Avoid the hassle of managing API Keys or IDs.
+
+- **User-Friendly Interface**: Recognizable by the Fingerprint Icon situated on the top right corner of the node,
+  enabling authentication.
+
+## Authenticating with OAuth Nodes
+
+OAuth Nodes feature a Fingerprint Icon initially highlighted in red, indicating a lack of authentication to any specific
+account.
+
+<Image src={oauth1} alt='OAuth Nodes' width={1200} />
+
+<Steps>
+### Initiating Authentication
+
+- Click on the Fingerprint Icon associated with the node.
+- This action triggers an authentication window, prompting users to log in to the integration.
+
+### Successful Authentication
+
+- Upon successful login, the Fingerprint Icon turns green, signifying a completed authentication process.
+
+- In the event the icon doesn't change automatically, users can manually select the authenticated user account by
+  clicking the Fingerprint Icon again.
+
+</Steps>
+
+## Managing Accounts
+
+<Image src={oauth2} alt='OAuth Nodes' width={1200} />
+
+### Switching/Addition of Accounts
+
+After a successful login, users can switch to or add a different account for the same integration using the following
+steps:
+
+- Click the Fingerprint Icon to access the menu.
+
+- Select the "**Add an Account**" option to initiate authentication for a new account.
+
+- Easily switch between accounts by selecting the desired account from the menu.
+
+### Removing Accounts / Logging Out
+
+- Click the Fingerprint Icon to open the authentication menu.
+- Select the specific account to log out from.
+- Click the "**Log Out**" button.
+
+<Callout>
+  **Note:** Ensure the account is selected before confirming the logout action. The logout action requires prior account
+  selection to be successful.
+</Callout>
+
+## OAuth Nodes Mechanism
+
+Unlike the regular integration nodes which require you to provide an API Key, the OAuth Nodes redirect you to the OAuth
+provider’s authorization endpoint.
+
+After account is successfully logged in and the request for the permissions is approved, the authorization code is
+exchanged for an Access Token. This Access Token substitutes for the API Keys.
+
+## BuildShip OAuth Nodes
+
+The BuildShip Node Library currently features the following OAuth Nodes (more to be added soon! 🤩):
+
+<Cards num={2}>
+  <Card image arrow title='Google Workspace' href='/productivity/google-workspace'>
+    <>![Gmail Nodes](/assets/gsuite.png)</>
+  </Card>
+  <Card image arrow title='Notion' href='/tutorials/notion-oauth'>
+    <>![Google Calendar Nodes](/assets/notion.png)</>
+  </Card>
+</Cards>

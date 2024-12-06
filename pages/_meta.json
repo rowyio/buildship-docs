@@ -17,11 +17,39 @@
       "breadcrumb": false
     }
   },
-  "getting-started": {
-    "title": "Getting Started",
+  "connect-with": {
+    "title": "Connect BuildShip",
     "theme": {
       "breadcrumb": false
     }
+  },
+  "-- Getting": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
+  "workflows": {
+    "title": "Workflows",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
+  "nodes": {
+    "title": "Nodes",
+    "theme": {
+      "breadcrumb": false,
+      "collapsible": false
+    }
+  },
+  "triggers": {
+    "title": "Triggers",
+    "theme": {
+      "breadcrumb": false,
+      "collapsible": false
+    }
+  },
+  "-- Triggers": {
+    "type": "separator",
+    "title": "Connecting Triggers"
   },
   "connecting-triggers": {
     "title": "Connecting Triggers",
@@ -29,13 +57,22 @@
       "breadcrumb": false
     }
   },
-  "-- Themes": {
+  "-- Node Types": {
     "type": "separator",
     "title": "Node Types"
   },
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
+  "-- Dev Tools": {
+    "type": "separator",
+    "title": "Dev Tools"
+  },
+  "features": "Explore Features",
+  "env-var": "Environment Variables",
+  "testing": "Testing",
+  "logging": "Logging",
+  "secrets": "Secrets & API Keys",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"
@@ -49,28 +86,6 @@
   "productivity": "Productivity",
   "storage": "Storage",
   "crm": "CRM",
-  "-- Connect BuildShip With": {
-    "type": "separator",
-    "title": "Connect BuildShip With"
-  },
-  "flutterflow": "FlutterFlow",
-  "bubble": "Bubble",
-  "toddle": "Toddle",
-  "webflow": "Webflow",
-  "framer": "Framer",
-  "weweb": "WeWeb",
-  "webstudio": "WebStudio",
-  "wordpress": "WordPress",
-  "nextjs": "Next.js",
-  "--Theme": {
-    "type": "separator",
-    "title": "Dev Tools"
-  },
-  "features": "Explore Features",
-  "env-var": "Environment Variables",
-  "testing": "Testing",
-  "logging": "Logging",
-  "secrets": "Secrets & API Keys",
   "help-and-troubleshooting": {
     "type": "separator",
     "title": "Help & Troubleshooting"
