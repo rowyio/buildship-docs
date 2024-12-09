@@ -1,9 +1,9 @@
 {
+  "return": "Output Node (Return)",
   "if-else": "Branch (If Else)",
   "loop": "Loop",
   "parallel": "Parallel",
   "switch": "Switch",
   "repeat": "Repeat",
-  "return": "Return",
   "script": "Empty Script"
 }
