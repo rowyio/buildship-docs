@@ -1,20 +1,77 @@
 import Image from 'next/image';
-import return1 from '/public/nodes/return1.png';
 
-# Return Node
+import { Callout } from 'nextra/components';
 
-The Return Node is used to **return values from the workflow**. It is the last node in the workflow and is always
-required. The Return Node is a crucial component in our workflow logic, designed to handle HTTP response codes and
-return a value upon execution.
+import outputOg from '/public/nodes/output-og.png';
+import output1 from '/public/nodes/output-1.png';
+import output2 from '/public/nodes/output-2.png';
+import output3 from '/public/nodes/output-3.png';
+import outputFeatures from '/public/nodes/output-features.png';
+import output4 from '/public/nodes/output-4.png';
 
-The Return Node is a **non-configurable** node that takes in predefined HTTP status codes and produces a corresponding
-value as output.
+# Output Node
 
-<Image src={return1} alt='return1' width='1200' />
+The Output Node is used to **return values from the workflow**. The Output Node is a crucial component in our workflow logic, designed to handle HTTP response codes and return a value upon its execution.
 
-## Supported Status Codes
+<Callout type='info'>
+Output node can be used analogously as the Return Node (previously).
+</Callout>
 
-The Return Node supports the following HTTP status codes:
+<br />
+<Image src={outputOg} alt='the output node' width='1200' />
+
+
+## Configuring the Output Node
+
+We can configure the Output Node by selecting different options from the `Use` dropdown. The Output Node can return values from the following sources:
+
+### Last Node Output
+
+The **default configuration** for the output node is to return the **Last node output**. There's no need to configure this setting, as it simply returns whatever the last node gives as the output. 
+
+Most of the use cases generally do not require a specific structure for the response to be returned. This setting is very useful for those cases - makes building super fast.
+
+<Image src={output1} alt='output 1' width='1200' />
+
+<Callout type='info'>
+Tip: You can always make use of the Flow Testing feature to see what's being returned by your BuildShip Workflow. You can always modify the responses from the output node. Just make sure to re-configure the returned items in your Trigger configuration.
+</Callout>
+
+
+### Custom Response
+
+We can switch the configuration to use Custom Output from the dropdown options. You can use this setting to return exactly what you need from the workflow.
+
+<Callout type='info'>
+**FEATURES:**
+- Use **AI Autofill** to generate values using AI. For example: return the current timestamp
+
+- Create complex javascript expressions leveraging the context menu variables, like inputs, environment variables, local variables, and secrets.
+
+<Image src={outputFeatures} alt='output features' width='1200' />
+</Callout>
+
+For example, in case of the BuildShip Chatbot Widget which requires the message (the response for the Bot to respond with) and the Thread ID (to main chat history context).
+
+We could add two output fields as shown below:
+
+<Image src={output2} alt='output 2' width='1200' />
+
+And map the workflow outputs to the trigger outputs in the set up like this:
+
+<br />
+<Image src={output3} alt='output 3' width='1200' />
+
+
+## Advanced Options
+
+The Output Node also lets you set advanced configurations for the returned data, like the Status Code and Cache Time.
+
+<Image src={output4} alt='output 4' width='1200' />
+
+### Status Code
+
+We can set the HTTP Status code to return when the Output Node is executed. Supports a bunch of status codes for successes, and also failures which can be utilized in branching workflows.
 
 - `200`: **OK**
 - `201`: **Created**
@@ -26,39 +83,9 @@ The Return Node supports the following HTTP status codes:
 - `404`: **Not Found**
 - `500`: **Internal Server Error**
 
-## Return Value
+### Cache Time
 
-The Return Nodes in the workflow allow users to generate specific output values based on various sources, providing
-flexibility and customization to the workflow logic. The Return Node can be used to return a value from the following
-sources:
-
-### Autofill Values using AI
-
-The Return Nodes can leverage the power of AI to autofill values automatically. By using AI-driven autofill feature,
-users can save time and ensure that the generated values align with the workflow's objectives.
-
-### Values via Expressions
-
-Return Nodes support expressions, allowing users to create dynamic output values by combining variables, constants, and
-functions. Expressions enable users to manipulate data and perform calculations, making it possible to generate
-responses that adapt to changing conditions during workflow execution.
-
-### Request Components
-
-In workflows **involving REST API triggers**, Return Nodes can return values derived from different components of the
-request. Users can extract data from the request's headers, parameters, and body to generate meaningful responses.
-
-**For Example:** The Return Node can extract the user's name from the request header and use it to personalize the
-output message.
-
-### Returning Output Values from Previous Nodes
-
-The power of workflows lies in their ability to connect and pass data between nodes. Return Nodes can utilize output
-values from previous nodes in the workflow. By referencing the outputs of other nodes, users can build complex logic and
-create cascading effects.
-
-**For Example:** If a previous node performs a calculation or retrieves data from a database, the Return Node can use
-that data to provide the final result of the workflow.
+The Output Node allows us to set the cache time for the response in the `cache-max-age` response header. This is used by the browser to cache the response for the specified amount of time. This means that the caching would be handled by the browser and the response would be served from the cache if the cache time has not expired.
 
 ## Video
 
