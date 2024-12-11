@@ -1,0 +1,68 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import stripeTrigger from '/public/assets/stripe-trigger.png';
+import stripeKey from '/public/assets/stripe-key.png';
+import stripeEvents from '/public/assets/stripe-events.png';
+import stripeDashboard from '/public/assets/stripe-dashboard.png';
+
+# Stripe Trigger
+
+The Stripe Trigger lets you establish a connection with your Stripe account, triggering workflows in response to specific webhook events. 
+
+This functionality allows real-time updates based on various activities within your Stripe Account, associated with charges, customers, etc.
+
+<br />
+<Image src={stripeTrigger} alt='Stripe Trigger' width={1200} />
+
+## Pre-requisites
+
+### Stripe API Key
+
+- Get your **Stripe Secret Key** by navigating to the [Stripe Developer Dashboard](https://dashboard.stripe.com/test/apikeys), and copy it.
+
+- Click on the **Integration Key** input to add the key to the project. Once added, this key can be used for all the Stripe Nodes and Triggers across your project.
+
+<Image src={stripeKey} alt='Stripe API' width={1200} />
+
+
+## Trigger Configuration
+
+The trigger requires two inputs:
+
+### Integration Key
+Select the Stripe API Key added to the project in the pre-requisites section.
+
+### Stripe Events
+Pick the Stripe Events to subscribe to from the multi-select dropdown. By default the `all events` option is selected. 
+
+<Callout type='info'>
+The multi-select dropdown also lets you add any custom events. Click on the “Add new” option at the bottom to add your own.
+
+Find list of all Stripe event types [here](https://docs.stripe.com/api/events/types).
+
+<Image src={stripeEvents} alt='Stripe Trigger Events' width={1200} />
+</Callout>
+
+
+## Connection and Testing
+
+Once the basic configuration is done, click on the “Connect” button. If connected successfully, the button shows success.
+
+This means that a webhook should have been successfully set up for your Stripe Project.
+
+To test, you can go to the [Stripe Webhooks](https://dashboard.stripe.com/test/webhooks) tab and check if a webhook has been created with the same endpoint as specified in the post-connection preview, along with the same event subscriptions.
+
+<Image src={stripeDashboard} alt='Stripe Dashboard' width={1200} />
+
+
+## Input / Output Mapping and Get Data
+
+You can map your Stripe Trigger payload for the subscribed events to be passed as inputs to your workflow. Stripe sends a different structure of payload for different events.
+
+You can also use the `Get Data` button to fetch the latest data from the Stripe API for the selected event type. To use this feature, we just need to trigger the specified event, for example: create a new customer in Stripe to trigger the `customer.created` event.
+
+This trigger does not have any output mapping as it is an event-based trigger.
+
+[Learn more](/triggers#workflow-inputs-schema-set-up) about how to map the workflow inputs and use the Get Data feature.

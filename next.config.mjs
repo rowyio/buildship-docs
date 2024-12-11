@@ -145,6 +145,33 @@ export default withNextra({
       destination: '/features/:slug',
       permanent: true,
     },
+    // triggers
+    {
+      source: '/connecting-triggers/:slug(rest-api|firebase-auth|file-upload|firebase-file-upload)',
+      destination: '/triggers-rest-api/:slug',
+      permanent: true,
+    },
+    {
+      source: '/connecting-triggers/:slug(telegram-bot|whatsapp-bot)',
+      destination: '/triggers-bots/:slug',
+      permanent: true,
+    },
+    {
+      source:
+        '/connecting-triggers/:slug(mongodb-trigger|rowy-trigger|supabase-trigger|buildship-trigger|github-trigger)',
+      destination: '/triggers-database/:slug',
+      permanent: true,
+    },
+    {
+      source: '/connecting-triggers/:slug(buildship-trigger|email-trigger|youtube-trigger|github-trigger)',
+      destination: '/triggers-integrations/:slug',
+      permanent: true,
+    },
+    {
+      source: '/connecting-triggers/:slug(lemon-squeezy|revenue-cat)',
+      destination: '/triggers-payments/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

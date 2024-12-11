@@ -1,0 +1,4 @@
+{
+    "scheduled-cron": "Schedule (Cron) Trigger",
+    "scheduled-interval": "Schedule (Interval) Trigger"
+}

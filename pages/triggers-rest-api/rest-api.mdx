@@ -1,0 +1,111 @@
+import Image from 'next/image';
+
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+
+import rest1 from '/public/nodes/rest-api-1.png';
+import rest4 from '/public/nodes/rest-api-4.png';
+import addInputs from '/public/nodes/addInputs.png';
+import useRest1 from '/public/nodes/use-rest-1.png';
+
+import restMapping from '/public/nodes/rest-mapping.png';
+import triggerInputSchema from '/public/assets/trigger-input-schema.png';
+import triggerOutputSchema from '/public/assets/trigger-output-schema.png';
+import triggerGetData from '/public/assets/trigger-get-data.png';
+import triggerGetDataRequest from '/public/assets/trigger-get-data-request.png';
+
+# REST API Call Trigger
+
+The Rest API Call Trigger lets us initiate a BuildShip Workflow by sending HTTP requests to specified URL endpoint. This is generally used for cases where a you have a client, a no-code frontend platform, or a third-party service that can send HTTP requests to a URL.
+
+<br />
+<Image src={rest1} alt='REST API Call Trigger' width={900} />
+
+## Configuring the Trigger
+
+- Go to the connect tab, and search for the “Rest API Call”. Pick the trigger to configure.
+- To set up the Rest API Call trigger, we need to add an **Endpoint Path**. The output path is pre-filled by default. We can modify this to be anything we prefer.
+
+<Callout type='info'>
+Tip: The Rest API Path also supports **Wildcards** (or Path Variables). [Learn more](/triggers/path-variable)
+</Callout>
+
+- We can also set up the **Request Method** for the Rest API Endpoint. The trigger is set to accept a POST request by default.
+
+![1setup.gif](public/assets/1setup.gif)
+
+
+### Advanced Options
+
+We have the option to **set the Request Content-Type header** for the incoming API Request. Generally, most of the requests have the `application/json` content type, which is selected for your request by default.
+
+We can pick from `application/x-www-form-urlencoded` and `text/plain` content types as well.
+
+
+
+## Setting up the Trigger
+
+Once the trigger is all set up, click on the **Connect** button to connect the trigger to the workflow. 
+
+This will generate an **Endpoint URL** that you can use to make API calls to trigger the workflow.
+
+Now, we'll be able to access additional settings to configure our workflow inputs and outputs. 
+Since the workflow logic is independent of the connected triggers, we would have to map the incoming request data to the workflow inputs, and the workflow outputs to the response.
+
+<br />
+<Image src={restMapping} alt='REST API Call Trigger Input Output Mapping' width={1200} />
+
+<Callout type='info'>
+Check out the Triggers overview page to find an example. [Learn more](/triggers)
+</Callout> 
+
+
+## Get Data
+
+Imagine you have a trigger set up, but you're not sure what the incoming request looks like to map it to the inputs in your workflow. To make things easier, we can make use of the Get Data feature in the post-setup preview screen.
+
+The **Get Data feature let's you fetch the latest request** to the set up endpoint and **define your Workflow Input Schema based on the request**.
+
+### How to use Get Data?
+
+- Make sure to **Connect** your Trigger
+
+- Just copy over the endpoint in the to your front-end client or API Testing Platform like Postman, or Hoppscotch. Send a request to the given endpoint.
+
+<Image src={triggerGetDataRequest} alt="trigger get data request" width={1200} />
+<Callout type='info'>
+The Get Data fetches the last request sent to the endpoint. You can **run this anytime you have a request previously sent to the endpoint**, and isn't required to be in real-time.
+</Callout>
+
+<br />
+<Image src={triggerGetData} alt="trigger get data" width={1200} />
+
+
+Once a request is found delivered to the endpoint, you'll be **displayed a tree structure of the properties received** in the request. **Select the required inputs for your workflow and click on “Add inputs to schema”**. This would automatically add the selected properties as inputs to your workflow auto-mapped.
+
+
+![2GetData.gif](public/assets/2GetData.gif)
+
+
+## Testing the Trigger
+
+Click the **Ship** button on the top right corner to make your flow **Active**. Copy the URL and make an API call.
+
+> You can 'Pause' your flow afterwards if you need.
+
+<Image src={useRest1} alt='REST API Call Trigger Use' width={900} />
+
+You can use a tool like [Hoppscotch](https://hoppscotch.io/) or [Postman](https://www.postman.com/) to make an API Call to your flow and test it!
+
+
+Once you do the API Call, you can check the Logs to verify the data you are sending is being received.
+
+![Rest  Api Call - logs (2).gif](public/assets/rest-api-call-logs.gif)
+
+### Testing the Workflow
+
+To test our our Workflow, let's go to Postman. Add in the copied Endpoint URL and set the request method to POST. (Same as we had set up in the Trigger Node)
+
+Add in the body and click Send! 🚀
+
+<Image src={rest4} alt='REST API Call Trigger' width={1000} />

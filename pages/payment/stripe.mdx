@@ -31,30 +31,10 @@ to perform a diverse range of operations, all without writing code.
 The Stripe Trigger establishes a connection with your Stripe account, triggering workflows in response to specific
 webhook events. This functionality allows real-time updates based on various activities within your Stripe Account.
 
-<Image src={stripe1} alt='Stripe Trigger' width={1200} />
-
-To enable the Stripe Trigger, users need to input the following information:
-
-<Steps>
-### Stripe Secret Key
-
-The Stripe Secret Key is a unique identifier that allows BuildShip to connect to your Stripe account. To find your
-Stripe Secret Key, navigate to the [Stripe Dashboard](https://dashboard.stripe.com/test/apikeys) and copy the **Secret
-Key**.
-
-<Callout emoji='💡' type='info'>
-  Learn more about Stripe Secret Keys [here](https://stripe.com/docs/keys).
-</Callout>
-
-### Stripe Events
-
-Select from a list of specific events or leave it empty to encompass all events. Some available events include
-`charge.captured`, `customer.subscription.updated`, and more shown below.
-
-<Image src={stripe2} alt="Stripe Events" width={1200} />
-
-Find list of all Stripe event types [here](https://docs.stripe.com/api/events/types).
-</Steps>
+<br />
+<Card image title='Stripe Trigger' href='/triggers-payments/stripe'>
+  <>![Stripe Trigger](../../public/assets/stripe-trigger.png)</>
+</Card>
 
 ## Stripe Nodes
 
