@@ -168,7 +168,7 @@ export default withNextra({
       permanent: true,
     },
     {
-      source: '/connecting-triggers/:slug(lemmon-squeezy|revenue-cat)',
+      source: '/connecting-triggers/:slug(lemon-squeezy|revenue-cat)',
       destination: '/triggers-payments/:slug',
       permanent: true,
     },

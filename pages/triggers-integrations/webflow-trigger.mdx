@@ -1,0 +1,77 @@
+import Image from 'next/image';
+
+import webflowAuthentication from '/public/integrations/webflow/webflow-authentication.png';
+import webflowSiteId from '/public/integrations/webflow/webflow-siteid.gif';
+import webflowWebhook from '/public/integrations/webflow/webflow-webhook.png';
+import webflowSuccess from '/public/integrations/webflow/webflow-success.png';
+
+# Webflow Trigger
+
+The Webflow Trigger lets you automate and collect valuable customer data and valuable insights from your Webflow Sites based on the subscribed event. Pick from a wide range of available trigger events like form submissions, site publishing, page, e-commerce, CMS collections and user account related events.
+
+<br />
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/MslmqyII7fQ'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+## Pre-requisites
+
+### Sign into your Webflow Account
+
+- Click on the **Authenticate** button to log into your Webflow Account.
+- Select the sites you wish to give BuildShip Access to for your trigger set up.
+
+<br />
+<Image src={webflowAuthentication} width={1200} />
+
+### Adding the Site ID
+
+- Go to your [Webflow Dashboard](https://webflow.com/dashboard) Site Settings.
+- Scroll down to the Overview section and copy the Site ID.
+
+<br />
+<Image src={webflowSiteId} width={1200} height={400} />
+
+
+## Trigger Configuration
+
+Once you've selected your Webflow Account for the website, and added your Webflow Site ID, all you need to do is **pick the trigger event you wish to subscribe to**.
+
+In case of the `form_submission` trigger event, we have the option to add a filter for the form (in case of multiple forms) we want the webhook payload events to be sent for.
+
+Here's a sample value for the filter field:
+
+```JSON
+{
+  "name": "The name of the form you'd like to recieve notifications for"
+}
+```
+
+## Connection and Testing
+
+Once the basic configuration is done, click on the “**Connect**” button. If connected successfully, the button shows success.
+
+This means that a webhook should have been successfully set up for your Webflow Site.
+
+To test, you can go to the [Webflow Dashboard](https://webflow.com/dashboard/) > **Apps and Integrations**, and check if a webhook has been created with the same endpoint as specified in the post-connection preview, along with the same event subscriptions.
+
+<br />
+<Image src={webflowWebhook} alt='Webflow Webhook Dashboard' width={1200} />
+
+
+## Input / Output Mapping and Get Data
+
+You can map your Webflow Trigger payload for the subscribed events to be passed as inputs to your workflow. Webflow sends a different structure of payload for different events.
+
+You can also use the `Get Data` button to fetch the latest data from the Webflow API for the selected event type. To use this feature, we just need to trigger the specified event, for example: create a new form submission in your linked Webflow Form to trigger the `form_submission` event.
+
+<br />
+<Image src={webflowSuccess} alt='Webflow Trigger Success' width={1200} />
+
+This trigger does not have any output mapping as it is an event-based trigger.
+
+[Learn more](/triggers#workflow-inputs-schema-set-up) about how to map the workflow inputs and use the Get Data feature.
