@@ -1,0 +1,6 @@
+{
+    "rest-api": "Rest API Trigger",
+    "firebase-auth": "Firebase Auth Trigger",
+    "file-upload": "File Upload Trigger",
+    "firebase-file-upload": "Firebase File Upload Trigger"
+}

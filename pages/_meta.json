@@ -51,6 +51,7 @@
     "type": "separator",
     "title": "Connecting Triggers"
   },
+  "triggers-rest-api": "Rest API Triggers",
   "connecting-triggers": {
     "title": "Connecting Triggers",
     "theme": {

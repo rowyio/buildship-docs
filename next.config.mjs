@@ -145,6 +145,12 @@ export default withNextra({
       destination: '/features/:slug',
       permanent: true,
     },
+    // triggers
+    {
+      source: '/connecting-triggers/:slug(rest-api|firebase-auth|file-upload|firebase-file-upload)',
+      destination: '/triggers-rest-api/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
