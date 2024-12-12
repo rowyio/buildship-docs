@@ -4,10 +4,14 @@ description: Trigger a workflow when a new video is uploaded to a YouTube channe
 ---
 
 import Image from 'next/image';
+
 import { Callout } from 'nextra/components';
+
 import ytTriggerOg from 'public/assets/yt-trigger-og.png';
 import ytTriggerAuth from 'public/assets/yt-trigger-auth.png';
 import ytTriggerOutputs from 'public/assets/yt-trigger-outputs.png';
+import ytTriggerConnected from 'public/assets/yt-trigger-connected.png';
+
 
 # YouTube Trigger
 
@@ -34,7 +38,7 @@ trigger.
   channel**.
 </Callout>
 
-## Trigger Inputs
+## Trigger Configuration
 
 The YouTube Trigger requires the following inputs:
 
@@ -61,6 +65,26 @@ The **frequency at which the trigger should check for new video uploads**. You c
 - Every 5 days
 - Every 15 days
 - Every 30 days
+
+
+## Connection and Testing
+
+Once the basic configuration is done, click on the “Connect” button. If connected successfully, the button shows success.
+
+You can test out your built workflow using the Workflow Testing option in the **Build** tab. This allows you to simulate the workflow execution and verify the expected outputs.
+
+<Image src={ytTriggerConnected} alt='YouTube Trigger Connected' width={1200} />
+
+## Input / Output Mapping and Get Data
+
+You can map your YouTube Trigger payload for the subscribed YouTube Channel to be passed as inputs to your workflow. Check out the output payload structure [below](#trigger-outputs).
+
+You can also use the `Get Data` button to fetch the latest data from the Supabase API for the selected event type. To use this feature, we just need to trigger the specified event, for example: update an existing entry in your Supabase table to trigger the `update` event.
+
+This trigger does not have any output mapping as it is an event-based trigger.
+
+[Learn more](/triggers#workflow-inputs-schema-set-up) about how to map the workflow inputs and use the **Get Data** feature.
+
 
 ## Trigger Outputs
 
