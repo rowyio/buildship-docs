@@ -1,58 +1,20 @@
-# Scheduled Cron Trigger
+
+import Image from 'next/image';
 
 import { Callout } from 'nextra/components';
-import { Steps } from 'nextra/components';
-import Image from 'next/image';
+import { Cards, Card } from 'nextra/components';
+
 import cron1 from '/public/nodes/cron-1.png';
 import cron2 from '/public/nodes/cron-2.png';
-import { Cards, Card } from 'nextra/components';
+
+# Scheduled Cron Trigger
+
 
 The Scheduled Cron Trigger node is a powerful tool within BuildShip that enables you to **automate workflows based on
 scheduled time intervals**. This trigger allows you to **initiate workflows at specific times**, or patterns, ensuring
 timely execution of your automation tasks.
 
 <Image src={cron1} alt='Scheduled Cron Trigger' width={1200} />
-
-## User Friendly Cron Triggers ⏰
-
-BuildShip offers a 4 user-friendly cron triggers which let you **schedule workflows to run at specific intervals**, like
-every day, every hour, every month, and every week. **No need to set up complex cron expressions, just choose the
-desired interval and time zone**. Learn more:
-
-<Cards num={2}>
-  <Card
-    image
-    arrow
-    title='Every Day: Schedule a workflow to run every day at a specified time, like 5 pm every day.'
-    href='/trigger-nodes/scheduled-cron/every-day'
-  >
-    <>![Every Day Cron Trigger](/assets/every-day.png)</>
-  </Card>
-  <Card
-    image
-    arrow
-    title='Every Hour: Schedule a workflow to run every hour for more frequent automation.'
-    href='/trigger-nodes/scheduled-cron/every-hour'
-  >
-    <>![Every Hour Cron Trigger](/assets/every-hour.png)</>
-  </Card>
-  <Card
-    image
-    arrow
-    title='Every Month: Schedule a workflow to run at a specific time on chosen days of the month, such as the 1st and 15th at midnight.'
-    href='/trigger-nodes/scheduled-cron/every-month'
-  >
-    <>![Every Month Cron Trigger](/assets/every-month.png)</>
-  </Card>
-  <Card
-    image
-    arrow
-    title='Every Week: Schedule a workflow to run at a specific time on chosen days of the week, like every Monday, Wednesday, and Friday at noon.'
-    href='/trigger-nodes/scheduled-cron/every-week'
-  >
-    <>![Every Month Cron Trigger](/assets/every-week.png)</>
-  </Card>
-</Cards>
 
 ## How to Use Scheduled Cron Trigger
 
@@ -133,19 +95,9 @@ The CRON expression for this scenario would be: `0 9 * * 1-5`
 
 To set up a Scheduled Cron Trigger within your BuildShip workflow, follow these steps:
 
-<Steps>
+- Go to the **Connect** tab and pick the Custom Schedule (Cron) trigger.
 
-### Add Trigger Node
-
-Create a new workflow or open an existing one. Click "Add Trigger" and select "Scheduled Cron" from the available
-trigger options.
-
-### Configure Fields
-
-Configure the fields within the Scheduled Cron Trigger node. You can choose the desired GCP region, schedule pattern,
-and time zone for your trigger as given in the above sections.
-
-</Steps>
+- Configure the fields within the Scheduled Cron Trigger node. You can choose your schedule pattern, and time zone for your trigger as given in the above sections.
 
 <Callout emoji="🦾">
 **Use Cases for Scheduled Interval Trigger**
@@ -163,3 +115,15 @@ and time zone for your trigger as given in the above sections.
     **Description**: This expression triggers the workflow every Monday at 8:00 AM. It's great for generating weekly reports at the start of the workweek.
 
 </Callout>
+
+## Connection and Testing
+
+Once the basic configuration is done, click on the “Connect” button. If connected successfully, the button shows success.
+
+You can test out your built workflow using the Workflow Testing option in the **Build** tab. This allows you to simulate the workflow execution and verify the expected outputs.
+
+## Input / Output Mapping and Get Data
+
+This trigger does not have any input/ output to mapping as it is a schedule-based trigger.
+
+Get Data is not supported.
