@@ -1,4 +1,4 @@
 {
-    "scheduled-cron": "Schedule (Cron) Trigger",
-    "scheduled-interval": "Schedule (Interval) Trigger"
+    "scheduled-cron": "Custom Schedule (Cron)",
+    "scheduled-interval": "Interval Schedule (Cron)"
 }
