@@ -1,11 +1,11 @@
-# Scheduled Interval Trigger
+# Interval Schedule (Cron) Trigger
 
 import { Steps } from 'nextra/components';
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
 import interval1 from '/public/nodes/interval-1.png';
 
-The Scheduled Interval Trigger node is a versatile feature within BuildShip that **facilitates workflow automation at
+The Scheduled Interval Trigger is a versatile feature within BuildShip that **facilitates workflow automation at
 regular intervals**. With this trigger, you can **define specific time intervals and units**, allowing you to streamline
 tasks and processes based on your requirements.
 
@@ -25,19 +25,10 @@ Configuring the Scheduled Interval Trigger involves the following fields:
 
 To set up a Scheduled Interval Trigger in your BuildShip workflow, follow these steps:
 
-<Steps>
+- Go to the **Connect** tab and pick the Interval Schedule (Cron) trigger.
 
-### Add Trigger Node
+- Configure the fields within the Interval Schedule Trigger. You can choose the desired **Interval**, and **time units** for your trigger as given in the above sections.
 
-Create a new workflow or edit an existing one. Click "Add Trigger" and select "Scheduled Interval" from the available
-trigger options.
-
-### Configure Trigger
-
-Configure the fields within the Scheduled Cron Trigger node. You can choose the desired Interval, and time units for
-your trigger as given in the above sections.
-
-</Steps>
 
 <Callout type="tip" emoji="🦾">
 
@@ -60,3 +51,16 @@ your trigger as given in the above sections.
     **Description**: This configuration triggers the workflow every hour, allowing you to automate routine maintenance tasks.
 
 </Callout>
+
+
+## Connection and Testing
+
+Once the basic configuration is done, click on the “Connect” button. If connected successfully, the button shows success.
+
+You can test out your built workflow using the Workflow Testing option in the **Build** tab. This allows you to simulate the workflow execution and verify the expected outputs.
+
+## Input / Output Mapping and Get Data
+
+This trigger does not have any input/ output to mapping as it is a schedule-based trigger.
+
+Get Data is not supported.

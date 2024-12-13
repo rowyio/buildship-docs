@@ -52,11 +52,11 @@
     "title": "Connecting Triggers"
   },
   "triggers-rest-api": "Rest API Triggers",
-  "triggers-integrations": "Integrations Triggers",
   "triggers-scheduled": "Scheduled Triggers",
-  "triggers-payments": "Payment Triggers",
   "triggers-database": "Database Triggers",
+  "triggers-payments": "Payment Triggers",
   "triggers-bots": "Bot Triggers",
+  "triggers-integrations": "Integrations Triggers",
   "-- Node Types": {
     "type": "separator",
     "title": "Node Types"

@@ -8,34 +8,31 @@ import Image from 'next/image';
 import Video from '../../components/video/index.jsx';
 import mongo1 from 'public/assets/mongo-1.png';
 import mongo2 from 'public/assets/mongo-2.png';
+import mongoConfiguration from 'public/assets/mongo-configuration.png';
 
 # MongoDB Trigger
 
 The MongoDB Trigger parses the incoming webhook payload from the MongoDB webhook triggers. In other words, **the
 BuildShip Workflow runs every time there are any changes in the linked MongoDB Collection, Database, or Deployment**.
-Alternatively, the workflow can also be made to run based on a given schedule (or a CRON expression); however, this
+Alternatively, the workflow can also be made to run based on a given schedule (or a CRON expression), however, this
 documentation is for setting up a Database Trigger.
 
+<br />
 <Image src={mongo1} alt='MongoDB Trigger' width={1200} />
 
 ## Prerequisites ✅
 
 - A MongoDB Project. If you don't have one set up, click [here](https://www.mongodb.com) to set one up.
 
-## Adding MongoDB Trigger
+## Trigger Configuration
 
-<Video src='/assets/mongo-trigg-setup.mov' />
+- Navigate to the **Connect** section. Select (or search for) the **MongoDB Trigger** and add it to the flow.
 
-- Create a new BuildShip Workflow and click on the "**Add Trigger**" button. Select (or search for) the **MongoDB
-  Trigger** and add it to the workflow.
+- This trigger doesn't require any configuration. Click on the "**Connect**" button to generate the Webhook URL.
 
-- Open the Instruction panel 📎 and copy the **Webhook URL**.
+- Copy the generated Webhook URL and check out the next section to [set up the MongoDB Trigger](#setting-up-the-mongodb-trigger).
 
-- To test the MongoDB Trigger functionality, click on the "**Add Node**" button and search for the
-  `Log message to console` node and add it to the workflow. For the input values, pass in the Request Body from the
-  context menu.
-
-- Hit "**Ship!** 🚀". Read the following section to complete the testing setup.
+<Image src={mongoConfiguration} alt='MongoDB Trigger Configuration' width={1200} />
 
 ## Setting up the MongoDB Trigger
 
@@ -66,10 +63,10 @@ import crypto from 'crypto';
 
 exports = async function (changeEvent) {
   const webhookUrl = ''; // Add your webhook URL here
-  const workflowId = webhookUrl.split('/').pop();
+  const triggerId = webhookUrl.split('/').pop();
 
   try {
-    const signature = generateSignature(changeEvent, workflowId);
+    const signature = generateSignature(changeEvent, triggerId);
 
     const res = await axios.post(webhookUrl, changeEvent, {
       headers: {
@@ -94,8 +91,8 @@ function generateSignature(data, secret) {
 - Click on the "**Add Dependency**" button and add `axios`, then hit "**Add**". This will install the dependency for the
   function execution. Similarly, add a dependency for the `crypto` package.
 
-- Once this is done, click on the "**▶︎ Run**" button at the bottom. If set up correctly, this should return `true` as
-  the output on the console.
+- Once this is done, click on the "**▶︎ Run**" button at the bottom. If set up correctly and your BuildShip workflow is shipped, this should return `true` as the output on the console.
+
 
 <Image src={mongo2} alt='MongoDB Trigger' width={1200} />
 
@@ -117,3 +114,13 @@ If you encounter any issues while setting up the MongoDB Trigger, here are some 
 
 - **Review the logs:** Check the MongoDB Function logs for any error messages or helpful information that can assist in
   troubleshooting.
+
+## Input / Output Mapping and Get Data
+
+You can map your MongoDB Trigger payload for the subscribed events to be passed as inputs to your workflow. MongoDB sends a different structure of payload for different events.
+
+You can also use the `Get Data` button to fetch the latest data from the MongoDB API for the selected event type. To use this feature, we just need to trigger the specified event, for example: update an existing entry in your MongoDB Collection to trigger the `update` event.
+
+This trigger does not have any output mapping as it is an event-based trigger.
+
+[Learn more](/triggers#workflow-inputs-schema-set-up) about how to map the workflow inputs and use the Get Data feature.
