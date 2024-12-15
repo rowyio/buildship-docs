@@ -81,6 +81,7 @@
   "using-templates": "BuildShip Templates",
   "remix": "Remix Workflows",
   "sticky-notes": "Sticky Notes",
+  "readme": "Readme Pages",
   "-- Dev Tools": {
     "type": "separator",
     "title": "Dev Tools"
