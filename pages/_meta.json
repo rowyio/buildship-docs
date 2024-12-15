@@ -80,6 +80,7 @@
   "node-failure": "Handle Node Failure",
   "using-templates": "BuildShip Templates",
   "remix": "Remix Workflows",
+  "sticky-notes": "Sticky Notes",
   "-- Dev Tools": {
     "type": "separator",
     "title": "Dev Tools"

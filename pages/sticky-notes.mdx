@@ -1,0 +1,40 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import stickyNotes from '../public/feature/sticky-notes.png';
+
+# Sticky Notes
+
+Sticky Notes are an easy way to add notes to your workflows. You can use them to add comments, instructions, or any other information that you want to share with your team.
+
+It makes it easier to document the workflow step-by-step. You can add sticky notes to any part of the workflow canvas. They can also be collapsed to save space.
+
+<br />
+<Image src={stickyNotes} alt='Sticky Notes' width={1200} />
+
+<Callout type='info'>
+Another way to document your workflow is by using the [Readme](/readme) feature. Readme pages are a documentation page, where as Sticky Notes are more like post-it notes for your workflow.
+</Callout>
+
+## Adding Sticky Notes
+
+To add a sticky note, click on the **Sticky Note** icon in the toolbar.
+
+### Sticky Notes attached to Nodes
+
+You can attach sticky notes to nodes by dragging the sticky note near the periphery of the desired node. The sticky note will be attached to the node and move with it.
+
+The sticky note will also be deleted if the node is deleted.
+
+### Canvas Sticky Notes
+
+You can also add sticky notes to the canvas by clicking anywhere on the canvas. The sticky note will be placed at the clicked location.
+
+## Editing Sticky Notes
+
+To edit a sticky note, click on the **Edit** icon on the sticky note or double click on the text area. You can then edit the text and save the changes.
+
+Sticky notes support markdown formatting. This allows you to add headings, lists, image, code snippets, YouTube videos and more to your sticky notes.
+
+Sticky notes can be resized by dragging the bottom right corner of the sticky note.
