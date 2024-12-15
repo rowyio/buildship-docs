@@ -87,10 +87,12 @@
     "title": "Dev Tools"
   },
   "env-var": "Environment Variables",
-  "testing": "Testing",
-  "logging": "Logging",
   "buildship-tables": "BuildShip Database",
   "secrets": "Secrets & API Keys",
+  "logging": "Logging",
+  "testing": "Testing",
+  "testing-examples": "Testing Examples",
+  "unit-testing": "Unit Testing",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"
