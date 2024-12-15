@@ -172,6 +172,12 @@ export default withNextra({
       destination: '/triggers-payments/:slug',
       permanent: true,
     },
+    // explore features
+    {
+      source: '/features/:slug',
+      destination: '/:slug',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
