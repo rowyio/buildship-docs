@@ -9,12 +9,7 @@ import Video from '@components/video/index.jsx';
 import nodeTesting2 from '/public/dev-tools/node-testing-2.png';
 import nodeTestingEntire from '/public/dev-tools/full-workflow-test.png';
 import nodeTestingEditor from '/public/dev-tools/node-editor-testing.png';
-import saveAsExample from '/public/dev-tools/save-as-example.png';
-import unitTesting from '/public/dev-tools/unit-testing.png';
-import newTest from '/public/dev-tools/new-test.png';
-import assertions from '/public/dev-tools/assertions.png';
-import passedTest from '/public/dev-tools/passed-test.png';
-import failedTest from '/public/dev-tools/failed-test.png';
+
 
 The Testing feature in BuildShip's Node Editor empowers users to **rigorously test their node logic without the need to
 deploy the entire workflow**. This functionality offers a **dedicated space** to validate your node's behavior, ensuring
@@ -34,6 +29,10 @@ Testing now has new key features to facilitate a seamless testing experience:
 During the development of your workflows, you have the ability to test individual nodes directly from the **node on the
 Canvas** or right from the **Node Editor**. This streamlined approach allows you to validate the functionality of your
 nodes without the necessity of deploying the entire workflow.
+
+<Callout type='info' emoji='🧪'>
+Learn more about adding **Unit Tests** to your nodes using the **Tests** feature in the node editor in our [Unit Testing](/unit-testing) guide.
+</Callout>
 
 Here's how you can test individual nodes:
 
@@ -105,29 +104,3 @@ In case of node failures, the testing mode reveals the exact node responsible fo
 exclamation mark reveals the error code and message, helping you pinpoint and address issues efficiently.
 
 </Steps>
-
-## Saving and Using examples
-
-Saving and using examples in BuildShip's testing feature allows you to preserve specific test cases for future reference
-and reuse. This functionality is particularly useful for maintaining consistency in your testing process and quickly
-re-executing tests with the same inputs. Follow the steps below to save and use examples:
-
-<Image src={saveAsExample} alt='Save-as-example' width={1200} />
-
-<Steps>
-
-### Access Saved Examples
-
-Navigate to the **Examples** section within the Node Editor or the Testing Mode. Here, you'll find a list of all your
-saved examples.
-
-### Use an Example
-
-Select an example from the list and click play **▶️** button. The test inputs will be automatically populated with the
-values from the saved example, allowing you to re-run the test with the same parameters.
-
-</Steps>
-
-<Callout type='info' emoji='🧪'>
-Learn more about adding **Unit Tests** to your nodes using the **Tests** feature in the node editor in our [Unit Testing](/unit-testing) guide.
-</Callout>
