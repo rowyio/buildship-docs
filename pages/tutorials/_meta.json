@@ -40,5 +40,8 @@
   },
   "rag": {
     "display": "hidden"
+  },
+  "custom-domain": {
+    "display": "hidden"
   }
 }

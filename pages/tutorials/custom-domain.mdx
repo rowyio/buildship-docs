@@ -1,0 +1,164 @@
+# Custom Domain
+
+import Image from 'next/image';
+import Video from '../../components/video/index.jsx';
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+import customDomain1 from '/public/tutorial/customDomain1.png';
+import customDomain2 from '/public/tutorial/customDomain2.png';
+import customDomain3 from '/public/tutorial/customDomain3.png';
+import customDomain4 from '/public/tutorial/customDomain4.png';
+import customDomain5 from '/public/tutorial/customDomain5.png';
+import customDomain6 from '/public/tutorial/customDomain6.png';
+import customDomain7 from '/public/tutorial/customDomain7.png';
+import customDomain8 from '/public/tutorial/customDomain8.png';
+import customDomain9 from '/public/tutorial/customDomain9.png';
+import customDomainOg from '/public/tutorial/custom-domain-og.png';
+import purchaseCustomDomain from '/public/tutorial/purchase-domain-addon.png';
+
+This tutorial demonstrates how to set up a custom domain for your BuildShip workspace. This allows you to use your own
+domain name instead of the default `https://18test.buildship.runi`. Note: **18test** is your workspace ID.
+
+<Image src={customDomainOg} alt='Custom-domain' width='1200' />
+
+## Prerequisites ✅
+
+- Paid BuildShip workspace with a custom domain add-on enabled.
+- A domain name that you own and have access to.
+- A subdomain of your domain name.
+- CNAME record for your domain.
+- Google Search Console access for your domain. (verified only using Domain - requires DNS verification)
+
+<Callout type='info' emoji='💡'>
+  The custom domain will be set up for the entire workspace. All the workflows will be accessible at the custom domain.
+  Also previously and newly created or shipped workflows will be accessible with both the default and custom domain
+  endpoints. No changes are required for previously created workflows.
+</Callout>
+
+## Purchase Custom Domain Add-on
+
+<Image src={purchaseCustomDomain} alt='Custom-domain' width='1200' />
+
+1. Go to the workspace settings page.
+2. Click on the "Plan" tab.
+3. Scroll down to the "Custom Domain" section and purchase the add-on.
+4. Once the add-on is purchased, you will be able to access the custom domain setup configuration on the app (under the
+   plan tab).
+
+## How to create a domain or subdomain for your domain.
+
+In this section, we will be using
+[Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/9776/2237/how-to-create-a-subdomain-for-my-domain/)
+as our domain registrar. You can use any other domain registrar of your choice.
+
+<Callout type='info' emoji='💡'>
+  If you have multiple workspaces, use a different subdomain for each of them.
+</Callout>
+
+1. Log in to your domain registrar's website.
+2. Navigate to the DNS settings for your domain.
+
+## Let's see the subdomain setup in detail
+
+<Steps>
+
+### Go to your Domain List and click Manage next to the domain:
+
+<Image src={customDomain1} alt='Custom Domain' width={1200} />
+
+### Select the Advanced DNS tab:
+
+<Image src={customDomain2} alt='Custom Domain' width={1200} />
+
+### On DNS Templates, choose DNS Template: (optional)
+
+<Image src={customDomain3} alt='Custom Domain' width={1200} />
+
+### Find the Host Records section and click on the Add New Record button:
+
+<Image src={customDomain4} alt='Custom Domain' width={1200} />
+
+### Select the way your subdomain will be connected:
+
+For our case, we be selecting Subdomain that points to a IP address of the destination hostname (CNAME).
+
+<Image src={customDomain5} alt='Custom Domain' width={1200} />
+
+### Selecting Record Type:
+
+It is possible to point a subdomain to another domain name with the help of CNAME record or ALIAS record.
+
+The important difference is that ALIAS can coexist with other records on that name. ALIAS record can also be used if you
+wish to alias the root domain to another service (which you cannot do with a CNAME record).
+
+- Select CNAME Record for Type, put your desired Host (will be your subdomain) and enter the record itself
+  (ghs.googlehosted.com) into Value:
+
+<Image src={customDomain6} alt='Custom Domain' width={1200} />
+
+### Check the Save All Changes button once done.
+
+</Steps>
+
+<Callout type='info' emoji='💡'>
+  Normally, it takes **30 minutes** for newly created records to take effect.
+</Callout>
+
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/lhsm_1jx2Uk?si=DaQBF2FUAWAoc19D'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+_Note: Credits to Namecheap for the video and content._
+
+## Connecting the custom domain/subdomain on BuildShip
+
+Let's connect the subdomain we created on Namecheap to our BuildShip workspace.
+
+<Steps>
+
+### Go to the plan page under the workspace settings.
+
+Enter your domain URL in the Custom Domain field and click on the Verify button.
+
+<Image src={customDomain7} alt='Custom Domain' width={1000} />
+
+After successful verification, you will see the configuration page.
+
+### Add the runtime service account as owner on Google Search Console
+
+<Image src={customDomain8} alt='Custom Domain' width={1000} />
+
+1. Copy the runtime service account email: `runtime@buildship-app.iam.gserviceaccount.com`.
+2. Go to [Google Search Console](https://search.google.com/search-console) and log in using your Google account.
+3. Verify you're an owner. If not, ask one of the current owners to add you.
+4. Go to the settings menu and choose "Users and Permissions."
+5. Click on "ADD USER" to add a new owner.
+6. In the pop-up window, paste the runtime email address and choose "Owner" for the permission level.
+7. Go to Settings menu and choose "Users and Permissions," select "Ownership History" and check if runtime event
+   (Ownership was delegated) is added.
+
+### Set the following record on your DNS provider
+
+1. Go to your domain manager and update your DNS records with the following values:
+
+   - **Name**: `api` (this is the subdomain we created on Namecheap)
+   - **Type**: `CNAME`
+   - **Value**: `ghs.googlehosted.com`
+
+2. Click the Verify button once the DNS records are updated.
+
+<Callout type='info' emoji='💡'>
+  It takes ~ 25 minutes for the custom domain to be fully active. Reach-out to support if you get into any issues.
+</Callout>
+
+</Steps>
+
+## Voila!
+
+You have successfully set up a custom domain for your BuildShip workspace.
+
+<Image src={customDomain9} alt='Custom Domain' width={1000} />
