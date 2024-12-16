@@ -1,0 +1,82 @@
+import Image from 'next/image';
+
+import { Callout, Steps } from 'nextra/components';
+
+import notionOg from '/public/assets/notion-og.png';
+import notionTriggerConnect from '/public/assets/notion-trigger-connect.gif';
+import notionHook from '/public/assets/notion-hook.gif';
+import notionConnectBuildship from '/public/assets/notion-connect-buildship.gif';
+import notionTesting from '/public/assets/notion-testing.gif';
+import notionGetData from '/public/assets/notion-get-data.png';
+
+# Notion Trigger
+
+Notion Trigger integrates with your Notion workspace to trigger workflows when a button is clicked in a Notion page. This can be used to send data from Notion to BuildShip or to trigger a workflow in BuildShip when a specific action is performed in Notion.
+
+<br />
+<Image src={notionOg} alt='Notion Trigger' width={1200} />
+
+## Setting up the Notion Trigger
+
+Before creating a connection between Notion and BuildShip, create a workflow in BuildShip that you want to trigger from Notion.
+
+> Start fast with the [Notion to Dev.to Blog template](https://app.buildship.com/template/QFqqgTOCUP9F).
+
+<br />
+<Image src={notionTriggerConnect} alt='Notion Trigger Connect' width={1200} />
+
+## Connecting Notion to BuildShip
+
+This trigger requires to set up the Notion Hook for your workspace. 
+
+<Callout type='info'>
+Read the entire documentation for setting up the Notion Hook Chrome Extension [here](/https://buildship.notion.site/Notion-Hook-e04872e7009a4d58b80436f34b59ae68). Learn how to override the buttons in Notion to trigger workflows in BuildShip with additional settings.
+</Callout>
+
+You can follow the steps below to set up the Notion Hook:
+
+<Steps>
+
+### Set up a Webhook Action on Notion
+
+Add a custom button to your Notion database using the `/button` shortcut command. Click "**Edit Automation**" and select the action "**Send Webhook**".
+
+<br />
+<Image src={notionHook} alt='Notion Hook' width={1200} />
+
+Paste the endpoint URL provided by the Notion Trigger into the Webhook URL field in Notion and select the data to send.
+
+
+Replace Button Label with the text you want to display on the button.
+
+### Connect Buildship to your Notion Database
+
+In your database's full-page view, click the three dots (...) in the top-right corner, select "Connect to", and add Buildship.
+
+<br />
+<Image src={notionConnectBuildship} alt='Notion Connect Buildship' width={1200} />
+
+
+### Send Test Data
+
+Click the newly added button on any database row to send test data.
+
+<br />
+<Image src={notionTesting} alt='Notion Testing' width={1200} />
+
+</Steps>
+
+
+
+## Input / Output Mapping and Get Data
+
+Once the above steps are completed and the test data is sent, you can map the payload from the Notion Trigger to the inputs of your workflow.
+
+You can use the `Get Data` button to fetch the latest data from your Notion Button.
+
+<br />
+<Image src={notionGetData} alt='Notion Get Data' width={1200} />
+
+This trigger does not have any output mapping as it is an integration-based trigger.
+
+[Learn more](/triggers#workflow-inputs-schema-set-up) about how to map the workflow inputs and use the Get Data feature.
