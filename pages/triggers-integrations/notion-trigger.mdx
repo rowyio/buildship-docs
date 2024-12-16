@@ -4,7 +4,7 @@ import { Callout, Steps } from 'nextra/components';
 
 import notionOg from '/public/assets/notion-og.png';
 import notionTriggerConnect from '/public/assets/notion-trigger-connect.gif';
-import notionHook from '/public/assets/notion-hook.png';
+import notionHook from '/public/assets/notion-hook.gif';
 import notionConnectBuildship from '/public/assets/notion-connect-buildship.gif';
 import notionTesting from '/public/assets/notion-testing.gif';
 import notionGetData from '/public/assets/notion-get-data.png';
@@ -37,29 +37,17 @@ You can follow the steps below to set up the Notion Hook:
 
 <Steps>
 
-### Install the Notion Hook Chrome Extension
+### Set up a Webhook Action on Notion
 
-Download and install BuildShip's [Notion Hooks Chrome extension](https://chromewebstore.google.com/detail/notion-hook/bgcalklihogdkkpdadmddgmlagladede) to enable the integration.
+Add a custom button to your Notion database using the `/button` shortcut command. Click "**Edit Automation**" and select the action "**Send Webhook**".
 
-
-### Add a custom button to your Notion page
-
-Add a custom button to your Notion database using the `/button` shortcut command. Set the button text using the following format:
-
+<br />
 <Image src={notionHook} alt='Notion Hook' width={1200} />
 
-```
-B$(https://your-endpoint-url)${Button Label}
-```
-
-Replace the `https://your-endpoint-url` with the endpoint URL provided by the Notion Trigger in your BuildShip workflow.
+Paste the endpoint URL provided by the Notion Trigger into the Webhook URL field in Notion and select the data to send.
 
 
 Replace Button Label with the text you want to display on the button.
-
-<Callout type='info'>
-Tip: You can find your endpoint URL within the Notion Trigger steps. Simply copy the text provided there and customize it to fit your needs.
-</Callout>
 
 ### Connect Buildship to your Notion Database
 
