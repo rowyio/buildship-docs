@@ -1,17 +1,15 @@
 # Testing
 
-import { Steps } from 'nextra/components';
 import Image from 'next/image';
+
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import Video from '@components/video/index.jsx';
+
 import nodeTesting2 from '/public/dev-tools/node-testing-2.png';
 import nodeTestingEntire from '/public/dev-tools/full-workflow-test.png';
 import nodeTestingEditor from '/public/dev-tools/node-editor-testing.png';
-import saveAsExample from '/public/dev-tools/save-as-example.png';
-import unitTesting from '/public/dev-tools/unit-testing.png';
-import newTest from '/public/dev-tools/new-test.png';
-import assertions from '/public/dev-tools/assertions.png';
-import passedTest from '/public/dev-tools/passed-test.png';
-import failedTest from '/public/dev-tools/failed-test.png';
-import Video from '@components/video/index.jsx';
+
 
 The Testing feature in BuildShip's Node Editor empowers users to **rigorously test their node logic without the need to
 deploy the entire workflow**. This functionality offers a **dedicated space** to validate your node's behavior, ensuring
@@ -31,6 +29,10 @@ Testing now has new key features to facilitate a seamless testing experience:
 During the development of your workflows, you have the ability to test individual nodes directly from the **node on the
 Canvas** or right from the **Node Editor**. This streamlined approach allows you to validate the functionality of your
 nodes without the necessity of deploying the entire workflow.
+
+<Callout type='info' emoji='🧪'>
+Learn more about adding **Unit Tests** to your nodes using the **Tests** feature in the node editor in our [Unit Testing](/unit-testing) guide.
+</Callout>
 
 Here's how you can test individual nodes:
 
@@ -102,96 +104,3 @@ In case of node failures, the testing mode reveals the exact node responsible fo
 exclamation mark reveals the error code and message, helping you pinpoint and address issues efficiently.
 
 </Steps>
-
-## Saving and Using examples
-
-Saving and using examples in BuildShip's testing feature allows you to preserve specific test cases for future reference
-and reuse. This functionality is particularly useful for maintaining consistency in your testing process and quickly
-re-executing tests with the same inputs. Follow the steps below to save and use examples:
-
-<Image src={saveAsExample} alt='Save-as-example' width={1200} />
-
-<Steps>
-
-### Access Saved Examples
-
-Navigate to the **Examples** section within the Node Editor or the Testing Mode. Here, you'll find a list of all your
-saved examples.
-
-### Use an Example
-
-Select an example from the list and click play **▶️** button. The test inputs will be automatically populated with the
-values from the saved example, allowing you to re-run the test with the same parameters.
-
-</Steps>
-
-## Unit Testing
-
-You can also write unit tests for any of your nodes using the **Tests** feature in the node editor. This capability
-allows you to validate the behavior of your nodes in isolation, ensuring that they perform as expected under various
-conditions.
-
-Lets see how you can write unit tests for your nodes with a simple example:
-
-<Steps>
-
-### Open the Node Editor and click Tests
-
-Navigate to the Node Editor and click on the **Tests** tab to access the testing feature. Before you write tests for any
-node you'll require to save the node to the My Library, to ensure we create a separate copy of the node for testing
-purposes without affecting the original workflow node.
-
-<Image src={unitTesting} alt='Node Unit Testing' width={1200} />
-### Creating a New Test
-
-As soon as the node gets saved to the My Library, you can start creating test cases for the node. Click on the **+ New
-Test** button to access the unit testing feature.
-
-<Image src={newTest} alt='New Unit Test' width={1200} />
-
-### What are Assertions in Unit Testing?
-
-Assertions are statements that check if a condition is true. In the context of unit testing, assertions are used to
-compare the actual output of a node with the expected output. If the condition is true, the test passes; otherwise, it
-fails. Assertions help identify discrepancies between the expected and actual behavior of your node, making it easier to
-debug and fix issues.
-
-Common types of assertions include:
-
-- **Equality Assertion**: Checks if the actual output is equal to the expected output.
-- **Truthy/Falsy Assertion**: Checks if the actual output is truthy or falsy.
-- **Contains Assertion**: Checks if the actual output contains a specific value or structure.
-- **Customized Assertion**: Allows you to define custom conditions for validating the output.
-
-By using assertions, you can ensure that your nodes perform as expected and handle various scenarios correctly.
-
-### Add Assertions
-
-Assertions are used in unit testing to verify that the output of your node matches the expected result. They help ensure
-that your node behaves correctly under various conditions. You can Create multiple assertions to validate your test
-result Here's how you can add assertions to your unit tests:
-
-**Add Assertions**: After defining the test inputs, add assertions to verify the output. Click on the "**Add
-Assertion**" button and specify the expected output for the given inputs. You can add multiple assertions to validate
-different aspects of the node's behavior.
-
-<Image src={assertions} alt='Unit Test Assertions' width={1200} />
-
-### Run the Test
-
-Once you've added the test inputs and assertions, click the "**Run Test**" button to execute the test. The test results
-will display the status of each assertion, indicating whether it passed or failed. You can review the test results to
-identify any discrepancies between the expected and actual output of your node.
-
-Passed Test:
-
-<Image src={passedTest} alt='Unit Test Assertions Passed Result' width={1200} />
-
-Failed Test:
-
-<Image src={failedTest} alt='Unit Test Assertions Failed Result' width={1200} />
-
-</Steps>
-
-With BuildShip's testing capabilities, you can iterate through your workflow design, ensuring its effectiveness and
-identifying any flaws or bugs before deploying it to your production environment.

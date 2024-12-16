@@ -1,0 +1,39 @@
+import Image from 'next/image';
+
+import Video from '../components/video/index.jsx';
+import { Callout } from 'nextra/components';
+
+import remixUpdate from '../public/feature/update-remix.png'
+
+
+# Remix Workflows
+
+Creating a Workflow Remix a new way to share workflows with BuildShip, across projects and users.
+
+Instead of the traditional copy and paste method, Remix Workflows allows you to create a single link that can be shared with anyone. This link will open the workflow in the recipient's BuildShip account, where they can select which project to clone the remix to, view, edit, and run the workflow.
+
+<Callout type='info'>
+Remixes also work for multiple workflows inside a folder. When you share a folder remix, all workflows inside the folder will be cloned, along with the Readme pages (if any).
+
+This feature is available in the workflow menu (▿) at the folder level.
+</Callout>
+
+## Creating a Remix
+
+To create a Remix, open the Workflow Menu (▿) next to the workflow name (or via the top bar menu), and select '**Share remix link**'. This will generate a unique link that you can share with others.
+
+<Video src='/feature/remix.mp4' />
+
+## Updating a Remix
+
+When you update a workflow that has been remixed, **the changes will be not be reflected immediately**.
+
+To update a remix, open the Workflow Menu (▿) again (or the top bar menu), and select '**Update remixes**'. This will update the remix URL to clone with the latest changes.
+
+<Image src={remixUpdate} width={1200} />
+
+## Deleting/Unpublishing a Remix
+
+To delete a remix, open the Workflow Menu (▿) again (or the top bar menu), and select '**Unpublish**'. This will remove the remix, and the link will no longer work.
+
+Your original workflow will not be affected by this action.

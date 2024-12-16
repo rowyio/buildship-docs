@@ -1,0 +1,41 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import readme from '../public/feature/readme.png';
+import readme2 from '../public/feature/readme-2.png';
+
+# Readme Pages
+
+Readme pages are a documentation page that can be added to your workflow. They are a great way to add provide additional context to the workflow, such as how to use it, what it does, or any other information that you want to share.
+
+Readme pages are separate from the workflow canvas and can only exist in a folder. A folder can have a single Readme page.
+
+<br />
+<Image src={readme} alt='Readme' width={1200} />
+
+<Callout type='info'>
+The Readme pages work well with the workflow remix feature (Readme pages would be shared along with the workflow) and for sharing workflow templates to the BuildShip Community.
+</Callout>
+
+## Adding a Readme Page
+
+To add a Readme page, open the Workflow Menu (▿) next to the workflow name (or via the top bar menu) / or a folder name, and select '**Create Read Me**'.
+
+A new Readme page will be created in the folder.
+
+## Editing a Readme Page
+
+The Readme pages support markdown formatting. This allows you to add headings, lists, images, code snippets, YouTube videos, and more to your Readme page.
+
+The toolbar at the top of the Readme page editor provides options to format the text, add images, links, and more.
+
+Changes to the Readme page are auto-saved.
+
+<br />
+<Image src={readme2} alt='Readme 2' width={1200} />
+
+
+## Deleting a Readme Page
+
+To delete a Readme page, open the Workflow Menu (▿) next to the Readme page name, and select '**Delete**'.

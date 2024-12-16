@@ -64,15 +64,36 @@
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
+  "-- Features": {
+    "type": "separator",
+    "title": "Features"
+  },
+  "copy-paste": "Copy & Paste",
+  "api-spec": {
+    "title": "Export / Import API Spec",
+    "display": "hidden"
+  },
+  "rename": "Rename Workflow",
+  "reordering-nodes": "Reorder Nodes",
+  "rename-node": "Rename Nodes",
+  "skip": "Skip Nodes",
+  "node-failure": "Handle Node Failure",
+  "using-templates": "BuildShip Templates",
+  "remix": "Remix Workflows",
+  "sticky-notes": "Sticky Notes",
+  "readme": "Readme Pages",
   "-- Dev Tools": {
     "type": "separator",
     "title": "Dev Tools"
   },
-  "features": "Explore Features",
   "env-var": "Environment Variables",
-  "testing": "Testing",
-  "logging": "Logging",
+  "buildship-tables": "BuildShip Database",
   "secrets": "Secrets & API Keys",
+  "logging": "Logging",
+  "testing": "Testing",
+  "unit-testing": "Unit Testing",
+  "testing-examples": "Testing Examples",
+  "version-control": "Version Control",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"

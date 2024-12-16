@@ -1,0 +1,81 @@
+import Image from 'next/image';
+
+import { Steps } from 'nextra/components';
+
+import unitTesting from '/public/dev-tools/unit-testing.png';
+import newTest from '/public/dev-tools/new-test.png';
+import assertions from '/public/dev-tools/assertions.png';
+import passedTest from '/public/dev-tools/passed-test.png';
+import failedTest from '/public/dev-tools/failed-test.png';
+
+# Unit Testing
+
+You can also write unit tests for any of your nodes using the **Tests** feature in the node editor. This capability
+allows you to validate the behavior of your nodes in isolation, ensuring that they perform as expected under various
+conditions.
+
+
+## How to Write Unit Tests for Your Nodes
+
+<Steps>
+
+### Open the Node Editor and click Tests
+
+Navigate to the Node Editor and click on the **Tests** tab to access the testing feature. Before you write tests for any
+node you'll require to save the node to the My Library, to ensure we create a separate copy of the node for testing
+purposes without affecting the original workflow node.
+
+<Image src={unitTesting} alt='Node Unit Testing' width={1200} />
+### Creating a New Test
+
+As soon as the node gets saved to the My Library, you can start creating test cases for the node. Click on the **+ New
+Test** button to access the unit testing feature.
+
+<Image src={newTest} alt='New Unit Test' width={1200} />
+
+### What are Assertions in Unit Testing?
+
+Assertions are statements that check if a condition is true. In the context of unit testing, assertions are used to
+compare the actual output of a node with the expected output. If the condition is true, the test passes; otherwise, it
+fails. Assertions help identify discrepancies between the expected and actual behavior of your node, making it easier to
+debug and fix issues.
+
+Common types of assertions include:
+
+- **Equality Assertion**: Checks if the actual output is equal to the expected output.
+- **Truthy/Falsy Assertion**: Checks if the actual output is truthy or falsy.
+- **Contains Assertion**: Checks if the actual output contains a specific value or structure.
+- **Customized Assertion**: Allows you to define custom conditions for validating the output.
+
+By using assertions, you can ensure that your nodes perform as expected and handle various scenarios correctly.
+
+### Add Assertions
+
+Assertions are used in unit testing to verify that the output of your node matches the expected result. They help ensure
+that your node behaves correctly under various conditions. You can Create multiple assertions to validate your test
+result Here's how you can add assertions to your unit tests:
+
+**Add Assertions**: After defining the test inputs, add assertions to verify the output. Click on the "**Add
+Assertion**" button and specify the expected output for the given inputs. You can add multiple assertions to validate
+different aspects of the node's behavior.
+
+<Image src={assertions} alt='Unit Test Assertions' width={1200} />
+
+### Run the Test
+
+Once you've added the test inputs and assertions, click the "**Run Test**" button to execute the test. The test results
+will display the status of each assertion, indicating whether it passed or failed. You can review the test results to
+identify any discrepancies between the expected and actual output of your node.
+
+Passed Test:
+
+<Image src={passedTest} alt='Unit Test Assertions Passed Result' width={1200} />
+
+Failed Test:
+
+<Image src={failedTest} alt='Unit Test Assertions Failed Result' width={1200} />
+
+</Steps>
+
+With BuildShip's testing capabilities, you can iterate through your workflow design, ensuring its effectiveness and
+identifying any flaws or bugs before deploying it to your production environment.

@@ -1,0 +1,35 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+import { Steps } from 'nextra/components';
+
+import saveAsExample from '/public/dev-tools/save-as-example.png';
+
+# Saving and Using examples
+
+Saving and using examples in BuildShip's testing feature allows you to preserve specific test cases for future reference and reuse. This functionality is particularly useful for maintaining consistency in your testing process and quickly re-executing tests with the same inputs.
+
+> This feature is available for both individual node testing and full workflow testing.
+
+<Callout type='info' emoji='🧪'>
+Learn more about adding **Unit Tests** to your nodes using the **Tests** feature in the node editor in our [Unit Testing](/unit-testing) guide.
+</Callout>
+
+
+## Save as Example
+
+<Image src={saveAsExample} alt='Save-as-example' width={1200} />
+
+Follow the steps below to save and use examples:
+
+<Steps>
+
+### Access Saved Examples
+
+Navigate to the **Examples** section within the Node Editor or the Testing Mode. Here, you'll find a list of all your saved examples.
+
+### Use an Example
+
+Select an example from the list and click play **▶️** button. The test inputs will be automatically populated with the values from the saved example, allowing you to re-run the test with the same parameters.
+
+</Steps>
