@@ -1,0 +1,22 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import workflowVersions from '../public/feature/workflow-versions.png';
+import restoreVersion from '../public/feature/restore-version.png';
+
+# Workflow Version Control
+
+BuildShip provides a version control system that allows you to manage the changes made to your workflows every time the workflow is **Shipped**. This feature enables you to track the history of your workflow, compare different versions, and revert to a previous version if needed.
+
+<br />
+<Image src={restoreVersion} alt='Restore Version' width={1200} />
+
+## Accessing Workflow Versions
+
+To access the version history of a workflow, click on the version control icon in the top bar of the workflow editor. This will open a panel on the right side of the editor, displaying a list of all the versions of the workflow.
+
+Click on a version to view the changes made in that version. You can also restore a previous version by clicking on the **Restore** button.
+
+<br />
+<Image src={workflowVersions} alt='Workflow Versions' width={1200} />
