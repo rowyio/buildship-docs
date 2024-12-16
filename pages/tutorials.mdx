@@ -178,6 +178,18 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![RAG with Buildship](../public/tutorial/ragOg.png)</>
   </ShowcaseCard>
+  <ShowcaseCard
+    title='Custom Domain'
+    href='./tutorials/custom-domain'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'custom-domain',
+      });
+    }}
+  >
+    <>![Custom Domain preview](../public/tutorial/custom-domain-og.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(
