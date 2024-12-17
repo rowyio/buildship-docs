@@ -34,8 +34,6 @@ This trigger functions similar to the [REST API Call Trigger](/trigger-nodes/res
 The HTTP Method for the incoming request can be specified in the Firebase Authenticated Request Trigger configuration.
 The supported methods are GET, POST, PUT, and DELETE.
 
-<Image src={fbAuth2} alt='Firebase Authenticated Request Trigger' width={1200} />
-
 ### Request Headers
 
 The request headers must include the **Authorization Header**, where the value should be the user’s ID Token received
@@ -72,48 +70,70 @@ Workflow associated with the Firebase Auth Trigger. This data format must adhere
 }
 ```
 
-Here’s an example demonstrating a similar request using the API Call Node in BuildShip. However, for actual
+Here's an example demonstrating a similar request using the API Call Node in BuildShip. However, for actual
 implementation, this request must be made through the client application.
 
 <Image src={fbAuth4} alt='Firebase Authenticated Request Trigger' width={1200} />
 
-## The Firebase Authenticated Request Trigger
 
-In a blank workflow, click on “**Add Trigger**” button and select the “**Firebase Authenticated Request**” trigger.
+## Configuring the Trigger
 
-The **Project ID**, **Path**, and **Method** inputs are required for configuring the trigger for your project.
+<Image src={fbAuth2} alt='Firebase Authenticated Request Trigger' width={1200} />
 
-### Firebase Project ID
+- Go to the connect tab, and search for the “Firebase Auth Trigger”. Pick the trigger to configure.
 
-Users must specify the **Firebase Project ID utilized by their client application**. This trigger initializes
+- To set up the Firebase Auth trigger, we need to add an **Endpoint Path**. The output path is pre-filled by default. We can modify this to be anything we prefer.
+
+- We can also set up the **Request Method** for the Firebase Auth Endpoint. The trigger is set to accept a POST request by default.
+
+- Specify the **Firebase Project ID utilized by their client application**. This trigger initializes
 authentication and validates the token passed in the request.
 
 <Callout type='info'>
   If no Project ID is provided, the Trigger employs the default Project ID linked with your BuildShip Project.
 </Callout>
 
-### Path
 
-The **Path** specifies the endpoint where the incoming request is directed. This can be any valid URL path, such as
-`/users`, `/products`, or `/orders`.
+## Connection and Testing
 
-### Method
+Once the basic configuration is done, click on the “Connect” button. If connected successfully, the button shows success.
 
-The Method input specifies the HTTP Method for the incoming request. The supported methods are GET, POST, PUT, and
-DELETE.
+This will generate an **Endpoint URL** that you can use to make API calls to trigger the workflow.
 
-## Trigger Outputs
+Now, we'll be able to access additional settings to configure our workflow inputs and outputs. 
+Since the workflow logic is independent of the connected triggers, we would have to map the incoming request data to the workflow inputs, and the workflow outputs to the response.
 
-Once the trigger is correctly configured, users will be able to access the Request Body passed via the POST Request made
-to the endpoint, along with the Firebase User details.
+<Callout type='info'>
+Check out the Triggers overview page to find an example. [Learn more](/triggers)
+</Callout> 
+
+
+
+## Input / Output Mapping and Get Data
+
+You can map your Firebase Auth Trigger request body to the inputs of your workflow.
+
+We can map the Workflow Outputs to be returned as a response to the incoming request. The Outputs for your workflow have already been defined in the [Output Node](/core-nodes/output-node) in your workflow.
+
+[Learn more](/triggers#workflow-inputs-schema-set-up) about how to map the workflow inputs and use the Get Data feature.
+
+### Trigger Outputs
+
+Once the trigger is correctly configured, users will be able to access the Request Body passed via the POST Request made to the endpoint, along with the Firebase User details.
 
 The Firebase User Details include the Display Name, Photo URL, Email, and UID.
 
-All these outputs can be accessed as variables using the Context Menu in the Editor.
-
 <Image src={fbAuth5} alt='Firebase Authenticated Request Trigger' width={1200} />
 
-## Example Workflow
+Use the **Get Data** feature to fetch the latest request to the set up endpoint and define your Workflow Input Schema based on the request.
+
+
+
+## Example Workflow (v1 canvas)
+
+<Callout type='warning'>
+The following example demonstrates how to generate custom Firebase Tokens for users with specific email domains for the deprecated v1 canvas. For the v2 canvas, we would reference the workflow inputs directly. The trigger data would be mapped to the workflow inputs in the trigger configuration tab.
+</Callout>
 
 Consider a scenario where we aim to generate custom tokens for users whose emails end with a specific domain, such as
 `@buildship.com`. Let's outline the steps for achieving this:
@@ -121,6 +141,7 @@ Consider a scenario where we aim to generate custom tokens for users whose email
 <Image src={fbAuth7} alt='Firebase Authenticated Request Trigger' width={1200} />
 
 <Steps>
+
 
 ### Firebase Authenticated Request Trigger
 
