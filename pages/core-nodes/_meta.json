@@ -4,6 +4,7 @@
   "if-else": "Branch (If Else)",
   "loop": "Loop",
   "parallel": "Parallel",
+  "ai-switch": "AI Switch",
   "switch": "Switch",
   "repeat": "Repeat",
   "script": "Empty Script"

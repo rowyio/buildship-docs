@@ -1,0 +1,70 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import aiSwitch from '/public/nodes/ai-switch.png';
+import aiSwitchAdv from '/public/nodes/ai-switch-adv.png';
+import aiSwitchEg from '/public/nodes/ai-switch-eg.png';
+
+# AI Switch Node
+
+The AI Switch Node allows you to **route your workflow based on the results of the OpenAI model**.
+
+This node is particularly useful for scenarios where you need to make decisions based on the output of a machine learning model, such as sentiment analysis, image recognition, or natural language processing.
+
+<br />
+<Image src={aiSwitch} alt='AI Switch' width={1200} />
+
+## Pre-requisites
+
+Before you can use the AI Switch Node, you need to have an OpenAI API key. You can sign up for an API key on the [OpenAI website](https://platform.openai.com/signup).
+
+Click on the "key" icon on the AI Switch Node to add/select your OpenAI API key.
+
+
+## AI Switch Node Configuration
+
+<Image src={aiSwitchAdv} alt='AI Switch Advanced' width={1200} />
+
+The AI Switch Node has the following configuration options:
+
+### Input Value
+
+The input value is the data that you want to send to the OpenAI model for processing.
+
+### Execution Type
+
+The AI Model could classify the given input data into multiple categories. The Execution Type allows you to choose how you want to handle the output from the model.
+
+We can choose whether only the **first match** is to be executed, or **all matches are to be executed**.
+
+<Callout type='tip'>
+The Advanced Configuration section includes all the setting we can modify concerning the OpenAI model.
+</Callout>
+
+### Max Tokens
+
+The maximum number of tokens (words) the model can generate. The higher the number, the more verbose the output.
+
+### Temperature
+
+The randomness of the model. A higher temperature will generate more random output. The template is a number between `0` and `1`.
+
+### Model
+
+The OpenAI model to use for processing the input data. The AI Switch Node currently just supports the `GPT-4o-mini` model.
+
+
+## Adding AI Switch Classes
+
+The AI Switch Node allows you to add multiple classes to the node. Each class represents a different category that the OpenAI model can classify the input data into.
+
+Click on the "**+**" button to add a new class. You can then specify the class name and the value that the OpenAI model should classify the input data into.
+
+### Example
+
+For example, if you are using the AI Switch Node to classify an incoming email as either "spam" or "not spam", you would add two classes: "spam" and "not spam".
+
+In the class descriptions, we can ask the OpenAI model to classify the input data into the respective classes.
+
+<Image src={aiSwitchEg} alt='AI Switch Example' width={1200} />
