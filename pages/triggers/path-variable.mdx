@@ -1,20 +1,24 @@
 ---
-title: Path Variable in REST API
+title: Rest API Path Variable
 ---
 
 import Image from 'next/image';
+
 import Video from '../../components/video/index.jsx';
 import { Callout } from 'nextra/components';
-import pathVariable from '/public/nodes/path-variable-rest-api-trigger.png';
 
-# Path Variables in REST API Triggers
+import accessingPathVariable from '/public/dev-tools/path-variable.png';
+import multiplePathVariable from '/public/dev-tools/multiple-path-variable.png';
+
+
+# Rest API Path Variables
 
 In BuildShip, you can define dynamic parts of the path using named parameters, often called wildcards or path variables.
 This allows you to create flexible and reusable API endpoints.
 
-{' '}
-
-<Image src={pathVariable} alt='Path Variable in REST API Call Trigger' width={1200} />
+<Callout type='info'>
+Path variables are only available for the Rest API type triggers. [Learn more](/triggers#rest-api-triggers)
+</Callout>
 
 ## Setting Up Path Variables
 
@@ -31,12 +35,32 @@ associated with this path will be triggered. The variable part, `123`, is captur
 
 ## Accessing Path Variables
 
-You can access the path variable within your workflow using the `request.path` object. The request will be the variable
-from the Trigger. To extract the `id` from the path, you can use the following expression within your workflow's
+We can access the path variable while setting up the workflow inputs in the trigger configuration.
+
+You can access the path variable using the `params` object. To extract the `id` from the path, you can use the following expression:
 expression editor:
 
-<Video src='/integrations/developer-tools/PathVariable.mov' />
+<Image src={accessingPathVariable} alt='Accessing Path Variable' width={1200} />
 
 <Callout emoji='💡' type='info'>
   Remix this workflow to see how it works: [link](https://buildship.app/remix/b21e308e-df0e-4bea-a114-0f96ce0082f0)
 </Callout>
+
+## Wildcard Use Cases
+
+Path variables are useful when you want to create a single workflow that can handle multiple requests based on the path.
+
+
+### Multiple Path Variables
+
+We could have multiple path variables in a single path. For example, `/users/:userId/posts/:postId`. In this case, the workflow will be triggered when a request is made to a URL like `https://myproject.buildship.run/users/123/posts/456`.
+
+
+Here's how you can access multiple path variables in the trigger configuration:
+
+<Image src={multiplePathVariable} alt='Multiple Path Variables' width={1200} />
+
+
+### Catch-all wildcard (*)
+
+You can also use a catch-all wildcard (`*`) to match any path. For example, `/api/*`. This will match any path starting with `/api/`.
