@@ -1,0 +1,43 @@
+import Image from 'next/image';
+
+import workflowInputs from '/public/nodes/workflow-inputs.png';
+import workflowInputsEdit from '/public/nodes/workflow-inputs-edit.png';
+import triggerGetData from '/public/assets/trigger-get-data.png';
+
+# Workflow Inputs
+
+The Inputs are the starting point of your workflow. They are the data that your workflow needs to run.
+
+The inputs are defined in the Inputs node in your workflow.
+
+<br />
+<Image src={workflowInputs} alt="workflow inputs" width={1200} />
+
+## Adding Inputs
+
+There are primarily two ways to add inputs to your workflow:
+
+### Manually defining inputs
+
+To add an input to your workflow, click on the **+ Add Input** button on the Inputs node.
+
+Select the data type for your input from the dropdown list. This would directly add the inputs to your workflow.
+
+The available data types are - String, Number, Boolean, Array, Object, Select, Multi Select, Files, Any.
+
+<br />
+<Image src={workflowInputsEdit} alt="workflow inputs edit" width={1200} />
+
+To customize or modify the input, click on the settings icon next to the input field. We can customize the input configuration, such as making it required, setting a default value, adding a description, or even setting up validation rules.
+
+
+### Get Data from Trigger
+
+Most of the triggers like the Rest API and Integration based triggers allow us to get the request from the last execution to set up the workflow inputs.
+
+We can select the properties from the request we want as inputs and it'd be automatically mapped and set as the workflow inputs.
+
+Check out the Get Data feature in the trigger setup to [learn more](/triggers#get-data).
+
+<br />
+<Image src={triggerGetData} alt="trigger get data" width={1200} />
