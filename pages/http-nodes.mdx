@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { Callout } from 'nextra/components';
+
 import httpOnfail from '/public/nodes/http-onfail.png';
 import httpParams from '/public/nodes/http-params.png';
 
@@ -80,3 +82,7 @@ The HTTP Node returns the response from the external service. The output primari
 - **Status Code**: The status code of the response.
 
 We can use these properties in the subsequent nodes in the workflow and can even add on fail expressions to handle the failed requests.
+
+<Callout type="info">
+We can test the HTTP nodes either via node or workflow testing. The node testing allows us to test the node individually, while the workflow testing allows us to test the entire workflow. [Learn more](/testing)
+</Callout>
