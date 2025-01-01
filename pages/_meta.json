@@ -64,6 +64,7 @@
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
+  "http-nodes": "HTTP Nodes",
   "-- Features": {
     "type": "separator",
     "title": "Features"

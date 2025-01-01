@@ -1,0 +1,82 @@
+import Image from 'next/image';
+
+import httpOnfail from '/public/nodes/http-onfail.png';
+import httpParams from '/public/nodes/http-params.png';
+
+# HTTP Nodes
+
+The HTTP node allows you to make HTTP requests to external services. This node can be used to send data to a webhook, fetch data from an API, or trigger an action on a remote server.
+
+## HTTP Nodes vs Script Nodes
+
+The HTTP node is similar to the [Script node](/script) in that it allows you to make HTTP requests. 
+
+The key difference is that the HTTP node is designed to make HTTP requests to external services, while the Script node is designed to run custom JavaScript code.
+
+The major advantage of using the HTTP node is that the HTTP nodes are faster to execute. The HTTP nodes are not built at runtime, so they can be executed much faster than the Script nodes.
+
+HTTP Nodes also do not require you to write any code. You can simply configure the node using the UI.
+
+## Features
+
+Most of the features of the HTTP node are similar to the Script node. The HTTP node allows you to:
+
+- Use Key and OAuth Integrations
+- Set Output Properties like Script nodes
+- **On Fail handling**: Also supports on fail expressions (check the image below) and we could also use the output of the failed node, which is not a case for the script nodes.
+
+<Image src={httpOnfail} alt="HTTP On Fail" width={1200} />
+
+
+## Using the HTTP Nodes
+
+Add an HTTP Starter node to your workflow from the core nodes section from the node library. Click on the "**HTTP**" button to configure the node.
+
+The HTTP Node editor will open up. Here you can configure the node to make an HTTP request to an external service. 
+
+- Add in the **Server URL** which would be the URL of the service you want to make a request to. 
+
+- Select the **Method** of the request, **GET**, **POST**, **PUT**, **PATCH**, **DELETE**.
+
+### Adding a Request Property
+
+<br />
+<Image src={httpParams} alt="HTTP Params" width={1200} />
+
+- To add **headers, query parameters, path parameters, or cookies**, click on the **+** icon under the **Parameters** section. 
+
+- Add the parameter key as the name. The Parameter type can be **Header**, **Query**, **Path**, or **Cookie**. 
+
+- The value for the parameter can be a static value or a variable. Click on the **Variables** button to add variables from the context menu. 
+
+- Select the type of value you want to add. 
+
+- We can also mark the parameter as **Sensitive** in case it contains sensitive information and add a description for the parameter.
+
+
+### Adding a Request Body
+
+If the request type is **POST**, **PUT**, **PATCH**, or **DELETE**, you can add a **Request Body**.
+
+- Click on the **+** icon under the **Request Body** section.
+
+- Add the key and value for the request body. The value can be a static value or a variable. Click on the **Variables** button to add variables from the context menu.
+
+- Select the type of value you want to add.
+
+- We can also mark the body as **Required** in case it is a required field and add a description for the body.
+
+## HTTP Node Inputs
+
+The HTTP Node inputs are similar to the Script Node inputs. Navigate to the Inputs section in the node editor to define the inputs for the node.
+
+Later in the workflow, we can pass in the values for these inputs. The values for these inputs can be used in the URL, headers, query parameters, path parameters, cookies, or request body.
+
+## HTTP Node Outputs
+
+The HTTP Node returns the response from the external service. The output primarily contains two properties:
+
+- **Response**: The response from the external service.
+- **Status Code**: The status code of the response.
+
+We can use these properties in the subsequent nodes in the workflow and can even add on fail expressions to handle the failed requests.
