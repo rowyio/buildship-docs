@@ -1,4 +1,5 @@
 {
+    "chatbot": "Chatbot Widget Trigger",
     "telegram-bot": "Telegram Bot",
     "whatsapp-bot": "WhatsApp Bot"
 }
