@@ -14,18 +14,40 @@ import tables7 from '/public/basics/BuildShipTablesHowTo5.png';
 import tables8 from '/public/basics/BuildShipTablesCreate.png';
 import tables9 from '/public/basics/BuildShipTablesCreate2.png';
 import tables10 from '/public/basics/BuildShipTablesCreate3.png';
-import tables11 from '/public/basics/BuildShipNodeCreate.png';
-import tables12 from '/public/basics/BuildShipNodeQuery.png';
-import tables13 from '/public/basics/BuildShipNodeGet.png';
-import tables14 from '/public/basics/BuildShipNodeDocPath.png';
-import tables15 from '/public/basics/BuildShipNodeUpdate.png';
-import tables16 from '/public/basics/BuildShipNodeDelete.png';
+
+import createDocument from '/public/basics/BuildShipTablesCreateDocument.png';
+import createDocument1 from '/public/basics/BuildShipTablesCreateDocument1.png';
+import collectionQuery from '/public/basics/BuildShipTablesCollectionQuery.png';
+import collectionQuery1 from '/public/basics/BuildShipTablesCollectionQuery1.png';
+import collectionQuery2 from '/public/basics/BuildShipTablesCollectionQuery2.png';
+import collectionQuery3 from '/public/basics/BuildShipTablesCollectionQuery3.png';
+import collectionQuery4 from '/public/basics/BuildShipTablesCollectionQuery4.png';
+import collectionQuery5 from '/public/basics/BuildShipTablesCollectionQuery5.png';
+import collectionQuery6 from '/public/basics/BuildShipTablesCollectionQuery6.png';
+
+import documentReference from '/public/basics/BuildShipTablesDocumentReference.png';
+import documentReference1 from '/public/basics/BuildShipTablesDocumentReference1.png';
+import getDocument from '/public/basics/BuildShipTablesGetDocument.png';
+import updateFieldValue from '/public/basics/BuildShipTablesUpdateFieldValue.png';
+import updateFieldValue1 from '/public/basics/BuildShipTablesUpdateFieldValue1.png';
+import deleteDocument from '/public/basics/BuildShipTablesDeleteDocument.png';
+import addObjectToArray from '/public/basics/BuildShipTablesAddObjectToArray.png';
+import documentCount from '/public/basics/BuildShipTablesDocumentCount.png';
+import getFieldValue from '/public/basics/BuildShipTablesGetFieldValue.png';
+import fieldSum from '/public/basics/BuildShipTablesFieldSum.png';
+import fieldAverage from '/public/basics/BuildShipTablesFieldAverage.png';
+import deleteDocumentFields from '/public/basics/BuildShipTablesDeleteDocumentFields.png';
+import vectorEmbeddingValue from '/public/basics/BuildShipTablesVectorEmbedding.png';
+import vectorQuery from '/public/basics/BuildShipTablesVectorQuery.png';
 
 BuildShip Tables give you an easy visual way to manage your BuildShip Database. Every BuildShip project comes with a
 ready-to-use Firestore database.
 
 <br />
+<br />
 <Image src={tables1} alt='API Specification' width={1200} />
+<br />
+<br />
 
 With BuildShip, you get the ultimate flexibility to choose the database that best works for your project.
 
@@ -53,13 +75,19 @@ available on the **BuildShip Database** node, you'll be prompted to create a new
 <Callout type='warning'>Ensure pop-ups are unblocked for buildship.app.</Callout>
 
 <br />
+<br />
 <Image src={tables3} alt='API Specification' width={1200} />
+<br />
+<br />
 
 Alternatively, you can access BuildShip Tables from the **side navigation bar**. Click on the **Database** icon to
 access the BuildShip Tables.
 
 <br />
+<br />
 <Image src={tables4} alt='API Specification' width={1200} />
+<br />
+<br />
 
 ## Creating Tables
 
@@ -67,7 +95,11 @@ There are two ways of creating a BuildShip Table:
 
 ### Set up an existing collection
 
+<br />
+<br />
 <Image src={tables5} alt='API Specification' width={1200} />
+<br />
+<br />
 
 After navigating to the Databases tab, users will be able to check out the existing collections as tables, if any. If
 you do not have any existing tables, proceed to the [Creating a new table](buildship-tables#creating-a-new-table)
@@ -75,34 +107,46 @@ section.
 
 - To initialize an existing collection as a BuildShip table, simply click on the **Setup ➤** button.
 
+<br />
+<br />
 <Image src={tables6} alt='API Specification' width={1200} />
+<br />
+<br />
 
 - Select the table type, or leave it as default. Under the **Display** section, users can edit the **Table Name** and
   **ID**. Optionally create and select display sections, add description for easy access.
 
 - Under the **Columns** section, select the columns to initialize with the table. Click on **Create**.
 
+<br />
+<br />
 <Image src={tables7} alt='API Specification' width={1200} />
+<br />
+<br />
 
-- Now a table will be initialized for the collection name provided. Click on “Import Existing Data” to import the data
+- Now a table will be initialized for the collection name provided. Click on "Import Existing Data" to import the data
   into your table.
 
-- Follow the step-by-step guided process to import your data and hit “Finish”.
+- Follow the step-by-step guided process to import your data and hit "Finish".
 
 ### Creating a new table
 
-- Once you’ve navigated to the “Databases” tab, click on the “Create Table” button. (or look for the ✚ icon on the
+- Once you've navigated to the "Databases" tab, click on the "Create Table" button. (or look for the ✚ icon on the
   bottom right corner to add a new table)
 
 - Select a Collection Name. You can also copy and paste the name of the collection used in your BuildShip Database Nodes
   to import the existing data in your table.
 
-- Optionally, you can add the display information for your table and select initial “Row ID” as the column. Users also
+- Optionally, you can add the display information for your table and select initial "Row ID" as the column. Users also
   have the option to quickly copy existing column data from any existing tables.
 
-- Click on “Create” to create the table.
+- Click on "Create" to create the table.
 
+<br />
+<br />
 <Image src={tables8} alt='API Specification' width={1200} />
+<br />
+<br />
 
 ## Manipulating Table Data
 
@@ -110,18 +154,26 @@ There are two ways to manipulate the Firebase Collection data associated with yo
 
 ### Via BuildShip Table UI
 
-- In your empty table, click on “**Add Column**” button. Add in the Field Name, Field Key, and the Field Type.
+- In your empty table, click on "**Add Column**" button. Add in the Field Name, Field Key, and the Field Type.
 
 <Callout emoji='💡'>
   If you already have existing fields in your collection, make sure to match the **Field Key** value with your existing
   keys to sync data.
 </Callout>
 
+<br />
+<br />
 <Image src={tables9} alt='API Specification' width={1200} />
+<br />
+<br />
 
-- Click on “**Add Row**” button to add values to your table.
+- Click on "**Add Row**" button to add values to your table.
 
+<br />
+<br />
 <Image src={tables10} alt='API Specification' width={1200} />
+<br />
+<br />
 
 ### Via BuildShip Database Nodes
 
@@ -129,127 +181,162 @@ BuildShip has **pre-built CRUD nodes** available under the **BuildShip Database 
 Library. These nodes are similar to the Firestore database nodes and are meant to help you insert, query, and manipulate
 your BuildShip Data.
 
-In the next section, we’ll see how we can perform some basic operations on our data.
+In the next section, we'll see how we can perform some basic operations on our data.
 
 ## BuildShip Database Nodes
 
+<br />
+<br />
 <Image src={tables2} alt='API Specification' width={1200} />
-
-Let’s see how we can perform some basic operations and visualize them in our BuildShip Tables interface:
-
-### Creating Documents
-
-To create a document in a collection, we need to add the **Create Document** node from the **BuildShip Database**
-integration.
-
-To test it out, let’s try to add the data in the collection connected to a BuildShip table. Add in the data as shown in
-the image below.
-
+<br />
 <br />
 
-<Image src={tables11} alt='API Specification' width={1200} />
+Let's see how we can perform some basic operations and visualize them in our BuildShip Tables interface:
 
-### Querying Collection
+### Document Reference
+
+The **Document Reference** node is used to get a reference to a document in a collection. This is useful when you want
+to reference a document in another collection or use it in a filter.
+
+<br />
+<br />
+<Image src={documentReference} alt='API Specification' width={1200} />
+<br />
+<br />
+
+The output of this node will be a Firestore Document Reference Object:
+
+<br />
+<br />
+<Image src={documentReference1} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to get the reference from.
+- **Document ID**: The ID of the document to get the reference from.
+
+### Create Document
+
+To create or update a document in a collection, we need to add the **Create Document** node from the **BuildShip
+Database** integration.
+
+To test it out, let's try to add a new document in a fake users collection connected to a BuildShip table. Add in the
+data as shown in the image below.
+
+<br />
+<br />
+<Image src={createDocument} alt='API Specification' width={1200} />
+<br />
+<br />
+
+And we can see the document added to the table:
+
+<br />
+<br />
+<Image src={createDocument1} alt='API Specification' width={1000} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to create the document in.
+- **Data**: The data to create the document with.
+- **Document ID** (Optional): The ID of the document to create. If not specified, a random ID will be generated. If
+  specified, the document will be updated if it already exists, or created if it doesn't.
+- **Merge**: If set to true, the data will be merged with the existing document. If set to false, the existing document
+  will be overwritten.
+
+### Collection Query
 
 To query a collection, we can use the **Collection Query** node from the **BuildShip Database** integration.
 
-Add the collection name, same as the one linked to the BuildShip Table.
+Add the collection name in the "Collection Name" field. This should match the name of a collection you have already
+linked to a BuildShip Table. For example, if you created a table called "users", enter "users" as the collection name.
 
-#### Basic Filter
+<br />
+<br />
+<Image src={collectionQuery} alt='API Specification' width={1000} />
+<br />
+<br />
 
-For the Filters field, let’s copy the sample input available in the Node Info (ℹ️) and modify it according to our data.
+Inputs:
 
-```json
-{
-  "field": "name",
-  "operator": "==",
-  "value": "Marta"
-}
-```
+- **Collection Name**: The name of the collection to query.
+- **Filters**: The filters to apply to the query. See [Filtering Data](#filtering-data) for more information.
+- **Limit**: The maximum number of documents to return.
+- **Order By**: The field to order the results by. See [Ordering Data](#ordering-data) for more information.
+- **Filter Logic**: The logic to apply to the filters. See [Filter Logic](#filter-logic) for more information.
 
-This will return all the documents where the field name is equal to Marta.
+#### Filtering Data
 
-> **Tip:** Click [here](https://cloud.google.com/firestore/docs/query-data/queries#query_operators) for a list of all
-> the operators available for filtering.
+Filtering data is made easy with a pre-built list of common comparison operators and the option to combine multiple
+filters.
 
-#### Multiple Filters
+<br />
+<br />
+<Image src={collectionQuery3} alt='API Specification' width={1000} />
+<br />
+<br />
 
-Example 1: Filtering with OR. To add multiple filters, we can use the **logic** field to specify the logic to be applied
-to the filters. For example:
+For example, to filter the documents where the age is greater than 18, we can use the following filter:
 
-```json
-{
-  "logic": "OR",
-  "filters": [
-    { "field": "active", "operator": "==", "value": false },
-    { "field": "name", "operator": "==", "value": "doe" }
-  ]
-}
-```
+<br />
+<br />
+<Image src={collectionQuery1} alt='API Specification' width={1000} />
+<br />
+<br />
 
-This will return all the documents where the field “active” is false OR the field “name” is doe.
+Or to filter document where the age is greater than 18 AND less than 30, we can combine the following filters:
 
-Example 2: Filtering with AND. To filter with AND, we can use the same **logic** field to specify the logic to be
-applied to. For example:
+<br />
+<br />
+<Image src={collectionQuery2} alt='API Specification' width={1000} />
+<br />
+<br />
 
-```json
-{
-  "logic": "AND",
-  "filters": [
-    { "field": "active", "operator": "==", "value": false },
-    { "field": "name", "operator": "==", "value": "doe" }
-  ]
-}
-```
+#### Filter Logic
 
-This will return all the documents where the field “active” is false AND the field “name” is doe.
+The **Filter Logic** field is used to specify the logic to be applied to the filters. It can be either **OR** or
+**AND**. By default, it is set to **AND** which means that all the filters must be true for the document to be returned.
 
-#### Nested Filters
+Switching to **OR** will return all the documents where at least one of the filters is true.
 
-We can also nest filters to create complex queries. For example:
+For example, to filter the documents where the age is greater than 18 OR less than 30, we can set the **Filter Logic**
+to **OR** and mantain the previous filters:
 
-```json
-{
-  "logic": "AND",
-  "filters": [
-    { "field": "technology", "operator": "==", "value": "Firebase" },
-    {
-      "logic": "OR",
-      "filters": [
-        { "field": "admin", "operator": "==", "value": true },
-        { "field": "age", "operator": ">=", "value": 18 }
-      ]
-    }
-  ]
-}
-```
+<br />
+<br />
+<Image src={collectionQuery4} alt='API Specification' width={1000} />
+<br />
+<br />
 
-This will return all the documents where the field “technology” is equal to “Firebase” AND the field “admin” is true OR
-the field “age” is greater than or equal to 18.
+#### Filter by Reference
 
-#### Bonus: Filter by Reference
+To filter by reference we can utilize the [**Document Reference**](#document-reference) node to return a reference to
+document in another collection. We can then use the returned reference to filter the documents in the collection.
 
-To filter by reference we can use the convention `collectionName/documentID` for the filter value. For example:
+<br />
+<br />
+<Image src={collectionQuery5} alt='API Specification' width={1000} />
+<br />
+<br />
 
-```json
-{
-  "field": "user_ref",
-  "operator": "==",
-  "value": "users/user123"
-}
-```
+This will return all the documents where the field "parentRef" is equal to the reference returned by the **Document
+Reference** node.
 
-This will return all the documents where the field “user_ref” is equal to “users/user123”. Values passed in this format
-will be treated as references.
+#### Ordering Data
 
-Next, let’s limit the number of responses being returned by specifying a limit and add a condition to order the results.
-For example:
+To order data in a collection, use the **Order By** field in the **Collection Query** node. The process is
+straightforward - enter a field name and select either **Ascending** or **Descending** order direction. The node also
+supports ordering by multiple fields simultaneously for more complex sorting requirements.
 
-```js
-[{ name: 'asc' }]; // order in ascending order by the username
-```
-
-<Image src={tables12} alt='API Specification' width={1200} />
+<br />
+<br />
+<Image src={collectionQuery6} alt='API Specification' width={1000} />
+<br />
+<br />
 
 ### Get Document
 
@@ -257,34 +344,219 @@ To get a document from a collection, lets use the **Get Document** node from the
 
 Add in the Collection Name and the Document ID to retrieve.
 
-<Image src={tables13} alt='API Specification' width={1200} />
+<br />
+<br />
+<Image src={getDocument} alt='API Specification' width={1200} />
+<br />
+<br />
 
-### Updating Fields
+Inputs:
+
+- **Collection Name**: The name of the collection to get the document from.
+- **Document ID**: The ID of the document to get.
+
+### Update Field Value
 
 To update a field in the document from a collection, lets use the **Update Field Value** node from the **BuildShip
 Database** integration.
 
-For this, we’d require the **Document Path** instead of the Collection Name and Document ID. To get the Document Path,
-let’s go to our BuildShip Table for the document we wish to update. Right click any value for that particular row and
-click on “**Copy Path**”.
+For this, we need the **Document Path** instead of the Collection Name and Document ID. To get the Document Path, let's
+go to our BuildShip Table for the document we wish to update. Right click any value for that particular row and click on
+"**Copy Path**".
 
-<Image src={tables14} alt='API Specification' width={1200} />
+<br />
+<br />
+<Image src={updateFieldValue} alt='API Specification' width={1200} />
+<br />
+<br />
 
-Paste the copied document path in the input field. The Document Path is in the following format:
+Paste the copied document path in the **Document Path** input field. The Document Path is in the following format:
+`collectionName/DocumentID`.
 
-```json
-collectionName/DocumentID
-```
+Add in the **Field Key** to update and the **New Value** to update. In this case, we are updating the "name" field to
+"Sam Tester Update".
 
-Add in the fieldName to update and the value to update.
+<br />
+<br />
+<Image src={updateFieldValue1} alt='API Specification' width={1200} />
+<br />
+<br />
 
-<Image src={tables15} alt='API Specification' width={1200} />
+Inputs:
+
+- **Document Path**: The path of the document to update.
+- **Field Key**: The key of the field to update.
+- **New Value**: The new value to update the field with.
 
 ### Delete Document
 
-To update a field in the document from a collection, lets use the **Delete Document** node from the **BuildShip
-Database** integration.
+To delete a document from a collection, lets use the **Delete Document** node from the **BuildShip Database**
+integration.
 
 Add in the Collection Name and the Document ID of the document to delete.
 
-<Image src={tables16} alt='API Specification' width={1200} />
+<br />
+<br />
+<Image src={deleteDocument} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to delete the document from.
+- **Document ID**: The ID of the document to delete.
+
+### Add Object to Array
+
+To add an object to an array in a document, lets use the **Add Object to Array** node from the **BuildShip Database**
+integration.
+
+Enter the **Field Key** which should be an array field in your document that you want to add the object to, and the
+**Object** that you want to append to that array.
+
+<br />
+<br />
+<Image src={addObjectToArray} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to add the object to.
+- **Document ID**: The ID of the document to add the object to.
+- **Field Key**: The key of the field to add the object to.
+- **Object**: The object to add to the array.
+
+### Document Count
+
+To get the number of documents in a collection, lets use the **Document Count** node from the **BuildShip Database**
+integration.
+
+Add in the **Collection Name** to get the count of documents in that collection.
+
+<br />
+<br />
+<Image src={documentCount} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to get the count of documents from.
+- **Filters**: The filters to apply to the query. See [Filtering Data](#filtering-data) for more information.
+- **Filter Logic**: The logic to apply to the filters. See [Filter Logic](#filter-logic) for more information.
+
+### Get Field Value
+
+To get the value of a field in a document, lets use the **Get Field Value** node from the **BuildShip Database**
+integration.
+
+<br />
+<br />
+<Image src={getFieldValue} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to get the field value from.
+- **Document ID**: The ID of the document to get the field value from.
+- **Field Key**: The key of the field to get the value from.
+
+### Field Sum
+
+To get the sum of a field in a collection, lets use the **Field Sum** node from the **BuildShip Database** integration.
+
+Add in the **Collection Name** and **Field Name** to get the sum of the field.
+
+<br />
+<br />
+<Image src={fieldSum} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to get the sum of the field from.
+- **Field Name**: The name of the field to get the sum of.
+- **Filters**: The filters to apply to the query. See [Filtering Data](#filtering-data) for more information.
+- **Filter Logic**: The logic to apply to the filters. See [Filter Logic](#filter-logic) for more information.
+
+### Field Average
+
+To get the average of a field in a collection, lets use the **Field Average** node from the **BuildShip Database**
+integration.
+
+Add in the **Collection Name** and **Field Name** to get the average of the field.
+
+<br />
+<br />
+<Image src={fieldAverage} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to get the average of the field from.
+- **Field Name**: The name of the field to get the average of.
+- **Filters**: The filters to apply to the query. See [Filtering Data](#filtering-data) for more information.
+- **Filter Logic**: The logic to apply to the filters. See [Filter Logic](#filter-logic) for more information.
+
+### Delete Document Fields
+
+To clear field values from a document, lets use the **Delete Document Fields** node from the **BuildShip Database**
+integration. This node removes the values from specified fields while keeping the fields themselves in the document
+structure.
+
+Add in the **Document Path (collectionName/DocumentID)** and **Fields** to clear the values from the specified fields.
+
+<br />
+<br />
+<Image src={deleteDocumentFields} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Document Path**: The path of the document containing the fields to clear (collectionName/DocumentID).
+- **Fields**: The names of the fields whose values should be cleared/removed from the document.
+
+### Vector Embedding Value
+
+Use the **Vector Embedding Value** node to create a Firestore vector field value for storing embeddings, which can be
+used for vector similarity search in Firestore.
+
+See [Vector Embedding](https://firebase.google.com/docs/firestore/vector-search) for more information.
+
+<br />
+<br />
+<Image src={vectorEmbeddingValue} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Embedding Vector**: An array of numbers representing the embedding vector. You can use the **Generate Embeddings**
+  node from the **OpenAI** integration to generate embeddings from text.
+
+### Vector Query
+
+To query a collection using vector similarity search, use the **Vector Query** node from the **BuildShip Database**
+integration.
+
+<br />
+<br />
+<Image src={vectorQuery} alt='API Specification' width={1200} />
+<br />
+<br />
+
+Inputs:
+
+- **Collection Name**: The name of the collection to query.
+- **Vector Field**: The name of the vector field to use for the query.
+- **Embedding Vector**: The embedding vector to use for the query.
+- **Limit**: The maximum number of documents to return.
+- **Distance Measure**: The distance measure to use for the query. Options are **Cosine**, **Euclidean**, and **Dot
+  Product**.
+- **Distance Threshold**: The distance threshold to use for the query. This is the maximum distance between the
+  embedding vector and the vector field in the collection.
