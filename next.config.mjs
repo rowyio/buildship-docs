@@ -147,8 +147,18 @@ export default withNextra({
     },
     // triggers
     {
+      source: '/triggers-database/buildship-trigger',
+      destination: '/triggers-integrations/buildship-trigger',
+      permanent: true,
+    },
+    {
       source: '/connecting-triggers/:slug(rest-api|firebase-auth|file-upload|firebase-file-upload)',
       destination: '/triggers-rest-api/:slug',
+      permanent: true,
+    },
+    {
+      source: '/connecting-triggers/:slug(scheduled-cron|scheduled-interval)',
+      destination: '/triggers-scheduled/:slug',
       permanent: true,
     },
     {
