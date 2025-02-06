@@ -188,6 +188,12 @@ export default withNextra({
       destination: '/:slug',
       permanent: true,
     },
+    // http nodes
+    {
+      source: '/http-nodes',
+      destination: '/core-nodes/http',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;

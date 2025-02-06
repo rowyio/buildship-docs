@@ -64,7 +64,14 @@
   "core-nodes": "Core Nodes",
   "ai-nodes": "Generate with AI",
   "utility-nodes": "Utility Nodes",
-  "http-nodes": "HTTP Nodes",
+  "script-nodes": {
+    "title": "Script Nodes",
+    "href": "/core-nodes/script"
+  },
+  "http-nodes": {
+    "title": "HTTP Nodes",
+    "href": "/core-nodes/http"
+  },
   "-- Features": {
     "type": "separator",
     "title": "Features"
