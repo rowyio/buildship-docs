@@ -1,0 +1,53 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import execute1 from '/public/nodes/execute1.png';
+import execute2 from '/public/nodes/execute2.png';
+import execute3 from '/public/nodes/execute3.png';
+
+# Execute BuildShip Workflow
+
+The Execute BuildShip Workflow Node allows you to execute a BuildShip workflow from another workflow within your current
+workspace.
+
+This node is particularly useful for scenarios where you need to automate tasks by executing predefined workflows. It
+can be used in conjunction with any trigger to initiate workflows internally and at any step of your workflow.
+
+<br />
+<Image src={execute1} alt='Execute BuildShip Workflow' width={1200} />
+
+## Pre-requisites
+
+- You'll require at-least two workflows to use this node.
+
+## Node Configuration
+
+<Image src={execute2} alt='Execute BuildShip Workflow Advanced' width={1200} />
+
+The Execute BuildShip Workflow Node has the following configuration options:
+
+### Flow
+
+Select the workflow you want to execute. This is the target workflow that will be triggered from your main workflow.
+
+### Node Inputs
+
+Provide the inputs required by the selected workflow. These inputs will be passed to the workflow when it is executed.
+
+<Callout emoji='💡' type='tip'>
+  Ensure that the inputs match the expected format and data types required by the target workflow.
+</Callout>
+
+## Example
+
+For example, if you have a workflow that processes incoming requests, you can use the Execute BuildShip Workflow Node to
+trigger this workflow with specific input data from any other workflow from your workspace.
+
+<Image src={execute3} alt='Execute BuildShip Workflow Example' width={1200} />
+
+This node will automatically add a Execute BuildShip trigger to the workflow being called, you can use any trigger on
+the child workflow (the workflow being called ), after connecting it from the Execute BuildShip Workflow Node, it will
+automatically ship the workflow.
+
+<br />

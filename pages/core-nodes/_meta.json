@@ -8,5 +8,6 @@
   "switch": "Switch",
   "repeat": "Repeat",
   "script": "Starter Script",
-  "http": "Starter HTTP"
+  "http": "Starter HTTP",
+  "execute-workflow": "Execute BuildShip Workflow"
 }
