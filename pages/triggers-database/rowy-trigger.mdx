@@ -99,8 +99,21 @@ buildshipConfig: {
 }
 ```
 
-Replace the placeholder with the configuration details copied from your BuildShip Rowy Trigger. It should look something
-like this:
+Replace the placeholder with the configuration details copied from your BuildShip Rowy Trigger. 
+
+In case of the v2 (default) version of the Rowy Trigger, the config would look something like this:
+
+```js
+buildshipConfig: {
+  projectId: "buildship-008vd0",
+  workflowId: "zE49cCs5kBmg7GkUwzLt/b5368274-7fe5-4797-9f71-7d7d0bc88a7a" // <workflowId>/<triggerId>
+}
+```
+
+
+<Callout>
+
+In case of the v1 version of the Rowy Trigger, the configuration details will look something like this: 
 
 ```js
 buildshipConfig: {
@@ -108,7 +121,9 @@ buildshipConfig: {
   workflowId: "zE49cCs5kBmg7GkUwzLt"
 }
 ```
+</Callout>
 
+<br />
 <Image src={rowy6} alt='Rowy Project ID' width={1200} />
 
 ### Save and Deploy
