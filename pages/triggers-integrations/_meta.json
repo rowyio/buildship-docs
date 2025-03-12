@@ -1,6 +1,7 @@
 {
-    "buildship-trigger": "BuildShip Trigger",
-    "email-trigger": "Email Trigger",
-    "github-trigger": "GitHub Trigger",
-    "youtube-trigger": "YouTube Trigger"
+  "buildship-trigger": "BuildShip Trigger",
+  "email-trigger": "Email Trigger",
+  "github-trigger": "GitHub Trigger",
+  "youtube-trigger": "YouTube Trigger",
+  "flutterflow-triggers": "FlutterFlow Triggers"
 }

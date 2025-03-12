@@ -1,0 +1,130 @@
+---
+title: FlutterFlow Triggers
+description: Provides a seamless connection between your FlutterFlow apps and BuildShip's powerful back-end workflows.
+---
+
+import { Steps } from 'nextra/components';
+import Image from 'next/image';
+import marketplace from '/public/integrations/flutterflow/marketplace.png';
+import library from '/public/integrations/flutterflow/library.png';
+import triggerSetup from '/public/integrations/flutterflow/trigger-setup.png';
+import authentication from '/public/integrations/flutterflow/authentication.png';
+import flutterflowOg from '/public/integrations/flutterflow/flutterflow.png';
+
+# FlutterFlow Trigger & FlutterFlow BuildShip Library
+
+The FlutterFlow Trigger in combination with the FlutterFlow BuildShip Library provides a seamless connection between your FlutterFlow apps and BuildShip's powerful back-end workflows. This integration enables you to:
+
+- Process data efficiently
+- Integrate with external systems
+- Handle enterprise-level tasks securely
+- Keep sensitive business logic and operations safely abstracted from your client interface
+
+<Image src={flutterflowOg} alt='FlutterFlow Trigger Setup' width={1200} />
+
+## Authentication Options
+
+The library supports three authentication methods:
+
+### No Authentication
+
+No Authentication is the standard FlutterFlow trigger option that offers a simple implementation. It's ideal for testing or workflows that don't require authentication and requires no additional setup to get started.
+
+
+### Firebase Authentication
+
+Firebase Authentication is recommended for apps already using Firebase Auth. This method secures your workflows with Firebase Authentication and ensures that only authorized users can trigger your backend processes.
+
+This requires us to pass the Firebase Project ID which is used to authenticate the user and ensure they have the necessary permissions to trigger the workflow.
+
+The authenticated user token needs to passed to the BuildShip workflow via the authorization headers, which can then be used to verify the user's identity and permissions.
+<br />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+<Image src={authentication} alt='Authentication Options' width={400} />
+</div>
+
+### Supabase Authentication
+
+Supabase Authentication is designed for applications already using Supabase Auth. This option secures your workflows with Supabase Authentication and provides robust security for all your backend operations.
+
+This requires the Supabase public anon key to the Integration Key input and your Supabase URL in the URL input. These values are used to authenticate the user and ensure they have the necessary permissions to trigger the workflow.
+
+The authenticated user token needs to passed to the BuildShip workflow via the authorization headers, which can then be used to verify the user's identity and permissions.
+
+
+## Setup
+
+### FlutterFlow Configuration
+
+<Steps>
+
+### Add the BuildShip Library
+
+- Navigate to the [FlutterFlow Marketplace](https://marketplace.flutterflow.io/item/Yeb8kAnEVpOpFHpejOpd)
+- Search for "`BuildShip`"
+- Click on the "Trigger BuildShip Workflow" library
+- Select the "Add for Free" button to make it available in your project
+
+<Image src={marketplace} alt='FlutterFlow Marketplace' width={1200} />
+
+### Configure Project Dependencies
+
+- In FlutterFlow, go to **Settings → Project Dependencies**
+- Under "FlutterFlow Libraries", select "**Add Library**"
+- A configuration window will appear requesting library values
+
+<Image src={library} alt='FlutterFlow Library Configuration' width={1200} />
+
+### Library Values
+
+These are configurable variables created by the library author but intended to have values set by the library user. They allow for customization through:
+
+- API keys
+- Global settings
+- Project-specific configurations
+
+This is where we'd enter the BuildShip configuration JSON.
+
+</Steps>
+
+
+
+### BuildShip Configuration
+
+<Steps>
+
+### Standard FlutterFlow Trigger Setup
+
+- Define a path in the FlutterFlow Trigger in BuildShip
+- Click "Connect"
+- BuildShip automatically maps inputs defined in your workflow
+- A configuration JSON is generated
+- Use the copy button to capture this configuration
+
+<Image src={triggerSetup} alt='FlutterFlow Trigger Setup' width={1200} />
+
+### FlutterFlow Integration
+
+- Return to FlutterFlow
+- Paste the configuration JSON into the BuildShip configuration field in library values
+- Select the appropriate Authentication option:
+    - "None" for standard FlutterFlow trigger
+    - "Firebase" or "Supabase" for those authentication methods
+
+</Steps>
+
+## Authentication Setup Details
+
+### Firebase Authentication
+
+- Grant the BuildShip service account access to your Firebase project. Instructions: [Connecting to Your Own Firebase Project](https://docs.buildship.com/tutorials/firebase-project#option-2-connecting-to-your-own-firebase-project)
+- Ensure your FlutterFlow project is set up with Firebase Authentication and has a `users` collection. Instructions: [Firebase Authentication Setup](https://docs.flutterflow.io/integrations/authentication/firebase/initial-setup/)
+- For the AuthValue in FlutterFlow, select “Set from Variable” > “Authenticated User” > “ID Token (JWT Token)”
+
+
+### Supabase Authentication
+
+- Add your Supabase public and non-key to the integration key field
+- Enter your Supabase URL into the URL input field
+- Ensure that your Supabase Auth setup is complete and integrated with your FlutterFlow project.
+- For the `AuthValue`, use the Supabase session token (usually accessed via “Authenticated User” variables in FlutterFlow).
