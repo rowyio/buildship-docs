@@ -1,0 +1,181 @@
+---
+title: Framer CMS Data Sync
+description: Sync data from any source like Google Sheets, Airtable, Firebase, Supabase, Postgres etc to Framer CMS. Drag and drop your data source on an AI workflow builder, ship as API in a click and sync it to Framer CMS. Fully customizable flow logic with lowcode.
+---
+
+import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import framerCMS1 from '/public/tutorial/framer-cms-1.png';
+import framerCMS2 from '/public/tutorial/framer-cms-2.png';
+import framerCMS3 from '/public/tutorial/framer-cms-3.png';
+import framerCMS4 from '/public/tutorial/framer-cms-4.png';
+import framerPokedex from '/public/tutorial/framer-pokedex.gif';
+import framerCMSOg from '/public/tutorial/framer-cms-og.png';
+
+# BuildShip Framer CMS Data Sync Plugin
+
+The [BuildShip Framer Plugin](https://www.framer.com/marketplace/plugins/cms-data-sync/) allows you to sync data from external sources directly into your Framer CMS. This powerful integration enables you to:
+
+- Import data from various sources like Firebase, Google Sheets, or Airtable
+- Update your Framer CMS content programmatically via API
+- Create dynamic collections with automated data flows
+
+<Image
+  src={framerCMSOg}
+  alt="Framer CMS Data Sync"
+  width={1200}
+  />
+
+## Getting Started
+
+### Installing the Plugin
+To install the BuildShip Framer Plugin, follow these steps:
+
+1. Navigate to the [Framer Plugin Marketplace](https://www.framer.com/marketplace/plugins/?page=1) and search for "CMS Data Sync" or click on the link here: [CMS Data Sync](https://www.framer.com/marketplace/plugins/cms-data-sync/)
+
+<Image
+  src={framerCMS1}
+  alt="Framer CMS Data Sync"
+  width={1200}
+  />
+2. Click on the **Open Plugin** button to add the plugin to your Framer project
+3. This will open a modal for you to create a new collection which will be used to sync data from your external source
+
+<Image 
+  src={framerCMS3}
+  alt="Framer CMS Data Sync"
+  width={1200}
+  />
+
+4. Choose a name for your collection and click **Create Collection**. The plugin will now create a new collection in your Framer project.
+5. Once the collection is created, you will be redirected to the plugin settings page where you can configure your data source and sync settings.
+
+
+
+### Creating a BuildShip Workflow
+
+Before connecting your data to Framer CMS, you'll need to create a workflow in BuildShip:
+
+#### Start fast with a template
+- You can use the [Google Sheets to Framer CMS template](https://app.buildship.com/template/wvvODBoF05G4) to quickly set up a workflow that outputs data in the correct format.
+- This template is pre-configured to pull data from a Google Sheet and format it for Framer CMS.
+
+> Link to the public Google Sheet: [Google Sheet](https://docs.google.com/spreadsheets/d/1ZUmpMKUZzbgTNbWzjtsTURlDlmp7EjOUASWaBG_XLd8/edit?gid=1340319221#gid=1340319221)
+
+<br />
+<Image 
+  src={framerCMS4}
+  alt="Framer CMS Data Sync"
+  width={1200}
+/>
+
+or 
+
+#### Create a new workflow from scratch
+
+- If you prefer to create a new workflow from scratch, follow these steps:
+
+1. Go to the [BuildShip Dashboard](https://app.buildship.com/) and log in or sign up
+2. Create a new flow by clicking on the `+` button
+3. Build the workflow to pull data from your desired source (e.g., Google Sheets, Airtable, etc.)
+4. Make sure to format the output as an array of objects, where each object represents a row in your Framer CMS collection
+5. Each object should include an `id` property or any unique identifier to ensure Framer CMS can correctly identify and use as a slug for the data
+6. Go to the **Connect** tab in the BuildShip workflow and select [REST API Call Trigger](/triggers-rest-api/rest-api). Set the method to `POST` and the path for the endpoint. Click **Connect** to save the trigger.
+7. Ship the workflow by clicking on the **Ship** button in the top right corner of the BuildShip dashboard
+8. Copy the webhook URL provided by BuildShip. This URL will be used to connect your Framer CMS collection to the workflow.
+
+<Image 
+  src={framerCMS2}
+  alt="Framer CMS Data Sync"
+  width={1200}
+  />
+
+<Callout>
+We recommend using the [Google Sheets to Framer CMS template](https://app.buildship.com/template/wvvODBoF05G4) as a starting point. This template is pre-configured to pull data from a Google Sheet and format it for Framer CMS. You can then customize it to fit your specific needs.
+</Callout>
+
+#### Data Format Required by Framer CMS
+- The data sent to Framer CMS must be in the following format:
+
+```json
+[
+  {
+    "id": "1",
+    "title": "Item 1",
+    "description": "Description for Item 1",
+    "image": "https://example.com/image1.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Item 2",
+    "description": "Description for Item 2",
+    "image": "https://example.com/image2.jpg"
+  }
+]
+```
+- Each object in the array represents a single item in your Framer CMS collection. There needs to be a unique field in the object that Framer CMS can use as a slug. This is usually the `id` field, but it can be any field that contains unique values.
+- The keys in the object should match the fields in your Framer CMS collection. For example, if your collection has a field called `title`, the object should have a key called `title` with the corresponding value.
+- Make sure to include all the required fields in your Framer CMS collection in the objects you send to the webhook. If any required fields are missing, the data will not be synced correctly.
+
+<Callout>
+The CMS Data Sync plugin analyses the first row of the data you send to it and automatically creates the fields in your Framer CMS collection. This means that you must ensure that the first row of your data contains all the fields you want to create in your Framer CMS collection, even if some values are empty. If you want to add new fields to an existing collection, you can do so by sending a new row of data with the new field names.
+</Callout>
+
+
+### Connecting to Framer CMS
+
+- Open the BuildShip plugin in your Framer project
+- Create a new collection that will be synced with your BuildShip workflow
+- Name your collection according to your preference
+- You'll be redirected to the new CMS collection
+
+
+
+<Callout>
+This collection can only be modified via data returned by your BuildShip workflow. The fields for this collection won't be editable directly in Framer.
+</Callout>
+
+### Mapping Data Fields
+
+- Test and deploy your BuildShip workflow before mapping fields
+- Copy the Endpoint URL from the BuildShip ship panel
+- Paste the URL in the plugin modal to make a POST request
+- When data is fetched, the extracted fields will appear in the mapping UI
+
+<Image 
+  src={framerPokedex}
+  alt="Framer CMS Data Sync"
+  width={1200}
+/>
+
+In the mapping interface:
+
+- Use checkboxes to select/deselect fields to include in your CMS
+- The Name column allows you to rename fields for your CMS
+- The Type dropdown lets you select the appropriate data type for each field
+
+The plugin will attempt to intelligently map data types based on values, but you should verify these selections.
+
+
+## Supported Field Types
+
+| Field Type | Description |
+|------------|-------------|
+| boolean | A true/false value |
+| number | A numeric value |
+| color | A hexcode format (eg: #FF0000) |
+| string | A string value |
+| image | A URL to an image |
+| formatted text | A string value with markdown formatting |
+| link | A URL of a link |
+| date | ISO 8601 date format (eg: 2023-10-01T00:00:00Z) |
+| file | A URL to a file |
+
+
+## Troubleshooting
+
+If you encounter issues while using the plugin:
+
+You'll be notified by Framer in case of any errors. It is always helpful to use Chrome Dev Tools (press F12 on Windows or Option + ⌘ + I on Mac)  to check for error logs and the fetched data to get further insights into the issue. 
+
+If you're ever stuck, write to us at support@buildship.com or submit an in-app support request. [Learn more](/support-messages) about how to submit a support request.
