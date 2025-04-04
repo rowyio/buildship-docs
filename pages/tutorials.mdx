@@ -190,6 +190,19 @@ Step by step guided tutorial for powerful usecases and examples.
   >
     <>![Custom Domain preview](../public/tutorial/custom-domain-og.png)</>
   </ShowcaseCard>
+
+  <ShowcaseCard
+    title='Framer CMS Plugin'
+    href='./tutorials/framer-cms'
+    onClick={() => {
+      window?.posthog?.capture?.('button_docs_tutorials_selected', {
+        type: 'button_click',
+        option_clicked: 'framer-cms',
+      });
+    }}
+  >
+    <>![Framer CMS Data Sync](../public/tutorial/framer-og.png)</>
+  </ShowcaseCard>
 </Cards>
 
 export const ShowcaseCard = Object.assign(

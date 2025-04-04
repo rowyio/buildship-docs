@@ -43,5 +43,8 @@
   },
   "custom-domain": {
     "display": "hidden"
+  },
+  "framer-cms": {
+    "display": "hidden"
   }
 }
