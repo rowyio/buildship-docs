@@ -76,20 +76,21 @@
     "type": "separator",
     "title": "Features"
   },
+  "keyless": "Keyless Nodes",
+  "readme": "Readme Pages",
+  "sticky-notes": "Sticky Notes",
+  "remix": "Remix Workflows",
+  "node-failure": "Handle Node Failure",
+  "skip": "Skip Nodes",
+  "using-templates": "BuildShip Templates",
+  "rename-node": "Rename Nodes",
+  "reordering-nodes": "Reorder Nodes",
+  "rename": "Rename Workflow",
   "copy-paste": "Copy & Paste",
   "api-spec": {
     "title": "Export / Import API Spec",
     "display": "hidden"
   },
-  "rename": "Rename Workflow",
-  "reordering-nodes": "Reorder Nodes",
-  "rename-node": "Rename Nodes",
-  "skip": "Skip Nodes",
-  "node-failure": "Handle Node Failure",
-  "using-templates": "BuildShip Templates",
-  "remix": "Remix Workflows",
-  "sticky-notes": "Sticky Notes",
-  "readme": "Readme Pages",
   "-- Dev Tools": {
     "type": "separator",
     "title": "Dev Tools"
