@@ -15,9 +15,9 @@ import keylessMarker from 'public/feature/keyless-markers.png';
 
 With **Keyless Nodes**, you can tap into top AI providers like OpenAI, Claude, Gemini, Grok, and Perplexity without managing API keys or juggling billing across platforms. Just plug in and go.
 
-Keyless Nodes run on **BuildShip credits**, giving you immediate access to powerful LLMs and AI APIs without the hassle of creating accounts or retrieving individual API keys. It’s the fastest way to experiment, prototype, and ship AI-powered features.
+Keyless Nodes run on **BuildShip credits**, giving you immediate access to powerful LLMs and AI APIs without the hassle of creating accounts, generating and juggling individual API keys, and managing credits on different billing platforms. It’s the fastest way to experiment, prototype, and ship AI-powered features.
 
-Prefer more control or want to optimize for scale? You can seamlessly **bring your own API keys** whenever you're ready. This hybrid model gives you the best of both worlds: quick-start simplicity and cost-effective flexibility.
+Prefer more control or want to optimize for scale? You can seamlessly **BYOK** (Bring your own API Keys) whenever you're ready. This hybrid model gives you the best of both worlds: quick-start simplicity and cost-effective flexibility.
 
 ## How to Use Keyless Nodes
 
@@ -28,7 +28,7 @@ Navigate to the **Node Explorer** and look for the special **Keyless Markers** b
 <Image src={keylessMarker} alt='How to identify keyless nodes in BuildShip' width={1200} />
 
 <Callout>
-For starters, you can search for `AI Chat` in the Node Explorer to find the keyless nodes. These AI Chat nodes are available for most of the popular AI models, including OpenAI, Anthropic, Grok, Perplexity, and more.
+For starters, you can search for `AI Chat` in the Node Explorer to find the keyless nodes. These AI Chat nodes are available for most of the popular AI models, including OpenAI, Anthropic, Gemini, Groq, the other Grok, Perplexity, DeepSeek, and more.
 </Callout>
 
 Once the node is added to your workflow, you can start using it right away: 
@@ -38,11 +38,9 @@ Once the node is added to your workflow, you can start using it right away:
 
 <Image src={keylessChooseKey} alt='How to select credits for keyless nodes' width={1200} />
 
-Now you can start using the node without any API keys, via node testing, workflow testing or in production.
+The node will automatically use the credits from your BuildShip account to pay for the resources used in the workflow.
 
-- The node will automatically use the credits from your BuildShip account to pay for the resources used in the workflow.
-
-Using keyless nodes allows you to focus on building rather than managing API keys across multiple platforms.
+Now you can start using the node without any API keys, via node testing, workflow testing or in production, allowing you to focus on building rather than managing API keys across multiple platforms.
 
 ## Using Your Own API Keys with the Keyless Nodes
 
@@ -55,21 +53,27 @@ To use your own keys with keyless-compatible nodes:
 
 ## Pricing and Credit System
 
-- Standard models cost 5 credits to run
-- Pro models cost 20 credits to run
-- Video, Text, Image gen models cost 20-50 credits to run (based on the token, context window)
+The table below shows approximate word counts you can process with 10,000 BuildShip credits using various models:
+
+| Provider | Model | What 10K Credits Gets You | Model Characteristics |
+|----------|-------|--------------------------|------------------------|
+| **OpenAI** | GPT-4o | ~20,000 input words + ~10,000 output words | Premium reasoning model with excellent general capabilities |
+| | GPT-4o-mini | ~330,000 input words + ~165,000 output words | Efficient model balancing quality and cost |
+| **Anthropic** | Claude 3.7 Sonnet | ~13,000 input words + ~6,500 output words | Advanced reasoning model with strong comprehension abilities |
+| **Google** | Gemini 2.0 Flash | ~500,000 input words + ~250,000 output words | Fast and cost-effective model for general tasks |
+| **DeepSeek** | DeepSeek Reasoner | ~90,000 input words + ~45,000 output words | Specialized for logical reasoning and structured outputs |
 
 You can check out the detailed pricing info on our [pricing page](https://buildship.com/pricing).
 
 ### Credit Usage
-- Credits are automatically deducted based on the service usage
-- Each service has its own credit rate (e.g., OpenAI GPT-4 costs X credits per 1K tokens)
+- Credits are automatically deducted based on the service token usage
+- Each service has its own credit rate based on model capabilities
 - You can monitor credit usage in real-time from your account dashboard
 
 ### Cost Comparison
-- Using credits: Pay-as-you-go with BuildShip credits
+- Using credits: Pay-as-you-go with BuildShip credits, BuildShip handles payment to the service provider
 - Using own keys: Pay directly to the service provider
-- Tip: For high-volume usage, using your own keys might be more cost-effective
+- Tip: For high-volume production workloads, switching to your own API keys can be more economical than using BuildShip's keyless service.
 
 ## Best Practices for AI Integration
 
