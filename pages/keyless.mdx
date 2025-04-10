@@ -8,12 +8,16 @@ keywords: keyless nodes, no api key, ai integration, buildship, openai, anthropi
 
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
+import keylessOg from 'public/feature/keylessOg.png';
 import keylessChooseKey from 'public/feature/keyless-choose-key.png';
 import keylessMarker from 'public/feature/keyless-markers.png';
 
 **Use powerful AI models instantly — no API keys, no setup.** 
 
 With **Keyless Nodes**, you can tap into top AI providers like OpenAI, Claude, Gemini, Grok, and Perplexity without managing API keys or juggling billing across platforms. Just plug in and go.
+
+<br />
+<Image src={keylessOg} alt='Keyless Nodes' width={1200} />
 
 Keyless Nodes run on **BuildShip credits**, giving you immediate access to powerful LLMs and AI APIs without the hassle of creating accounts, generating and juggling individual API keys, and managing credits on different billing platforms. It’s the fastest way to experiment, prototype, and ship AI-powered features.
 
@@ -25,6 +29,7 @@ Keyless nodes are designed to be **plug-and-play**, meaning you can use them wit
 
 Navigate to the **Node Explorer** and look for the special **Keyless Markers** by clicking on the Node Info button. These markers indicate that the node can be used without requiring any API keys.
 
+<br />
 <Image src={keylessMarker} alt='How to identify keyless nodes in BuildShip' width={1200} />
 
 <Callout>
@@ -36,6 +41,7 @@ Once the node is added to your workflow, you can start using it right away:
 - Click on "Key" icon located in the node menu bar
 - Find and select the multi-colored key labeled "Use Credits"
 
+<br />
 <Image src={keylessChooseKey} alt='How to select credits for keyless nodes' width={1200} />
 
 The node will automatically use the credits from your BuildShip account to pay for the resources used in the workflow.
