@@ -1,26 +1,31 @@
 ---
-title: Keyless Nodes
-description: Leverage the latest AI models without worrying about paying for multiple services or acquiring API keys for different resources.
+title: Keyless Nodes | No API Key Required AI Integration | BuildShip
+description: Learn how to use BuildShip's keyless nodes to integrate AI models like OpenAI, Anthropic, and Grok without API keys. Complete guide to using AI services with credits or your own API keys.
+keywords: keyless nodes, no api key, ai integration, buildship, openai, anthropic, grok, perplexity, ai chat, api credits
 ---
 
-# Keyless Nodes
+# Keyless Nodes: AI Integration Without API Keys
 
 import { Callout } from 'nextra/components';
 import Image from 'next/image';
 import keylessChooseKey from 'public/feature/keyless-choose-key.png';
 import keylessMarker from 'public/feature/keyless-markers.png';
 
-Leverage the latest AI models without worrying about paying for multiple services or acquiring API keys for different resources. 
+**Use powerful AI models instantly — no API keys, no setup.** 
 
-Keyless nodes provide a versatile solution that **works even without providing keys**, or alternatively, you can **bring your own keys** for greater control over your resources.
+With **Keyless Nodes**, you can tap into top AI providers like OpenAI, Claude, Gemini, Grok, and Perplexity without managing API keys or juggling billing across platforms. Just plug in and go.
 
-## Using Keyless Nodes
+Keyless Nodes run on **BuildShip credits**, giving you immediate access to powerful LLMs and AI APIs without the hassle of creating accounts or retrieving individual API keys. It’s the fastest way to experiment, prototype, and ship AI-powered features.
+
+Prefer more control or want to optimize for scale? You can seamlessly **bring your own API keys** whenever you're ready. This hybrid model gives you the best of both worlds: quick-start simplicity and cost-effective flexibility.
+
+## How to Use Keyless Nodes
 
 Keyless nodes are designed to be **plug-and-play**, meaning you can use them without the need for any API keys. 
 
 Navigate to the **Node Explorer** and look for the special **Keyless Markers** by clicking on the Node Info button. These markers indicate that the node can be used without requiring any API keys.
 
-<Image src={keylessMarker} alt='Keyless Nodes' width={1200} />
+<Image src={keylessMarker} alt='How to identify keyless nodes in BuildShip' width={1200} />
 
 <Callout>
 For starters, you can search for `AI Chat` in the Node Explorer to find the keyless nodes. These AI Chat nodes are available for most of the popular AI models, including OpenAI, Anthropic, Grok, Perplexity, and more.
@@ -31,16 +36,15 @@ Once the node is added to your workflow, you can start using it right away:
 - Click on "Key" icon located in the node menu bar
 - Find and select the multi-colored key labeled "Use Credits"
 
-<Image src={keylessChooseKey} alt='Keyless Nodes' width={1200} />
+<Image src={keylessChooseKey} alt='How to select credits for keyless nodes' width={1200} />
 
-Now you can start using the node without any API keys, via node testing, workflow testing  or in production.
+Now you can start using the node without any API keys, via node testing, workflow testing or in production.
 
 - The node will automatically use the credits from your BuildShip account to pay for the resources used in the workflow.
 
 Using keyless nodes allows you to focus on building rather than managing API keys across multiple platforms.
 
-
-## Bring Your Own Keys with Keyless Nodes
+## Using Your Own API Keys with the Keyless Nodes
 
 While keyless nodes offer convenience, you may prefer to use your own API keys for certain services. This approach gives you greater control and can reduce credit usage for your project.
 
@@ -48,4 +52,53 @@ To use your own keys with keyless-compatible nodes:
 
 - Click on the "Key" icon on the node menu bar
 - Either select a previously added key or click the "Add Key" button to securely save a new one to be used with the service across your project.
+
+## Pricing and Credit System
+
+Standard models cost 5 credits to run
+Pro models cost 20 credits to run
+Video, Text, Image gen models cost 20-50 credits to run (based on the token, context window)
+
+You can check out the detailed pricing info on our [pricing page](https://buildship.com/pricing).
+
+### Credit Usage
+- Credits are automatically deducted based on the service usage
+- Each service has its own credit rate (e.g., OpenAI GPT-4 costs X credits per 1K tokens)
+- You can monitor credit usage in real-time from your account dashboard
+
+### Cost Comparison
+- Using credits: Pay-as-you-go with BuildShip credits
+- Using own keys: Pay directly to the service provider
+- Tip: For high-volume usage, using your own keys might be more cost-effective
+
+## Best Practices for AI Integration
+
+1. **When to Use Keyless Nodes**
+   - During development and testing
+   - For low-volume production workloads
+   - When you want to avoid managing multiple API keys
+
+2. **When to Use Your Own Keys**
+   - For high-volume production workloads
+   - When you have existing API key subscriptions
+   - When you need specific rate limits or configurations
+
+3. **Credit Management**
+   - Set up credit alerts to avoid unexpected charges
+   - Monitor usage patterns to optimize costs
+   - Consider switching to own keys for frequently used services
+
+## Frequently Asked Questions
+
+### Can I use keyless nodes for production applications?
+Yes, keyless nodes can be used in production, but we recommend using your own API keys for high-volume production workloads to optimize costs.
+
+### How do I monitor my credit usage?
+You can monitor your credit usage in real-time through your BuildShip account dashboard, which shows detailed usage statistics and credit consumption.
+
+### What AI models are available through keyless nodes?
+BuildShip supports keyless integration with popular AI models including OpenAI, Anthropic, Grok, Perplexity, and more. New models are regularly added to the platform.
+
+### Can I switch between using credits and my own API keys?
+Yes, you can easily switch between using credits and your own API keys at any time through the node's key configuration menu.
 
