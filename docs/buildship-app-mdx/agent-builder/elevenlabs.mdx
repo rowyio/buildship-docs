@@ -1,0 +1,179 @@
+{/**
+* @import { type Props } from '../types/preview'
+*/}
+
+{
+/**
+ * @param {import('../types/preview').Props} props - Component props
+ */
+}
+export const ElevenLabs = (props) => {
+  return (
+    <>
+      <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
+        ElevenLabs - Setup Guide
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        Single Tool Calling
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        For ElevenLabs, if you have a set of tools you must add them one by one. Follow the steps to
+        add tools:
+      </Typography>
+
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        1. Create a new tool
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Click "Add tool" from the AI Agent configuration panel. Select "Custom Tool" from the
+        dropdown menu.
+      </Typography>
+
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        2. Configure the new tool
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Click "Add tool" from the AI Agent configuration panel. Select "Custom Tool" from the
+        dropdown menu.
+      </Typography>
+
+      <div style={{ marginLeft: "16px" }}>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "16px",
+            color: theme.palette.text[900],
+            ...theme.typography.body,
+          })}
+        >
+          2.a. Give your tool a name and a description
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "4px",
+            color: theme.palette.text[400],
+            ...theme.typography.body,
+          })}
+        >
+          You can copy the name and description from the left panel.
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "16px",
+            color: theme.palette.text[900],
+            ...theme.typography.body,
+          })}
+        >
+          2.b. Paste the URL and select the method as POST
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "4px",
+            color: theme.palette.text[400],
+            ...theme.typography.body,
+          })}
+        >
+          <ClipboardTextArea
+            content={`${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}`}
+            label=""
+            description=""
+          ></ClipboardTextArea>
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "16px",
+            color: theme.palette.text[900],
+            ...theme.typography.body,
+          })}
+        >
+          2.c. Provide the following body parameters
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "4px",
+            color: theme.palette.text[400],
+            ...theme.typography.body,
+          })}
+        >
+          For all variables, select the value type as dynamic value.
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "4px",
+            color: theme.palette.text[400],
+            ...theme.typography.body,
+          })}
+        >
+          <table>
+            <thead>
+              <th>Variable name</th>
+              <th>Data type</th>
+            </thead>
+            <tbody>
+              {Object.entries(props.inputs.properties).map(([key, schema]) => (
+                <tr>
+                  <td>{key}</td>
+                  <td>{schema.type}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "24px",
+            color: theme.palette.text[900],
+            ...theme.typography.body,
+          })}
+        >
+          2.d. Add the API Key
+        </Typography>
+        <Typography
+          sx={(theme) => ({
+            marginTop: "4px",
+            color: theme.palette.text[400],
+            ...theme.typography.body,
+          })}
+        >
+          In the "Headers" section click "Add header". Select "Value" as type. Name your header as{" "}
+          <code>BUILDSHIP_API_KEY</code> and copy the Tool API key to the "Value" field.
+        </Typography>
+      </div>
+    </>
+  );
+};

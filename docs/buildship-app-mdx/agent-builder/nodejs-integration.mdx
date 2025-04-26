@@ -1,0 +1,164 @@
+{/**
+ * @param {import('../types/preview').Props} props - Component props
+ */}
+export const NodeJsIntegration = (props) => {
+  const inputProperties = props.inputs.properties || {};
+
+  const formatInputsParams = (indent = 2) => {
+    const indentStr = " ".repeat(indent);
+    return Object.entries(inputProperties)
+      .map(([key, schema]) => {
+        const valueStr = schema.type === "number" ? "0" : '""';
+        return `${indentStr}${key}: ${valueStr}, // ${schema.title || key}`;
+      })
+      .join("\n");
+  };
+
+  const nodeJsCode = `const fetch = require('node-fetch');
+
+/**
+ * Function to call workflow using fetch
+ * @param {object} params - Input parameters for the workflow
+ * @param {string} apiKey - Your API key
+ * @returns {Promise<object>} - The workflow result
+ */
+async function callWorkflow(params, apiKey) {
+  const url = "${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}";
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'BUILDSHIP_API_KEY': apiKey
+      },
+      body: JSON.stringify(params)
+    });
+    
+    if (!response.ok) {
+      throw new Error(\`HTTP error! Status: \${response.status}\`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error calling workflow:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function main() {
+  const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+  
+  const params = {
+${formatInputsParams()}
+  };
+  
+  try {
+    const result = await callWorkflow(params, apiKey);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+main();`;
+  const nodeJsTypescriptCode = `import fetch from 'node-fetch';
+
+interface WorkflowParams {
+${Object.entries(props.inputs.properties || {})
+  .map(
+    ([key, schema]) =>
+      `  ${key}: ${schema.type === "number" ? "number" : "string"}; // ${schema.title || key}`,
+  )
+  .join("\n")}
+}
+
+interface WorkflowResponse {
+  // Add response type definitions based on your workflow output
+  [key: string]: any;
+}
+
+/**
+ * Function to call workflow using fetch
+ * @param params - Input parameters for the workflow
+ * @param apiKey - Your API key
+ * @returns Promise resolving to the workflow result
+ */
+async function callWorkflow(params: WorkflowParams, apiKey: string): Promise<WorkflowResponse> {
+  const url = "${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}";
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'BUILDSHIP_API_KEY': apiKey
+      },
+      body: JSON.stringify(params)
+    });
+    
+    if (!response.ok) {
+      throw new Error(\`HTTP error! Status: \${response.status}\`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error calling workflow:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function main() {
+  const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+  
+  const params: WorkflowParams = {
+${formatInputsParams()}
+  };
+  
+  try {
+    const result = await callWorkflow(params, apiKey);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+main();`;
+
+  return (
+    <>
+      <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
+        Node.js Integration
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Make sure you have the node-fetch package installed:
+      </Typography>
+      <ClipboardTextArea content="npm install node-fetch@2" label="" description="" />
+      <Typography
+        sx={(theme) => ({
+          marginTop: "16px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Then use this code to call your workflow:
+      </Typography>
+      <CodeSamples
+        samples={[
+          { code: nodeJsCode, label: "Node.js", language: "js" },
+          { code: nodeJsTypescriptCode, label: "TypeScript", language: "ts" },
+        ]}
+      />
+    </>
+  );
+};

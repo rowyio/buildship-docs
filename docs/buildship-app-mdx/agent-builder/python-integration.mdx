@@ -1,0 +1,91 @@
+{/**
+ * @param {import('../types/preview').Props} props - Component props
+ */}
+export const PythonIntegration = (props) => {
+  const inputProperties = props.inputs.properties || {};
+
+  const formatPythonInputs = () => {
+    return Object.entries(inputProperties)
+      .map(([key, schema]) => {
+        const valueStr = schema.type === "number" ? "0" : '""';
+        return `    "${key}": ${valueStr}, # ${schema.title || key}`;
+      })
+      .join("\n");
+  };
+
+  const pythonCode = `import requests
+import json
+
+def call_workflow(params, api_key):
+    """
+    Function to call workflow using requests
+    
+    Args:
+        params (dict): Input parameters for the workflow
+        api_key (str): Your API key
+        
+    Returns:
+        dict: The workflow result
+    """
+    url = "${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}"
+    
+    headers = {
+        'Content-Type': 'application/json',
+        'BUILDSHIP_API_KEY': api_key
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, json=params)
+        response.raise_for_status()  # Raise exception for 4XX/5XX status codes
+        
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling workflow: {e}")
+        raise
+
+# Example usage
+def main():
+    api_key = "YOUR_API_KEY"  # Replace with your actual API key
+    
+    params = {
+${formatPythonInputs()}
+    }
+    
+    try:
+        result = call_workflow(params, api_key)
+        print("Workflow result:", result)
+        return result
+    except Exception as e:
+        print(f"Failed to execute workflow: {e}")
+
+if __name__ == "__main__":
+    main()`;
+
+  return (
+    <>
+      <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
+        Python Integration
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Make sure you have the requests library installed:
+      </Typography>
+      <ClipboardTextArea content="pip install requests" label="" description="" />
+      <Typography
+        sx={(theme) => ({
+          marginTop: "16px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Then use this code to call your workflow:
+      </Typography>
+      <CodeSamples samples={[{ code: pythonCode, label: "Python", language: "js" }]} />
+    </>
+  );
+};

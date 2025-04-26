@@ -1,0 +1,119 @@
+import { useMemo } from "react";
+
+{/**
+ * @param {import('../types/preview').Props} props - Component props
+ */}
+export const GenericAgent = (props) => {
+  const openApiSpec = useMemo(
+    () => JSON.stringify(props.toolFlowToOpenApi([props.flow], props.host), null, 2),
+    [props.flow, props.host],
+  );
+  return (
+    <>
+      <Typography
+        sx={(theme) => ({
+          color: theme.palette.text[900],
+          ...theme.typography.headline6,
+        })}
+      >
+        Default Setup Guide
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          color: theme.palette.text[400],
+          marginTop: "4px",
+          ...theme.typography.body,
+        })}
+      >
+        Each agent platform has its own setup process. Please select your specific agent from the
+        options above. Below you'll find universal specifications that work across all agent
+        platforms.
+      </Typography>
+
+      {/* OpenAPI */}
+      <Typography
+        sx={(theme) => ({
+          color: theme.palette.text[900],
+          marginTop: "24px",
+          ...theme.typography.body,
+        })}
+      >
+        OpenAPI Specification
+      </Typography>
+      <Box sx={{ position: "relative" }}>
+        <Box sx={{ marginTop: "4px", maxHeight: "600px", overflow: "auto" }}>
+          <CodeMirror
+            value={openApiSpec}
+            onChange={() => { }}
+            extensions={[props.cm.extensions.json()]}
+            codemirrorProps={{ readOnly: true, editable: false }}
+            wrapLines={true}
+          />
+        </Box>
+        <CopyButton content={openApiSpec} sx={{ position: "absolute", right: 16, top: 8 }} />
+      </Box>
+
+      {/* JSON Schema */}
+      <Typography
+        sx={(theme) => ({
+          color: theme.palette.text[900],
+          marginTop: "24px",
+          ...theme.typography.body,
+        })}
+      >
+        Schema Definitions
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        These JSON schemas define the expected input parameters and output formats for your tool.
+        Use them to ensure proper data formatting and validation.
+      </Typography>
+
+      <CodeSamples
+        samples={[
+          {
+            code: JSON.stringify(props.simplifySchema(props.inputs), null, 2),
+            label: "Tool Input Schema",
+            language: "json",
+          },
+          {
+            code: JSON.stringify(props.simplifySchema(props.output), null, 2),
+            label: "Tool Output Schema",
+            language: "json",
+          },
+        ]}
+      />
+
+      {/* Tool Calling */}
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        API Endpoint
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        To invoke this tool, send a POST request to the endpoint below with your input parameters.
+        Include your <code>BUILDSHIP_API_KEY</code> in the request header for authentication.
+      </Typography>
+      <ClipboardTextArea
+        content={`${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}`}
+        label=""
+        description=""
+      />
+    </>
+  );
+};

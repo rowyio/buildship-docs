@@ -1,0 +1,135 @@
+{/**
+* @import { type Props } from '../types/preview'
+*/}
+
+{
+/**
+ * @param {import('../types/preview').Props} props - Component props
+ */
+}
+export default function Layout(props) {
+  const [idToken, setIdToken] = props.useState("");
+  const apiKey = props.triggerValues?.["config.apiKey"];
+  const projectId = props.projectId;
+  const flowId = props.flowId;
+  const flowLabel = props.flowLabel;
+  const outputFolder = apiKey ? props.triggerValues?.["config.toolName"] : "";
+  const command = `npx -y buildship-tools create-mcp-server --project ${projectId} --flows ${flowId} --apiKey ${apiKey} --token ${idToken} --outputFolder ${outputFolder} --client claude`;
+
+  props.useEffect(() => {
+    if (props.getIdToken) {
+      props.getIdToken().then(token => token && setIdToken(token));
+    }
+  }, [props.getIdToken]);
+
+  return (
+    <>
+      <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
+        Claude - Setup Guide
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        Hosted on BuildShip
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Make sure the workflow is shipped and you have the Claude desktop app installed. Run the
+        following command to add this tool to your Claude app.
+      </Typography>
+      <ClipboardTextArea content={command + " --proxy"} label="" description="" />
+      <Typography
+        sx={(theme) => ({
+          marginTop: "8px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        'Hosted on BuildShip' means that Claude will ask BuildShip to execute the tool and your
+        credits will be deducted on each execution.
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        Self hosted
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        The following command will: <br />
+        - Convert the workflow into a JavaScript function <br />- Connect the exported function with
+        Claude using the MCP protocol
+      </Typography>
+      <ClipboardTextArea content={command} label="" description="" />
+      <Typography
+        sx={(theme) => ({
+          marginTop: "8px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        For self-hosted option, you will not be charged credits. This option is experimental and
+        some complex workflows may not work.
+      </Typography>
+
+      <Box
+        sx={(theme) => ({
+          display: "flex",
+          alignItems: "flex-start",
+          marginTop: "24px",
+          color: theme.palette.text[400],
+        })}
+      >
+        <SvgIcon sx={{ width: 16, height: 16 }}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V12ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+              fill="currentColor"
+            />
+          </svg>
+        </SvgIcon>
+        <Typography
+          sx={(theme) => ({
+            marginLeft: "4px",
+            ...theme.typography.body,
+          })}
+        >
+          <code>npm</code> is required to run the command. If you don't have it installed, please
+          follow the{" "}
+          <a
+            href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "underline", color: "inherit" }}
+          >
+            this link
+          </a>{" "}
+          to install it.
+        </Typography>
+      </Box>
+    </>
+  )
+}

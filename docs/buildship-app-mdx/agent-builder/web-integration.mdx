@@ -1,0 +1,137 @@
+{/**
+ * @param {import('../types/preview').Props} props - Component props
+ */}
+export const WebIntegration = (props) => {
+  const inputProperties = props.inputs.properties || {};
+
+  const formatInputsParams = (indent = 2) => {
+    const indentStr = " ".repeat(indent);
+    return Object.entries(inputProperties)
+      .map(([key, schema]) => {
+        const valueStr = schema.type === "number" ? "0" : '""';
+        return `${indentStr}${key}: ${valueStr}, // ${schema.title || key}`;
+      })
+      .join("\n");
+  };
+
+  const jsCode = `/**
+ * Function to call workflow using fetch
+ * @param {object} params - Input parameters for the workflow
+ * @param {string} apiKey - Your API key
+ * @returns {Promise<object>} - The workflow result
+ */
+async function callWorkflow(params, apiKey) {
+  const url = "${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}";
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'BUILDSHIP_API_KEY': apiKey
+      },
+      body: JSON.stringify(params)
+    });
+    
+    if (!response.ok) {
+      throw new Error(\`HTTP error! Status: \${response.status}\`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error calling workflow:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function executeExample() {
+  const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+  
+  const params = {
+${formatInputsParams()}
+  };
+  
+  try {
+    const result = await callWorkflow(params, apiKey);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+executeExample();`;
+
+  const tsCode = `/**
+ * Function to call workflow using fetch
+ * @param {object} params - Input parameters for the workflow
+ * @param {string} apiKey - Your API key
+ * @returns {Promise<object>} - The workflow result
+ */
+async function callWorkflow(params: Record<string, any>, apiKey: string): Promise<any> {
+  const url = "${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}";
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'BUILDSHIP_API_KEY': apiKey
+      },
+      body: JSON.stringify(params)
+    });
+    
+    if (!response.ok) {
+      throw new Error(\`HTTP error! Status: \${response.status}\`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error calling workflow:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function executeExample(): Promise<void> {
+  const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+  
+  const params = {
+${formatInputsParams()}
+  };
+  
+  try {
+    const result = await callWorkflow(params, apiKey);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+executeExample();`;
+
+  return (
+    <>
+      <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
+        Web Browser Integration
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Use this code to call your workflow from web applications:
+      </Typography>
+      <CodeSamples
+        samples={[
+          { code: jsCode, label: "JavaScript", language: "js" },
+          { code: tsCode, label: "TypeScript", language: "ts" },
+        ]}
+      />
+    </>
+  );
+};

@@ -1,0 +1,75 @@
+import Claude from "./claude.mdx";
+import { ElevenLabs } from "./elevenlabs.mdx";
+import { GenericAgent } from "./generic-agent.mdx";
+import { NodeJsIntegration } from "./nodejs-integration.mdx";
+import { WebIntegration } from "./web-integration.mdx";
+import { PythonIntegration } from "./python-integration.mdx";
+
+export const AgentSelector = (props) => {
+  const [selectedOption, setSelectedOption] = props.useState("generic-agent");
+
+  function camelize(str) {
+    return str
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      })
+      .replace(/\s+/g, "");
+  }
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        padding: "22px",
+      }}
+    >
+      <div
+        style={{
+          padding: "24px",
+          backgroundColor: props.theme.palette.elevation.sections,
+          boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)",
+          borderRadius: "16px",
+          width: "100%",
+        }}
+      >
+        <Typography sx={(theme) => ({ marginBottom: "8px", color: theme.palette.text[900] })}>
+          Select your agent builder
+        </Typography>
+        <Select
+          value={selectedOption}
+          onChange={(event) => setSelectedOption(event.target.value)}
+          options={[
+            { value: "11labs", render: "ElevenLabs" },
+            { value: "claude", render: "Claude Desktop (MCP Server)" },
+            { value: "nodejs", render: "Node.js Fetch Implementation" },
+            { value: "python", render: "Python Requests Implementation" },
+            { value: "web", render: "Web Browser Implementation" },
+            { value: "generic-agent", render: "Default Setup Guide" },
+          ]}
+        />
+      </div>
+      <div style={{ marginTop: "16px" }}></div>
+      <div
+        style={{
+          padding: "24px",
+          backgroundColor: props.theme.palette.elevation.sections,
+          boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.08)",
+          borderRadius: "16px",
+          width: "100%",
+        }}
+      >
+        {selectedOption === "claude" && <Claude flowLabel={camelize(props.flowLabel ?? "")} {...props} />}
+        {selectedOption === "11labs" && <ElevenLabs {...props} />}
+        {selectedOption === "generic-agent" && <GenericAgent {...props} />}
+        {selectedOption === "nodejs" && <NodeJsIntegration {...props} />}
+        {selectedOption === "python" && <PythonIntegration {...props} />}
+        {selectedOption === "web" && <WebIntegration {...props} />}
+      </div>
+    </div>
+  );
+};
+
+<AgentSelector {...props} />
