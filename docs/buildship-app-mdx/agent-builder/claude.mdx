@@ -24,9 +24,52 @@ export default function Layout(props) {
 
   return (
     <>
+      <div
+        style={{
+          display: "flex",
+          padding: "8px",
+          backgroundColor: props.theme.palette.text[50],
+          borderRadius: "8px",
+          width: "fit-content",
+          marginBottom: "16px",
+        }}
+      >
+        <img src="https://firebasestorage.googleapis.com/v0/b/website-a1s39m.appspot.com/o/buildship-app-logos%2Fanthropic.png?alt=media&token=ec0eb8dc-f0d4-4f97-a144-023f1aa8118e" width="16" height="16" />
+      </div>
       <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
         Claude - Setup Guide
       </Typography>
+
+      <a
+        href="https://docs.buildship.tools/claude"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Typography
+          sx={(theme) => ({
+            marginTop: "24px",
+            ...theme.typography.body,
+          })}
+        >
+          Documentation ↗
+        </Typography>
+      </a>
+
+      <a
+        href="https://docs.buildship.tools/claude"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Typography
+          sx={(theme) => ({
+            marginTop: "8px",
+            ...theme.typography.body,
+          })}
+        >
+          Video Tutorial ↗
+        </Typography>
+      </a>
+
       <Typography
         sx={(theme) => ({
           marginTop: "24px",
@@ -34,19 +77,125 @@ export default function Layout(props) {
           ...theme.typography.body,
         })}
       >
-        Hosted on BuildShip
+        Pre-requisite
       </Typography>
+      <ul style={{
+        paddingLeft: "20px",
+        marginTop: "4px",
+        color: props.theme.palette.text[400],
+        ...props.theme.typography.body
+      }}>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Ensure you have the <a
+              href="https://claude.ai/download"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "underline", color: "inherit" }}
+            >Claude Desktop</a> app installed
+          </Typography>
+        </li>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Use "Ship" button on top to deploy your workflow
+          </Typography>
+        </li>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            You'll need to have <a
+              href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "underline", color: "inherit" }}
+            >Node.js installed</a> to run the commands
+          </Typography>
+        </li>
+      </ul>
+
       <Typography
         sx={(theme) => ({
-          marginTop: "4px",
           color: theme.palette.text[400],
           ...theme.typography.body,
         })}
       >
-        Make sure the workflow is shipped and you have the Claude desktop app installed. Run the
-        following command to add this tool to your Claude app.
+        You can add the MCP tool to your Claude app using one of the following options.
       </Typography>
-      <ClipboardTextArea content={command + " --proxy"} label="" description="" />
+
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        Option 1: Hosted on BuildShip
+      </Typography>
+
+      <ClipboardField content={command + " --proxy"} label="" description="Recommended for easy hosted experience. Run the following command from a terminal or command line tool." />
+
+      <ul style={{
+        paddingLeft: "20px",
+        marginTop: "12px",
+        color: props.theme.palette.text[400],
+        ...props.theme.typography.body
+      }}>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            After the command updates your Claude config, <strong>restart the Claude Desktop app</strong> (if it's open) to load the MCP tool added
+          </Typography>
+        </li>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              marginTop: "12px",
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            To test, Ask Claude to use the tool. Claude will ask for permission. Once you allow it, the tool will run and show the result.
+          </Typography>
+        </li>
+      </ul>
+
+      <Typography
+        sx={(theme) => ({
+          marginTop: "12px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        You'll see it successfully updated Claude config when you see a 'Tool' icon within Claude Chat
+      </Typography>
+
+
+      <img
+        src="https://storage.googleapis.com/buildship-2vqhlv-us-central1/tool-trigger-assets/claude-tool.png"
+        width="100%"
+        height="auto"
+        style={{ marginTop: "16px", borderRadius: "4px" }}
+      />
+
+
       <Typography
         sx={(theme) => ({
           marginTop: "8px",
@@ -54,9 +203,10 @@ export default function Layout(props) {
           ...theme.typography.body,
         })}
       >
-        'Hosted on BuildShip' means that Claude will ask BuildShip to execute the tool and your
-        credits will be deducted on each execution.
+        Note: Since the tool is hosted on BuildShip, it will use your BuildShip credits when executed.
       </Typography>
+
+
       <Typography
         sx={(theme) => ({
           marginTop: "24px",
@@ -64,7 +214,7 @@ export default function Layout(props) {
           ...theme.typography.body,
         })}
       >
-        Self hosted
+        Option 2: Self hosted
       </Typography>
       <Typography
         sx={(theme) => ({
@@ -73,10 +223,38 @@ export default function Layout(props) {
           ...theme.typography.body,
         })}
       >
-        The following command will: <br />
-        - Convert the workflow into a JavaScript function <br />- Connect the exported function with
-        Claude using the MCP protocol
+        Run the following command — it will:
       </Typography>
+
+      <ul style={{
+        paddingLeft: "20px",
+        marginTop: "4px",
+        color: props.theme.palette.text[400],
+        ...props.theme.typography.body
+      }}>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Convert the workflow into a JavaScript function
+          </Typography>
+        </li>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Download the function to your local machine
+          </Typography>
+        </li>
+      </ul>
+
+
       <ClipboardTextArea content={command} label="" description="" />
       <Typography
         sx={(theme) => ({
@@ -85,51 +263,8 @@ export default function Layout(props) {
           ...theme.typography.body,
         })}
       >
-        For self-hosted option, you will not be charged credits. This option is experimental and
-        some complex workflows may not work.
+        You can then connect the exported function to Claude using the MCP protocol.
       </Typography>
-
-      <Box
-        sx={(theme) => ({
-          display: "flex",
-          alignItems: "flex-start",
-          marginTop: "24px",
-          color: theme.palette.text[400],
-        })}
-      >
-        <SvgIcon sx={{ width: 16, height: 16 }}>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V12ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
-              fill="currentColor"
-            />
-          </svg>
-        </SvgIcon>
-        <Typography
-          sx={(theme) => ({
-            marginLeft: "4px",
-            ...theme.typography.body,
-          })}
-        >
-          <code>npm</code> is required to run the command. If you don't have it installed, please
-          follow the{" "}
-          <a
-            href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "underline", color: "inherit" }}
-          >
-            this link
-          </a>{" "}
-          to install it.
-        </Typography>
-      </Box>
     </>
   )
 }
