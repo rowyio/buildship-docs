@@ -15,6 +15,13 @@ declare global {
       samples: { code: string; language: 'html' | 'json' | 'js' | 'ts'; label: string }[];
     }>;
     ClipboardTextArea: React.FC<{ label: string; description: string; content: string }>;
+    ClipboardTextField: React.FC<{
+      label: string;
+      description: string;
+      content: string;
+      multiline?: boolean;
+      rows?: number;
+    }>;
     ChatWidget: React.FC<{
       buttonName: string;
       widgetTitle: string;

@@ -10,9 +10,52 @@
 export const ElevenLabs = (props) => {
   return (
     <>
+      <div
+        style={{
+          display: "flex",
+          padding: "8px",
+          backgroundColor: props.theme.palette.text[50],
+          borderRadius: "8px",
+          width: "fit-content",
+          marginBottom: "16px",
+        }}
+      >
+        <img src="https://storage.googleapis.com/buildship-app-us-central1/icons/elevenlabs.jpeg" width="16" height="16" />
+      </div>
       <Typography sx={(theme) => ({ ...theme.typography.headline6 })}>
         ElevenLabs - Setup Guide
       </Typography>
+
+      <a
+        href="https://docs.buildship.com/tools/elevenlabs"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Typography
+          sx={(theme) => ({
+            marginTop: "24px",
+            ...theme.typography.body,
+          })}
+        >
+          Documentation ↗
+        </Typography>
+      </a>
+
+      <a
+        href="https://docs.buildship.com/tools/elevenlabs"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Typography
+          sx={(theme) => ({
+            marginTop: "8px",
+            ...theme.typography.body,
+          })}
+        >
+          Video Tutorial ↗
+        </Typography>
+      </a>
+
       <Typography
         sx={(theme) => ({
           marginTop: "24px",
@@ -20,7 +63,7 @@ export const ElevenLabs = (props) => {
           ...theme.typography.body,
         })}
       >
-        Single Tool Calling
+        Pre-requisite
       </Typography>
       <Typography
         sx={(theme) => ({
@@ -29,8 +72,7 @@ export const ElevenLabs = (props) => {
           ...theme.typography.body,
         })}
       >
-        For ElevenLabs, if you have a set of tools you must add them one by one. Follow the steps to
-        add tools:
+        Open <a href="https://elevenlabs.io/app/conversational-ai/agents" target="_blank" rel="noopener noreferrer">ElevenLabs Voice Agents</a> Dashboard, set up a conversation AI Agent and follow the steps below to add the tool to it.
       </Typography>
 
       <Typography
@@ -49,8 +91,7 @@ export const ElevenLabs = (props) => {
           ...theme.typography.body,
         })}
       >
-        Click "Add tool" from the AI Agent configuration panel. Select "Custom Tool" from the
-        dropdown menu.
+        Click the "Add tool" button from the agent's setup section and select "Custom Tool" option from the dropdown menu.
       </Typography>
 
       <Typography
@@ -60,7 +101,7 @@ export const ElevenLabs = (props) => {
           ...theme.typography.body,
         })}
       >
-        2. Configure the new tool
+        2. Configure the tool
       </Typography>
       <Typography
         sx={(theme) => ({
@@ -69,111 +110,217 @@ export const ElevenLabs = (props) => {
           ...theme.typography.body,
         })}
       >
-        Click "Add tool" from the AI Agent configuration panel. Select "Custom Tool" from the
-        dropdown menu.
+        Use the "Webhook" tool type and add the configuration as follows
       </Typography>
 
-      <div style={{ marginLeft: "16px" }}>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "16px",
-            color: theme.palette.text[900],
-            ...theme.typography.body,
-          })}
-        >
-          2.a. Give your tool a name and a description
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "4px",
-            color: theme.palette.text[400],
-            ...theme.typography.body,
-          })}
-        >
-          You can copy the name and description from the left panel.
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "16px",
-            color: theme.palette.text[900],
-            ...theme.typography.body,
-          })}
-        >
-          2.b. Paste the URL and select the method as POST
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "4px",
-            color: theme.palette.text[400],
-            ...theme.typography.body,
-          })}
-        >
-          <ClipboardTextArea
-            content={`${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}`}
-            label=""
-            description=""
-          ></ClipboardTextArea>
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "16px",
-            color: theme.palette.text[900],
-            ...theme.typography.body,
-          })}
-        >
-          2.c. Provide the following body parameters
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "4px",
-            color: theme.palette.text[400],
-            ...theme.typography.body,
-          })}
-        >
-          For all variables, select the value type as dynamic value.
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "4px",
-            color: theme.palette.text[400],
-            ...theme.typography.body,
-          })}
-        >
-          <table>
-            <thead>
-              <th>Variable name</th>
-              <th>Data type</th>
-            </thead>
-            <tbody>
-              {Object.entries(props.inputs.properties).map(([key, schema]) => (
-                <tr>
-                  <td>{key}</td>
-                  <td>{schema.type}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "24px",
-            color: theme.palette.text[900],
-            ...theme.typography.body,
-          })}
-        >
-          2.d. Add the API Key
-        </Typography>
-        <Typography
-          sx={(theme) => ({
-            marginTop: "4px",
-            color: theme.palette.text[400],
-            ...theme.typography.body,
-          })}
-        >
-          In the "Headers" section click "Add header". Select "Value" as type. Name your header as{" "}
-          <code>BUILDSHIP_API_KEY</code> and copy the Tool API key to the "Value" field.
-        </Typography>
-      </div>
+      <Box sx={{
+        marginTop: "12px",
+        display: "flex",
+        gap: "12px",
+        flexDirection: "column",
+      }}>
+        <ClipboardField content={props.flowLabel} label="Copy the Name" description="" />
+        <ClipboardField content={props.triggerValues?.["config.toolDescription"]} label="Copy the Description" description="" multiline={true} />
+        <Box>
+          <Typography
+            sx={(theme) => ({
+              marginTop: "4px",
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Set the method to POST and copy the following Endpoint URL:
+          </Typography>
+          <Box sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexGrow: 1,
+            gap: "8px",
+            minHeight: "28px",
+          }}>
+            <Box sx={{ flex: "1 0 25%" }}>
+              <ClipboardField content="POST" showCopyButton={false} />
+            </Box>
+            <Box sx={{ flex: "1 0 75%", width: "75%", }}>
+              <ClipboardField content={`${props.host}/executeWorkflow/${props.flowId}/${props.trigger.id}`} />
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        3. Set Headers
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        In the “Headers” section click “Add header”. Then, fill it as follows
+      </Typography>
+
+      <ul style={{
+        marginTop: "12px",
+        color: props.theme.palette.text[400],
+        ...props.theme.typography.body,
+        listStyleType: "none",
+        paddingLeft: "0px",
+      }}>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Type → Value
+          </Typography>
+        </li>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Name → BUILDSHIP_API_KEY
+          </Typography>
+        </li>
+        <li>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Value →  Copy this from the Tool API Key section on BuildShip (left panel)
+          </Typography>
+        </li>
+      </ul>
+
+      <Box sx={{
+        display: "flex",
+        flexDirection: "row",
+        flexGrow: 1,
+        gap: "8px",
+        minHeight: "28px",
+      }}>
+        <Box sx={{ flex: "1 0 50%" }}>
+          <ClipboardField content="BUILDSHIP_API_KEY" />
+        </Box>
+        <Box sx={{ flex: "1 0 50%", width: "50%", }}>
+          <ClipboardField content={props.triggerValues?.["config.apiKey"]} />
+        </Box>
+      </Box>
+
+      <Typography
+        sx={(theme) => ({
+          marginTop: "24px",
+          color: theme.palette.text[900],
+          ...theme.typography.body,
+        })}
+      >
+        4. Enable Body Parameters
+      </Typography>
+      <Typography
+        sx={(theme) => ({
+          marginTop: "4px",
+          color: theme.palette.text[400],
+          ...theme.typography.body,
+        })}
+      >
+        Enable Body Parameters, click “Add property”. And copy the data type, identifier and Description for each. Select the value type as “Dynamic Variable”.
+      </Typography>
+
+      {formatInputsToTable(props.inputs)}
     </>
+  );
+};
+
+
+export const formatInputsToTable = (schema) => {
+  const properties = schema?.properties || {};
+
+  const sortedProps = Object.entries(properties).sort((a, b) => {
+    const indexA = a[1].buildship?.index ?? Infinity;
+    const indexB = b[1].buildship?.index ?? Infinity;
+    return indexA - indexB;
+  });
+
+  return (
+    <Box sx={{
+      marginTop: "12px",
+    }}>
+      <Box sx={{
+        display: "flex",
+        flexDirection: "row",
+        flexGrow: 1,
+      }}>
+        <Box sx={{ flex: "1 0 25%" }}>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Data type
+          </Typography>
+        </Box>
+        <Box sx={{ flex: "1 0 75%", width: "75%", }}>
+          <Typography
+            sx={(theme) => ({
+              color: theme.palette.text[400],
+              ...theme.typography.body,
+            })}
+          >
+            Identifier
+          </Typography>
+        </Box>
+      </Box>
+
+      {sortedProps.map(([key, value]) => (
+        <Box key={key} sx={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
+          gap: "2px",
+          marginBottom: "8px",
+        }}>
+          <Box sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexGrow: 1,
+            gap: "8px",
+            minHeight: "28px",
+          }}>
+            <Box sx={{ flex: "1 0 20%" }}>
+              <ClipboardField
+                content={value.type.charAt(0).toUpperCase() + value.type.slice(1)}
+                showCopyButton={false}
+              />
+            </Box>
+            <Box sx={{ flex: "1 0 75%", width: "75%", }}>
+              <ClipboardField content={key} />
+            </Box>
+          </Box>
+
+          <Box sx={{ flex: "1", width: "100%", }}>
+            <ClipboardField
+              content={value.description || '[No description provided]'}
+              description=""
+              multiline={false}
+            />
+          </Box>
+        </Box>
+      ))}
+    </Box>
   );
 };
