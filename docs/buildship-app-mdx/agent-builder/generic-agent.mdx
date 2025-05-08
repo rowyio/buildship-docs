@@ -48,6 +48,9 @@ export const GenericAgent = (props) => {
             extensions={[props.cm.extensions.json()]}
             codemirrorProps={{ readOnly: true, editable: false }}
             wrapLines={true}
+            containerSx={{
+              "& .cm-editor": { borderRadius: "4px", backgroundColor: (t) => t.palette.text[50] },
+            }}
           />
         </Box>
         <CopyButton content={openApiSpec} sx={{ position: "absolute", right: 16, top: 8 }} />
