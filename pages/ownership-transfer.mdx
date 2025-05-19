@@ -1,0 +1,35 @@
+import Image from 'next/image';
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import settings from '/public/assets/settings.png';
+import selectOwner from '/public/assets/transfer.png';
+
+# Transferring Workspace Ownership
+
+Transferring ownership of a workspace allows you to give another member full control over the workspace, including
+administrative privileges. Follow these steps to transfer ownership:
+
+<Steps>
+  ### Navigate to Workspace Settings
+    Click on the menu icon (☰) in the top left corner and select <b>Workspace Settings</b> from the sidebar.
+    <Image src={settings} alt="Workspace Settings navigation" width={800} height={400} />
+
+### Go to the Danger Zone
+
+    In the settings sidebar, ensure you are on the <b>General</b> tab. Scroll down to the <b>Danger zone</b> section.
+
+### Select a New Owner
+
+    Under <b>Transfer ownership</b>, click the dropdown labeled "Select the new owner". A list of current workspace members will appear. Select the member you want to transfer ownership to.
+    <Image src={selectOwner} alt="Select new owner" width={800} height={400} />
+
+### Confirm the Transfer
+
+    After selecting the new owner, click the <b>Transfer Ownership</b> button. You may be asked to confirm your choice. Once confirmed, the new owner will have full control over the workspace. You will remain a member, but will lose owner privileges.
+
+</Steps>
+
+<Callout emoji='💡' type='info'>
+  The new owner will be able to manage all workspace settings, members, and billing. Make sure to update payment details
+  if needed after transferring ownership.
+</Callout>

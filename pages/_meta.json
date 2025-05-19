@@ -92,6 +92,7 @@
     "title": "Export / Import API Spec",
     "display": "hidden"
   },
+  "ownership-transfer": "Transfer Workspace Ownership",
   "-- Dev Tools": {
     "type": "separator",
     "title": "Dev Tools"
