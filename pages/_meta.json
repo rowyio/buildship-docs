@@ -105,6 +105,7 @@
   "unit-testing": "Unit Testing",
   "testing-examples": "Testing Examples",
   "version-control": "Version Control",
+  "file-handling": "File Handling",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"

@@ -1,0 +1,123 @@
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+# File Handling on BuildShip
+
+BuildShip provides a set of utilities to handle files in your workflows, meant to make it easier to work with files in
+your nodes. This includes operations like file conversion (e.g. from a file buffer to a base64 string), simple file
+handling (e.g. saving a file to a local path), accessing core properties of a file (e.g. the file name, if available,
+and other metadata), and more.
+
+These utilities are present on all valid node input values of type File, right out of the box.
+
+## Supported types
+
+The File input type on BuildShip currently supports the following 4 types of `BuildShipFile`s:
+
+1. **'local-file'**: This type of file lies on the local filesystem. This includes, for example, files that are located
+   in your project's storage bucket (since it is mounted to the filesystem).
+2. **'external-url'**: This type of file lies at a public external URL. This type by itself doesn't offer much utility,
+   so it's recommended to convert it to a more versatile type instead.
+3. **'base64'**: This type of file is a base64-encoded string.
+4. **'file-buffer'**: This type of file is a NodeJS file buffer.
+
+## How do BuildShipFile instances work?
+
+A `BuildShipFile` instance is automatically created and passed into the node script using the input value supplied to
+the node, as long as that input type is set to File. Each kind of instance provides a set of properties and methods,
+some unique to the file kind, some common across all kinds.
+
+- One such common property is `type`, which tells you the type of the file.
+- Another is the `file` property, which is the actual file itself. This is a `Buffer` for `file-buffer` files, a string
+  for `base64` files (the Base 64 encoded string), `local-file` files (the path to the file) and `external-url` files
+  (the URL to the file).
+- The third common property is `metadata`, which is used to store and preserve any additional properties associated with
+  the file.
+- The most important common method is `convertTo`, which allows you to convert the file instance to any other supported
+  type:
+  - First, call the method by passing in the desired type as a string.
+  - This will return a callback. You can then call this callback (with any optional arguments it could accept), to get a
+    promise that resolves to the new file instance of the desired type.
+
+```tsx
+const fileBufferFile = await localFile.convertTo('file-buffer')();
+const base64File = await fileBufferFile.convertTo('base64')();
+```
+
+<Callout type="info">
+When converting any instance to type **'local-file'**, the returned callback can optionally accept a destination path. This path needs to be absolute.
+
+If no path is provided, the file will be saved to the temporary directory with a randomly generated name, and will be
+cleaned up once the flow execution is complete.
+
+</Callout>
+```tsx
+const localFile2 = await base64File.convertTo('local-file')(
+    // To place the file at a location relative to the project bucket root
+    process.env.BUCKET_FOLDER_PATH + '/path/to/some/file/in/bucket.png',
+);
+```
+
+The editor's autocomplete should allow you to check out other properties and methods available on each kind of file
+instance.
+
+## Tips for building nodes with file inputs
+
+- If nodes are supposed to output a file, returning a valid file object (so either the entire `BuildShipFile` object, or
+  _at least_ with `type` and `file` properties, and not just the `file` directly) would make it a lot easier to work
+  with things (for example, to allow the output to _directly_ be used as input for the next node).
+- You may not always know the type ahead of time (for example, if a node outputs a file, and you use it as input in a
+  different node. You may not know what kind the output file is when it's passed to the second node).
+  - In such a case (as long as the previous node's output is a valid `BuildShipFile` instance, as mentioned in the
+    previous point), simply calling `convertTo` will get you a new instance of the exact type you want.
+- BuildShipFile instances will more often than not contain a `mimetype` property within the `metadata` object. This is
+  automatically set when the file is created, and is preserved between conversions. It might come in handy when working
+  with images, videos and audio files, for example.
+
+## Manually creating a BuildShipFile instance
+
+The `getBuildShipFile` function allows you to create `BuildShipFile` instances within the script as needed.
+
+### Where do I get this function?
+
+```tsx
+export default async function (
+  { name }: NodeInputs,
+  {
+    logging,
+    env,
+    // It's part of NodeScriptOptions and can be destructured here.
+    getBuildShipFile,
+  }: NodeScriptOptions,
+): NodeOutput {
+  return name;
+}
+```
+
+### How do I use it?
+
+It accepts an object of the following form:
+
+```tsx
+type BuildShipFileInstantiator = {
+  type: 'local-file' | 'external-url' | 'base64' | 'file-buffer';
+  file: string | Buffer;
+} & { [key: string]: any };
+```
+
+and returns a `BuildShipFile` instance. For example:
+
+```tsx
+const bsFile = await getBuildShipFile({
+  type: 'local-file',
+  file: '/path/to/file/in/bucket.png',
+  mimetype: 'image/png',
+  size: 123456,
+});
+```
+
+<Callout type='info'>
+  Any properties apart from `type` and `file` are preserved in the `metadata` property of the file instance (all
+  packaged up into that one object).
+</Callout>
