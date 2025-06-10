@@ -76,14 +76,11 @@
     "type": "separator",
     "title": "Features"
   },
-  "tools-templates": "Community Tools and Templates",
   "keyless": "Keyless Nodes",
   "readme": "Readme Pages",
   "sticky-notes": "Sticky Notes",
-  "remix": "Remix Workflows",
   "node-failure": "Handle Node Failure",
   "skip": "Skip Nodes",
-  "using-templates": "BuildShip Templates",
   "rename-node": "Rename Nodes",
   "reordering-nodes": "Reorder Nodes",
   "rename": "Rename Workflow",
@@ -106,6 +103,14 @@
   "testing-examples": "Testing Examples",
   "version-control": "Version Control",
   "file-handling": "File Handling",
+  "-- Community": {
+    "type": "separator",
+    "title": "Community"
+  },
+  "remix": "Remix Workflows",
+  "using-templates": "BuildShip Templates",
+  "tools-templates": "Community Tools and Templates",
+  "community-nodes": "Community Nodes",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"
