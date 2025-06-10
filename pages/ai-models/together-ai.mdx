@@ -1,0 +1,158 @@
+---
+title: Together AI Integration
+description:
+  The Together AI Integration in BuildShip enables users to connect their Together AI accounts and streamline AI-powered
+  workflows with ease.
+---
+
+import Image from 'next/image';
+import togetheraiOg from '/public/integrations/ai-models/togetheraiOg.png';
+import togetherai1 from '/public/integrations/ai-models/togetherai1.png';
+import togetherai2 from '/public/integrations/ai-models/togetherai2.png';
+import togetherai3 from '/public/integrations/ai-models/togetherai3.png';
+import togetherai4 from '/public/integrations/ai-models/togetherai4.png';
+import { Callout } from 'nextra/components';
+
+# Together AI Integration
+
+The Together AI integration in BuildShip allows users to seamlessly connect with Together AI’s API to leverage powerful
+generative AI capabilities. Users can easily generate embeddings, text completions, and chat-based completions,
+incorporating advanced AI models into their workflows with minimal effort. Together AI provides access to 100+
+open-source models through its serverless Inference Engine, enabling efficient use of leading models for tasks such as
+text generation and embedding creation directly from BuildShip.
+
+<br />
+
+<Image src={togetheraiOg} alt='Together AI Integration' width={1200} />
+
+By utilizing BuildShip's Together AI nodes, users can simplify the integration of AI-powered features into their
+applications. This documentation will guide you through configuring API keys and working with the provided nodes to
+fully integrate these AI services.
+
+## Prerequisites ✅
+
+Before you can start using the Together AI Nodes in BuildShip, ensure you have the following prerequisites in place:
+
+### Together AI Account
+
+You will need an active Together AI account to utilize this integration. If you do not have an account, you can create
+one at [Together AI](https://together.ai/).
+
+### Together AI API Authentication
+
+You will need a Together AI API Key to authenticate your requests. For more information on obtaining an API Key, refer
+to the [Together AI API documentation](https://docs.together.ai/authentication).
+
+<br />
+
+<Image src={togetherai1} alt='Together AI Integration' width={1200} />
+
+- **API Key**: The Together AI API key is required to authenticate each request you make through the BuildShip nodes.
+
+## Set API Key
+
+Before using any of the Together AI nodes, set your API key for authentication.
+
+### Inputs
+
+- **API Key**: The API key obtained from Together AI for authentication. Make sure to keep it secure.
+
+<Callout>
+  You must provide the API key in the headers of each node request. Once set, it allows secure communication with the
+  Together AI API.
+</Callout>
+
+---
+
+## Create Embeddings
+
+The "Create Embeddings" node allows you to generate numerical embeddings for text input using Together AI's models.
+
+<Image src={togetherai2} alt='Create Together AI Embeddings' width={1200} />
+
+### Inputs
+
+- **Model**: The AI model that will be used to generate the embeddings. Refer to the
+  [Together AI Models](https://api.together.ai/models) for available models.
+- **Input**: The text or data for which you want to generate embeddings. This could be a single text input or multiple
+  entries (batch processing).
+
+- **API Key**: Your Together AI API Key for authentication.
+
+<Callout>
+  Use the "Create Embeddings" node to convert your text or data into numerical embeddings, which can be used for machine
+  learning tasks such as clustering, classification, or similarity searches.
+</Callout>
+
+### Output
+
+The node returns a set of embeddings based on the input data, which you can further use in your AI or data processing
+workflows.
+
+---
+
+## Create Completions
+
+The "Create Completions" node generates text completions based on a given input prompt using Together AI's models.
+
+<Image src={togetherai3} alt='Create Together AI Completions' width={1200} />
+
+### Inputs
+
+- **Prompt**: The input text that the model will use to generate the completion. This can be anything from a sentence to
+  a paragraph.
+- **Model**: The model to be used for generating text completions. Refer to the
+  [Together AI Models](https://docs.together.ai/docs/inference-models) for options.
+
+- **Max Tokens**: The maximum number of tokens (words or subwords) to generate in the completion.
+
+- **API Key**: Your Together AI API Key for authentication.
+
+<Callout>
+  Use the "Create Completions" node to generate AI-driven text completions, which can be applied to various tasks such
+  as content generation, question-answering, and more.
+</Callout>
+
+### Output
+
+The node returns a generated text completion based on the provided prompt and model settings.
+
+---
+
+## Create Chat Completions
+
+The "Create Chat Completions" node allows you to interact with a chat-based model, where the AI generates a response
+based on system and user prompts.
+
+<Image src={togetherai4} alt='Create Together AI Chat Completions' width={1200} />
+
+### Inputs
+
+- **System Prompt**: The initial prompt that sets the context for the AI’s behavior or instructions. This helps guide
+  the model’s responses.
+
+- **User Prompt**: The user’s input or question, for which the model will generate a reply.
+
+- **Model**: The chat model to be used for generating responses. Refer to the
+  [Together AI Chat Models](https://docs.together.ai/docs/inference-models) for available options.
+
+- **API Key**: Your Together AI API Key for authentication.
+
+<Callout>
+  Use the "Create Chat Completions" node to generate conversational responses from an AI model, useful for chatbots,
+  virtual assistants, or interactive AI-driven applications.
+</Callout>
+
+### Output
+
+The node returns a generated response based on the input prompts and model configuration. This can be integrated into
+chat-based applications or other conversational workflows.
+
+---
+
+## Summary
+
+The Together AI integration in BuildShip empowers you to incorporate state-of-the-art AI features into your workflows
+with minimal effort. By using these nodes, you can efficiently generate text embeddings, completions, and chat
+responses, enhancing your applications with AI-driven capabilities. For more detailed API documentation, visit
+[Together AI Documentation](https://docs.together.ai/).
