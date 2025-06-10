@@ -1,0 +1,182 @@
+# Community Nodes
+
+import { Steps, Callout } from 'nextra/components';
+import Image from 'next/image';
+import communityExplorer from '/public/feature/community-explorer.png';
+import communityProfile from '/public/feature/community-profile.png';
+import documentedNode from '/public/feature/documented-node.png';
+import nodeMeta from '/public/feature/node-meta.png';
+import presubmissionChecks from '/public/feature/pre-submission-checks.png';
+import nodeSubmission from '/public/feature/node-submission.png';
+
+Being a part of the BuildShip community means more than just using tools it means contributing to them. With Community
+Nodes, you can extend the power of BuildShip and share your ideas with builders across the world.
+
+This guide walks you through what community nodes are, how to build them effectively, and how to share your creations
+with the wider BuildShip ecosystem.
+
+<div style={{
+  display: 'flex',
+  justifyContent: 'center',
+}}>
+
+<Image
+  src={communityExplorer}
+  alt="Community Nodes Explorer"
+  width={700} />
+</div>
+
+## What are Community Nodes?
+
+Community Nodes are custom nodes created by BuildShip users that expand the platform’s functionality. Once submitted,
+these nodes become part of the shared Community Library, enabling others to use, remix, or build upon them.
+
+## Prerequisites ✅
+
+Before you get started, make sure you have the following:
+
+- A [BuildShip Community Profile](/tools-templates#create-a-creator-profile)
+- A basic understanding of how to create nodes in BuildShip (No worries if you're new, BuildShip Compass - our
+  chat-based building experience can help you build and edit nodes easily!)
+
+<Image src={communityProfile} alt='Community Profile' width={1200} />
+
+## Best Practices for creating a Node 🛠️
+
+Creating a node for the community is a little different from creating one just for your own project. Here are a few best
+practices to keep in mind:
+
+<Steps>
+
+### Check for Uniqueness
+
+Browse the existing Community Nodes Library to avoid duplicating functionality. You can find the Community Nodes Library
+in the Node Explorer's "Community" tab.
+
+### Write Clear Documentation
+
+Make it easy for others to use your node:
+
+- Add meaningful descriptions to all inputs and outputs
+
+- Use accurate type definitions
+
+- Include usage examples in the node description
+
+- Mention any external setup steps or dependencies
+
+<Image src={documentedNode} alt='Documented Node' width={1200} />
+
+### Follow Security Best Practices
+
+Community nodes should never include sensitive information or unsafe logic. Make sure your code:
+
+- Doesn’t hardcode tokens or secrets
+
+- Avoids unsafe external dependencies
+
+- Handles errors gracefully
+
+### Set Node Metadata Thoughtfully
+
+<Image src={nodeMeta} alt='Node Metadata' width={1200} />
+
+Good metadata improves discoverability:
+
+- Choose a descriptive, readable name
+
+- Write a clear summary of what your node does
+
+- Pick the right key-based or OAuth authentication method based on your node's needs
+
+<Callout>
+
+**Node Integrations and Authentication**
+
+To use the key-based authentication behavior for your node:
+
+1. Pick the required integration from the node settings
+2. Make sure to add `auth` as a dependency from the `NodeScriptOptions`
+
+```typescript
+export default async function ({ videoUrl }: NodeInputs, { auth, logging }: NodeScriptOptions) {
+  // this would let you access the key user has selected in the canvas
+  const apiKey = auth.getKey();
+}
+```
+
+To use the OAuth authentication behavior for your node:
+
+1. Pick the required integration from the node settings
+2. Make sure to add `auth` as a dependency from the `NodeScriptOptions`
+
+```typescript
+export default async function ({ videoUrl }: NodeInputs, { auth, logging }: NodeScriptOptions) {
+  // this would let you access the token for the account user has selected in the canvas
+  const { access_token } = await auth.getToken();
+}
+```
+
+</Callout>
+
+### Test Thoroughly
+
+You're creating something others will rely on so make sure it works:
+
+- Save working examples in your node
+
+- Test with different inputs, edge cases, and error scenarios
+
+- Confirm the output is consistent and correct
+
+</Steps>
+
+## Submitting Your Node 📤
+
+When your node is polished and ready for the spotlight, here’s how to submit it:
+
+<Steps>
+
+### 1. Open the Node Menu
+
+In the node editor, click the options menu (three dots) and select "Publish to Community."
+
+### 2. Pass Submission Checks
+
+<Image src={presubmissionChecks} alt='Pre-submission Checks' width={1200} />
+
+To maintain quality across the community, your node must:
+
+- Include complete documentation
+
+- Have at least one working example saved
+
+- Pass automated validation checks
+
+These steps ensure your node is usable by others and behaves reliably.
+
+### 3. Fill Out the Submission Form
+
+<Image src={nodeSubmission} alt='Node Submission Form' width={1200} />
+
+You'll be prompted to:
+
+- Confirm the node's name and description
+
+- Specify types for inputs/outputs
+
+- Add notes on setup, authentication, or limitations
+
+### 4. Review and Approval
+
+After submission, the BuildShip team will review your node. Once approved, it will appear in the Community Nodes Library
+for everyone to use and remix!
+
+</Steps>
+
+## Need Help?
+
+Stuck somewhere? We've got your back. Reach out to the BuildShip team by sending an
+[in-app support request](/support-messages).
+
+> Thank you for building with us! 💜 Your contributions make BuildShip better for everyone.
