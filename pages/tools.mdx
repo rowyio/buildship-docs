@@ -1,0 +1,180 @@
+# Buildship Tools & Agents
+
+import Image from 'next/image';
+
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import { Card, Cards } from 'nextra/components';
+
+import bsTools from '/public/dev-tools/tools/bs-tools.png';
+import compass from '/public/dev-tools/tools/compass.png';
+import instructions from '/public/dev-tools/tools/instructions.png';
+import exportTool from '/public/dev-tools/tools/export-tool.png';
+
+Welcome to **Buildship Tools**—the fastest way to create, test, and deploy powerful, portable tools for your AI agents.
+
+Whether you're building for Claude, ElevenLabs, Cursor, or any framework, Buildship enables you to visually design,
+tweak, and ship MCP-ready tools in minutes.
+
+No more code blobs—just clear logic flows on an infinite low-code canvas, with robust code export and self-hosting
+options.
+
+<br />
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/n8oqBkhEagc'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+## What Are Buildship Tools?
+
+**BuildShip.Tools** enables you to build, test, and deploy AI agent tools using a visual, no-code/low-code canvas, or by
+writing code directly. Tools are **MCP-compatible** (Multi-Call Protocol), making them portable across AI agent
+platforms.
+
+<Callout type='info'>Tools are designed to be agent-agnostic—build once, use anywhere.</Callout>
+
+- **Create**: Build tools with plain language prompts, visual flows, or code.
+- **Host**: Instantly deploy as secure endpoints for agents.
+- **Share**: Publish to the community or export code to self-host.
+
+<Image src={bsTools} alt='Buildship Tools Overview' width={1200} />
+
+## Core Features
+
+- **Prompt-to-Tool**: Describe the tool you want; BuildShip sketches the flow.
+- **Visual Canvas**: Drag, drop, and connect nodes for logic, APIs, and services.
+- **Low-Code Customization**: Edit any node’s code directly.
+- **AI Compass**: Visualize and modify workflows with conversational AI.
+- **Testing & Logging**: Test every node, save examples, and view logs.
+- **Version Control**: Rollback and manage tool versions.
+- **RBAC & Security**: Role-based access, OAuth, API keys, JWT, multi-environment support.
+- **Instant Deploy or Export**: Host on BuildShip or export to your own infra.
+- **Community Library**: Use and remix pre-built tools.
+
+## Creating Your First Tool
+
+<Steps>
+### Go to Buildship Tools
+Visit [Buildship Tools](https://buildship.tools), sign in or create a new Buildship account by clicking on **Get Started**.
+
+### Create a New Tool
+
+Use the **prompt input** to describe your tool in natural language (e.g., "Given a logo image, apply a 3D texture and
+return the result").
+
+### Start Building using AI Compass
+
+Select your workspace and click **"Start Building"** to begin creating your tool.
+
+BuildShip will generate a **visual logic flow**:
+
+- Input nodes (e.g., image URL)
+- Service/API nodes (e.g., image generator, API calls)
+- Logic/validation nodes
+- Output nodes (e.g., return final image)
+
+<Image src={compass} alt='AI Compass Overview' width={1200} />
+
+_You can:_
+
+- **Accept** the design as-is
+- **Tweak** nodes, connections, or logic
+
+<Callout type='tip'>Use clear input/output descriptions for best results when creating your tool.</Callout>
+
+</Steps>
+
+## Building with AI Compass
+
+The canvas displays:
+
+- **Input nodes** (e.g., image URL)
+- **Processing nodes** (e.g., image generator, API calls)
+- **Output nodes** (e.g., return final image)
+
+You can:
+
+- Edit nodes visually
+- Dive into the code for any node
+- Add, remove, or connect nodes as needed
+- Use the AI assistant to modify flows or write code
+
+**Example:**  
+A tool that merges a logo onto a textured image:
+
+- Input: Logo URL, Texture URL
+- Steps: Download images → Merge → Output new image URL
+
+### Deploying & Connecting Tools
+
+<Steps>
+### One-Click Deploy
+
+- Click **“Deploy”** to host your tool instantly.
+- BuildShip will create a secure MCP endpoint.
+- Ready for agent connection (Claude, Cursor, ElevenLabs, etc.).
+
+### Generate API Key
+
+- In the **Connect** tab, generate a secure **API key**.
+- Copy the MCP endpoint or OpenAPI spec.
+
+### Connect to Your Agent
+
+Access **MCP integration instructions** for your agent framework (e.g., Claude).
+
+- Use the provided **npx** command or API endpoint.
+- Follow step-by-step integration instructions in the Connect tab.
+
+<Image src={instructions} alt='Integration Instructions' width={1200} />
+
+</Steps>
+
+## Exporting & Self-Hosting
+
+- Click **“Export as Function”** or use the CLI command:
+
+```bash
+npx buildship-tools export <tool-id>
+```
+
+- Download the tool's code and deploy on your own infrastructure.
+- **No lock-in**: Self-host for compliance or custom needs.
+
+## Tool Publishing & Community
+
+<Image src={exportTool} alt='Export Tool' width={1200} />
+
+<Steps>
+### Publish Your Tool
+Share your tools in the Buildship community library.
+
+### Add Examples
+
+Include examples and categories for better discoverability. Add a description, tags, and categories to help others find
+your tool.
+
+### Remix Tools
+
+Browse the [BuildShip Tool Library](https://buildship.tools/library) for reusable tools. Click “Remix” to clone and
+customize.
+
+### Showcase Work
+
+Display your published tools and contributions on your profile.
+
+</Steps>
+
+## Enterprise Features
+
+- **Multi-Environment Deployments**: Dev, Test, Prod.
+- **RBAC**: Advanced team and role management.
+- **Audit Logging**: Track all changes and executions.
+- **Git Integration**: Connect workflows to your codebase.
+- **Alerts & Monitoring**: Integrate with Datadog and other tools.
+- **Scalability**: Infrastructure ready for millions of users.
+
+> Still have questions? Join our [Discord](https://discord.gg/buildship) or email us at support@buildship.com.
