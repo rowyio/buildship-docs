@@ -1,0 +1,142 @@
+# Vibe Coder Agent - Setup Guide
+
+import Image from 'next/image';
+
+import { Callout } from 'nextra/components';
+
+import vibecoderInstructions from '/public/dev-tools/tools/vibe-coder.png';
+
+Welcome to the setup guide for integrating the **Vibe Coder Agent**. This document will walk you through obtaining your
+endpoint URL, using the provided code snippet, and handing off to an AI app builder.
+
+<br />
+<Image src={vibecoderInstructions} alt='Vibe Coder Instructions' width={1200} />
+
+## 1. Endpoint URL
+
+Copy your workflow endpoint URL for API requests:
+
+```plaintext
+{YOUR_HOST}/executeWorkflow/{YOUR_FLOW_ID}/{YOUR_TRIGGER_ID}
+```
+
+Replace `{YOUR_HOST}`, `{YOUR_FLOW_ID}`, and `{YOUR_TRIGGER_ID}` with your actual values.
+
+## 2. Code Snippet
+
+Use the following JavaScript code to call your workflow endpoint.  
+**Copy and paste the code into your app or website.**
+
+```javascript
+/**
+ * Function to call workflow using fetch
+ * @param {object} params - Input parameters for the workflow
+ * @returns {Promise<object>} - The workflow result
+ */
+async function callEndpoint(params) {
+  const url = '{YOUR_HOST}/executeWorkflow/{YOUR_FLOW_ID}/{YOUR_TRIGGER_ID}';
+  const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        BUILDSHIP_API_KEY: apiKey,
+      },
+      body: JSON.stringify(params),
+    });
+    const result = await response.json();
+    console.log('Success:', result);
+    return result;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Example usage
+async function executeExample() {
+  const params = {
+    // Replace with your input parameters
+    // param1: "",
+    // param2: 0,
+  };
+
+  try {
+    const result = await callEndpoint(params);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+executeExample();
+```
+
+<Callout>
+Make sure to replace the placeholders in the code with your actual values:
+
+- Replace the value for the `url` variable with your endpoint URL provided to you in your Tool Trigger Setup Preview
+- Replace `YOUR_API_KEY` with your actual API key
+- Fill in the `params` object with your specific input parameters
+  </Callout>
+
+## 3. AI Handoff
+
+You can use the following prompt with your preferred AI App Builder to auto-generate a frontend that connects to your
+BuildShip API endpoint.
+
+### Prompt Template
+
+```javascript
+Create an intuitive & responsive webapp using the given endpoint and the example inputs
+
+Rules:
+- Use only the inputs given
+- Include validation for required fields if needed
+- Handle the output properly depending what it returns (string, number, etc) especially in case of returning lists or json outputs
+
+async function callEndpoint(param1, param2) {
+    const url = "{YOUR_HOST}/executeWorkflow/{YOUR_FLOW_ID}/{YOUR_TRIGGER_ID}";
+    const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+    const params = {
+        param1: param1,
+        param2: param2
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'BUILDSHIP_API_KEY': apiKey
+            },
+            body: JSON.stringify(params)
+        });
+
+        const result = await response.json();
+        console.log('Success:', result);
+        return result;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+Here are sample inputs:
+{
+    param1: string,
+    param2: number
+}
+
+The output of this endpoint is:
+{
+    result: string
+}
+```
+
+### Instructions
+
+1. Copy the above prompt
+2. Paste it into your AI app builder
+3. The AI will generate a UI to collect the required inputs and handle the API response
