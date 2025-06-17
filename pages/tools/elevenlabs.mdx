@@ -1,0 +1,127 @@
+# ElevenLabs Voice Agent - Setup Guide
+
+import Image from 'next/image';
+
+import { Steps } from 'nextra/components';
+import { Callout } from 'nextra/components';
+import { Card, Cards } from 'nextra/components';
+
+import elevenlabsInstructions from '/public/dev-tools/tools/elevenlabs-instructions.png';
+import elevenlabsTool from '/public/dev-tools/tools/elevenlabs-tool.png';
+
+Easily supercharge your ElevenLabs Voice Agents by adding custom tools powered by
+[BuildShip Tools](https://buildship.tools). This guide will walk you through setting up a webhook-based tool so your
+agent can access integrations like Linear, Google Calendar, or any other workflow automation.
+
+<br />
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/dH_rPldsUKw'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+## Prerequisites
+
+- **ElevenLabs Account:** Create or log in to your account at
+  [ElevenLabs Voice Agents Dashboard](https://elevenlabs.io/app/conversational-ai/agents).
+
+- **Agent Setup:** Ensure you have a conversational AI Agent created. If not, follow the on-screen steps to set one up.
+
+## Step 1: Add a Custom Tool
+
+<Steps>
+### Navigate to your Agent
+Open the agent for which you want to add a tool.
+
+### Open the Tools Section
+
+Scroll to the bottom of your agent's setup page to find the **Tools** section.
+
+### Add a Tool
+
+Click **Add tool** and select **Custom Tool** from the dropdown.
+
+</Steps>
+
+## Step 2: Configure the Tool
+
+<Steps>
+### Select the Tool Type
+Select **Webhook** as the tool type.
+<Image src={elevenlabsTool} alt='ElevenLabs Tool Configuration' width={1200} />
+
+### Add a Tool Name & Description
+
+- **Name:** Use a unique, CamelCase identifier (e.g., `LinearChangeLog`).
+- **Description:** Paste or generate a concise description for your tool's purpose.
+
+### Add the Endpoint URL and Method
+
+- **Method:** `POST`
+- **Endpoint URL:** Copy the generated endpoint from your Tool Trigger E.g:
+
+```
+https://your-buildship-host/executeWorkflow/{flowId}/{triggerId}
+```
+
+</Steps>
+
+## Step 3: Set Headers
+
+In the **Headers** section, click **Add header** and fill as follows:
+
+| Name                | Value                                        |
+| ------------------- | -------------------------------------------- |
+| `BUILDSHIP_API_KEY` | _(Copy from BuildShip Tool API Key section)_ |
+
+**Example:**
+
+- **Name:** `BUILDSHIP_API_KEY`
+- **Value:** `your_api_key_here`
+
+<Image src={elevenlabsInstructions} alt='ElevenLabs Tool Instructions' width={1200} />
+
+## Step 4: Enable Body Parameters
+
+<Steps>
+### Enable Body Parameters
+Switch on the option to enable body parameters.
+
+### Add Properties
+
+For each required input (e.g., `startDate`, `endDate`), click **Add property** and configure as follows:
+
+| Data Type | Identifier  | Description                         | Value Type       |
+| --------- | ----------- | ----------------------------------- | ---------------- |
+| String    | `startDate` | Start date for the change log query | Dynamic Variable |
+| String    | `endDate`   | End date for the change log query   | Dynamic Variable |
+
+_Add a description for each property to help the agent understand their use._
+
+</Steps>
+
+## Step 5: Save and Test
+
+<Steps>
+### Save Tool
+Click **Add Tool** and ensure your changes are saved.
+
+### Test the Integration
+
+- Try prompting your agent with a query like: `What happened in the last week on Linear?`
+- The agent will ask for `startDate` and `endDate`, then return the change log from your integration.
+
+</Steps>
+
+## Advanced Options
+
+- **Wait for Output Before Responding:** Enable this if you want the agent to wait for the tool's response before
+  replying.
+- **System Prompt, LLM, Voice, etc.:** Customize these in the agent settings for further control.
+- **Embed Code:** Use the provided embed code to integrate your agent into other applications (e.g., Bolt.new, Cursor,
+  Windsurf).
+
+With BuildShip.Tools, you can easily extend ElevenLabs Voice Agents to automate and streamline tasks across your
+favorite platforms. Map out your workflows, create tools, and empower your agents to deliver more value!
