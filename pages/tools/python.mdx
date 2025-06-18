@@ -1,0 +1,86 @@
+# Python Integration - Setup Guide
+
+import { Steps } from 'nextra/components';
+
+Easily connect to your workflow using Python. Follow the steps below to set up and trigger your workflow.
+
+<Steps>
+
+### Install Dependencies
+
+Make sure you have the `requests` library installed:
+
+```bash
+pip install requests
+```
+
+### Use the Python Code Below
+
+Replace the placeholders as needed (such as `YOUR_API_KEY`) and use the following code to call your workflow:
+
+```python
+import requests
+import json
+
+def call_workflow(params, api_key):
+    """
+    Function to call workflow using requests
+
+    Args:
+        params (dict): Input parameters for the workflow
+        api_key (str): Your API key
+
+    Returns:
+        dict: The workflow result
+    """
+    url = "<YOUR_HOST>/executeWorkflow/<YOUR_FLOW_ID>/<YOUR_TRIGGER_ID>"
+
+    headers = {
+        'Content-Type': 'application/json',
+        'BUILDSHIP_API_KEY': api_key
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=params)
+        response.raise_for_status()  # Raise exception for 4XX/5XX status codes
+
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling workflow: {e}")
+        raise
+
+# Example usage
+def main():
+    api_key = "YOUR_API_KEY"  # Replace with your actual API key
+
+    params = {
+        "example_param": "",  # Example parameter
+        # Add your workflow input parameters here
+    }
+
+    try:
+        result = call_workflow(params, api_key)
+        print("Workflow result:", result)
+        return result
+    except Exception as e:
+        print(f"Failed to execute workflow: {e}")
+
+if __name__ == "__main__":
+    main()
+```
+
+### Customize Parameters
+
+- **Replace** `<YOUR_HOST>`, `<YOUR_FLOW_ID>`, and `<YOUR_TRIGGER_ID>` with your actual workflow details.
+- **Set** your API key in the `api_key` variable.
+- **Update** the `params` dictionary with the required input parameters for your workflow.
+
+### Run Your Script
+
+Execute your script to trigger the workflow and process the results.
+
+**Tip:**  
+If you encounter any errors, check your API key and workflow details, and ensure your input parameters match the
+expected schema.
+
+</Steps>

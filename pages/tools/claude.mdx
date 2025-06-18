@@ -1,0 +1,111 @@
+# Claude Desktop MCP - Setup Guide
+
+import { Callout, Steps } from 'nextra/components';
+
+Integrate your BuildShip tools with **Claude Desktop** using MCP (Multi-Channel Protocol) for seamless agent workflows.
+This guide will walk you through installing the necessary software, connecting your tool, and verifying the setup.
+
+<br />
+<iframe
+  className='aspect-video w-full'
+  src='https://www.youtube.com/embed/mL8LaupRPbI'
+  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+  allowFullScreen
+  width='80%'
+/>
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+1. **Claude Desktop**
+
+[Download and install Claude Desktop](https://claude.ai/download) for your operating system.
+
+2. **Workflow Shipped**
+
+Use the **"Ship"** button in BuildShip to deploy your workflow.
+
+3. **Node.js & npm**
+
+[Install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if you haven't already.  
+After installing, verify with:
+
+```sh
+node -v
+npm -v
+```
+
+## Adding the MCP Tool to Claude
+
+You have two main options for connecting your BuildShip tool to Claude:
+
+## Option 1: Hosted on BuildShip (Recommended)
+
+This is the easiest way to get started and is fully managed by BuildShip.
+
+<Steps>
+### Open your terminal
+Copy and run the following command in your terminal:
+
+```sh
+npx -y buildship-tools create-mcp-server --project <PROJECT_ID> --flows <FLOW_ID> --apiKey <API_KEY> --token <ID_TOKEN> --outputFolder <TOOL_NAME> --client claude --proxy
+```
+
+_Replace the placeholders (`<PROJECT_ID>`, etc.) with your actual values as provided by BuildShip._
+
+### Restart Claude Desktop
+
+If Claude is open, close and reopen it. This loads the new MCP tool.
+
+### Verify Installation
+
+- Open Claude Desktop.
+- Look for a **Tool** icon in Claude Chat.
+- Try asking Claude to use the tool (e.g., "Summarize Linear changes in the last 3 days").
+- When prompted, allow Claude to use the tool.
+
+<Callout>**Tip:** If Claude doesn't prompt to use the tool, try explicitly asking it to use the tool by name.</Callout>
+
+<Callout type='info'>
+  **Note:** Since the tool is hosted on BuildShip, executions will use your BuildShip credits.
+</Callout>
+
+**Example Screenshot:**
+
+![Claude Tool Example](https://storage.googleapis.com/buildship-2vqhlv-us-central1/tool-trigger-assets/claude-tool.png)
+
+</Steps>
+
+## Option 2: Self-Hosted
+
+For advanced users who want to run the tool locally.
+
+<Steps>
+
+### Open your terminal
+
+Run the following command in your terminal:
+
+```sh
+npx -y buildship-tools create-mcp-server --project <PROJECT_ID> --flows <FLOW_ID> --apiKey <API_KEY> --token <ID_TOKEN> --outputFolder <TOOL_NAME> --client claude
+```
+
+This will: - Convert your workflow into a JavaScript function. - Download the function to your local machine.
+
+### Connect to Claude
+
+Use the MCP protocol to connect your local server to Claude Desktop.
+
+</Steps>
+
+## Troubleshooting & Tips
+
+- **Permission Prompt:** The first time you use a tool, Claude will ask for permission. Choose **Allow once** or **Allow
+  always**.
+
+- **Images & Files:** MCP currently has limited support for passing images/files through Claude. For now, pass images as
+  URLs.
+
+- **Community Tools:** Browse or generate tools using BuildShip’s conversational AI. Check the
+  [BuildShip tool library](https://buildship.tools) for more examples.

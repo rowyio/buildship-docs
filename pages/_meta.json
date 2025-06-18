@@ -94,6 +94,7 @@
     "type": "separator",
     "title": "Dev Tools"
   },
+  "tools": "Tool Agents",
   "env-var": "Environment Variables",
   "buildship-tables": "BuildShip Database",
   "secrets": "Secrets & API Keys",
