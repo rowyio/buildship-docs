@@ -1,0 +1,155 @@
+# Node.js Integration
+
+import { Steps } from 'nextra/components';
+
+Easily integrate your workflow with Node.js by following the steps below.
+
+<Steps>
+
+### Install Dependencies
+
+Make sure you have the [`node-fetch`](https://www.npmjs.com/package/node-fetch) package installed (version 2):
+
+```bash
+npm install node-fetch@2
+```
+
+### Call Your Workflow
+
+Use the following code samples to invoke your workflow from Node.js. Replace the placeholders with your actual values as
+needed.
+
+**Node.js Example**
+
+```js
+const fetch = require('node-fetch');
+
+/**
+ * Function to call workflow using fetch
+ * @param {object} params - Input parameters for the workflow
+ * @param {string} apiKey - Your API key
+ * @returns {Promise<object>} - The workflow result
+ */
+async function callWorkflow(params, apiKey) {
+  const url = 'https://your-host/executeWorkflow/YOUR_FLOW_ID/YOUR_TRIGGER_ID';
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        BUILDSHIP_API_KEY: apiKey,
+      },
+      body: JSON.stringify(params),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error calling workflow:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function main() {
+  const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+
+  const params = {
+    // param1: "", // Example parameter
+    // param2: 0,  // Example parameter
+  };
+
+  try {
+    const result = await callWorkflow(params, apiKey);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+main();
+```
+
+**TypeScript Example**
+
+```ts
+import fetch from 'node-fetch';
+
+interface WorkflowParams {
+  // param1: string; // Example parameter
+  // param2: number; // Example parameter
+}
+
+interface WorkflowResponse {
+  // Add response type definitions based on your workflow output
+  [key: string]: any;
+}
+
+/**
+ * Function to call workflow using fetch
+ * @param params - Input parameters for the workflow
+ * @param apiKey - Your API key
+ * @returns Promise resolving to the workflow result
+ */
+async function callWorkflow(params: WorkflowParams, apiKey: string): Promise<WorkflowResponse> {
+  const url = 'https://your-host/executeWorkflow/YOUR_FLOW_ID/YOUR_TRIGGER_ID';
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        BUILDSHIP_API_KEY: apiKey,
+      },
+      body: JSON.stringify(params),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error calling workflow:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function main() {
+  const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+
+  const params: WorkflowParams = {
+    // param1: "", // Example parameter
+    // param2: 0,  // Example parameter
+  };
+
+  try {
+    const result = await callWorkflow(params, apiKey);
+    console.log('Workflow result:', result);
+    return result;
+  } catch (error) {
+    console.error('Failed to execute workflow:', error);
+  }
+}
+
+main();
+```
+
+### Customize Parameters
+
+- Replace `"YOUR_API_KEY"` with your actual API key.
+- Replace the example parameter keys and values in the `params` object with your workflow's required inputs.
+- Update the endpoint URL with your actual host, flow ID, and trigger ID.
+
+### Next Steps
+
+- Test the integration by running your script.
+- Handle the workflow response as needed in your application.
+
+</Steps>
