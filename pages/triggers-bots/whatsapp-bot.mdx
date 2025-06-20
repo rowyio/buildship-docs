@@ -28,11 +28,27 @@ import createBusinessProfile from '/public/nodes/whatsapp/create-business-profil
 import waDevQuickStart from '/public/nodes/whatsapp/wa-dev-quickstart.png';
 import getAcessToken from '/public/nodes/whatsapp/get-access-token.png';
 
+import trigger from '/public/nodes/whatsapp/trigger.png';
+import temporaryAccessToken from '/public/nodes/whatsapp/temporaryAccessToken.png';
+import appCredentials from '/public/nodes/whatsapp/appCredentials.png';
+import botTemplate from '/public/nodes/whatsapp/botTemplate.png';
+import openaiNode from '/public/nodes/whatsapp/openaiNode.png';
+import autoResponder from '/public/nodes/whatsapp/autoResponder.png';
+import shipFlow from '/public/nodes/whatsapp/shipFlow.png';
+import metaBusiness from '/public/nodes/whatsapp/metaBusiness.png';
+import addSystemUser from '/public/nodes/whatsapp/addSystemUser.png';
+import assignAssets from '/public/nodes/whatsapp/assignAssets.png';
+import assignPermission from '/public/nodes/whatsapp/assignPermission.png';
+import generateToken1 from '/public/nodes/whatsapp/generateToken1.png';
+import generateToken2 from '/public/nodes/whatsapp/generateToken2.png';
+import generateToken3 from '/public/nodes/whatsapp/generateToken3.png';
+
 The WhatsApp Bot trigger enables seamless integration and creation of interactive chatbots on WhatsApp by leveraging
 Meta's WhatsApp Business API. It verifies and parses messaging payloads from the WhatsApp Webhook, empowering developers
 to build context-aware, multimedia-rich conversational experiences efficiently.
 
-<Image src={whatsapp} alt='Whatsapp Bot' width={1200} />
+<br />
+<Image src={trigger} alt='Whatsapp Bot' width={1200} />
 
 <br />
 Checkout the full video tutorial 🍿:
@@ -40,7 +56,7 @@ Checkout the full video tutorial 🍿:
 
 <iframe
   className='aspect-video w-full'
-  src='https://www.youtube.com/embed/tvaiKsyr8dk?si=HmmYUFmM3C-6dlpg'
+  src='https://www.youtube.com/embed/f9rJCQnS_Yo'
   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
     allowfullscreen'
   width='80%'
@@ -59,7 +75,7 @@ Before you can create a chatbot on WhatsApp, you need to have the following:
 4. A registered WhatsApp business phone number.
 5. Access to the official WhatsApp Business API.
 
-## Setting up a Business App
+## 1. Setting up a Business App
 
 - **Sign up for a Meta Developer Account**: Go to https://developers.facebook.com and click the "Login" button. You can
   use your Facebook account associated with your company or create a new account.
@@ -113,34 +129,94 @@ Then after adding the WhatsApp product you'll be redirected to the quickstart pa
 
 <Image src={waDevQuickStart} alt='Whatsapp quickstart' width={1200} />
 
+### Copy your app credentials
+
+First, go to the "API Setup" page and take note of the "Temporary access token". You'll need it later.
+
+<Image src={temporaryAccessToken} alt='Temporary access token' width={1200} />
+
+Next, got to "App settings" -> "Basic" and take note of the "App ID" and "App Secret". You'll need it later.
+
+<Image src={appCredentials} alt='App credentials' width={1200} />
+
 </Steps>
 
-## Webhook Verification
+## 2. AI WhatsApp Bot Template
+
+Take a pause from the Meta dashboard and let's clone the AI WhatsApp Bot template from BuildShip.
+
+<Callout info='💡'>
+  In BuildShip, clone the AI WhatsApp Bot template and ship your workflow. Remix link -
+  https://app.buildship.com/template/Nmu4x1MCZNX8
+</Callout>
+
+The template uses the WhatsApp Bot trigger to verify incoming messages webhook payload from the WhatsApp Webhook by
+Meta. It then uses the OpenAI to automatically generate and send responses to the incoming messages.
+
+<br />
+
+<Image src={botTemplate} alt='Clone the WhatsApp Bot template' width={1200} />
+
+<Steps>
+  ### Configuring the WhatsApp Bot trigger
+  <br/>
+<Image src={trigger} alt='Whatsapp Bot' width={1200} />
+
+Trigger Inputs:
+
+- Path: This field specifies the endpoint path for receiving webhook requests from the WhatsApp API.
+
+- App ID: (mentioned in previous step) This field requires entering the App ID provided by the
+  [WhatsApp Business Manager Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#app-setup).
+  It is a unique identifier for your application, displayed on top of your Meta App Dashboard.
+
+- App Secret: (mentioned in previous step) This field requires entering the App Secret provided by the
+  [WhatsApp Business Manager Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#app-setup).
+  It is a secret key used for authentication and securing communication with the WhatsApp Cloud API.
+- Verification Token: This can be any text you want to use, just take note of it as you'll need it later.
+
+### Configuring the OpenAI Text Generator node
+
+This node is used to generate a response to the incoming message. You'll need to select your OpenAI API key or create a
+new one. Or just use the "Use Credits" option to use the credits from your BuildShip account.
+
+<br />
+
+<Image src={openaiNode} alt='OpenAI Text Generator' width={1200} />
+
+### Configuring the Auto-Responder node
+
+The Auto-Responder node is used to send the generated response to the incoming message. The only field you need to enter
+is the Access Token. You can use the temporary access token provided by Meta for testing purposes (mentioned in previous
+steps).
+
+<br />
+
+<Image src={autoResponder} alt='Auto Responder' width={1200} />
+
+### Ship 🚀 your workflow
+
+Make sure to take note of the endpoint URL as you'll need it in the next step.
+
+<br />
+
+<Image src={shipFlow} alt='Ship your workflow' width={1200} />
+
+</Steps>
+
+## 3 Webhook Verification
 
 To get notified of incoming messages from WhatsApp, you need to set up a webhook. Here's how you can do it:
 
 <Steps>
-  ### Clone the WhatsApp Bot - Verification template
-
-<Callout info='💡'>
-  Direct remix link for this step: **Set up the webhook in BuildShip**: In BuildShip, clone the WhatsApp webhook
-  verification template and ship you workflow. Remix link -
-  https://buildship.app/remix?template=whatsapp-bot-verification.
-</Callout>
-
-This workflow is required to verify the webhook endpoint as your setting it in the Meta dashboard. Next enter the verify
-token, this can be any text or number you want to use, just take note of it as you'll need it later. Then ship 🚀 your
-workflow and copy the endpoint URL.
-
-    <Image src={step7} alt='Clone the WhatsApp Bot - Verification template' width={1200} />
 
 ### Save the webhook in Meta
 
 To connect the WhatsApp API to BuildShip, you need to configure a webhook. In your Meta Developer Account, go to
-"WhatsApp" >> "Configuration" >> "Edit Webhook". Enter the endpoint URL you copied from step 1 as well as the verify
-token you saved earlier. Then click "Verify" and "Save".
+"WhatsApp" >> "Configuration" >> "Edit Webhook". Enter the endpoint URL you copied from the previous step as well as the
+verify token you entered earlier when you configured the WhatsApp Bot trigger. Then click "Verify" and "Save".
 
-{' '}
+<br />
 
 <Image src={step8} alt='Configure the webhook' width={1200} />
 
@@ -149,7 +225,7 @@ token you saved earlier. Then click "Verify" and "Save".
 To receive all messaging events from WhatsApp in BuildShip, you need to subscribe to messaging on webhooks. Click
 "Manage" (Webhook fields) and subscribe to messages.
 
-{' '}
+<br />
 
 <Image src={step9} alt='Subscribe to messaging on webhooks' width={1200} />
 
@@ -162,7 +238,7 @@ First, go to "WhatsApp" >> "API Setup".
 - Then click send message to test if you're receiving a message from WhatsApp. If it works, you'll receive a Hello World
   message from WhatsApp.
 
-{' '}
+<br />
 
 <Image src={step10} alt='Send test message' width={1200} />
 
@@ -170,109 +246,78 @@ First, go to "WhatsApp" >> "API Setup".
 
 </Steps>
 
-## Using the WhatsApp Bot - Auto Reply template
+## 4. Testing the bot
 
-To start auto replying to incoming messages, you can to clone the WhatsApp Bot - Auto Reply template from BuildShip.
-
-<Steps>
-  ### Clone the WhatsApp Bot - Auto Reply template
-
-The WhatsApp Bot - Auto Reply template uses the WhatsApp Bot trigger to verify incoming messages webhook payload from
-the WhatsApp Webhook by Meta. It then uses the Claude AI to automatically generate and send responses to the incoming
-messages.
-
-<Callout info='💡'>
-  Direct remix link for this step: **Set up the bot in BuildShip**: In BuildShip, clone the WhatsApp Bot - Auto Reply
-  template and ship you workflow. Remix link - https://buildship.app/remix?template=whatsapp-bot.
-</Callout>
-
-<Image src={step12} alt='WhatsApp Bot - Auto Reply' width={1200} />
-
-### Get App ID and App Secret
-
-On the Meta dahsboard, go to your app and click App settings where you'll find your App ID and App Secret.
-
-    <Image src={step11} alt='Get App ID and App Secret' width={1200} />
-
-Note: Your app must be verified by Meta before obtaining App ID and App secret.
-
-### Configuring the WhatsApp Bot trigger
-
-Trigger Inputs:
-
-- Path: This field specifies the endpoint path for receiving webhook requests from the WhatsApp API. The default value
-  is `/handle-webhook`.
-
-  {' '}
-
-  <Callout type='info' emoji='ℹ️'>
-    This path needs to be the same as the path specified in the [WhatsApp
-    Verification](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#verify-webhook) workflow on the
-    Meta Developer Platform.
-  </Callout>
-
-- Method: This field indicates the HTTP method to be used for the webhook requests. It is set to `POST`, which is the
-  required method for receiving webhook data from the WhatsApp Cloud API.
-
-- App ID: (mentioned in previous step) This field requires entering the App ID provided by the
-  [WhatsApp Business Manager Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#app-setup).
-  It is a unique identifier for your application, displayed on top of your Meta App Dashboard.
-
-- App Secret: (mentioned in previous step) This field requires entering the App Secret provided by the
-  [WhatsApp Business Manager Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#app-setup).
-  It is a secret key used for authentication and securing communication with the WhatsApp Cloud API.
-
-{' '}
-
-### Configuring the Claude AI Text Generator node
-
-The Claude AI Text Generator node is used to generate automatic responses to incoming messages. You'll need to select
-your Anthropic API key or create a new one.
-
-### Configuring the Auto-Responder node
-
-The Auto-Responder node is used to send the generated response to the incoming message. The only field you need to enter
-is the Access Token. You can use the temporary access token provided by Meta for testing purposes.
-
-In the Meta dashboard, you can get this by going to WhatsApp >> API Setup >> Temporary access token.
-
-<Image src={getAcessToken} alt='Get temporary access token' width={1200} />
-
-{' '}
-
-<Callout type='info' emoji='ℹ️'>
-  Note that this access token is temporary and will expire after 24 hours. See creating a permanent token below for a
-  permanent token.
-</Callout>
-
-### Testing the bot
-
-First, ship 🚀 your workflow.
+First, make sure you have shipped 🚀 your workflow.
 
 If everything is set up correctly, you can now test the bot by sending a message to the test WhatsApp phone number which
 you can obtain in the Meta dashboard from WhatsApp >> API setup.
 
-Then you should receive an automatic response generated by Claude AI ✅.
+Then you should receive an automatic response generated by OpenAI ✅.
 
 If you don't receive a response, check the workflow for any errors, and make sure you followed all the steps correctly.
 
-  </Steps>
-
-## Setting up a Permanent Token
+## 5. Setting up a Permanent Token
 
 To set up a permanent token, you need a Meta Business Account. Full documentation
 [link](https://developers.facebook.com/docs/whatsapp/business-management-api/get-started#access-tokens).
 
-1. **Create a system user**: Log in to your Meta Business Account (https://developers.facebook.com) >> "Settings" >>
-   "Business Assets". If you've already set up your Meta Developer Account, you'll see your app and WhatsApp Test
-   Account. Go to "Settings" >> "Business Settings" >> "System users" >> "Add". Enter a system username and system user
-   role.
+<Steps>
 
-2. **Associate the system user with your app**: Go to "Add Assets" >> "App". Select your app and give the system user
-   partial or full access. Click "Save changes".
+### Go to Business Settings
 
-3. **Generate a new token**: Click "Generate new token" >> Select your app from the dropdown menu. Make sure
-   "whatsapp_business_messaging" and "whatsapp_business_management" are turned on. Click "Generate token".
+Access your
+[Business Settings](https://developers.facebook.com/micro_site/url/?click_creative_path[0]=link&ums_creative_detail=link%26device_type%3Ddesktop&click_from_context_menu=true&country=BZ&destination=https%3A%2F%2Fbusiness.facebook.com%2Fsettings&event_type=click&last_nav_impression_id=07EgncAsi0xYiG87Z&max_percent_page_viewed=73&max_viewport_height_px=934&max_viewport_width_px=1920&orig_http_referrer=https%3A%2F%2Fwww.google.com%2F&orig_request_uri=https%3A%2F%2Fdevelopers.facebook.com%2Fblog%2Fpost%2F2022%2F12%2F05%2Fauth-tokens%2F&region=latam&scrolled=true&session_id=3KYDycpS5rrkPOv4w&site=developers&extra_data[create_type]=link&extra_data[create_type_detail]=&extra_data[creative_detail]=link%26device_type%3Ddesktop).
+Then select the business account your app is associated with.
 
-4. **Save the token**: Save the Access Token as it's not saved in Facebook. This is a permanent token that can be used
-   for your Meta Developer app.
+{' '}
+
+<br />
+
+{' '}
+
+<Image src={metaBusiness} alt='Business Settings' width={1200} />
+
+### Create a system user
+
+Go to "Settings" >> "System users". Click Add. Name the system user, choose Admin as the user role, and click Create
+System User.
+
+<br />
+
+<Image src={addSystemUser} alt='System Users' width={1200} />
+
+### Associate the system user with your app
+
+Go to "Assign Assets" >> "Apps". Select your app and give the system user partial or full access. Click "Assign assets".
+
+<br />
+
+<Image src={assignAssets} alt='Assign Assets' width={1200} />
+
+### Generate a new token
+
+Click "Generate new token" >> Select your app from the dropdown menu.
+
+<br />
+
+<Image src={generateToken1} alt='Generate Token' width={1200} />
+
+**4.1.** Set the token experiation date to Never expire.
+
+<br />
+
+<Image src={generateToken2} alt='Generate Token' width={1200} />
+
+**4.2.** Make sure "whatsapp_business_messaging" and "whatsapp_business_management" are turned on. Click "Generate
+token".
+
+<br />
+<Image src={generateToken3} alt='Generate Token' width={1200} />
+
+### Save your permanent token
+
+Take note of the generated Access Token because you won't be able to see it again. This is a permanent token that can be
+used for your WhatsApp Bot.
+
+</Steps>
