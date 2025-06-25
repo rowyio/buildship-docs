@@ -1,0 +1,168 @@
+# Creating Nodes
+
+import { Steps, Callout } from 'nextra/components';
+
+Here's a quick creation guide and a checklist reference for creating nodes in BuildShip. This guide ensures creating meaningful nodes and ensuring a good user experience.
+
+## Check #1: Node Script
+
+<Steps>
+
+### Clean Code with Explicit Comments
+Ensure that you're creating a node which is easily readable/modifiable for anybody who wishes to tweak. A few pointers to take care of:
+
+- Descriptive variables
+- Break complex logic into simpler, re-usable functions
+- Clear meaningful comments
+- Handle edge cases with meaningful error messages
+- Minimalistic approach
+
+### Using BuildShip Utilities
+
+BuildShip provides utility functions right out of the box which provides functionalities like: logging, file handling, and authentication.
+
+Utility functions are imported as part of the second parameter provided to the main function in the node, using the type `NodeScriptOptions`.
+
+#### Logging (`logging`)
+
+Can be used anywhere inside the function definition as `logging.log()` just how we use a `console.log()`.
+
+<Callout>
+`console.log()` doesn't work in the node scripts. Please use `logging.log()` statements for the logs to show up in the [Cloud Logs](https://docs.buildship.com/logging).
+</Callout>
+
+<Callout>
+**NOTE:** Logs for individual node testing does not show up in the cloud logs. To see the logs for individual nodes, execute them as part of workflow testing.
+</Callout>
+
+
+#### BuildShip File Handling (`useBuildShipFile`)
+    
+Use the dedicated File type & File Handling system by BuildShip instead of the native file handling techniques. Check out the complete documentation [here](https://docs.buildship.com/file-handling).
+
+
+#### Authentication (`auth`)
+
+In case the nodes requires authentication for an integration / an API call, BuildShip supports two types of authentication options:
+
+##### 1. API Key (Key-based Integrations)
+    
+Imagine building a new node for an integration such as OpenAI. We use key-based integrations for all groups - where users can add multiple keys for a single group. 
+
+Making the new node as part of the group lets users re-use the existing nodes they've added for all the nodes belonging to the group, i.e. OpenAI.
+
+To do this, we need to follow the two steps below:
+
+**STEP #1: Assign a Group**
+
+- Navigate to the Settings section in the Node Editor
+- In the Key-based Integration selector, select the Integration Group for the node to be a part of
+- In case an existing integration does not exist, click on the “Create New Integration” option and instantly create a new one
+
+**STEP #2: Using the Selected Key**
+
+- Make sure that `auth` is being imported from the `NodeScriptOptions` in the primary function parameters
+- Inside the function, do the following to use the API Key. This way, we do not need to add an additional input to add the API Key.
+
+```js
+export default async function textToSpeech(
+  { text }: NodeInputs,
+  { logging, auth }: NodeScriptOptions){
+	  const apiKey = auth.getKey();
+	  
+	  // use this apiKey as part of the request authentication
+  }
+```
+
+##### 2. OAuth Token
+
+BuildShip offers OAuth-based authentication for the listed services. To check out, navigate to the Settings section in the Node Editor. Look for the OAuth Integration selector to see all the supported integrations.
+
+If you'd like an OAuth integration for a new service, click on the “Request New OAuth” option and let us know!
+
+**USING THE OAUTH INTEGRATION**
+
+The OAuth integration gives us the Access Token for the authenticated account. Here's how you can access it:
+
+```js
+export default async function textToSpeech(
+  { text }: NodeInputs,
+  { logging, auth }: NodeScriptOptions){
+	  const { access_token } = await auth.getToken();
+	  
+	  // use this access_token as part of the request authentication
+  }
+```
+</ Steps>
+
+
+## Check #2: Inputs
+
+### Good Descriptions
+
+- Use simple language
+- Use clear, everyday terms.
+- Avoid jargon when possible
+
+### Required / Sensitive Fields
+
+<Callout>
+**REQUIRED FIELDS:** Inputs which are absolutely necessary for a node's execution.
+Purpose: Enforce validation - throws an error if the value for these inputs are not present.
+For example: the table name for an SQL node, or the Host URL for a Meilisearch node.
+</Callout>
+
+<Callout>
+**SENSITIVE FIELDS:** Inputs which have sensitive values. 
+Purpose: Does not log these values in the cloud logs ensuring privacy. Also, helpful in hiding the values in case you submit a support request.
+For example: An additional secret token which is additional to the API Key.
+</Callout>
+
+### Default Values / Placeholder
+
+It is always good to provide some default for the fields, so they can directly be tested.
+
+In case, we cannot set good defaults for an input, for example: `collectionName` for a Firebase node, add a placeholder.
+
+### Clearing the Clutter
+
+- **Accept user-friendly inputs**
+    
+Lets say we are creating a Google Sheet node which requires the Sheet ID. This is how the Sheet ID is embedded in the URL:
+
+```js
+https://docs.google.com/spreadsheets/d/sheetID/edit?gid=someRandomID#gid=anotherRandomID
+```
+
+In this case, it is **difficult for a user** to recognize which value to pick and add. Instead, we could have a simpler input to **let user add the complete URL** and extract the Sheet ID internally in the script.
+
+
+- **Highlight essential options, hide optional settings**
+    
+Having multiple customization inputs is helpful, but increases complexity and feels overwhelming. To reduce this visual clutter, always have optional / inputs having good default values (like Model ID, or ones with set default values) hidden inside a Folder.
+
+<Callout>
+**Ask yourself:** "What's the minimum information needed to make this work?" Then, hide everything else behind a collapsed section or within the code to let Expert users to fill in.
+</Callout>
+
+
+### Check #3: Output & Examples
+
+It's super simple to update the output schema for a node. Once the node is ready to test, use the testing panel to check if the node works correctly.
+
+Once you get a successful response, look for the **“Update Output”** button to automatically update the Output Schema based on the response received.
+
+To save examples for your node, look for the “Save Example” button to save the testing Input values and Result as an example to showcase for the community.
+
+<Callout>
+**NOTE:** You need at least 1 example saved to make a submission.
+</Callout>
+
+### Check #4: Settings
+
+- Use a crisp and appropriate Node Name and Description which clearly describes the purpose of the node
+- Add appropriate integrations - Key-based & OAuth
+
+<Callout>
+**NOTE:** For making a submission, we can **safely ignore the Node ID and Icons** here. We can **set the icons while submitting the node** in the form. After submission, the node in the canvas would be automatically updated to match the submitted node.
+</Callout>

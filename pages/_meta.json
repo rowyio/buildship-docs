@@ -103,7 +103,6 @@
   "unit-testing": "Unit Testing",
   "testing-examples": "Testing Examples",
   "version-control": "Version Control",
-  "file-handling": "File Handling",
   "-- Community": {
     "type": "separator",
     "title": "Community"
@@ -112,6 +111,12 @@
   "using-templates": "BuildShip Templates",
   "tools-templates": "Community Tools and Templates",
   "community-nodes": "Community Nodes",
+  "-- Resources": {
+    "type": "separator",
+    "title": "Resources"
+  },
+  "creating-nodes": "Creating Nodes",
+  "file-handling": "File Handling",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"
