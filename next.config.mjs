@@ -18,6 +18,26 @@ export default withNextra({
   },
   redirects: () => [
     {
+      source: '/triggers-database/github-trigger',
+      destination: '/triggers-integrations/github-trigger',
+      permanent: true,
+    },
+    {
+      source: '/trigger-nodes/scheduled-interval',
+      destination: '/triggers-scheduled/scheduled-interval',
+      permanent: true,
+    },
+    {
+      source: '/triggers-database/github-trigger',
+      destination: '/triggers-integrations/github-trigger',
+      permanent: true,
+    },
+    {
+      source: '/nodes/api-spec',
+      destination: '/api-spec',
+      permanent: true,
+    },
+    {
       source: '/docs/guide/:slug(typescript|latex|tailwind-css|mermaid)',
       destination: '/docs/guide/advanced/:slug',
       permanent: true,
@@ -97,12 +117,6 @@ export default withNextra({
       source:
         '/basics/:slug(workflow|node|trigger|input|ship-an-api|input-validation|output|update-outputs|variables|reordering-nodes|api-spec|buildship-tables|oauth|path-variable)',
       destination: '/getting-started/:slug',
-      permanent: true,
-    },
-    {
-      source:
-        '/trigger-nodes/:slug(rest-api|scheduled-cron|rowy-trigger|telegram-bot|supabase-trigger|buildship-trigger|firebase-auth|github-trigger|file-upload|firebase-file-upload|whatsapp-bot|email-trigger|lemon-squeezy|revenue-cat|mongodb-trigger|youtube-trigger)',
-      destination: '/connecting-triggers/:slug',
       permanent: true,
     },
     {

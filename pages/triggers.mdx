@@ -12,133 +12,154 @@ import triggerGetDataRequest from '/public/assets/trigger-get-data-request.png';
 
 # What is a Trigger?
 
-Triggers are the basis of the execution of any workflow. Each trigger node **serves as a starting point** for your workflow, allowing you to automate processes based on specific events or schedules.
+Triggers are the basis of the execution of any workflow. Each trigger node **serves as a starting point** for your
+workflow, allowing you to automate processes based on specific events or schedules.
 
 <br />
 <Image src={triggers1} alt='Triggers' width={1200} priority={true} />
 
 <Callout>
-A BuildShip Workflow can have multiple Triggers. This means you can now call one workflow in a lot of ways!
+  A BuildShip Workflow can have multiple Triggers. This means you can now call one workflow in a lot of ways!
 </Callout>
 
-Once we have built and tested the workflow, we can link ways to initiate this workflow. We can do this under the “Connect” tab.
+Once we have built and tested the workflow, we can link ways to initiate this workflow. We can do this under the
+“Connect” tab.
 
 ## What are Trigger Nodes?
 
 Trigger nodes play a pivotal role in BuildShip as they are the **catalysts responsible for initiating the execution** of
 a workflow. Think of them as the "_starting points_" that kickstart the entire automation process.
 
-  <Image src={triggers2} alt='Triggers' width={1200} />
+{' '}
 
+<Image src={triggers2} alt='Triggers' width={1200} />
 
 <Callout type='info' emoji='💡'>
   Learn how to go from an idea to an actual workflow low-code style with BuildShip [here](/basics/ship-an-api). 🚀
 </Callout>
 
-
 ## How to setup a Trigger?
 
-Go to the **Connect** tab and select the trigger most suitable for your use-case. 
+Go to the **Connect** tab and select the trigger most suitable for your use-case.
 
 <Callout type='info'>
-Check dedicated documentation for all of the trigger options available here to find end-less ways of connecting your BuildShip Workflows. [Learn more](#types-of-triggers)
+  Check dedicated documentation for all of the trigger options available here to find end-less ways of connecting your
+  BuildShip Workflows. [Learn more](#types-of-triggers)
 </Callout>
 
 To create a simple API, just pick the **REST API Call Trigger**.
-
 
 <Video src='/assets/connecting-triggers.mp4' />
 
 - Fill out the required inputs in the **Setup** section.
 - Hit **Connect**.
-- Once your trigger has successfully been connected, you'll be able to access additional settings to configure your workflow inputs and outputs.
+- Once your trigger has successfully been connected, you'll be able to access additional settings to configure your
+  workflow inputs and outputs.
 
 <Callout type='info'>
-BuildShip Workflows now let you build without the hassle of connecting a trigger first! Build your logic in your playground end to end. Set up ways to trigger your flows whenever you are ready! [Learn more](/workflows)
+  BuildShip Workflows now let you build without the hassle of connecting a trigger first! Build your logic in your
+  playground end to end. Set up ways to trigger your flows whenever you are ready! [Learn more](/workflows)
 </Callout>
 
 ## Workflow Inputs Schema set up
 
-The **Workflow inputs schema** option lists all of your workflow inputs (required/optional). The Inputs for your workflow have already been defined in the **Workflow Inputs**. 
+The **Workflow inputs schema** option lists all of your workflow inputs (required/optional). The Inputs for your
+workflow have already been defined in the **Workflow Inputs**.
 
 <Callout type='info'>
-We can also dynamically set workflow outputs based on your trigger data using the Get Data feature. [Learn more](#get-data)
+  We can also dynamically set workflow outputs based on your trigger data using the Get Data feature. [Learn
+  more](#get-data)
 </Callout>
 
-Click on the `(x)` icon to open the context menu. The `Trigger Data` object is the output values returned by the trigger you've added. 
-Each trigger returns a different set of outputs, for example: **REST API Call Trigger** returns **Query**, **Headers**, and **Body** for each incoming request.
+Click on the `(x)` icon to open the context menu. The `Trigger Data` object is the output values returned by the trigger
+you've added. Each trigger returns a different set of outputs, for example: **REST API Call Trigger** returns **Query**,
+**Headers**, and **Body** for each incoming request.
+
 <br />
 <Image src={triggerInputSchema} width={1200} alt='Trigger input schema' />
 
 <Callout type='info'>
-To access any of the values we can use the *dot annotation*. For example, we wish to access the value for the `prompt` from the **query parameters** of the request. We can select the prompt object from the context menu and use the dot annotation to access the prompt value.
+  To access any of the values we can use the *dot annotation*. For example, we wish to access the value for the `prompt`
+  from the **query parameters** of the request. We can select the prompt object from the context menu and use the dot
+  annotation to access the prompt value.
 </Callout>
 
 ## Workflow Output set up
 
-The **Workflow output** section let's you define the format and values of the response your workflow will return. The Outputs for your workflow have already been defined in the [Output Node](/core-nodes/output-node) in your workflow.
+The **Workflow output** section let's you define the format and values of the response your workflow will return. The
+Outputs for your workflow have already been defined in the [Output Node](/core-nodes/output-node) in your workflow.
 
-This section let's you access the `Flow Output` object which contains the workflow outputs, if applicable for the selected trigger.
+This section let's you access the `Flow Output` object which contains the workflow outputs, if applicable for the
+selected trigger.
+
 <br />
 <Image src={triggerOutputSchema} width={1200} alt='Trigger output schema' />
 
 ## Get Data
 
-Imagine you have a trigger set up, but you're not sure what the incoming request looks like to map it to the inputs in your workflow. To make things easier, we can make use of the Get Data feature in the post-setup preview screen.
+Imagine you have a trigger set up, but you're not sure what the incoming request looks like to map it to the inputs in
+your workflow. To make things easier, we can make use of the Get Data feature in the post-setup preview screen.
 
-The **Get Data feature let's you fetch the latest request** to the set up endpoint and **define your Workflow Input Schema based on the request**.
+The **Get Data feature let's you fetch the latest request** to the set up endpoint and **define your Workflow Input
+Schema based on the request**.
 
 ### How to use Get Data?
 
 - Make sure to **Connect** your Trigger
 - The trigger supports the Get Data feature if you see it on the preview tab after the trigger has been connected.
-- If its an **integration-based trigger**, like the **Stripe**, **Lemon Squeezy**, **Supabase**, etc. we can either go to the **respective developer dashboard to send a dummy webhook request** (if supported), or trigger the event which calls this webhook.
+- If its an **integration-based trigger**, like the **Stripe**, **Lemon Squeezy**, **Supabase**, etc. we can either go
+  to the **respective developer dashboard to send a dummy webhook request** (if supported), or trigger the event which
+  calls this webhook.
 
 <Callout>
-**For example**, if the Supabase trigger is set to listen to the `create`, and `update` events, we can manipulate the table data to cause an update event to trigger our webhook.
+  **For example**, if the Supabase trigger is set to listen to the `create`, and `update` events, we can manipulate the
+  table data to cause an update event to trigger our webhook.
 </Callout>
 
-- In case of an **API-based trigger**, just copy over the endpoint in the to your front-end client or API Testing Platform like Postman, or Hoppscotch. Send a request to the given endpoint.
+- In case of an **API-based trigger**, just copy over the endpoint in the to your front-end client or API Testing
+  Platform like Postman, or Hoppscotch. Send a request to the given endpoint.
 
-<Image src={triggerGetDataRequest} alt="trigger get data request" width={1200} />
+<Image src={triggerGetDataRequest} alt='trigger get data request' width={1200} />
 <Callout type='info'>
-The Get Data fetches the last request sent to the endpoint. You can **run this anytime you have a request previously sent to the endpoint**, and isn't required to be in real-time.
+  The Get Data fetches the last request sent to the endpoint. You can **run this anytime you have a request previously
+  sent to the endpoint**, and isn't required to be in real-time.
 </Callout>
 
-Once a request is found delivered to the endpoint, you'll be **displayed a tree structure of the properties received** in the request. **Select the required inputs for your workflow and click on “Add inputs to schema”**. This would automatically add the selected properties as inputs to your workflow auto-mapped.
+Once a request is found delivered to the endpoint, you'll be **displayed a tree structure of the properties received**
+in the request. **Select the required inputs for your workflow and click on “Add inputs to schema”**. This would
+automatically add the selected properties as inputs to your workflow auto-mapped.
 
 <br />
-<Image src={triggerGetData} alt="trigger get data" width={1200} />
-
+<Image src={triggerGetData} alt='trigger get data' width={1200} />
 
 ## Supported Triggers
 
 Below you'll find detailed explaination and examples of our most popular Triggers types:
 
-
 ### Rest API Triggers
 
 <Cards num={2}>
-  <Card image arrow title='Rest API Call' href='/trigger-nodes/rest-api'>
+  <Card image arrow title='Rest API Call' href='/triggers-rest-api/rest-api'>
     <>![Rest API Call Trigger](/nodes/rest-api-1.png)</>
   </Card>
-  <Card image arrow title='Firebase Auth Request Trigger' href='/trigger-nodes/firebase-auth'>
+  <Card image arrow title='Firebase Auth Request Trigger' href='/triggers-rest-api/firebase-auth'>
     <>![Firebase Auth Request Trigger](/assets/fb-auth-2.png)</>
   </Card>
-  <Card image arrow title='Rest API File Upload Trigger' href='/trigger-nodes/file-upload'>
+  <Card image arrow title='Rest API File Upload Trigger' href='/triggers-rest-api/file-upload'>
     <>![Rest API File Upload Trigger](/assets/file-upload-1.png)</>
   </Card>
-  <Card image arrow title='Rest API File Upload (Auth) Trigger' href='/trigger-nodes/firebase-file-upload'>
+  <Card image arrow title='Rest API File Upload (Auth) Trigger' href='/triggers-rest-api/firebase-file-upload'>
     <>![Rest API File Upload (Auth) Trigger](/assets/firebase-file-upload-1.png)</>
   </Card>
 </Cards>
 
 ### Scheduled Triggers
+
 <Cards num={2}>
-  <Card image arrow title='Scheduled Cron' href='/trigger-nodes/scheduled-cron'>
+  <Card image arrow title='Scheduled Cron' href='/triggers-scheduled/scheduled-cron'>
     <>![Scheduled Cron Trigger](/nodes/cron-1.png)</>
   </Card>
-  <Card image arrow title='Scheduled Interval' href='/trigger-nodes/scheduled-interval'>
+  <Card image arrow title='Scheduled Interval' href='/triggers-scheduled/scheduled-interval'>
     <>![Scheduled Interval Trigger](/nodes/interval-1.png)</>
   </Card>
 </Cards>
@@ -146,13 +167,13 @@ Below you'll find detailed explaination and examples of our most popular Trigger
 ### Database Triggers
 
 <Cards num={2}>
-  <Card image arrow title='Rowy Trigger' href='/trigger-nodes/rowy-trigger'>
+  <Card image arrow title='Rowy Trigger' href='/triggers-database/rowy-trigger'>
     <>![Rowy Trigger](/assets/rowy-trigger-1.png)</>
   </Card>
-  <Card image arrow title='Supabase Trigger' href='/trigger-nodes/supabase-trigger'>
+  <Card image arrow title='Supabase Trigger' href='/triggers-database/supabase-trigger'>
     <>![Supabase Trigger](/assets/supaTrigger2.png)</>
   </Card>
-  <Card image arrow title='MongoDB Trigger' href='/trigger-nodes/mongodb-trigger'>
+  <Card image arrow title='MongoDB Trigger' href='/triggers-database/mongodb-trigger'>
     <>![MongoDB Trigger](/assets/mongo-1.png)</>
   </Card>
 </Cards>
@@ -163,10 +184,10 @@ Below you'll find detailed explaination and examples of our most popular Trigger
   <Card image arrow title='Stripe Trigger' href='/triggers-payments/stripe'>
     <>![Stripe Trigger](/assets/stripe-trigger.png)</>
   </Card>
-  <Card image arrow title='Lemon Squeezy Trigger' href='/trigger-nodes/lemon-squeezy'>
+  <Card image arrow title='Lemon Squeezy Trigger' href='/triggers-payments/lemon-squeezy'>
     <>![Lemon Squeezy Trigger](/assets/lemon-og.png)</>
   </Card>
-  <Card image arrow title='RevenueCat Trigger' href='/trigger-nodes/revenue-cat'>
+  <Card image arrow title='RevenueCat Trigger' href='/triggers-payments/revenue-cat'>
     <>![RevenueCat Trigger](/assets/revenuecat-og.png)</>
   </Card>
 </Cards>
@@ -177,21 +198,21 @@ Below you'll find detailed explaination and examples of our most popular Trigger
   <Card image arrow title='Chatbot Bot Widget' href='/triggers-bots/chatbot'>
     <>![Chatbot Bot](/assets/chatbot-og.png)</>
   </Card>
-  <Card image arrow title='Telegram Bot' href='/trigger-nodes/telegram-bot'>
+  <Card image arrow title='Telegram Bot' href='/triggers-bots/telegram-bot'>
     <>![Telegram Bot](/nodes/telegram-bot.png)</>
   </Card>
-  <Card image arrow title='WhatsApp Bot' href='/trigger-nodes/whatsapp-bot'>
+  <Card image arrow title='WhatsApp Bot' href='/triggers-bots/whatsapp-bot'>
     <>![WhatsApp Bot](/nodes/whatsapp-bot.png)</>
   </Card>
 </Cards>
 
-
 ### Integration Triggers
+
 <Cards num={2}>
-  <Card image arrow title='BuildShip Trigger' href='/trigger-nodes/buildship-trigger'>
+  <Card image arrow title='BuildShip Trigger' href='/triggers-integrations/buildship-trigger'>
     <>![BuildShip Trigger](/assets/bs-trigger-4.png)</>
   </Card>
-  <Card image arrow title='Email Trigger' href='/trigger-nodes/email-trigger'>
+  <Card image arrow title='Email Trigger' href='/triggers-integrations/email-trigger'>
     <>![Email Trigger](/nodes/email-1.png)</>
   </Card>
   <Card image arrow title='GitHub Trigger' href='/trigger-nodes/github-trigger'>
@@ -203,7 +224,7 @@ Below you'll find detailed explaination and examples of our most popular Trigger
   <Card image arrow title='Webflow Trigger' href='/triggers-integrations/webflow-trigger'>
     <>![Webflow Trigger](/integrations/webflow/webflow-og.png)</>
   </Card>
-  <Card image arrow title='YouTube Trigger' href='/trigger-nodes/youtube-trigger'>
+  <Card image arrow title='YouTube Trigger' href='/triggers-integrations/youtube-trigger'>
     <>![YouTube Trigger](/assets/yt-trigger-og.png)</>
   </Card>
   <Card image arrow title='FlutterFlow Trigger' href='/triggers-integrations/flutterflow-triggers'>
