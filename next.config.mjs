@@ -18,6 +18,11 @@ export default withNextra({
   },
   redirects: () => [
     {
+      source: '/trigger-nodes/:slug(firebase-file-upload|rest-api|firebase-auth|file-upload)',
+      destination: '/triggers-rest-api/:slug',
+      permanent: true,
+    },
+    {
       source: '/triggers-database/github-trigger',
       destination: '/triggers-integrations/github-trigger',
       permanent: true,
