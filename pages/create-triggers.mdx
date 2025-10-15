@@ -2,6 +2,11 @@
 
 import { Cards, Card } from 'nextra/components';
 import { Callout } from 'nextra/components';
+import Image from 'next/image';
+import envGet from 'public/resources/env-get.png';
+import envSet from 'public/resources/env-set.png';
+import envDelete from 'public/resources/env-delete.png';
+import usingSecrets from 'public/resources/using-secrets.png';
 
 Triggers are mechanisms to initiate a BuildShip Workflow. There are three main types of BuildShip Triggers:
 
@@ -95,225 +100,164 @@ App. Here are some examples:
   </Card>
 </Cards>
 
-## Trigger Logic
+## Building Trigger Logic
 
-Trigger Logic is built on four lifecycle functions: `onCreate`, `onUpdate`, `onExecution`, and `onDelete`.
+Building the trigger logic can be easily broken down into 4 major lifecycle function: `onCreate`, `onUpdate`,
+`onExecution`, and `onDelete`.
 
-### `onCreate`
+### 1. `onCreate`
 
-- Runs only once when the workflow is shipped for the very first time
+> This function is called when a **trigger is deployed for the first time**. It's typically used for setup tasks, such
+> as creating a webhook in an external service.
+
+The `onCreate` function in a trigger is responsible for the set up. You can think of it like “what happens when the
+trigger gets connected for the first time”.
+
+**Trigger set up steps could include:**
+
+- Setting up a webhook for the service - let’s say a Cloud Scheduler for a Cron Job, or a Webhook for your Supabase
+  Project with the related config as defined by the user in the inputs
+
+For some cases, it is okay for the `onCreate` function to do nothing. What goes here depends entirely on the use-case.
+
+```javascript
+async function onCreate({ ...triggerInputs }, { auth, runtimeUrl, workflow, trigger, env }) {
+  // an onCreate function which does nothing
+  // makes sense for triggers which are API-based (in which case only the OnExecution & getData methods matter)
+  return true;
+}
+```
+
+Let’s try and understand this with the help of an example. We’re now looking at the `onCreate` function for the Webflow
+Trigger:
+
+```javascript
+async function onCreate(
+  { site_id, triggerType, filter }, // trigger inputs
+  { auth, runtimeUrl, workflow, trigger, env }, // trigger script options
+) {
+  try {
+    const { access_token } = await auth.getToken();
+    const webhookUrl = `${runtimeUrl}/executeWorkflow/${workflow.id}/${trigger.id}`;
+    const url = `https://api.webflow.com/v2/sites/${site_id}/webhooks`;
+
+    let body = {
+      triggerType: triggerType,
+      url: webhookUrl,
+    };
+
+    const _filter = triggerType === 'form_submission' ? filter : null; // filter is only required for form_submission
+
+    const options = {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: `Bearer ${access_token}`,
+      },
+      body: JSON.stringify({
+        ...body,
+        ..._filter,
+      }),
+    };
+
+    const resp = await fetch(url, options);
+    const respJson = await resp.json();
+
+    await env.set([
+      {
+        name: `webflow-webhook-id`,
+        value: respJson.id,
+      },
+    ]);
+    return true;
+  } catch (e) {
+    return e;
+  }
+}
+```
+
+- Similar to the node script, the trigger functions too take in two sets of params:
+
+  1. **Node Inputs** (`NodeInputs`) - in the example below, the `site_id`, `triggerType`, and `filter` are all inputs
+     for the trigger - the values filled in by the user
+  2. Trigger Script Options (`TriggerScriptOptions`) - this contains the `auth`, `runtimeUrl`, `workflow`, `trigger`,
+     and `env` objects. You can learn more about them [here](/create-triggers#available-trigger-script-options).
+
+#### Available Trigger Script Options (for onCreate, onUpdate, and onDelete)
+
+For onCreate, onUpdate, and onDelete, the following options are passed as the second parameter to the trigger lifecycle
+functions:
+
+- `runtimeUrl`: The URL of the runtime environment.
+- `auth`: An object containing `getToken` and `getKey` functions for handling authentication.
+- `workflow`: An object containing the `id` and `runtimeEnv` of the workflow.
+- `trigger`: The trigger object itself. (check a sample Trigger object
+  [here](https://storage.googleapis.com/buildship-app-us-central1-public/docs/example-trigger.json))
+- `env`: An environment manager for the trigger. (check [this](/create-triggers#using-environment-variables-env) section
+  below for more details)
+- `secret`: An object with a get function to retrieve secrets. (check [this](/create-triggers#using-secrets) section
+  below for more details)
+
+#### Using Environment Variables (env)
+
+There are three methods available in both triggers and nodes to get, set and delete environment variables:
+
+- **Get Environment Variables**
+
+```javascript
+env.get(string, 'project' | 'workflow'); // default "workflow"`
+```
+
+<Image src={envGet} alt='Environment Variables' width={1200} />
+
+- **Set Environment Variables**
+
+```javascript
+await env.set({ name: string; value: string } | { name: string; value: string }[], ”project” | “workflow”) // default "workflow"
+```
+
+<Image src={envSet} alt='Environment Variables' width={1200} />
+
+- **Delete Environment Variables**
+
+```javascript
+await env.delete(string | string[], ”project” | “workflow”) // default "workflow"
+```
+
+<Image src={envDelete} alt='Environment Variables' width={1200} />
+
+#### Using Secrets
+
+The secrets stored via the BuildShip secret manager can be accessed like:
+
+```javascript
+async function onCreate(
+  { ...triggerInputs },
+  { secret }, // trigger script options
+) {
+  // Fetch a secret named "mySecret"
+  const apiKey = await secret.get('mySecret');
+}
+```
+
+<Image src={usingSecrets} alt='Using Secrets' width={1200} />
+
 - This is the function which should include the API Call to set up the webhook endpoint.
   <Callout>
     If the automated webhook set up fails on the first try, this needs to be handled in the `onUpdate` function. Check
     the `onUpdate` example.
   </Callout>
 
-Sample `onCreate` method for **Lemon Squeezy Trigger**:
+### 2. `onUpdate`
 
-```javascript
-const onCreate = async (
-  { apiKey, events, secretKey, storeId }, // trigger inputs
-  { workflow, runtimeUrl, env },
-) => {
-  const webhookUrl = runtimeUrl + '/executeWorkflow/' + workflow.id;
+> This function is **invoked when a trigger is redeployed**. It's used to update any resources that were created during
+> the onCreate phase.
 
-  const addWebhookResp = await fetch('https://api.lemonsqueezy.com/v1/webhooks', {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/vnd.api+json',
-    },
-    method: 'POST',
-    // body according to the lemonsqueezy docs
-    body: JSON.stringify({
-      data: {
-        type: 'webhooks',
-        attributes: {
-          test_mode: true,
-          url: webhookUrl,
-          events: events,
-          secret: secretKey,
-        },
-        relationships: {
-          store: {
-            data: {
-              type: 'stores',
-              id: storeId,
-            },
-          },
-        },
-      },
-    }),
-  });
-  const resJson = await addWebhookResp.json();
+Check out the available Trigger Script Options for onUpdate [here](/create-triggers#available-trigger-script-options).
 
-  const id = resJson.data?.id;
-  // setting the webhookId as workflow level env variable (required for deletion and updation)
-  await env.set([{ name: 'webhookId', value: id }]);
-
-  if (!addWebhookResp.ok) {
-    const error = await resJson;
-    return { success: false, message: 'Failed to create webhook' };
-  }
-};
-```
-
-### `onUpdate`
-
-- Runs on every subsequent deployment of the workflow after the first time
-- Add API Calls to update the Webhook endpoint here
-
-Sample `onUpdate` method for **Lemon Squeezy Trigger**:
-
-```javascript
-const onUpdate = async ({ apiKey, secretKey, events, storeId }, { workflow, runtimeUrl, env }) => {
-  try {
-    const webhookId = env.get('webhookId');
-    if (!webhookId) {
-      throw new Error('webhookId is not set');
-    }
-    const res = await fetch(`https://api.lemonsqueezy.com/v1/webhooks/${webhookId}`, {
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        data: {
-          type: 'webhooks',
-          id: webhookId,
-          attributes: {
-            events: events,
-          },
-        },
-      }),
-    });
-    return res;
-  } catch (error) {
-    // if the webhook updation fails, create one instead
-    const webhookUrl = runtimeUrl + '/executeWorkflow/' + workflow.id;
-
-    const addWebhookResp = await fetch('https://api.lemonsqueezy.com/v1/webhooks', {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/vnd.api+json',
-      },
-      method: 'POST',
-      body: JSON.stringify({
-        data: {
-          type: 'webhooks',
-          attributes: {
-            test_mode: true,
-            url: webhookUrl,
-            events: events,
-            secret: secretKey,
-          },
-          relationships: {
-            store: {
-              data: {
-                type: 'stores',
-                id: storeId,
-              },
-            },
-          },
-        },
-      }),
-    });
-    const resJson = await addWebhookResp.json();
-
-    const id = resJson.data.id;
-    await env.set([{ name: 'webhookId', value: id }]);
-
-    if (!addWebhookResp.ok) {
-      const error = await addWebhookResp.json();
-      return { success: false, message: 'Failed to create webhook' };
-    }
-  }
-};
-```
-
-### `onExecution`
-
-- This is the method which runs on every execution.
-- This is where we need to add payload verification (if applicable) and manually parse the incoming request body. (check
-  the example below)
-
-Sample `onExecution` method for **Lemon Squeezy Trigger**:
-
-```javascript
-const onExecution = async ({ secretKey }, { nodeReq, request, logging }) => {
-  const body = await parser['json'](nodeReq, { returnRawBody: true });
-
-  validate(secretKey, body.raw, request.headers);
-
-  const ret = {
-    query: request.query,
-    headers: request.headers,
-    body: body !== null && body !== void 0 ? body : {},
-  };
-
-  return {
-    request: ret,
-    output: ret.body,
-  };
-};
-
-// custom function to validate the raw request body (as specified by LemonSqueezy)
-function validate(secretKey, body, headers) {
-  const hmac = crypto.createHmac('sha256', secretKey);
-  const hmacUpd = hmac.update(body).digest('hex');
-  const digest = Buffer.from(hmacUpd, 'utf8');
-  const signature = Buffer.from(headers['x-signature'] || '', 'utf8');
-
-  if (!crypto.timingSafeEqual(digest, signature)) {
-    throw new Error('Invalid signature.');
-  }
-  console.log('signature is valid');
-}
-```
-
-### `onDelete`
-
-- The clean up function which runs every time the workflow or the trigger is deleted.
-- This is where we need to add the API Call for removing the webhook set-up by the `onCreate` and `onUpdate` functions.
-
-Sample `onDelete` method for **Lemon Squeezy Trigger**:
-
-```javascript
-const onDelete = async ({ apiKey }, { env }) => {
-  const webhookId = env.get('webhookId');
-  console.log(webhookId);
-  if (webhookId) {
-    await fetch(`https://api.lemonsqueezy.com/v1/webhooks/${webhookId}`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
-    await env.delete(['webhookId']);
-    console.log(`env deleted`);
-    return true;
-  } else {
-    return true;
-  }
-};
-```
-
-<Callout>
-**NOTE:** All of these functions would have to be exported, like:
-```javascript
-export default {
-  onCreate,
-  onUpdate,
-  onExecution,
-  onDelete,
-};
-```
-
-**TIP:** If we are planning to re-use the `onCreate` functionality for every subsequent `onUpdate` function as well, we
-can do:
+For some cases, services _allow the creation endpoint/method to also update the existing webhook_. For such cases we can
+re-use the onCreate script. To do that, simply update the exports for the trigger like:
 
 ```javascript
 export default {
@@ -321,7 +265,290 @@ export default {
   onUpdate: onCreate,
   onExecution,
   onDelete,
+  getData,
 };
 ```
 
+Here’s an example of the onUpdate function for the Webflow Trigger:
+
+```javascript
+async function onUpdate(
+  { site_id, triggerType, filter }, // trigger inputs
+  { auth, runtimeUrl, workflow, trigger, env }, // trigger script options
+) {
+  const hook_id = env.get(`webflow-webhook-id`);
+  const { access_token } = await auth.getToken();
+
+  if (hook_id) {
+    // delete the existing webhook first
+    onDelete({}, { auth, env });
+  }
+  try {
+    // create a webhook with updated input values
+    onCreate({ site_id, triggerType, filter }, { auth, runtimeUrl, workflow, trigger, env });
+  } catch (e) {
+    return e;
+  }
+}
+```
+
+### 3. `onDelete`
+
+> This function is called **when a workflow or trigger is deleted**. Its primary purpose is **for clean-up** operations,
+> like deleting any previously created webhooks.
+
+Check out the available Trigger Script Options for onDelete [here](/create-triggers#available-trigger-script-options).
+
+For some cases, it is okay for the `onDelete` function to do nothing. What goes here depends entirely on the use-case.
+
+```javascript
+async function onDelete({ ...triggerInputs }, { auth, runtimeUrl, workflow, trigger, env }) {
+  // an onDelete function which does nothing
+  // makes sense for triggers which are API-based (in which case only the OnExecution & getData methods matter)
+  return true;
+}
+```
+
+We’re now looking at the onDelete function for the Webflow Trigger:
+
+```javascript
+async function onDelete({}, { auth, env }) {
+  try {
+    const hook_id = env.get(`webflow-webhook-id`);
+
+    if (!hook_id) {
+      return 'No webhook to delete.';
+    }
+
+    const { access_token } = await auth.getToken();
+
+    // clean up the set up webhooks
+    const url = `https://api.webflow.com/v2/webhooks/${hook_id}`;
+    const options = {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${access_token}`,
+      },
+    };
+
+    const resp = await fetch(url, options);
+    const respJson = await resp.json();
+
+    await env.delete(['webflow-webhook-id']);
+    return true;
+  } catch (e) {
+    return e;
+  }
+}
+```
+
+### 4. `onExecution` or `onExecution.start`
+
+> The onExecution function is a deprecated alias. The trigger execution is now broken down into two phases:
+
+- **onExecution / onExecution.start**
+- **onResponse / onExecution.end**
+
+This function is called when a trigger is executed, which starts a workflow. `onExecution.start` is the modern,
+recommended version, while `onExecution` is a deprecated alias. This function provides the initial data for the
+workflow.
+
+The `onExecution` is primary required to parse the incoming request body. The value returned via this function is what’s
+passed to as the trigger output.
+
+Here’s an example of the `onExecution.start` function for the Webflow Trigger:
+
+```javascript
+async function onRequest({ _ }, { nodeReq, logging, request, env }) {
+  const body = request.body ?? (await parser['json'](nodeReq));
+
+  const ret = {
+    query: request.query,
+    headers: request.headers,
+    body: body !== null && body !== void 0 ? body : {},
+  };
+
+  return ret;
+}
+```
+
+This can be exported as:
+
+```javascript
+export default {
+  onCreate,
+  onExecution: {
+    start: onRequest,
+    end: onResponse,
+  },
+  onUpdate,
+  onDelete,
+  getData,
+};
+```
+
+#### Available Trigger Script Options (for `onExecution.start`)
+
+For onExecution (`onExecution.start`), the following options are passed as the second parameter to the trigger lifecycle
+functions:
+
+- `...(state.current ?? {})`: The current state of the workflow execution.
+- `workflowExecutionId`: The ID of the current workflow execution.
+- `logging`: The logging object.
+- `terminate`: A function to terminate the workflow execution.
+  ```javascript
+  // Example of terminating a workflow execution
+  return terminate(200, 'No changes detected.');
+  ```
+- `env`: An environment manager for the trigger. (check [this](/create-triggers#using-environment-variables-env) section
+  below for more details)
+- `secret`: An object with a get function to retrieve secrets. (check [this](/create-triggers#using-secrets) section
+  below for more details)
+- `auth`: An object containing `getToken` and `getKey` functions.
+
+```javascript
+// Example of getting an OAuth token
+const { access_token } = await auth.getToken();
+
+// Example of getting a key-based API key
+const apiKey = auth.getKey();
+```
+
+- `getBuildShipFile`: A function to get a BuildShip file. (check [this](/file-handling) for more details)
+- `trigger`: The trigger object. (check a sample Trigger object
+  [here](https://storage.googleapis.com/buildship-app-us-central1-public/docs/example-trigger.json))
+- `workflow`: An object containing the workflow `id`.
+
+### 5. onResponse or `onExecution.end`
+
+> This function is called after a workflow has finished executing. `onExecution.end` is the modern version, and
+> onResponse is its deprecated alias. It is often used for cleanup tasks or to format the final response of the
+> workflow.
+
+The first param for the inputs for the onResponse function are structured as:
+
+- **outputs**: Contains the outputs of the workflow, mapped from the
+  trigger's node values with keys starting with `outputs.`.
+- **config**: Contains the trigger's config values (the same as what would be passed to other lifecycle functions).
+
+Here’s what a sample onResponse function looks like:
+
+```javascript
+const onResponse = ({ outputs, config }, { logging, req }) => {
+  return {
+    status: parseInt(outputs.status ?? 200),
+    value: outputs.body,
+    cacheMaxAge: 0,
+  };
+};
+```
+
+#### Available Trigger Script Options (for `onExecution.end`)
+
+For **onExecution (`onExecution.end`),** the following options are passed as the second parameter to the trigger
+lifecycle functions:
+
+- `...(state.current ?? {})`: The current state of the workflow execution.
+- `workflowExecutionId`: The ID of the current workflow execution.
+- `logging`: A logging object.
+- `terminate`: A function to terminate the workflow execution.
+- `env`: An environment manager for the trigger. (check [this](/create-triggers#using-environment-variables-env) section
+  below for more details)
+- `secret`: An object with a get function to retrieve secrets. (check [this](/create-triggers#using-secrets) section
+  below for more details)
+- `auth`: An object containing getToken and getKey functions.
+- `getBuildShipFile`: A function to get a BuildShip file.
+- `trigger`: The trigger object. (check a sample Trigger object
+  [here](https://storage.googleapis.com/buildship-app-us-central1-public/docs/example-trigger.json))
+- `workflow`: An object containing the workflow id.
+
+### 6. `getData`
+
+> This function is used to fetch sample data for a trigger. This is particularly useful for previewing the trigger's
+> output in the editor without having to run an entire workflow.
+
+Copy and paste the following default getData function along with the helper functions to display the incoming request
+from the logs whenever the “Get Data” button is clicked on the Setup Preview screen for the trigger.
+
+```javascript
+const getAccessToken = async () => {
+  const response = await fetch('http://metadata/computeMetadata/v1/instance/service-accounts/default/token', {
+    headers: { 'Metadata-Flavor': 'Google' },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to obtain access token: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.access_token;
+};
+
+const fetchLogEntries = async (triggerId, retries = 3, delay = 1000) => {
+  const projectId = process.env.GCLOUD_PROJECT;
+  const accessToken = await getAccessToken();
+
+  const filter = `logName="projects/${projectId}/logs/buildship-node-io" AND jsonPayload.nId="${triggerId}"`;
+
+  const requestBody = {
+    resourceNames: [`projects/${projectId}`], // Added resourceNames field
+    filter: filter,
+    pageSize: 1,
+    orderBy: 'timestamp desc',
+  };
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch('https://logging.googleapis.com/v2/entries:list', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error fetching log entries: ${response.statusText} - ${errorText}`);
+      }
+
+      const data = await response.json();
+      const entries = data.entries || [];
+
+      if (entries.length > 0) {
+        return entries;
+      }
+
+      // Delay before the next attempt if entries were empty
+      if (attempt < retries) {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    } catch (error) {
+      // Retry if it's not the last attempt
+      if (attempt < retries) {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      } else {
+        throw new Error(`Failed to get data after ${retries} attempts.`);
+      }
+    }
+  }
+
+  // If all retries exhausted and no entries found
+  throw new Error('No data found. Send a request to the API and try again.');
+};
+
+const getData = async (inputs, { trigger, workflow }) => {
+  try {
+    const entries = await fetchLogEntries(trigger.id, 5, 2000);
+    return { success: true, message: '', data: entries[0].jsonPayload.o };
+  } catch (err) {
+    return { success: false, message: err?.message, data: null };
+  }
+};
+```
+
+<Callout type='tip' emoji='💡'>
+  **Quick Tip** The easiest way to build triggers and implement the lifecycle functions is to build them out as nodes.
+  This divides the functionality into executable chunks which can be individually tested and are easier to debug.
 </Callout>
