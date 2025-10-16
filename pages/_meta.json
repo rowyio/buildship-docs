@@ -116,6 +116,7 @@
     "title": "Resources"
   },
   "creating-nodes": "Creating Nodes",
+  "create-triggers": "Create Triggers",
   "file-handling": "File Handling",
   "-- Integration": {
     "type": "separator",
@@ -139,10 +140,6 @@
   "contribute": {
     "type": "separator",
     "title": "Contributing",
-    "display": "hidden"
-  },
-  "create-triggers": {
-    "title": "Create Triggers",
     "display": "hidden"
   }
 }
