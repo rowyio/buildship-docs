@@ -213,6 +213,12 @@ export default withNextra({
       destination: '/core-nodes/http',
       permanent: true,
     },
+    // support pages redirect
+    {
+      source: '/support-messages',
+      destination: '/in-app-support',
+      permanent: true,
+    },
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/;
