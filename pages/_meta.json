@@ -118,6 +118,7 @@
   "creating-nodes": "Creating Nodes",
   "create-triggers": "Create Triggers",
   "file-handling": "File Handling",
+  "reserved-keywords": "Reserved Keywords",
   "-- Integration": {
     "type": "separator",
     "title": "Integrations"
